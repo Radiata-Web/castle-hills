@@ -17,21 +17,33 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 // Basic "contact me" form schema
 const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Please enter more than 2 characters.",
+  name: z.string({ required_error: "Name is required." }).min(2, {
+    message: "Enter more than 2 characters.",
   }),
   email: z
-    .string()
+    .string({ required_error: "Email address is required." })
     .min(1, { message: "Email address is required." })
     .email("Invalid email."),
   phone: z
-    .string()
+    .string({ required_error: "Phone is required." })
     .refine(isValidPhoneNumber, "Please provide a valid phone number.")
     .transform((val) => parsePhoneNumber(val).number.toString()),
-  message: z.string(),
+  serviceType: z.enum(["staining", "installation", "painting", "custom"], {
+    errorMap: (issue, ctx) => {
+      return { message: "Please select a service type." };
+    },
+  }),
+  message: z.string({ required_error: "Please write your project details." }),
 });
 
 // Form component
@@ -48,28 +60,28 @@ export function ContactForm() {
 
   return (
     <Form {...form}>
-      <h2 className="text-2xl font-bold mb-4">Let's get in touch</h2>
+      <h2 className="text-2xl font-bold mb-4">Get a free estimate today!</h2>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-2 sm:space-y-4"
         name="contact"
-        data-netlify="true"
+        netlify
       >
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Full Name</FormLabel>
-              <FormControl>
-                <Input placeholder="John Smith" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
         <section className="grid gap-2 sm:grid-cols-2 sm:gap-5">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Full Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="John Smith" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           {/* Email address */}
           <FormField
             control={form.control}
@@ -84,7 +96,9 @@ export function ContactForm() {
               </FormItem>
             )}
           />
+        </section>
 
+        <section className="grid gap-2 sm:grid-cols-2 sm:gap-5">
           {/* Phone number */}
           <FormField
             control={form.control}
@@ -99,6 +113,51 @@ export function ContactForm() {
               </FormItem>
             )}
           />
+
+          {/* Service type */}
+          <FormField
+            control={form.control}
+            name="serviceType"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Service Type</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a service" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem
+                      value="staining"
+                      className="hover:cursor-pointer"
+                    >
+                      Staining
+                    </SelectItem>
+                    <SelectItem
+                      value="installation"
+                      className="hover:cursor-pointer"
+                    >
+                      Installation
+                    </SelectItem>
+                    <SelectItem
+                      value="painting"
+                      className="hover:cursor-pointer"
+                    >
+                      Painting
+                    </SelectItem>
+                    <SelectItem value="custom" className="hover:cursor-pointer">
+                      Custom
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </section>
 
         {/* Message */}
@@ -107,16 +166,19 @@ export function ContactForm() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Your Message</FormLabel>
+              <FormLabel>Project Details</FormLabel>
               <FormControl>
-                <Textarea placeholder="Your message here..." {...field} />
+                <Textarea
+                  placeholder="Give us some details about your project! The more we know, the more accurate of an estimate we can give you."
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type="submit" className="w-full sm:w-auto">
-          Submit
+          Request estimate
         </Button>
       </form>
     </Form>

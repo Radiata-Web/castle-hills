@@ -1,5 +1,6 @@
-import Link from "next/link"
-import Socials from "@/components/ui/socials"
+import Link from "next/link";
+import Socials from "@/components/ui/socials";
+import Logo from "./logo";
 
 export default function Footer() {
   return (
@@ -9,27 +10,14 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 mb-8">
           {/* Left Column */}
           <div className="flex flex-col space-y-4 md:w-1/2">
-            <div className="flex items-center space-x-2">
-              <svg
-                className="h-8 w-8 text-primary"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg>
-              <span className="text-xl font-bold">Company Name</span>
-            </div>
-            <address className="text-sm text-muted-foreground not-italic">
-              <p>123 Business Street</p>
-              <p>Cityville, State 12345</p>
-            </address>
-            <Socials />
+            {/* Logo */}
+            <span className="flex flex-col items-center gap-3 md:items-start">
+              <img src="/ch-logo.svg" width={100} />
+              <p className="text-xl font-bold md:block md:text-lg lg:text-xl">
+                Castle Hills Stain & Restoration
+              </p>
+              <Socials />
+            </span>
           </div>
 
           {/* Right Column */}
@@ -51,14 +39,6 @@ export default function Footer() {
                       href="#"
                       className="text-sm text-muted-foreground hover:text-primary"
                     >
-                      Careers
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="#"
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
                       Contact
                     </Link>
                   </li>
@@ -72,7 +52,7 @@ export default function Footer() {
                       href="#"
                       className="text-sm text-muted-foreground hover:text-primary"
                     >
-                      Products
+                      Fence Staining
                     </Link>
                   </li>
                   <li>
@@ -80,7 +60,7 @@ export default function Footer() {
                       href="#"
                       className="text-sm text-muted-foreground hover:text-primary"
                     >
-                      Solutions
+                      Fence Installation
                     </Link>
                   </li>
                   <li>
@@ -88,36 +68,7 @@ export default function Footer() {
                       href="#"
                       className="text-sm text-muted-foreground hover:text-primary"
                     >
-                      Pricing
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Resources</h3>
-                <ul className="space-y-2">
-                  <li>
-                    <Link
-                      href="#"
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
-                      Blog
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="#"
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
-                      Documentation
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="#"
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
-                      Support
+                      Exterior Painting
                     </Link>
                   </li>
                 </ul>
@@ -137,5 +88,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

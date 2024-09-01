@@ -84,7 +84,7 @@ export default function Navbar() {
           {/* Contact Me button */}
           <div className="hidden md:block">
             <Button className="transition-all duration-200 ease-in-out sm:hover:scale-105">
-              Contact Me
+              Get my free estimate
             </Button>
           </div>
 
@@ -158,7 +158,7 @@ export default function Navbar() {
             </div>
           </div>
           <Button className="w-full mt-4 transition-all duration-200 ease-in-out hover:scale-105">
-            Contact Me
+            Get my free estimate
           </Button>
         </div>
       </div>

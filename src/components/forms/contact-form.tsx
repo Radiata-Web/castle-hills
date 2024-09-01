@@ -24,9 +24,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useState } from "react";
+import { zfd } from "zod-form-data";
 
 // Basic "contact me" form schema
-const formSchema = z.object({
+const formSchema = zfd.formData({
   name: z.string({ required_error: "Name is required." }).min(2, {
     message: "Enter more than 2 characters.",
   }),
@@ -48,14 +50,38 @@ const formSchema = z.object({
 
 // Form component
 export function ContactForm() {
+  const [status, setStatus] = useState<string>("");
+  const [error, setError] = useState<string>("");
+
   // Form definition
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
   // Submission handler
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      setStatus("pending");
+      setError("");
+      const formData = new FormData();
+      Object.keys(values).forEach((key) => {
+        formData.append(key, values[key as keyof typeof values] as string);
+      });
+      const res = await fetch("/__forms.html", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+      if (res.status === 200) {
+        setStatus("ok");
+      } else {
+        setStatus("error");
+        setError(`${res.statusText}`);
+      }
+    } catch (e) {
+      setStatus("error");
+      setError(`${e}`);
+    }
   }
 
   return (
@@ -65,7 +91,7 @@ export function ContactForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-2 sm:space-y-4"
         name="contact"
-        netlify
+        data-netlify="true"
       >
         <section className="grid gap-2 sm:grid-cols-2 sm:gap-5">
           <FormField

@@ -16,10 +16,13 @@ export default function NavBanner() {
           </div>
 
           {/* Contact phone number */}
-          <div className="flex flex-row items-center gap-1 pl-5">
+          <a
+            href="phone:4692153098"
+            className="flex flex-row items-center gap-1 pl-5"
+          >
             <Phone size={15} />
-            <a href="phone:4691111111">(469) 111-1111</a>
-          </div>
+            <p>(469) 215-3098</p>
+          </a>
         </div>
       </div>
     </div>

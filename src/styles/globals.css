@@ -6,4 +6,8 @@
   :root {
     --accent: #5e69db;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
 }

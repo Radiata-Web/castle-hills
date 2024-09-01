@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Menu, X, ChevronDown } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import NavBanner from "@/components/nav/nav-banner"
-import Logo from "@/components/nav/logo"
-import { DropdownNavLink, NavLink } from "./nav-link"
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import NavBanner from "@/components/nav/nav-banner";
+import Logo from "@/components/nav/logo";
+import { DropdownNavLink, NavLink } from "./nav-link";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
 
   // Automatically populates desktop menus, remember to manually populate mobile menu at the bottom
   const NAV_LINKS = [
@@ -38,12 +38,12 @@ export default function Navbar() {
         },
       ],
     },
-  ]
+  ];
 
   // Close mobile menu when a page is tapped
   const handleMenuState = (value: boolean) => {
-    setIsMenuOpen(value)
-  }
+    setIsMenuOpen(value);
+  };
 
   return (
     <nav className="sticky top-0 z-10 bg-background shadow-md">
@@ -53,29 +53,31 @@ export default function Navbar() {
       {/* Navbar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo and text */}
-          <Logo onStateChange={handleMenuState} />
+          <div className="flex flex-row">
+            {/* Logo and text */}
+            <Logo onStateChange={handleMenuState} />
 
-          {/* Desktop navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              {/* Render regular or dropdown links */}
-              {NAV_LINKS.map((link) =>
-                link.subpages.length > 1 ? (
-                  <DropdownNavLink
-                    name={link.name}
-                    subpages={link.subpages}
-                    key={link.name}
-                  />
-                ) : (
-                  <NavLink
-                    name={link.name}
-                    path={link.path}
-                    key={link.name}
-                    onStateChange={handleMenuState}
-                  />
-                )
-              )}
+            {/* Desktop navigation */}
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-baseline space-x-4">
+                {/* Render regular or dropdown links */}
+                {NAV_LINKS.map((link) =>
+                  link.subpages.length > 1 ? (
+                    <DropdownNavLink
+                      name={link.name}
+                      subpages={link.subpages}
+                      key={link.name}
+                    />
+                  ) : (
+                    <NavLink
+                      name={link.name}
+                      path={link.path}
+                      key={link.name}
+                      onStateChange={handleMenuState}
+                    />
+                  )
+                )}
+              </div>
             </div>
           </div>
 
@@ -161,5 +163,5 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }

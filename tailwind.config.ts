@@ -20,8 +20,8 @@ const config = {
     extend: {
       colors: {
         background: "#FFFFFF",
-        accent: "#5e69db",
-        "accent-light": "#d6daff",
+        accent: "#0071BD",
+        "accent-light": "#cfecff",
       },
       fontFamily: {
         sans: ["var(--font-sans)"],

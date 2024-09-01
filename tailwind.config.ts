@@ -23,6 +23,9 @@ const config = {
         accent: "#0071BD",
         "accent-light": "#cfecff",
       },
+      backgroundImage: {
+        hero: "url('/wood-ceiling.webp')",
+      },
       fontFamily: {
         sans: ["var(--font-sans)"],
       },

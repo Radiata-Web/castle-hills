@@ -11,12 +11,13 @@ export default function Hero() {
         <div className="flex flex-col justify-center space-y-10">
           <div className="space-y-6">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-              Acme Corporation
+              Transform your wood, transform your space
             </h1>
             <p className="max-w-[600px] text-zinc-500 md:text-xl dark:text-zinc-400">
-              We're a cutting-edge technology company dedicated to innovating
-              solutions that make your life easier. Our team of experts is
-              passionate about creating products that transform industries.
+              Revive the natural beauty of your wood with a splash of color and
+              a touch of care. From faded decks to tired furniture, we bring out
+              the best in your wood and make your home shine. Let's make your
+              space the envy of Dallas-Ft. Worth!
             </p>
           </div>
 

@@ -38,8 +38,13 @@ const formSchema = zfd.formData({
     .email("Invalid email."),
   phone: z
     .string({ required_error: "Phone is required." })
-    .refine(isValidPhoneNumber, "Please provide a valid phone number.")
-    .transform((val) => parsePhoneNumber(val).number.toString()),
+    .refine(
+      (val) => isValidPhoneNumber(val, { defaultCountry: "US" }),
+      "Please provide a valid phone number."
+    )
+    .transform((val) =>
+      parsePhoneNumber(val, { defaultCountry: "US" }).number.toString()
+    ),
   serviceType: z.enum(["staining", "installation", "painting", "custom"], {
     errorMap: (issue, ctx) => {
       return { message: "Please select a service type." };

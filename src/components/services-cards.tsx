@@ -4,23 +4,20 @@ import Link from "next/link";
 export default function ServicesCards() {
   const SERVICES = [
     {
-      title: "Service Section 1",
+      title: "Staining Services",
       services: [
         {
-          name: "Example Service 1",
-          description: "A short description of the service being mentioned.",
+          name: "Fence Staining",
           blob: "service-one",
           image: "/fence.jpg",
         },
         {
-          name: "Example Service 2",
-          description: "A short description of the service being mentioned.",
+          name: "Patio Cover Staining",
           blob: "service-two",
           image: "/fence.jpg",
         },
         {
-          name: "Example Service 3",
-          description: "A short description of the service being mentioned.",
+          name: "Pergola Staining",
           blob: "service-two",
           image: "/fence.jpg",
         },
@@ -28,17 +25,36 @@ export default function ServicesCards() {
     },
 
     {
-      title: "Service Section 2",
+      title: "Installation Services",
       services: [
         {
-          name: "Example Service 4",
-          description: "A short description of the service being mentioned.",
+          name: "Fence Installation",
           blob: "service-three",
           image: "/fence.jpg",
         },
         {
-          name: "Example Service 5",
-          description: "A short description of the service being mentioned.",
+          name: "Patio Cover Installation",
+          blob: "service-four",
+          image: "/fence.jpg",
+        },
+        {
+          name: "Pergola Installation",
+          blob: "service-four",
+          image: "/fence.jpg",
+        },
+      ],
+    },
+
+    {
+      title: "Painting Services",
+      services: [
+        {
+          name: "Exterior Painting",
+          blob: "service-three",
+          image: "/fence.jpg",
+        },
+        {
+          name: "Interior Painting",
           blob: "service-four",
           image: "/fence.jpg",
         },
@@ -50,7 +66,7 @@ export default function ServicesCards() {
 
   return (
     <section className="py-10" id="servicesCards">
-      <h2 className="text-4xl font-bold mb-5">Our Services</h2>
+      <h2 className="text-4xl font-bold mb-5">Services We Offer</h2>
       {/* Map each category */}
       {SERVICES.map((category) => (
         <article className="py-4" key={category.title}>
@@ -74,7 +90,7 @@ export default function ServicesCards() {
                     {/* Content */}
                     <span className="flex flex-row items-center gap-1">
                       <h3 className="text-2xl font-bold">{service.name}</h3>
-                      <ArrowUpRight className="sm:opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100" />
+                      <ArrowUpRight className="hidden sm:opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100" />
                     </span>
                   </div>
                 </div>

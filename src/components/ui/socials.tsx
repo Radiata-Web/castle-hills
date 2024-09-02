@@ -1,24 +1,19 @@
-import Link from "next/link"
-import { Facebook, Twitter, Instagram } from "lucide-react"
+import Link from "next/link";
+import { Facebook, MapPin } from "lucide-react";
 
 export default function Socials() {
   const SOCIALS = [
     {
       name: "Facebook",
-      url: "#",
+      url: "https://www.facebook.com/CHPW903",
       icon: <Facebook size={18} strokeWidth={1.5} />,
     },
     {
-      name: "Twitter",
-      url: "#",
-      icon: <Twitter size={18} strokeWidth={1.5} />,
+      name: "Google Maps",
+      url: "https://maps.app.goo.gl/MNGT76dBbYbfbzRK8",
+      icon: <MapPin size={18} strokeWidth={1.5} />,
     },
-    {
-      name: "Instagram",
-      url: "#",
-      icon: <Instagram size={18} strokeWidth={1.5} />,
-    },
-  ]
+  ];
 
   return (
     <div className="flex space-x-2">
@@ -33,5 +28,5 @@ export default function Socials() {
         </Link>
       ))}
     </div>
-  )
+  );
 }

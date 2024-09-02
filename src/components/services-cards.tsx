@@ -1,4 +1,4 @@
-import { ArrowUpRight, MoveRightIcon, Settings } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 export default function ServicesCards() {
@@ -62,13 +62,13 @@ export default function ServicesCards() {
     },
   ];
 
-  // sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 md:gap-5
-
   return (
     <>
       <div className="absolute -translate-y-52" id="services"></div>
       <section className="py-10" id="servicesCards">
-        <h2 className="text-4xl font-bold mb-5">Services We Offer</h2>
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
+          Services We Offer
+        </h2>
         {/* Map each category */}
         {SERVICES.map((category) => (
           <article className="py-4" key={category.title}>

@@ -7,7 +7,7 @@ export default function About() {
   return (
     <>
       <div className="absolute -translate-y-52" id="about"></div>
-      <section className="py-6">
+      <section className="mb-20">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 xl:grid-cols-2">
           <div className="flex flex-col justify-center space-y-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">

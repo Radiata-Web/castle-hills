@@ -1,5 +1,6 @@
 import About from "@/components/about-us";
 import Hero from "@/components/hero";
+import Footer from "@/components/nav/footer";
 import ServicesCards from "@/components/services-cards";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
         What can we do for you?
       </h2>
       <ServicesCards />
+      <Footer />
     </>
   );
 }

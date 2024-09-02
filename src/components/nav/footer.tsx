@@ -3,20 +3,9 @@ import Socials from "@/components/ui/socials";
 import { ALL_SERVICES } from "@/lib/data";
 
 export default function Footer() {
-  const SERVICES: { title: string; href: string }[] = [
-    { title: "Fence Staining", href: "fence-staining" },
-    { title: "Patio Cover Staining", href: "patio-cover-staining" },
-    { title: "Pergola Staining", href: "pergola-staining" },
-    { title: "Fence Installation", href: "fence-installation" },
-    { title: "Patio Cover Installation", href: "patio-cover-installation" },
-    { title: "Pergola Installation", href: "pergola-installation" },
-    { title: "Interior Painting", href: "interior-painting" },
-    { title: "Exterior Painting", href: "exterior-painting" },
-  ];
-
   return (
-    <footer className="bg-muted max-w-8xl mx-auto py-12">
-      <div className="container mx-auto">
+    <footer className="py-12 flex flex-col max-w-8xl mx-auto">
+      <section className="w-full">
         {/* Two-column section */}
         <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 mb-8">
           {/* Left Column */}
@@ -91,7 +80,7 @@ export default function Footer() {
             .
           </p>
         </div>
-      </div>
+      </section>
     </footer>
   );
 }

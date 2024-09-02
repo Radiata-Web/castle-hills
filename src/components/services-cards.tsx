@@ -2,65 +2,125 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 export default function ServicesCards() {
-  const SERVICES = [
+  const SERVICES: {
+    title: string;
+    services: { title: string; href: string; image: string }[];
+  }[] = [
     {
       title: "Staining Services",
       services: [
         {
-          name: "Fence Staining",
-          blob: "service-one",
+          title: "Fence Staining",
+          href: "fence-staining",
           image: "/fence.jpg",
         },
         {
-          name: "Patio Cover Staining",
-          blob: "service-two",
+          title: "Patio Cover Staining",
+          href: "patio-cover-staining",
           image: "/fence.jpg",
         },
         {
-          name: "Pergola Staining",
-          blob: "service-two",
+          title: "Pergola Staining",
+          href: "pergola-staining",
           image: "/fence.jpg",
         },
       ],
     },
-
     {
       title: "Installation Services",
       services: [
         {
-          name: "Fence Installation",
-          blob: "service-three",
+          title: "Fence Installation",
+          href: "fence-installation",
           image: "/fence.jpg",
         },
         {
-          name: "Patio Cover Installation",
-          blob: "service-four",
+          title: "Patio Cover Installation",
+          href: "patio-cover-installation",
           image: "/fence.jpg",
         },
         {
-          name: "Pergola Installation",
-          blob: "service-four",
+          title: "Pergola Installation",
+          href: "pergola-installation",
           image: "/fence.jpg",
         },
       ],
     },
-
     {
       title: "Painting Services",
       services: [
         {
-          name: "Exterior Painting",
-          blob: "service-three",
+          title: "Interior Painting",
+          href: "interior-painting",
           image: "/fence.jpg",
         },
         {
-          name: "Interior Painting",
-          blob: "service-four",
+          title: "Exterior Painting",
+          href: "exterior-painting",
           image: "/fence.jpg",
         },
       ],
     },
   ];
+  // const SERVICES = [
+  //   {
+  //     title: "Staining Services",
+  //     services: [
+  //       {
+  //         name: "Fence Staining",
+  //         blob: "service-one",
+  //         image: "/fence.jpg",
+  //       },
+  //       {
+  //         name: "Patio Cover Staining",
+  //         blob: "service-two",
+  //         image: "/fence.jpg",
+  //       },
+  //       {
+  //         name: "Pergola Staining",
+  //         blob: "service-two",
+  //         image: "/fence.jpg",
+  //       },
+  //     ],
+  //   },
+
+  //   {
+  //     title: "Installation Services",
+  //     services: [
+  //       {
+  //         name: "Fence Installation",
+  //         blob: "service-three",
+  //         image: "/fence.jpg",
+  //       },
+  //       {
+  //         name: "Patio Cover Installation",
+  //         blob: "service-four",
+  //         image: "/fence.jpg",
+  //       },
+  //       {
+  //         name: "Pergola Installation",
+  //         blob: "service-four",
+  //         image: "/fence.jpg",
+  //       },
+  //     ],
+  //   },
+
+  //   {
+  //     title: "Painting Services",
+  //     services: [
+  //       {
+  //         name: "Exterior Painting",
+  //         blob: "service-three",
+  //         image: "/fence.jpg",
+  //       },
+  //       {
+  //         name: "Interior Painting",
+  //         blob: "service-four",
+  //         image: "/fence.jpg",
+  //       },
+  //     ],
+  //   },
+  // ];
 
   return (
     <>
@@ -78,20 +138,20 @@ export default function ServicesCards() {
               {/* Map each service within each category */}
               {category.services.map((service) => (
                 <Link
-                  href={`/services/${service.blob}`}
+                  href={`/services/${service.href}`}
                   className="group"
-                  key={service.name}
+                  key={service.title}
                 >
                   {/* Image background element */}
                   <div
-                    key={`${service.name + Math.random() * 4}`}
-                    className={`bg-[url("/fence.jpg")] bg-cover bg-center`}
+                    key={`${service.title + Math.random() * 4}`}
+                    className={`bg-[url("/fence.jpg")] bg-cover bg-center rounded-lg`}
                   >
                     {/* Content container */}
-                    <div className="container py-20 text-white bg-black bg-opacity-40 transition-all duration-200 ease-in-out group-hover:bg-opacity-60">
+                    <div className="container py-20 text-white bg-black bg-opacity-40 transition-all duration-200 ease-in-out group-hover:bg-opacity-60 rounded-lg">
                       {/* Content */}
                       <span className="flex flex-row items-center gap-1">
-                        <h3 className="text-2xl font-bold">{service.name}</h3>
+                        <h3 className="text-2xl font-bold">{service.title}</h3>
                         <ArrowUpRight className="hidden sm:opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100" />
                       </span>
                     </div>

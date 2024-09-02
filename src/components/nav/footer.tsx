@@ -1,8 +1,18 @@
 import Link from "next/link";
 import Socials from "@/components/ui/socials";
-import Logo from "./logo";
 
 export default function Footer() {
+  const SERVICES: { title: string; href: string }[] = [
+    { title: "Fence Staining", href: "fence-staining" },
+    { title: "Patio Cover Staining", href: "patio-cover-staining" },
+    { title: "Pergola Staining", href: "pergola-staining" },
+    { title: "Fence Installation", href: "fence-installation" },
+    { title: "Patio Cover Installation", href: "patio-cover-installation" },
+    { title: "Pergola Installation", href: "pergola-installation" },
+    { title: "Interior Painting", href: "interior-painting" },
+    { title: "Exterior Painting", href: "exterior-painting" },
+  ];
+
   return (
     <footer className="bg-muted max-w-7xl mx-auto py-12">
       <div className="container mx-auto">
@@ -47,30 +57,16 @@ export default function Footer() {
               <div>
                 <h3 className="font-semibold mb-2">Services</h3>
                 <ul className="space-y-2">
-                  <li>
-                    <Link
-                      href="#"
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
-                      Fence Staining
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="#"
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
-                      Fence Installation
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="#"
-                      className="text-sm text-muted-foreground hover:text-primary"
-                    >
-                      Exterior Painting
-                    </Link>
-                  </li>
+                  {SERVICES.map((service) => (
+                    <li key={service.title}>
+                      <Link
+                        href={`/services/${service.href}`}
+                        className="text-sm text-muted-foreground hover:text-primary"
+                      >
+                        {service.title}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </nav>
@@ -83,7 +79,15 @@ export default function Footer() {
         {/* Copyright section */}
         <div className="text-center">
           <p className="text-sm text-muted-foreground">
-            &copy; 2024 Castle Hills Stain and Restoration. All rights reserved.
+            &copy; 2024 Castle Hills Stain and Restoration. Website by{" "}
+            <Link
+              href="https://radiataweb.com"
+              target="_blank"
+              className="text-accent"
+            >
+              Radiata Web
+            </Link>
+            .
           </p>
         </div>
       </div>

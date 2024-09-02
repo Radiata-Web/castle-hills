@@ -83,7 +83,7 @@ export default function Footer() {
         {/* Copyright section */}
         <div className="text-center">
           <p className="text-sm text-muted-foreground">
-            &copy; 2023 Company Name. All rights reserved.
+            &copy; 2024 Castle Hills Stain and Restoration. All rights reserved.
           </p>
         </div>
       </div>

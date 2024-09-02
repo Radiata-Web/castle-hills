@@ -14,13 +14,11 @@ import Logo from "@/components/nav/logo";
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-  NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
@@ -37,14 +35,14 @@ export default function Navbar() {
   ];
 
   const SERVICES: { title: string; href: string }[] = [
-    { title: "Fence Staining", href: "/fence-staining" },
-    { title: "Patio Cover Staining", href: "/patio-cover-staining" },
-    { title: "Pergola Staining", href: "/pergola-staining" },
-    { title: "Fence Installation", href: "/fence-installation" },
-    { title: "Patio Cover Installation", href: "/patio-cover-installation" },
-    { title: "Pergola Installation", href: "/pergola-installation" },
-    { title: "Interior Painting", href: "/interior-painting" },
-    { title: "Exterior Painting", href: "/exterior-painting" },
+    { title: "Fence Staining", href: "fence-staining" },
+    { title: "Patio Cover Staining", href: "patio-cover-staining" },
+    { title: "Pergola Staining", href: "pergola-staining" },
+    { title: "Fence Installation", href: "fence-installation" },
+    { title: "Patio Cover Installation", href: "patio-cover-installation" },
+    { title: "Pergola Installation", href: "pergola-installation" },
+    { title: "Interior Painting", href: "interior-painting" },
+    { title: "Exterior Painting", href: "exterior-painting" },
   ];
 
   return (

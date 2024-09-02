@@ -14,9 +14,10 @@ export default function About() {
               Who are we?
             </h2>
             <p className="text-zinc-600">
-              Serving the community since 2015, Castle Hills Stain & Restoration
-              enables you to keep your property looking beautiful, without the
-              stress of managing it yourself.
+              Since 2015, Castle Hills Stain & Restoration has been proudly
+              serving the community by offering expert services that keep your
+              property looking its best. We offer our services across the
+              Dallas-Fort Worth metropolitan area.
             </p>
 
             <span className="space-y-1 text-zinc-600">

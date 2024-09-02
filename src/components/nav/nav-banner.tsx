@@ -4,7 +4,7 @@ import { MapPin, Phone } from "lucide-react";
 export default function NavBanner() {
   return (
     <div className="bg-background border-b md:block">
-      <div className="max-w-7xl mx-auto flex items-center justify-between h-14 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-8xl mx-auto flex items-center justify-between h-14 px-4 sm:px-6 lg:px-8">
         <Socials />
 
         <div className="flex flex-row text-sm">
@@ -12,17 +12,16 @@ export default function NavBanner() {
           <div className="flex-row items-center gap-1 pr-5 border-r-2 border-r-accent-light hidden sm:flex">
             <MapPin size={15} />
             {/* Link to Google Maps page */}
-            <a href="#">Based in Dallas, TX. Serving a specific area.</a>
+            <a href="https://maps.app.goo.gl/MNGT76dBbYbfbzRK8">
+              Serving the DFW Metroplex.
+            </a>
           </div>
 
           {/* Contact phone number */}
-          <a
-            href="phone:4692153098"
-            className="flex flex-row items-center gap-1 pl-5"
-          >
+          <span className="flex flex-row items-center gap-1 pl-5">
             <Phone size={15} />
-            <p>(469) 215-3098</p>
-          </a>
+            <a href="phone:4692153098">(469) 215-3098</a>
+          </span>
         </div>
       </div>
     </div>

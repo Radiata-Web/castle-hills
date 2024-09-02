@@ -29,6 +29,9 @@ const config = {
       fontFamily: {
         sans: ["var(--font-sans)"],
       },
+      maxWidth: {
+        "8xl": "100rem",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

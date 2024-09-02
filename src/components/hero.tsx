@@ -6,7 +6,7 @@ import { ContactForm } from "./forms/contact-form";
 export default function Hero() {
   return (
     <section id="hero" className="py-12 md:py-24 lg:py-32 xl:py-48">
-      <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 xl:grid-cols-2">
+      <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
         {/* Left column */}
         <div className="flex flex-col justify-center space-y-10">
           <div className="space-y-6">
@@ -32,7 +32,7 @@ export default function Hero() {
 
         {/* Right column */}
         <div className="flex justify-center lg:justify-end">
-          <article className="bg-white border border-zinc-200 p-6 rounded-xl shadow-lg">
+          <article className="w-full bg-white border border-zinc-200 p-6 rounded-xl shadow-lg lg:max-w-[600px]">
             <ContactForm />
           </article>
         </div>

@@ -43,13 +43,13 @@ export default function Navbar() {
       {/* Navbar */}
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex flex-row">
+          <div className="flex flex-row justify-between">
             {/* Logo and text */}
             <Logo />
 
             {/* Desktop navigation */}
             <NavigationMenu>
-              <NavigationMenuList className="hidden lg:flex ml-4">
+              <NavigationMenuList className="hidden lg:flex ml-6">
                 {/* Single pages */}
                 {PAGES.map((page) => (
                   <NavigationMenuItem key={page.title}>

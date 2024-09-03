@@ -9,7 +9,16 @@ export default function About() {
       <div className="absolute -translate-y-52" id="about"></div>
       <section className="mb-20">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 xl:grid-cols-2">
-          <div className="flex flex-col justify-center space-y-6">
+          {/* Google Maps embed */}
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d859115.2185226647!2d-97.62291295118169!3d32.74134616817178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xacd9370584827891%3A0x2ef8c59ff7f32580!2sCastle%20Hills%20Stain%20%26%20Restoration!5e0!3m2!1sen!2sus!4v1725206080160!5m2!1sen!2sus"
+            width="600"
+            height="380"
+            className="flex w-full border border-zinc-200 rounded-xl shadow-sm"
+            loading="lazy"
+          ></iframe>
+
+          <div className="flex flex-col justify-center space-y-4">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
               Who are we?
             </h2>
@@ -49,15 +58,6 @@ export default function About() {
               </Link>
             </div>
           </div>
-
-          {/* Google Maps embed */}
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d859115.2185226647!2d-97.62291295118169!3d32.74134616817178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xacd9370584827891%3A0x2ef8c59ff7f32580!2sCastle%20Hills%20Stain%20%26%20Restoration!5e0!3m2!1sen!2sus!4v1725206080160!5m2!1sen!2sus"
-            width="600"
-            height="380"
-            className="flex w-full border-none rounded-xl"
-            loading="lazy"
-          ></iframe>
         </div>
       </section>
     </>

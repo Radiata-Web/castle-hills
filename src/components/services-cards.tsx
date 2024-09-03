@@ -15,6 +15,19 @@ export default function ServicesCards() {
     <>
       {/* Map each service */}
       <article className="py-14">
+        <div className="space-y-4 mb-8">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
+            What can we do for you?
+          </h2>
+          <p className="text-zinc-600">
+            Our comprehensive services cover all your needs—whether it's giving
+            your fence a fresh, protective stain, expertly installing a stunning
+            pagoda, or rejuvenating your home's interior and exterior with
+            professional painting. We use only top-quality materials to ensure
+            your property not only looks amazing but also stands the test of
+            time.
+          </p>
+        </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {ALL_SERVICES.map((service) => (
             <ServiceCard service={service} key={service.title} />

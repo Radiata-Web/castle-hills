@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check, MoveRight } from "lucide-react";
 import { ContactForm } from "./forms/contact-form";
 
 export default function Hero() {
@@ -11,22 +11,40 @@ export default function Hero() {
         <div className="flex flex-col justify-center space-y-10">
           <div className="space-y-6">
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-              Castle Hills Stain & Restoration
+              Revitalize Your Home & Outdoor Spaces
             </h1>
             <p className="max-w-[600px] text-zinc-600 md:text-xl">
-              Wood staining, fence installation, and property painting company
-              serving the Dallas-Ft. Worth area!
+              From fence staining to interior painting, we bring your vision to
+              life with expert craftsmanship. Get a free estimate today and
+              let’s start transforming your home.
             </p>
           </div>
 
           {/* CTA buttons */}
-          <div className="flex gap-2 min-[400px]:flex-row">
+          <div className="flex gap-2 min-[400px]:flex-row items-center">
             <Button asChild>
-              <Link href="/contact">Get a free estimate</Link>
+              <Link href="/contact">
+                See what we do <MoveRight className="ml-2" strokeWidth={1.5} />
+              </Link>
             </Button>
-            <Button variant="ghost" className="gap-1">
-              See what we offer <ArrowRight size={18} />
-            </Button>
+          </div>
+
+          {/* Provlems to solve */}
+          <div>
+            <ul className="space-y-2 text-sm">
+              <li className="flex flex-row items-center gap-2 text-zinc-700">
+                <Check className="text-accent" />
+                Protect your investment from fading and wear
+              </li>
+              <li className="flex flex-row items-center gap-2 text-zinc-700">
+                <Check className="text-accent" />
+                Bring your home together with stunning colors
+              </li>
+              <li className="flex flex-row items-center gap-2 text-zinc-700">
+                <Check className="text-accent" />
+                Provide a beautiful centerpiece for your home
+              </li>
+            </ul>
           </div>
         </div>
 

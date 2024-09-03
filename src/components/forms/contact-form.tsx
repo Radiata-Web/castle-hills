@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import { isValidPhoneNumber, parsePhoneNumber } from "libphonenumber-js";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { isValidPhoneNumber, parsePhoneNumber } from "libphonenumber-js"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -14,18 +14,18 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { useState } from "react";
-import { zfd } from "zod-form-data";
+} from "@/components/ui/select"
+import { useState } from "react"
+import { zfd } from "zod-form-data"
 
 // Basic "contact me" form schema
 const formSchema = zfd.formData({
@@ -47,51 +47,51 @@ const formSchema = zfd.formData({
     ),
   serviceType: z.enum(["staining", "installation", "painting", "custom"], {
     errorMap: (issue, ctx) => {
-      return { message: "Please select a service type." };
+      return { message: "Please select a service type." }
     },
   }),
   message: z.string({ required_error: "Please write your project details." }),
-});
+})
 
 // Form component
 export function ContactForm() {
-  const [status, setStatus] = useState<string>("");
-  const [error, setError] = useState<string>("");
+  const [status, setStatus] = useState<string>("")
+  const [error, setError] = useState<string>("")
 
   // Form definition
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-  });
+  })
 
   // Submission handler
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      setStatus("pending");
-      setError("");
-      const formData = new FormData();
+      setStatus("pending")
+      setError("")
+      const formData = new FormData()
       Object.keys(values).forEach((key) => {
-        formData.append(key, values[key as keyof typeof values] as string);
-      });
+        formData.append(key, values[key as keyof typeof values] as string)
+      })
       const res = await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData as any).toString(),
-      });
+      })
       if (res.status === 200) {
-        setStatus("ok");
+        setStatus("ok")
       } else {
-        setStatus("error");
-        setError(`${res.statusText}`);
+        setStatus("error")
+        setError(`${res.statusText}`)
       }
     } catch (e) {
-      setStatus("error");
-      setError(`${e}`);
+      setStatus("error")
+      setError(`${e}`)
     }
   }
 
   return (
     <Form {...form}>
-      <h2 className="text-2xl font-bold mb-4">Get a free estimate today!</h2>
+      <h2 className="text-2xl font-bold mb-4">Request a Free Estimate</h2>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-2 sm:space-y-4"
@@ -213,5 +213,5 @@ export function ContactForm() {
         </Button>
       </form>
     </Form>
-  );
+  )
 }

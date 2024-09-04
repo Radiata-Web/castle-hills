@@ -27,7 +27,7 @@ import {
 import { useState } from "react"
 import { zfd } from "zod-form-data"
 
-// Basic "contact me" form schema
+// Form validation schema
 const formSchema = zfd.formData({
   name: z.string({ required_error: "Name is required." }).min(2, {
     message: "Enter more than 2 characters.",
@@ -72,9 +72,8 @@ export function ContactForm() {
       Object.keys(values).forEach((key) => {
         formData.append(key, values[key as keyof typeof values] as string)
       })
-      const res = await fetch("/__forms.html", {
+      const res = await fetch("/contact-form.html", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData as any).toString(),
       })
       if (res.status === 200) {
@@ -95,7 +94,7 @@ export function ContactForm() {
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-2 sm:space-y-4"
-        name="contact"
+        name="contact-form"
         data-netlify="true"
       >
         <section className="grid gap-2 sm:grid-cols-2 sm:gap-5">

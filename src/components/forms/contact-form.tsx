@@ -45,9 +45,16 @@ const formSchema = zfd.formData({
     .transform((val) =>
       parsePhoneNumber(val, { defaultCountry: "US" }).number.toString()
     ),
-  serviceType: z.enum(["staining", "installation", "painting", "custom"], {
-    required_error: "Please select a service type.",
-  }),
+  serviceType: z
+    .string({
+      required_error: "Please select a service type.",
+    })
+    .refine(
+      (val) => ["staining", "installation", "painting", "custom"].includes(val),
+      {
+        message: "Please select a valid service type.",
+      }
+    ),
   message: z.string({ required_error: "Please write your project details." }),
 })
 
@@ -63,47 +70,33 @@ export function ContactForm() {
       name: "",
       email: "",
       phone: "",
-      serviceType: undefined,
+      serviceType: "",
       message: "",
     },
   })
 
   // Submission handler
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    const formData = new FormData()
-    formData.append("form-name", "contact-form")
-    formData.append("name", data.name)
-    formData.append("email", data.email)
-    formData.append("phone", data.phone)
-    formData.append("serviceType", data.serviceType)
-    formData.append("message", data.message)
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
 
     try {
       setStatus("pending")
       setError(null)
 
-      // Validate fields with Zod schema
-      // const validatedFields = formSchema.safeParse(data)
-      // if (!validatedFields.success) {
-      //   setStatus("error")
-      //   setError(
-      //     validatedFields.error.errors.map((err) => err.message).join(", ")
-      //   )
-      //   console.log(validatedFields.error.errors)
-      //   return
-      // }
+      // zod validation
+      const validation = formSchema.safeParse(e.target)
+      if (!validation.success) {
+        setStatus("error")
+        setError(validation.error.errors[0].message)
+        return
+      }
 
-      // Convert data to URLSearchParams
-      // const formData = new URLSearchParams()
-      // Object.entries(data).forEach(([key, value]) => {
-      //   formData.append(key, value as string)
-      // })
-
-      // Submit form data to Netlify
+      const myForm = e.target as HTMLFormElement
+      const formData = new FormData(myForm)
       const res = await fetch("/contact-form.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData,
+        body: new URLSearchParams(formData as any).toString(),
       })
       if (res.status === 200) {
         setStatus("ok")
@@ -121,11 +114,10 @@ export function ContactForm() {
     <Form {...form}>
       <h2 className="text-2xl font-bold mb-4">Request a Free Estimate</h2>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={onSubmit}
         className="space-y-2 sm:space-y-4"
         name="contact-form"
         data-netlify="true"
-        method="POST"
       >
         <input type="hidden" name="form-name" value="contact-form" />
         <section className="grid gap-2 sm:grid-cols-2 sm:gap-5">

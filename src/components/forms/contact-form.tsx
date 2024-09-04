@@ -29,6 +29,7 @@ import { zfd } from "zod-form-data"
 
 // Form validation schema
 const formSchema = zfd.formData({
+  "form-name": z.string(),
   name: z.string({ required_error: "Name is required." }).min(2, {
     message: "Enter more than 2 characters.",
   }),

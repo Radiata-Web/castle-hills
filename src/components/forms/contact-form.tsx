@@ -55,9 +55,6 @@ const formSchema = zfd.formData({
 
 // Form component
 export function ContactForm() {
-  const [status, setStatus] = useState<string>("")
-  const [error, setError] = useState<string>("")
-
   // Form definition
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -66,8 +63,6 @@ export function ContactForm() {
   // Submission handler
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      setStatus("pending")
-      setError("")
       const formData = new FormData()
       Object.keys(values).forEach((key) => {
         formData.append(key, values[key as keyof typeof values] as string)
@@ -78,14 +73,12 @@ export function ContactForm() {
         body: new URLSearchParams(formData as any).toString(),
       })
       if (res.status === 200) {
-        setStatus("ok")
+        console.log("Form submitted successfully")
       } else {
-        setStatus("error")
-        setError(`${res.statusText}`)
+        console.log("Form submission failed")
       }
     } catch (e) {
-      setStatus("error")
-      setError(`${e}`)
+      console.log(e)
     }
   }
 
@@ -98,6 +91,7 @@ export function ContactForm() {
         name="contact-form"
         data-netlify="true"
       >
+        <input type="hidden" name="form-name" value="contact-form" />
         <section className="grid gap-2 sm:grid-cols-2 sm:gap-5">
           <FormField
             control={form.control}

@@ -1,11 +1,10 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { cn } from "@/lib/utils";
-import "@/styles/globals.css";
-import Navbar from "@/components/nav/navbar";
-import Footer from "@/components/nav/footer";
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import { cn } from "@/lib/utils"
+import "@/styles/globals.css"
+import Navbar from "@/components/nav/navbar"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
 export const metadata: Metadata = {
   title: "Castle Hills Stain & Restoration | DFW",
@@ -16,12 +15,12 @@ export const metadata: Metadata = {
     nocache: true,
     follow: false,
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en">
@@ -37,5 +36,5 @@ export default function RootLayout({
         </main>
       </body>
     </html>
-  );
+  )
 }

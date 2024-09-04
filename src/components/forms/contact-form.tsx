@@ -2,7 +2,7 @@
 
 import { isValidPhoneNumber, parsePhoneNumber } from "libphonenumber-js"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm, Controller } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
@@ -24,7 +24,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { zfd } from "zod-form-data"
-import { useState, FormEvent } from "react"
+import { useState } from "react"
 
 // Form validation schema
 const formSchema = zfd.formData({
@@ -69,48 +69,51 @@ export function ContactForm() {
   })
 
   // Submission handler
-  async function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log(data)
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    const formData = new FormData()
+    formData.append("form-name", "contact-form")
+    formData.append("name", data.name)
+    formData.append("email", data.email)
+    formData.append("phone", data.phone)
+    formData.append("serviceType", data.serviceType)
+    formData.append("message", data.message)
+
     try {
       setStatus("pending")
       setError(null)
-      console.log(data)
 
       // Validate fields with Zod schema
-      const validatedFields = formSchema.safeParse(data)
-      if (!validatedFields.success) {
-        setStatus("error")
-        setError(
-          validatedFields.error.errors.map((err) => err.message).join(", ")
-        )
-        console.log(validatedFields.error.errors)
-        return
-      }
+      // const validatedFields = formSchema.safeParse(data)
+      // if (!validatedFields.success) {
+      //   setStatus("error")
+      //   setError(
+      //     validatedFields.error.errors.map((err) => err.message).join(", ")
+      //   )
+      //   console.log(validatedFields.error.errors)
+      //   return
+      // }
 
       // Convert data to URLSearchParams
-      const formData = new URLSearchParams()
-      Object.entries(data).forEach(([key, value]) => {
-        formData.append(key, value as string)
-      })
-      console.log(formData)
+      // const formData = new URLSearchParams()
+      // Object.entries(data).forEach(([key, value]) => {
+      //   formData.append(key, value as string)
+      // })
+
       // Submit form data to Netlify
       const res = await fetch("/contact-form.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData.toString(),
+        body: formData,
       })
       if (res.status === 200) {
         setStatus("ok")
-        console.log("Form submitted successfully!")
       } else {
         setStatus("error")
         setError(`${res.status} ${res.statusText}`)
-        console.log(res)
       }
     } catch (e) {
       setStatus("error")
       setError(`${e}`)
-      console.log(e)
     }
   }
 
@@ -118,13 +121,11 @@ export function ContactForm() {
     <Form {...form}>
       <h2 className="text-2xl font-bold mb-4">Request a Free Estimate</h2>
       <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          form.handleSubmit(onSubmit)
-        }}
+        onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-2 sm:space-y-4"
         name="contact-form"
         data-netlify="true"
+        method="POST"
       >
         <input type="hidden" name="form-name" value="contact-form" />
         <section className="grid gap-2 sm:grid-cols-2 sm:gap-5">
@@ -181,12 +182,7 @@ export function ContactForm() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Service Type</FormLabel>
-                <Select
-                  onValueChange={(value) => {
-                    field.onChange(value)
-                  }}
-                  value={field.value}
-                >
+                <Select onValueChange={field.onChange} value={field.value}>
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder="Select a service" />

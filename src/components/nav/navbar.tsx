@@ -1,16 +1,16 @@
-"use client";
+"use client"
 
 import {
   ComponentPropsWithoutRef,
   ElementRef,
   forwardRef,
   useState,
-} from "react";
-import Link from "next/link";
-import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import NavBanner from "@/components/nav/nav-banner";
-import Logo from "@/components/nav/logo";
+} from "react"
+import Link from "next/link"
+import { Menu } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import NavBanner from "@/components/nav/nav-banner"
+import Logo from "@/components/nav/logo"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -19,19 +19,19 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
+} from "@/components/ui/navigation-menu"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { cn } from "@/lib/utils"
+import Image from "next/image"
 import {
   FENCING_SERVICES,
   PAGES,
   PAINTING_SERVICES,
   OUTDOOR_LIVING_SERVICES,
-} from "@/lib/data";
+} from "@/lib/data"
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   // Automatically populates desktop menus, remember to manually populate mobile menu at the bottom
 
@@ -43,84 +43,78 @@ export default function Navbar() {
       {/* Navbar */}
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <div className="flex flex-row justify-between">
-            {/* Logo and text */}
-            <Logo />
+          {/* Logo and text */}
+          <Logo />
 
-            {/* Desktop navigation */}
-            <NavigationMenu>
-              <NavigationMenuList className="hidden lg:flex ml-6">
-                {/* Single pages */}
-                {PAGES.map((page) => (
-                  <NavigationMenuItem key={page.title}>
-                    <NavigationMenuLink asChild>
-                      <Link
-                        href={page.href}
-                        className={navigationMenuTriggerStyle()}
-                      >
-                        {page.title}
-                      </Link>
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
-                ))}
-
-                {/* Fences and Gates */}
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>Fences & Gates</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <p className="pl-7 pt-5 font-bold">
-                      Fence and Gate Services
-                    </p>
-                    <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-2 md:w-[500px] lg:w-[600px]">
-                      {FENCING_SERVICES.map((service) => (
-                        <ListItem
-                          key={service.title}
-                          title={service.title}
-                          href={`/services/${service.href}`}
-                        />
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
+          {/* Desktop navigation */}
+          <NavigationMenu>
+            <NavigationMenuList className="hidden lg:flex ml-6">
+              {/* Single pages */}
+              {PAGES.map((page) => (
+                <NavigationMenuItem key={page.title}>
+                  <NavigationMenuLink asChild>
+                    <Link
+                      href={page.href}
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      {page.title}
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
+              ))}
 
-                {/* Outdoor Living */}
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>Outdoor Living</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <p className="pl-7 pt-5 font-bold">
-                      Outdoor Living Services
-                    </p>
-                    <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-2 md:w-[500px] lg:w-[600px]">
-                      {OUTDOOR_LIVING_SERVICES.map((service) => (
-                        <ListItem
-                          key={service.title}
-                          title={service.title}
-                          href={`/services/${service.href}`}
-                        />
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+              {/* Fences and Gates */}
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Fences & Gates</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <p className="pl-7 pt-5 font-bold">Fence and Gate Services</p>
+                  <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-2 md:w-[500px] lg:w-[600px]">
+                    {FENCING_SERVICES.map((service) => (
+                      <ListItem
+                        key={service.title}
+                        title={service.title}
+                        href={`/services/${service.href}`}
+                      />
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
 
-                {/* Painting */}
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>Painting</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <p className="pl-7 pt-5 font-bold">Painting Services</p>
-                    <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-2 md:w-[500px] lg:w-[600px]">
-                      {PAINTING_SERVICES.map((service) => (
-                        <ListItem
-                          key={service.title}
-                          title={service.title}
-                          href={`/services/${service.href}`}
-                        />
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div>
+              {/* Outdoor Living */}
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Outdoor Living</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <p className="pl-7 pt-5 font-bold">Outdoor Living Services</p>
+                  <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-2 md:w-[500px] lg:w-[600px]">
+                    {OUTDOOR_LIVING_SERVICES.map((service) => (
+                      <ListItem
+                        key={service.title}
+                        title={service.title}
+                        href={`/services/${service.href}`}
+                      />
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              {/* Painting */}
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>Painting</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <p className="pl-7 pt-5 font-bold">Painting Services</p>
+                  <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-2 md:w-[500px] lg:w-[600px]">
+                    {PAINTING_SERVICES.map((service) => (
+                      <ListItem
+                        key={service.title}
+                        title={service.title}
+                        href={`/services/${service.href}`}
+                      />
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
 
           {/* Contact Me button */}
           <div className="hidden lg:block">
@@ -212,7 +206,7 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-  );
+  )
 }
 
 const ListItem = forwardRef<ElementRef<"a">, ComponentPropsWithoutRef<"a">>(
@@ -232,7 +226,7 @@ const ListItem = forwardRef<ElementRef<"a">, ComponentPropsWithoutRef<"a">>(
           </a>
         </NavigationMenuLink>
       </li>
-    );
+    )
   }
-);
-ListItem.displayName = "ListItem";
+)
+ListItem.displayName = "ListItem"

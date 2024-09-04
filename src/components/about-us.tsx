@@ -1,7 +1,7 @@
-import React from "react";
-import ContactNumber from "./misc/contactNumber";
-import Link from "next/link";
-import Image from "next/image";
+import React from "react"
+import ContactNumber from "./misc/contactNumber"
+import Link from "next/link"
+import Image from "next/image"
 
 export default function About() {
   return (
@@ -18,23 +18,25 @@ export default function About() {
             loading="lazy"
           ></iframe>
 
-          <div className="flex flex-col justify-center space-y-4">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
-              Who are we?
-            </h2>
-            <p className="text-zinc-600">
-              Since 2015, Castle Hills Stain & Restoration has been proudly
-              serving the community by offering expert services that keep your
-              property looking its best. We offer our services across the
-              Dallas-Fort Worth metropolitan area.
-            </p>
+          <div className="flex flex-col justify-center space-y-8">
+            <span className="space-y-4">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
+                Who are we?
+              </h2>
+              <p className="text-zinc-600">
+                Since 2015, Castle Hills Stain & Restoration has been proudly
+                serving the community by offering expert services that keep your
+                property looking its best. We offer our services across the
+                Dallas-Fort Worth metropolitan area.
+              </p>
+            </span>
 
             <span className="space-y-1 text-zinc-600">
-              Give us a call:
+              <p>Call us anytime:</p>
               <ContactNumber
                 iconSize={24}
                 textSize="text-lg"
-                className="pb-6"
+                className=" text-zinc-900"
               />
             </span>
 
@@ -61,5 +63,5 @@ export default function About() {
         </div>
       </section>
     </>
-  );
+  )
 }

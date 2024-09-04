@@ -74,6 +74,7 @@ export function ContactForm() {
       })
       const res = await fetch("/contact-form.html", {
         method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData as any).toString(),
       })
       if (res.status === 200) {

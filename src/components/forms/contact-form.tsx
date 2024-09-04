@@ -83,14 +83,6 @@ export function ContactForm() {
       setStatus("pending")
       setError(null)
 
-      // zod validation
-      const validation = formSchema.safeParse(e.target)
-      if (!validation.success) {
-        setStatus("error")
-        setError(validation.error.errors[0].message)
-        return
-      }
-
       const myForm = e.target as HTMLFormElement
       const formData = new FormData(myForm)
       const res = await fetch("/contact-form.html", {

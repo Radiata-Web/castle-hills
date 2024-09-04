@@ -24,8 +24,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { useState } from "react"
 import { zfd } from "zod-form-data"
+import { useState, FormEvent } from "react"
 
 // Form validation schema
 const formSchema = zfd.formData({
@@ -56,30 +56,51 @@ const formSchema = zfd.formData({
 
 // Form component
 export function ContactForm() {
+  const [status, setStatus] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
+
   // Form definition
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   })
 
   // Submission handler
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
     try {
-      const formData = new FormData()
-      Object.keys(values).forEach((key) => {
-        formData.append(key, values[key as keyof typeof values] as string)
-      })
+      setStatus("pending")
+      setError(null)
+      const myForm = event.target as HTMLFormElement
+      const formData = new FormData(myForm)
+      // Object.keys(values).forEach((key) => {
+      //   formData.append(key, values[key as keyof typeof values] as string)
+      // })
+
+      // Validate fields with Zod schema
+      const validatedFields = formSchema.safeParse(formData)
+      if (!validatedFields.success) {
+        setStatus("error")
+        setError(
+          validatedFields.error.errors.map((err) => err.message).join(", ")
+        )
+        return
+      }
+
+      // Submit form data to Netlify
       const res = await fetch("/contact-form.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData as any).toString(),
       })
       if (res.status === 200) {
-        console.log("Form submitted successfully")
+        setStatus("ok")
       } else {
-        console.log("Form submission failed")
+        setStatus("error")
+        setError(`${res.status} ${res.statusText}`)
       }
     } catch (e) {
-      console.log(e)
+      setStatus("error")
+      setError(`${e}`)
     }
   }
 
@@ -87,7 +108,7 @@ export function ContactForm() {
     <Form {...form}>
       <h2 className="text-2xl font-bold mb-4">Request a Free Estimate</h2>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={onSubmit}
         className="space-y-2 sm:space-y-4"
         name="contact-form"
         data-netlify="true"
@@ -206,6 +227,9 @@ export function ContactForm() {
         <Button type="submit" className="w-full sm:w-auto">
           Request estimate
         </Button>
+        {status === "pending" && <p>Loading...</p>}
+        {status === "ok" && <p>Form submitted successfully!</p>}
+        {status === "error" && <p>Form submission failed: {error}</p>}
       </form>
     </Form>
   )

@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -25,6 +26,7 @@ import {
 } from "@/components/ui/select"
 import { zfd } from "zod-form-data"
 import { useState } from "react"
+import { CheckCircle, Hourglass, XCircle } from "lucide-react"
 
 // Form validation schema
 const formSchema = zfd.formData({
@@ -58,8 +60,12 @@ const formSchema = zfd.formData({
   message: z.string({ required_error: "Please write your project details." }),
 })
 
+interface ContactFormProps {
+  showHeader: boolean
+}
+
 // Form component
-export function ContactForm() {
+export function ContactForm(props: ContactFormProps) {
   const [status, setStatus] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
 
@@ -103,129 +109,161 @@ export function ContactForm() {
   }
 
   return (
-    <Form {...form}>
-      <h2 className="text-2xl font-bold mb-4">Request a Free Estimate</h2>
-      <form
-        onSubmit={onSubmit}
-        className="space-y-2 sm:space-y-4"
-        name="contact-form"
-        data-netlify="true"
-      >
-        <input type="hidden" name="form-name" value="contact-form" />
-        <section className="grid gap-2 sm:grid-cols-2 sm:gap-5">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Full Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="John Smith" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+    <>
+      <Form {...form}>
+        {props.showHeader ? (
+          <div className="flex flex-row gap-5 items-center mb-4">
+            <h2 className="text-2xl font-bold">Request a Free Estimate</h2>
+            <p className="text-sm text-gray-500">All fields are required.</p>
+          </div>
+        ) : null}
 
-          {/* Email address */}
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email Address</FormLabel>
-                <FormControl>
-                  <Input placeholder="hello@example.com" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </section>
-
-        <section className="grid gap-2 sm:grid-cols-2 sm:gap-5">
-          {/* Phone number */}
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Phone Number</FormLabel>
-                <FormControl>
-                  <Input placeholder="1234567890" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Service type */}
-          <FormField
-            control={form.control}
-            name="serviceType"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Service Type</FormLabel>
-                <Select onValueChange={field.onChange} value={field.value}>
+        <form
+          onSubmit={onSubmit}
+          className="space-y-2 sm:space-y-4"
+          name="contact-form"
+          data-netlify="true"
+        >
+          <input type="hidden" name="form-name" value="contact-form" />
+          <section className="grid gap-2 sm:grid-cols-2 sm:gap-5">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Full Name</FormLabel>
                   <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a service" />
-                    </SelectTrigger>
+                    <Input placeholder="John Smith" {...field} />
                   </FormControl>
-                  <SelectContent>
-                    <SelectItem
-                      value="staining"
-                      className="hover:cursor-pointer"
-                    >
-                      Staining
-                    </SelectItem>
-                    <SelectItem
-                      value="installation"
-                      className="hover:cursor-pointer"
-                    >
-                      Installation
-                    </SelectItem>
-                    <SelectItem
-                      value="painting"
-                      className="hover:cursor-pointer"
-                    >
-                      Painting
-                    </SelectItem>
-                    <SelectItem value="custom" className="hover:cursor-pointer">
-                      Custom
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Email address */}
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email Address</FormLabel>
+                  <FormControl>
+                    <Input placeholder="hello@example.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </section>
+
+          <section className="grid gap-2 sm:grid-cols-2 sm:gap-5">
+            {/* Phone number */}
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Phone Number</FormLabel>
+                  <FormControl>
+                    <Input placeholder="1234567890" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Service type */}
+            <FormField
+              control={form.control}
+              name="serviceType"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Service Type</FormLabel>
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a service" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem
+                        value="staining"
+                        className="hover:cursor-pointer"
+                      >
+                        Staining
+                      </SelectItem>
+                      <SelectItem
+                        value="installation"
+                        className="hover:cursor-pointer"
+                      >
+                        Installation
+                      </SelectItem>
+                      <SelectItem
+                        value="painting"
+                        className="hover:cursor-pointer"
+                      >
+                        Painting
+                      </SelectItem>
+                      <SelectItem
+                        value="custom"
+                        className="hover:cursor-pointer"
+                      >
+                        Custom
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </section>
+
+          {/* Message */}
+          <FormField
+            control={form.control}
+            name="message"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Project Details</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="Give us some details about your project! The more we know, the more accurate of an estimate we can give you."
+                    {...field}
+                  />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-        </section>
 
-        {/* Message */}
-        <FormField
-          control={form.control}
-          name="message"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Project Details</FormLabel>
-              <FormControl>
-                <Textarea
-                  placeholder="Give us some details about your project! The more we know, the more accurate of an estimate we can give you."
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit" className="w-full sm:w-auto">
-          Request estimate
-        </Button>
-        {status === "pending" && <p>Loading...</p>}
-        {status === "ok" && <p>Form submitted successfully!</p>}
-        {status === "error" && <p>Form submission failed: {error}</p>}
-      </form>
-    </Form>
+          <section className="flex flex-row gap-5 items-center">
+            <Button type="submit" className="w-full sm:w-auto">
+              Request estimate
+            </Button>
+
+            <span className="text-sm text-gray-500">
+              {status === "pending" && (
+                <p className="flex flex-row gap-1 items-center">
+                  <Hourglass size={16} />
+                  Loading...
+                </p>
+              )}
+              {status === "ok" && (
+                <p className="flex flex-row gap-1 items-center text-green-500">
+                  <CheckCircle size={16} />
+                  Form submitted successfully!
+                </p>
+              )}
+              {status === "error" && (
+                <p className="flex flex-row gap-1 items-center text-red-500">
+                  <XCircle size={16} />
+                  Form submission failed: {error}
+                </p>
+              )}
+            </span>
+          </section>
+        </form>
+      </Form>
+    </>
   )
 }

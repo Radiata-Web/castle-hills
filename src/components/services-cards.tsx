@@ -1,13 +1,13 @@
-import { ALL_SERVICES } from "@/lib/data";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ALL_SERVICES } from "@/lib/data"
+import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
 
 interface ServiceProps {
   service: {
-    title: string;
-    href: string;
-    image: string;
-  };
+    title: string
+    href: string
+    image: string
+  }
 }
 
 export default function ServicesCards() {
@@ -22,7 +22,7 @@ export default function ServicesCards() {
           <p className="text-zinc-600">
             Our comprehensive services cover all your needs—whether it's giving
             your fence a fresh, protective stain, expertly installing a stunning
-            pagoda, or rejuvenating your home's interior and exterior with
+            gazebo, or rejuvenating your home's interior and exterior with
             professional painting. We use only top-quality materials to ensure
             your property not only looks amazing but also stands the test of
             time.
@@ -35,7 +35,7 @@ export default function ServicesCards() {
         </div>
       </article>
     </>
-  );
+  )
 }
 
 function ServiceCard(props: ServiceProps) {
@@ -61,5 +61,5 @@ function ServiceCard(props: ServiceProps) {
         </div>
       </div>
     </Link>
-  );
+  )
 }

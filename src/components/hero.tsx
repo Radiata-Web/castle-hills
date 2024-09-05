@@ -1,11 +1,11 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { ArrowRight, Check, MoveRight } from "lucide-react";
-import { ContactForm } from "./forms/contact-form";
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { ArrowRight, Check, MoveRight } from "lucide-react"
+import { ContactForm } from "./forms/contact-form"
 
 export default function Hero() {
   return (
-    <section id="hero" className="py-12 md:py-24 lg:py-32 xl:py-48">
+    <section id="hero" className="py-12 md:py-24 lg:py-32 xl:py-38">
       <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
         {/* Left column */}
         <div className="flex flex-col justify-center space-y-10">
@@ -56,5 +56,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  );
+  )
 }

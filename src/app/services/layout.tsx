@@ -1,6 +1,6 @@
 import Footer from "@/components/nav/footer"
 import { Metadata } from "next"
-
+import InteriorContact from "@/components/misc/interior-contact"
 export const metadata: Metadata = {
   title: "Castle Hills Stain & Restoration | Services",
   description:
@@ -15,6 +15,7 @@ export default function ServicesLayout({
   return (
     <>
       <section className="mt-12">{children}</section>
+      <InteriorContact />
       <Footer />
     </>
   )

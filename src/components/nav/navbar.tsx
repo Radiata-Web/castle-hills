@@ -7,7 +7,7 @@ import {
   useState,
 } from "react"
 import Link from "next/link"
-import { Menu } from "lucide-react"
+import { Menu, MoveRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import NavBanner from "@/components/nav/nav-banner"
 import Logo from "@/components/nav/logo"
@@ -20,19 +20,30 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
-import Image from "next/image"
 import {
   FENCING_SERVICES,
   PAGES,
   PAINTING_SERVICES,
   OUTDOOR_LIVING_SERVICES,
 } from "@/lib/data"
-import Socials from "../ui/socials"
+import Socials from "@/components/ui/socials"
+import DropdownCategory from "@/components/nav/dropdown-category"
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const handleMenuOpen = (isOpen: boolean) => {
+    setIsMenuOpen(isOpen)
+  }
 
   // Automatically populates desktop menus, remember to manually populate mobile menu at the bottom
 
@@ -127,16 +138,32 @@ export default function Navbar() {
           {/* Mobile Navigation */}
           <div className="lg:hidden">
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+              {/* Screen reader title */}
+              <SheetDescription>
+                <VisuallyHidden.Root>Navigation Menu</VisuallyHidden.Root>
+              </SheetDescription>
+
+              {/* Hamburger */}
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="w-10 h-10 p-2">
                   <Menu className="h-6 w-6" />
                   <span className="sr-only">Toggle navigation menu</span>
                 </Button>
               </SheetTrigger>
+
+              {/* Sheet content */}
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                <SheetTitle>
+                  <VisuallyHidden.Root>Navigation Links</VisuallyHidden.Root>
+                </SheetTitle>
                 <span className="flex flex-col items-start gap-4 mt-4">
+                  {/* Logo */}
                   <span className="flex flex-row items-center gap-4">
-                    <img src="/ch-logo.svg" width={72} />
+                    <img
+                      src="/ch-logo.svg"
+                      width={72}
+                      alt="Castle Hills Stain & Restoration Logo"
+                    />
                     <p className="font-bold leading-none">
                       Castle Hills <br />
                       Stain & Restoration
@@ -145,64 +172,64 @@ export default function Navbar() {
                 </span>
                 <hr className="mt-6" />
 
-                <nav className="flex flex-col gap-4 mt-6">
-                  <Link
-                    href="/"
-                    className="text-xl font-semibold"
+                {/* Nav links */}
+                <nav className="flex flex-col gap-2 mt-6">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start font-semibold text-xl"
                     onClick={() => setIsMenuOpen(false)}
+                    asChild
                   >
-                    Home
-                  </Link>
-                  <Link
-                    href="/#about"
-                    className="text-xl font-semibold"
+                    <Link
+                      href="/"
+                      className="block rounded-lg px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Home
+                    </Link>
+                  </Button>
+
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start font-semibold text-xl"
                     onClick={() => setIsMenuOpen(false)}
+                    asChild
                   >
-                    About
-                  </Link>
+                    <Link
+                      href="/#about"
+                      className="block rounded-lg px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      About
+                    </Link>
+                  </Button>
+
                   <div className="flex flex-col gap-2">
-                    <h2 className="text-xl font-semibold">Fences & Gates</h2>
-                    {FENCING_SERVICES.map((service) => (
-                      <Link
-                        key={service.title}
-                        href={`/services/${service.href}`}
-                        className="ml-4 text-zinc-700 hover:underline"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {service.title}
-                      </Link>
-                    ))}
+                    <DropdownCategory
+                      categoryTitle="Fences & Gates"
+                      links={FENCING_SERVICES}
+                      setIsMenuOpen={setIsMenuOpen}
+                    />
 
-                    <h2 className="text-xl font-semibold">Outdoor Living</h2>
-                    {OUTDOOR_LIVING_SERVICES.map((service) => (
-                      <Link
-                        key={service.title}
-                        href={`/services/${service.href}`}
-                        className="ml-4 text-zinc-700 hover:underline"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {service.title}
-                      </Link>
-                    ))}
+                    <DropdownCategory
+                      categoryTitle="Outdoor Living"
+                      links={OUTDOOR_LIVING_SERVICES}
+                      setIsMenuOpen={setIsMenuOpen}
+                    />
 
-                    <h2 className="text-xl font-semibold">Painting</h2>
-                    {PAINTING_SERVICES.map((service) => (
-                      <Link
-                        key={service.title}
-                        href={`/services/${service.href}`}
-                        className="ml-4 text-zinc-700 hover:underline"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {service.title}
-                      </Link>
-                    ))}
+                    <DropdownCategory
+                      categoryTitle="Painting"
+                      links={PAINTING_SERVICES}
+                      setIsMenuOpen={setIsMenuOpen}
+                    />
                   </div>
                 </nav>
 
                 {/* Estimate button */}
-                <Button className="mt-[15%] w-full" size="lg" asChild>
+                <Button className="mt-[8%] w-full" size="lg" asChild>
                   <Link href="#contact" onClick={() => setIsMenuOpen(false)}>
                     Get your estimate
+                    <MoveRight className="ml-2" strokeWidth={1.5} />
                   </Link>
                 </Button>
 

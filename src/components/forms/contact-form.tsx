@@ -113,8 +113,7 @@ export function ContactForm(props: ContactFormProps) {
       <Form {...form}>
         {props.showHeader ? (
           <div className="flex flex-row gap-5 items-center mb-4">
-            <h2 className="text-2xl font-bold">Request a Free Estimate</h2>
-            <p className="text-sm text-gray-500">All fields are required.</p>
+            <h2 className="text-2xl font-bold">Request an Estimate</h2>
           </div>
         ) : null}
 

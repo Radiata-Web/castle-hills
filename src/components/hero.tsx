@@ -51,7 +51,7 @@ export default function Hero() {
         {/* Right column */}
         <div className="flex justify-center lg:justify-end">
           <article className="w-full bg-white border border-zinc-200 p-6 rounded-xl shadow-lg lg:max-w-[600px]">
-            <ContactForm />
+            <ContactForm showHeader={true} />
           </article>
         </div>
       </div>

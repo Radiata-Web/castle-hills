@@ -24,7 +24,7 @@ export default function Footer() {
                 </p>
               </span>
 
-              <span>
+              <span className="min-w-full">
                 <p className="text-sm">
                   Fence and gate contractor serving the Dallas-Fort Worth
                   Metroplex

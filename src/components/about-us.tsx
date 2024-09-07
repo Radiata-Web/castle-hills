@@ -7,7 +7,7 @@ export default function About() {
   return (
     <>
       <div className="absolute -translate-y-52" id="about"></div>
-      <section className="mb-20">
+      <section className="py-6 md:py-10 lg:py-14">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 xl:grid-cols-2">
           {/* Google Maps embed */}
           <iframe

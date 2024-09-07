@@ -14,7 +14,7 @@ export default function ServicesCards() {
   return (
     <>
       {/* Map each service */}
-      <article className="py-14">
+      <article className="py-6 md:py-10 lg:py-14">
         <div className="space-y-4 mb-8">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
             What can we do for you?

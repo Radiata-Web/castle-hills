@@ -29,6 +29,7 @@ import {
   PAINTING_SERVICES,
   OUTDOOR_LIVING_SERVICES,
 } from "@/lib/data"
+import Socials from "../ui/socials"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -133,15 +134,15 @@ export default function Navbar() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                <Image
-                  src="/ch-logo.svg"
-                  width={100}
-                  height={100}
-                  alt="Castle Hills Stain & Restoration Logo"
-                />
-                <p className="text-xl font-bold mt-5">
-                  Castle Hills <br /> Stain & Restoration
-                </p>
+                <span className="flex flex-col items-start gap-4 mt-4">
+                  <span className="flex flex-row items-center gap-4">
+                    <img src="/ch-logo.svg" width={72} />
+                    <p className="font-bold leading-none">
+                      Castle Hills <br />
+                      Stain & Restoration
+                    </p>
+                  </span>
+                </span>
                 <hr className="mt-6" />
 
                 <nav className="flex flex-col gap-4 mt-6">
@@ -197,9 +198,17 @@ export default function Navbar() {
                     ))}
                   </div>
                 </nav>
-                <Button className="mt-[15%] w-full">
-                  Get your free estimate
+
+                {/* Estimate button */}
+                <Button className="mt-[15%] w-full" size="lg" asChild>
+                  <Link href="#contact" onClick={() => setIsMenuOpen(false)}>
+                    Get your estimate
+                  </Link>
                 </Button>
+
+                <hr className="my-6" />
+
+                <Socials />
               </SheetContent>
             </Sheet>
           </div>

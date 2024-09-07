@@ -57,8 +57,9 @@ interface Review {
 const ReviewCard = ({ review }: { review: Review }) => {
   return (
     <Card key={review.id} className="w-full break-inside-avoid-column">
-      <CardHeader className="flex flex-row justify-between items-center">
+      <CardHeader className="flex flex-row text-sm gap-2 font-semibold text-accent items-center">
         <StarRating rating={review.rating} />
+        5.0
       </CardHeader>
       <CardContent>
         <p className="text-zinc-600 text-sm">{review.text}</p>
@@ -67,8 +68,8 @@ const ReviewCard = ({ review }: { review: Review }) => {
         <p>{review.name}</p>
         <Image
           src="/logos/google.png"
-          width={25}
-          height={25}
+          width={20}
+          height={20}
           alt="Google logo"
         />
       </CardFooter>

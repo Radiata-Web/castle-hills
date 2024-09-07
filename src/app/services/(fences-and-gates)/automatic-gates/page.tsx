@@ -1,15 +1,15 @@
 import ServiceDesc from "@/components/misc/serviceDesc"
-import React from "react"
 
 export default function Page() {
   return (
     <>
       <header className="space-y-4 mb-12">
         <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
-          Patio Covers
+          Automatic Gates
         </h1>
         <p className="text-zinc-600">
-          Patio cover installation services in the Dallas-Fort Worth Metroplex.
+          Automatic gate installation services in the Dallas-Fort Worth
+          Metroplex.
         </p>
       </header>
       <section className="space-y-12 md:space-y-20">
@@ -18,14 +18,14 @@ export default function Page() {
           image="/fence.jpg"
           imageAlt="Wood Fence Installation"
           header="Transform Your Outdoor Space"
-          content="Patio cover copy"
+          content="Automatic gate copy"
         />
         <ServiceDesc
           imagePosition="right"
           image="/fence.jpg"
           imageAlt="Wood Fence Staining"
           header="Enhance Your Outdoor Living"
-          content="Patio cover copy"
+          content="Automatic gate copy"
         />
       </section>
     </>

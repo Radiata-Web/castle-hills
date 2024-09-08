@@ -1,5 +1,11 @@
-import React from "react"
 import ServiceDesc from "@/components/misc/serviceDesc"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Metal Fences | Castle Hills Stain & Restoration",
+  description:
+    "Metal fence installation and painting services in the Dallas-Fort Worth Metroplex.",
+}
 
 export default function Page() {
   return (

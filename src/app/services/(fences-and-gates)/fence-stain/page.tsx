@@ -1,5 +1,10 @@
 import ServiceDesc from "@/components/misc/serviceDesc"
-import React from "react"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Fence Staining | Castle Hills Stain & Restoration",
+  description: "Fence staining services in the Dallas-Fort Worth Metroplex.",
+}
 
 export default function Page() {
   return (

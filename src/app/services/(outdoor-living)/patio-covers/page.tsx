@@ -1,5 +1,11 @@
 import ServiceDesc from "@/components/misc/serviceDesc"
-import React from "react"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Patio Covers | Castle Hills Stain & Restoration",
+  description:
+    "Patio cover installation services in the Dallas-Fort Worth Metroplex.",
+}
 
 export default function Page() {
   return (

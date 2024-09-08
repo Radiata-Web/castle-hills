@@ -1,4 +1,11 @@
 import ServiceDesc from "@/components/misc/serviceDesc"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Automatic Gates | Castle Hills Stain & Restoration",
+  description:
+    "Automatic gate installation services in the Dallas-Fort Worth Metroplex.",
+}
 
 export default function Page() {
   return (

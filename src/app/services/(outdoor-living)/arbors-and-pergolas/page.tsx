@@ -1,5 +1,11 @@
 import ServiceDesc from "@/components/misc/serviceDesc"
-import React from "react"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Arbors & Pergolas | Castle Hills Stain & Restoration",
+  description:
+    "Arbor & pergola installation and staining services in the Dallas-Fort Worth Metroplex.",
+}
 
 export default function Page() {
   return (
@@ -9,8 +15,8 @@ export default function Page() {
           Arbors & Pergolas
         </h1>
         <p className="text-zinc-600">
-          Arbor & pergola installation services in the Dallas-Fort Worth
-          Metroplex.
+          Arbor & pergola installation and staining services in the Dallas-Fort
+          Worth Metroplex.
         </p>
       </header>
       <section className="space-y-12 md:space-y-20">

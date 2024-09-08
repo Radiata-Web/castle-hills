@@ -2,7 +2,7 @@ import ServiceDesc from "@/components/misc/serviceDesc"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Garage Door Stain & Seal | Castle Hills Stain & Restoration",
+  title: "Garage Doors | Castle Hills Stain & Restoration",
   description:
     "Garage door staining and sealing services in the Dallas-Fort Worth Metroplex.",
 }

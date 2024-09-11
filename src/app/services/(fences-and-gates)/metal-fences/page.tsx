@@ -22,17 +22,17 @@ export default function Page() {
       <section className="space-y-12 md:space-y-20">
         <ServiceDesc
           imagePosition="left"
-          image="/fence.jpg"
-          imageAlt="Wrought Iron Fence Installation"
+          image="fences/metal/metal-1"
+          imageAlt="Black wrought iron fence atop a stone wall with greenery"
           header="Wrought Iron Fence Installation"
-          content="Looking to add security, style, and value to your property? Our expert wrought iron fence installation service combines strength, elegance, and durability to create a lasting statement for your home or business. From classic designs to modern styles, we tailor each fence to your vision, ensuring a perfect fit and flawless finish. Imagine your property framed by a beautiful, sturdy fence that enhances your curb appeal while providing peace of mind."
+          content="Add security, style, and value to your property with a beautiful wrought iron fence. Our expert wrought iron fence installation service combines strength, elegance, and durability to create a lasting statement for your home or business. From classic designs to modern styles, we tailor each fence to your vision, ensuring a perfect fit and flawless finish. Imagine your property framed by a beautiful, sturdy fence that enhances your curb appeal while providing peace of mind."
         />
         <ServiceDesc
           imagePosition="right"
-          image="/fence.jpg"
-          imageAlt="Fence"
+          image="fences/metal/metal-2"
+          imageAlt="Black wrought iron fence on a golf course"
           header="Wrought Iron Fence Painting"
-          content="Is your wrought iron fence looking rusty or faded? Don’t let it ruin your property’s curb appeal! Our specialized painting service can make your fence look brand new while protecting it from the elements. We use top-grade rust-resistant paints and meticulous techniques to ensure a flawless, long-lasting finish, whether you prefer classic black or bold new colors. Imagine your fence gleaming in the sunlight, enhancing your home’s exterior with no more worries about rust or peeling paint."
+          content="Our specialized painting service can make your wrought iron fence look brand new while protecting it from the elements. We use top-grade rust-resistant paints and meticulous techniques to ensure a flawless, long-lasting finish, whether you prefer classic black or bold new colors. Imagine your fence gleaming in the sunlight, enhancing your home’s exterior with no more worries about rust or peeling paint."
         />
       </section>
     </>

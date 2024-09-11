@@ -18,13 +18,13 @@ export default function ServiceDesc(props: ServiceDescProps) {
       }`}
     >
       {/* Service Image */}
-      <figure className="max-h-[350px] w-full md:w-1/2 overflow-hidden items-center rounded-lg">
+      <figure className="max-h-[475px] w-full md:w-1/2 overflow-hidden items-center rounded-lg shadow-md">
         <Image
-          src={props.image}
+          src={`/photos/${props.image}.webp`}
           alt={props.imageAlt}
-          width={500}
-          height={500}
-          className="aspect-square min-w-full object-cover md:max-w-[250px] object-right"
+          width={1000}
+          height={1000}
+          className="min-w-full md:max-w-[250px]"
         />
       </figure>
 
@@ -34,7 +34,7 @@ export default function ServiceDesc(props: ServiceDescProps) {
           <h2 className="text-2xl font-bold sm:text-3xl xl:text-4xl/none mb-4">
             {props.header}
           </h2>
-          <p className="text-zinc-600">{props.content}</p>
+          <p className="text-zinc-600 max-w-[600px]">{props.content}</p>
         </span>
         <Button size="lg" asChild>
           <Link href="#contact">Get an Estimate</Link>

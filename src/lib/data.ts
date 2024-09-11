@@ -6,61 +6,50 @@ export const PAGES: { title: string; href: string }[] = [
 export const FENCING_SERVICES: {
   title: string
   href: string
-  image: string
 }[] = [
   {
     title: "Wood Fences",
     href: "wood-fences",
-    image: "fences/wood/fence-4.webp",
   },
   {
     title: "Metal Fences",
     href: "metal-fences",
-    image: "/fence.jpg",
   },
   {
     title: "Fence & Garage Door Staining",
     href: "fence-and-garage-door-stain",
-    image: "/fence.jpg",
   },
   {
     title: "Automatic Gates",
     href: "automatic-gates",
-    image: "/fence.jpg",
   },
 ]
 
 export const OUTDOOR_LIVING_SERVICES: {
   title: string
   href: string
-  image: string
 }[] = [
   {
     title: "Arbors & Pergolas",
     href: "arbors-and-pergolas",
-    image: "/fence.jpg",
   },
   {
     title: "Patio Covers",
     href: "patio-covers",
-    image: "/fence.jpg",
   },
 ]
 
 export const PAINTING_SERVICES: {
   title: string
   href: string
-  image: string
 }[] = [
   {
     title: "Interior Painting",
     href: "interior-painting",
-    image: "/fence.jpg",
   },
   {
     title: "Exterior Painting",
     href: "exterior-painting",
-    image: "/fence.jpg",
   },
 ]
 

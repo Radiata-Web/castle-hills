@@ -11,7 +11,7 @@ export const FENCING_SERVICES: {
   {
     title: "Wood Fences",
     href: "wood-fences",
-    image: "/fence.jpg",
+    image: "fences/wood/fence-4.webp",
   },
   {
     title: "Metal Fences",
@@ -19,8 +19,8 @@ export const FENCING_SERVICES: {
     image: "/fence.jpg",
   },
   {
-    title: "Fence Stain",
-    href: "fence-stain",
+    title: "Fence & Garage Door Staining",
+    href: "fence-and-garage-door-stain",
     image: "/fence.jpg",
   },
   {

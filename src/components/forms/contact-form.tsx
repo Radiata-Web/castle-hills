@@ -132,7 +132,13 @@ export function ContactForm(props: ContactFormProps) {
                 <FormItem>
                   <FormLabel>Full Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="John Smith" {...field} />
+                    <Input
+                      placeholder="John Smith"
+                      required
+                      minLength={2}
+                      type="text"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -147,7 +153,12 @@ export function ContactForm(props: ContactFormProps) {
                 <FormItem>
                   <FormLabel>Email Address</FormLabel>
                   <FormControl>
-                    <Input placeholder="hello@example.com" {...field} />
+                    <Input
+                      placeholder="hello@example.com"
+                      required
+                      type="email"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -164,7 +175,14 @@ export function ContactForm(props: ContactFormProps) {
                 <FormItem>
                   <FormLabel>Phone Number</FormLabel>
                   <FormControl>
-                    <Input placeholder="1234567890" {...field} />
+                    <Input
+                      placeholder="1234567890"
+                      required
+                      minLength={10}
+                      maxLength={10}
+                      type="tel"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -178,7 +196,11 @@ export function ContactForm(props: ContactFormProps) {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Service Type</FormLabel>
-                  <Select onValueChange={field.onChange} value={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    required
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select a service" />
@@ -227,6 +249,7 @@ export function ContactForm(props: ContactFormProps) {
                 <FormControl>
                   <Textarea
                     placeholder="Give us some details about your project! The more we know, the more accurate of an estimate we can give you."
+                    required
                     {...field}
                   />
                 </FormControl>
@@ -236,7 +259,7 @@ export function ContactForm(props: ContactFormProps) {
           />
 
           <section className="flex flex-row gap-5 items-center">
-            <Button type="submit" className="w-full sm:w-auto">
+            <Button type="submit" className="min-w-full sm:min-w-10 mt-4">
               Request estimate
             </Button>
 

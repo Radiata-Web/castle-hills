@@ -17,7 +17,7 @@ export default function Footer() {
             {/* Logo */}
             <span className="flex flex-col items-start gap-4">
               <span className="flex flex-row items-center gap-4">
-                <img src="/ch-logo.svg" width={84} />
+                <img src="/logos/ch-logo.svg" width={84} />
                 <p className="text-xl font-bold leading-none">
                   Castle Hills <br />
                   Stain & Restoration

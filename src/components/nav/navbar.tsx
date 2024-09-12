@@ -160,7 +160,7 @@ export default function Navbar() {
                   {/* Logo */}
                   <span className="flex flex-row items-center gap-4">
                     <img
-                      src="/ch-logo.svg"
+                      src="/logos/ch-logo.svg"
                       width={72}
                       alt="Castle Hills Stain & Restoration Logo"
                     />

@@ -43,7 +43,7 @@ export const OUTDOOR_LIVING_SERVICES: {
   {
     title: "Patio Covers",
     href: "/patio-covers",
-    cardImg: "/patio-cover-1",
+    cardImg: "/patio-cover",
   },
 ]
 

@@ -26,14 +26,14 @@ export default function Page() {
           image="stain/stain-2"
           imageAlt="Dark brown stained wooden fence in a residential backyard"
           header="Fence Staining"
-          content="Is your current fence looking weathered or worn? Our professional fence staining services are the perfect solution to breathe new life into your existing structure. Using top-quality stains and sealants, we can restore your fence’s original beauty while offering enhanced protection against the elements. Our skilled team will carefully prepare and apply the stain, ensuring an even, long-lasting finish that revitalizes your fence's appearance and extends its lifespan."
+          content="Fence staining protects the fence from moisture, UV rays, and temperature changes, preventing damage and extending the fence's lifespan. It also enhances curb appeal by providing a polished look and offering various color options to complement the property’s exterior."
         />
         <ServiceDesc
           imagePosition="right"
           image="garages/garage-1"
           imageAlt="Dark gray stained wooden garage door on brick house"
           header="Garage Door Stain & Seal"
-          content="Is your garage door looking dull or weathered? A fresh stain and seal can restore its beauty and protect it from harsh elements. Our garage door stain & seal service enhances the natural grain of your wood, adding richness and depth while creating a protective barrier against moisture, UV rays, and wear. Imagine pulling up to your home and seeing a garage door that looks brand new, adding curb appeal and lasting durability."
+          content="A fresh stain and seal can restore its beauty and protect it from harsh elements. Our garage door stain & seal service enhances the natural grain of your wood, adding richness and depth while creating a protective barrier against moisture, UV rays, and wear. Imagine pulling up to your home and seeing a garage door that looks brand new, adding curb appeal and lasting durability."
         />
       </section>
     </>

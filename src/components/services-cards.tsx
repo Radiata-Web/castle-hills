@@ -6,7 +6,7 @@ interface ServiceProps {
   service: {
     title: string
     href: string
-    image: string
+    cardImg: string
   }
 }
 
@@ -28,7 +28,8 @@ export default function ServicesCards() {
             time.
           </p>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {/* grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 */}
+        <div className="grid gap-4 items-stretch justify-stretch sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {ALL_SERVICES.map((service) => (
             <ServiceCard service={service} key={service.title} />
           ))}
@@ -41,23 +42,22 @@ export default function ServicesCards() {
 function ServiceCard(props: ServiceProps) {
   return (
     <Link
-      href={`/services/${props.service.href}`}
-      className="group"
+      href={props.service.href}
+      className="group h-[200px]"
       key={props.service.title}
     >
       {/* Image background element */}
       <div
         key={`${props.service.title + Math.random() * 4}`}
-        className={`bg-cover bg-center rounded-lg`}
-        style={{ backgroundImage: `url(${props.service.image})` }}
+        className={`flex h-full bg-cover bg-center rounded-lg`}
+        style={{ backgroundImage: `url(/photos${props.service.cardImg}.webp)` }}
       >
         {/* Content container */}
-        <div className="container py-20 text-white bg-black bg-opacity-40 transition-all duration-200 ease-in-out group-hover:bg-opacity-60 rounded-lg">
+        <div className="flex w-full items-center p-10 text-white bg-black bg-opacity-40 transition-all duration-200 ease-in-out group-hover:bg-opacity-60 rounded-lg">
           {/* Content */}
-          <span className="flex flex-row items-center gap-1">
-            <h3 className="text-2xl font-bold">{props.service.title}</h3>
-            <ArrowUpRight className="hidden sm:opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100" />
-          </span>
+          <h3 className="text-2xl font-bold leading-tight">
+            {props.service.title}
+          </h3>
         </div>
       </div>
     </Link>

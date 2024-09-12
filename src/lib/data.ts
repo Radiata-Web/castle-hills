@@ -6,50 +6,61 @@ export const PAGES: { title: string; href: string }[] = [
 export const FENCING_SERVICES: {
   title: string
   href: string
+  cardImg: string
 }[] = [
   {
     title: "Wood Fences",
-    href: "wood-fences",
+    href: "/wood-fences",
+    cardImg: "/fences/wood/fence-1",
   },
   {
     title: "Metal Fences",
-    href: "metal-fences",
-  },
-  {
-    title: "Fence & Garage Door Staining",
-    href: "fence-and-garage-door-stain",
+    href: "/metal-fences",
+    cardImg: "/fences/metal/metal-1",
   },
   {
     title: "Automatic Gates",
-    href: "automatic-gates",
+    href: "/automatic-gates",
+    cardImg: "/gates/gate-1",
+  },
+  {
+    title: "Fence & Garage Door Staining",
+    href: "/fence-and-garage-door-stain",
+    cardImg: "/garages/garage-1",
   },
 ]
 
 export const OUTDOOR_LIVING_SERVICES: {
   title: string
   href: string
+  cardImg: string
 }[] = [
   {
     title: "Arbors & Pergolas",
-    href: "arbors-and-pergolas",
+    href: "/arbors-and-pergolas",
+    cardImg: "/pergolas/pergola-6",
   },
   {
     title: "Patio Covers",
-    href: "patio-covers",
+    href: "/patio-covers",
+    cardImg: "/patio-cover-1",
   },
 ]
 
 export const PAINTING_SERVICES: {
   title: string
   href: string
+  cardImg: string
 }[] = [
   {
     title: "Interior Painting",
-    href: "interior-painting",
+    href: "/interior-painting",
+    cardImg: "/paint/ex-paint-5",
   },
   {
     title: "Exterior Painting",
-    href: "exterior-painting",
+    href: "/exterior-painting",
+    cardImg: "/paint/ex-paint-2",
   },
 ]
 

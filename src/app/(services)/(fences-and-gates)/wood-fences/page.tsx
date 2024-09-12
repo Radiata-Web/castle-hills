@@ -32,7 +32,7 @@ export default function Page() {
           image="fences/wood/fence-2"
           imageAlt="Brown stained wooden fence in a residential alleyway"
           header="Wood Fence Staining"
-          content="Our professional fence staining services are the perfect solution to breathe new life into your existing structure. Using top-quality stains and sealants, we can restore your fence’s original beauty while offering enhanced protection against the elements. We will carefully prepare and apply the stain, ensuring an even, long-lasting finish that revitalizes your fence's appearance and extends its lifespan."
+          content="Our professional fence staining services are the perfect solution to breathe new life into your existing structure. Staining your fence protects it from moisture, UV rays, and temperature changes, preventing damage and extending the fence's lifespan. It also enhances curb appeal by providing a polished look and offering various color options to complement the property’s exterior."
         />
       </section>
     </>

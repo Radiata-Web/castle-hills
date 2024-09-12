@@ -85,7 +85,7 @@ export default function Navbar() {
                       <ListItem
                         key={service.title}
                         title={service.title}
-                        href={`/services/${service.href}`}
+                        href={service.href}
                       />
                     ))}
                   </ul>
@@ -102,7 +102,7 @@ export default function Navbar() {
                       <ListItem
                         key={service.title}
                         title={service.title}
-                        href={`/services/${service.href}`}
+                        href={service.href}
                       />
                     ))}
                   </ul>
@@ -119,7 +119,7 @@ export default function Navbar() {
                       <ListItem
                         key={service.title}
                         title={service.title}
-                        href={`/services/${service.href}`}
+                        href={service.href}
                       />
                     ))}
                   </ul>

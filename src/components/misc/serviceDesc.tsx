@@ -13,7 +13,7 @@ interface ServiceDescProps {
 export default function ServiceDesc(props: ServiceDescProps) {
   return (
     <article
-      className={`flex flex-col md:flex-row items-center gap-4 md:gap-10 lg:gap-14 ${
+      className={`flex flex-col rounded-lg md:flex-row items-center gap-4 md:gap-10 lg:gap-14 ${
         props.imagePosition === "right" ? "md:flex-row-reverse" : ""
       }`}
     >

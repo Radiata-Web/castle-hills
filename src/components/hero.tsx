@@ -23,7 +23,7 @@ export default function Hero() {
           {/* CTA buttons */}
           <div className="flex gap-2 min-[400px]:flex-row items-center">
             <Button asChild>
-              <Link href="/contact">
+              <Link href="/#services">
                 See what we do <MoveRight className="ml-2" strokeWidth={1.5} />
               </Link>
             </Button>

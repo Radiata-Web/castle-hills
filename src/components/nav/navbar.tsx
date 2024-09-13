@@ -130,8 +130,11 @@ export default function Navbar() {
 
           {/* Contact Me button */}
           <div className="hidden lg:block">
-            <Button className="transition-all duration-200 ease-in-out sm:hover:scale-105">
-              Get my free estimate
+            <Button
+              className="transition-all duration-200 ease-in-out sm:hover:scale-105"
+              asChild
+            >
+              <Link href="/contact-us">Get my free estimate</Link>
             </Button>
           </div>
 

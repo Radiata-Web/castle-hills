@@ -259,7 +259,10 @@ export function ContactForm(props: ContactFormProps) {
           />
 
           <section className="flex flex-row gap-5 items-center">
-            <Button type="submit" className="min-w-full sm:min-w-10 mt-4">
+            <Button
+              type="submit"
+              className="min-w-full sm:min-w-10 mt-4 transition-all duration-200 ease-in-out sm:hover:scale-105"
+            >
               Request estimate
             </Button>
 

@@ -22,7 +22,10 @@ export default function Hero() {
 
           {/* CTA buttons */}
           <div className="flex gap-2 min-[400px]:flex-row items-center">
-            <Button asChild>
+            <Button
+              className="transition-all duration-200 ease-in-out sm:hover:scale-105"
+              asChild
+            >
               <Link href="/#services">
                 See what we do <MoveRight className="ml-2" strokeWidth={1.5} />
               </Link>

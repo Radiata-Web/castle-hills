@@ -36,7 +36,11 @@ export default function ServiceDesc(props: ServiceDescProps) {
           </h2>
           <p className="text-zinc-600 max-w-[600px]">{props.content}</p>
         </span>
-        <Button size="lg" asChild>
+        <Button
+          size="lg"
+          className="transition-all duration-200 ease-in-out sm:hover:scale-105"
+          asChild
+        >
           <Link href="#contact">Get an Estimate</Link>
         </Button>
       </section>

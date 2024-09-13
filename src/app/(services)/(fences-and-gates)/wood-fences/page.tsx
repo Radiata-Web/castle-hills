@@ -1,4 +1,5 @@
 import ServiceDesc from "@/components/misc/serviceDesc"
+import Suppliers from "@/components/misc/suppliers"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -34,6 +35,8 @@ export default function Page() {
           header="Wood Fence Staining"
           content="Our professional fence staining services are the perfect solution to breathe new life into your existing structure. Staining your fence protects it from moisture, UV rays, and temperature changes, preventing damage and extending the fence's lifespan. It also enhances curb appeal by providing a polished look and offering various color options to complement the property’s exterior."
         />
+
+        <Suppliers />
       </section>
     </>
   )

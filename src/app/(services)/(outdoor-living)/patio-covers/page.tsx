@@ -1,4 +1,5 @@
 import ServiceDesc from "@/components/misc/serviceDesc"
+import Suppliers from "@/components/misc/suppliers"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -26,6 +27,8 @@ export default function Page() {
           header="Patio Cover Installation"
           content="A custom patio cover can provide the perfect shelter, allowing you to enjoy your outdoor space year-round. Our patio cover installation service offers stylish, durable designs that not only provide shade and weather protection but also enhance your home's curb appeal. Imagine relaxing under your patio cover, shielded from the elements while still enjoying the fresh air."
         />
+
+        <Suppliers />
       </section>
     </>
   )

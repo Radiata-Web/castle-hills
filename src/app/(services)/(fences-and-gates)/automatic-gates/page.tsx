@@ -1,4 +1,5 @@
 import ServiceDesc from "@/components/misc/serviceDesc"
+import Suppliers from "@/components/misc/suppliers"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -34,6 +35,8 @@ export default function Page() {
           header="Automatic Metal Gates"
           content="An automatic metal gate can offer both convenience and peace of mind. Our installation service provides sturdy, stylish gates with the latest automation technology for seamless operation. Picture yourself driving up to a gate that opens effortlessly with a touch, offering both protection and a sleek modern look that enhances your property’s value."
         />
+
+        <Suppliers />
       </section>
     </>
   )

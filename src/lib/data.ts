@@ -55,7 +55,7 @@ export const PAINTING_SERVICES: {
   {
     title: "Interior Painting",
     href: "/interior-painting",
-    cardImg: "/paint/ex-paint-5",
+    cardImg: "/paint/in-paint-2",
   },
   {
     title: "Exterior Painting",

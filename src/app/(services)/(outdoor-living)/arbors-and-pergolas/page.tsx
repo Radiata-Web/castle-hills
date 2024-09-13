@@ -1,4 +1,5 @@
 import ServiceDesc from "@/components/misc/serviceDesc"
+import Suppliers from "@/components/misc/suppliers"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -34,6 +35,8 @@ export default function Page() {
           header="Pergola Installation & Staining"
           content="Dreaming of a stylish, shaded retreat in your backyard? A custom pergola can transform your outdoor space into the perfect spot for relaxation and entertaining. Our expert pergola installation and staining services deliver both beauty and durability, with high-quality craftsmanship and a rich stain that protects and enhances the wood’s natural charm."
         />
+
+        <Suppliers />
       </section>
     </>
   )

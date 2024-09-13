@@ -1,4 +1,5 @@
 import ServiceDesc from "@/components/misc/serviceDesc"
+import Suppliers from "@/components/misc/suppliers"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -35,6 +36,8 @@ export default function Page() {
           header="Garage Door Stain & Seal"
           content="A fresh stain and seal can restore its beauty and protect it from harsh elements. Our garage door stain & seal service enhances the natural grain of your wood, adding richness and depth while creating a protective barrier against moisture, UV rays, and wear. Imagine pulling up to your home and seeing a garage door that looks brand new, adding curb appeal and lasting durability."
         />
+
+        <Suppliers />
       </section>
     </>
   )

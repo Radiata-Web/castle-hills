@@ -1,5 +1,5 @@
-import Socials from "@/components/ui/socials";
-import { MapPin, Phone } from "lucide-react";
+import Socials from "@/components/ui/socials"
+import { MapPin, Phone } from "lucide-react"
 
 export default function NavBanner() {
   return (
@@ -20,10 +20,15 @@ export default function NavBanner() {
           {/* Contact phone number */}
           <span className="flex flex-row items-center gap-1 pl-5">
             <Phone size={15} />
-            <a href="phone:4692153098">(469) 215-3098</a>
+            <a
+              href="tel:4692153098"
+              className="transition-all duration-200 ease-in-out hover:text-accent"
+            >
+              (469) 215-3098
+            </a>
           </span>
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -36,14 +36,9 @@ export const OUTDOOR_LIVING_SERVICES: {
   cardImg: string
 }[] = [
   {
-    title: "Arbors & Pergolas",
-    href: "/arbors-and-pergolas",
+    title: "Arbors, Pergolas & Patio Covers",
+    href: "/arbors-pergolas-and-patio-covers",
     cardImg: "/pergolas/pergola-6",
-  },
-  {
-    title: "Patio Covers",
-    href: "/patio-covers",
-    cardImg: "/patio-cover",
   },
 ]
 

@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { Facebook, MapPin } from "lucide-react";
+import Link from "next/link"
+import { Facebook, Instagram, MapPin } from "lucide-react"
 
 export default function Socials() {
   const SOCIALS = [
@@ -13,7 +13,12 @@ export default function Socials() {
       url: "https://maps.app.goo.gl/MNGT76dBbYbfbzRK8",
       icon: <MapPin size={18} strokeWidth={1.5} />,
     },
-  ];
+    {
+      name: "Instagram",
+      url: "https://www.instagram.com/Castlehillsstainandrestoration/",
+      icon: <Instagram size={18} strokeWidth={1.5} />,
+    },
+  ]
 
   return (
     <div className="flex space-x-2">
@@ -28,5 +33,5 @@ export default function Socials() {
         </Link>
       ))}
     </div>
-  );
+  )
 }

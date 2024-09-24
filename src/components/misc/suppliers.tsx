@@ -7,9 +7,9 @@ export default function Suppliers() {
       <Image
         src="/logos/wood-defender.png"
         alt="Wood Defender logo"
-        width={215}
+        width={200}
         height={113}
-        className="w-auto ml-auto"
+        className="w-auto ml-auto max-w-250"
       />
       <Image
         src="/logos/afa.png"

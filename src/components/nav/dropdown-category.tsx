@@ -48,7 +48,7 @@ export default function DropdownCategory({
         {links.map((link) => (
           <Link
             key={link.href}
-            href={`/services/${link.href}`}
+            href={`${link.href}`}
             className="block rounded-lg px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
             onClick={() => setIsMenuOpen(false)}
           >

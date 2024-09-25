@@ -11,11 +11,6 @@ export const metadata: Metadata = {
   title: "Castle Hills Stain & Restoration | DFW",
   description:
     "Wood installation, wood restoration, wood stain, and property painting services in the Dallas-Ft. Worth area.",
-  robots: {
-    index: false,
-    nocache: true,
-    follow: false,
-  },
 }
 
 export default function RootLayout({

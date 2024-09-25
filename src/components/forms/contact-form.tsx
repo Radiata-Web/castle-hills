@@ -76,7 +76,7 @@ export function ContactForm(props: ContactFormProps) {
       name: "",
       email: "",
       phone: "",
-      serviceType: "",
+      serviceType: "None selected",
       message: "",
     },
   })
@@ -194,12 +194,12 @@ export function ContactForm(props: ContactFormProps) {
               control={form.control}
               name="serviceType"
               render={({ field }) => (
-                <FormItem>
+                <FormItem key={field.value}>
                   <FormLabel>Service Type</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     value={field.value}
-                    required
+                    required={true}
                   >
                     <FormControl>
                       <SelectTrigger>

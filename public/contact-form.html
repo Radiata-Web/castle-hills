@@ -9,6 +9,12 @@
     <h1>Contact Form</h1>
     <form name="contact-form" method="POST" data-netlify="true">
       <input type="hidden" name="form-name" value="contact-form" />
+      <input
+        type="hidden"
+        name="subject"
+        value="New lead from chstainandrestoration.com (%{submissionId})"
+      />
+      <p></p>
       <div>
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required />

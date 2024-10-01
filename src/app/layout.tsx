@@ -9,8 +9,19 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
 export const metadata: Metadata = {
   title: "Castle Hills Stain & Restoration | DFW",
+  applicationName: "Home · Castle Hills Stain & Restoration",
   description:
-    "Wood installation, wood restoration, wood stain, and property painting services in the Dallas-Ft. Worth area.",
+    "Wood installation, wood restoration, wood stain, and property painting services in the Dallas-Fort Worth area. Get your free estimate today!",
+  keywords: [
+    "Wood fence installation",
+    "Metal fence installation",
+    "Wood fence repair",
+    "Fencing contractor",
+    "Fence company near me",
+    "Residential fence",
+    "Fence company carrollton",
+  ],
+  referrer: "origin-when-cross-origin",
 }
 
 export default function RootLayout({

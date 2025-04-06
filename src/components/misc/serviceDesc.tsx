@@ -1,13 +1,13 @@
-import Image from "next/image"
-import { Button } from "../ui/button"
-import Link from "next/link"
+import Image from "next/image";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 interface ServiceDescProps {
-  imagePosition: "left" | "right"
-  image: string
-  imageAlt: string
-  header: string
-  content: string
+  imagePosition: "left" | "right";
+  image: string;
+  imageAlt: string;
+  header: string;
+  content: string;
 }
 
 export default function ServiceDesc(props: ServiceDescProps) {
@@ -24,7 +24,7 @@ export default function ServiceDesc(props: ServiceDescProps) {
           alt={props.imageAlt}
           width={1000}
           height={1000}
-          className="min-w-full md:max-w-[250px]"
+          className="min-w-full md:max-w-[250px] bg-accent-light"
         />
       </figure>
 
@@ -45,5 +45,5 @@ export default function ServiceDesc(props: ServiceDescProps) {
         </Button>
       </section>
     </article>
-  )
+  );
 }

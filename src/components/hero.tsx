@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative bg-cover bg-center bg-no-repeat bg-opacity-80"
+      className="relative bg-cover bg-center bg-no-repeat bg-opacity-80 bg-black"
       style={{
         backgroundImage:
           "url('https://raw.githubusercontent.com/Radiata-Web/castle-hills/refs/heads/main/public/photos/gates/gate-1.webp')",

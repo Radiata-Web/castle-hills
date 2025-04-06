@@ -128,7 +128,7 @@ export default function Footer() {
         {/* Copyright section */}
         <div className="text-center">
           <p className="text-sm text-muted-foreground">
-            &copy; 2025 Castle Hills Stain and Restoration.{" "}
+            &copy; 2025 Castle Hills Stain and Restoration LLC.{" "}
             <br className="sm:hidden" /> Website by{" "}
             <Link
               href="https://radiataweb.com"

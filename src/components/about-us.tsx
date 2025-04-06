@@ -1,13 +1,13 @@
-import React from "react"
-import ContactNumber from "./misc/contactNumber"
-import Link from "next/link"
-import Image from "next/image"
+import React from "react";
+import ContactNumber from "./misc/contactNumber";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function About() {
   return (
     <>
       <div className="absolute -translate-y-52" id="about"></div>
-      <section className="py-6 md:py-10 lg:py-14">
+      <section className="max-w-8xl mx-auto py-6 md:py-10 lg:py-14 px-4 md:px-8 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 xl:grid-cols-2">
           {/* Google Maps embed */}
           <iframe
@@ -63,5 +63,5 @@ export default function About() {
         </div>
       </section>
     </>
-  )
+  );
 }

@@ -1,20 +1,20 @@
-import { ALL_SERVICES } from "@/lib/data"
-import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
+import { ALL_SERVICES } from "@/lib/data";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 interface ServiceProps {
   service: {
-    title: string
-    href: string
-    cardImg: string
-  }
+    title: string;
+    href: string;
+    cardImg: string;
+  };
 }
 
 export default function ServicesCards() {
   return (
     <>
       <div className="absolute -translate-y-52" id="services"></div>
-      <article className="py-6 md:py-10 lg:py-14">
+      <article className="max-w-8xl mx-auto py-6 md:py-10 lg:py-14 px-4 md:px-8 lg:px-8">
         <div className="space-y-4 mb-8">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
             What can we do for you?
@@ -36,7 +36,7 @@ export default function ServicesCards() {
         </div>
       </article>
     </>
-  )
+  );
 }
 
 function ServiceCard(props: ServiceProps) {
@@ -61,5 +61,5 @@ function ServiceCard(props: ServiceProps) {
         </div>
       </div>
     </Link>
-  )
+  );
 }

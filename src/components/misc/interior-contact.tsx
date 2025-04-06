@@ -1,10 +1,10 @@
-import Link from "next/link"
-import Image from "next/image"
-import { ContactForm } from "../forms/contact-form"
-import ContactNumber from "@/components/misc/contactNumber"
+import Link from "next/link";
+import Image from "next/image";
+import { ContactForm } from "../forms/contact-form";
+import ContactNumber from "@/components/misc/contactNumber";
 export default function InteriorContact() {
   return (
-    <>
+    <div className="max-w-8xl mx-auto px-4 md:px-8 lg:px-8">
       <div className="absolute -translate-y-52" id="contact"></div>
       <section className="grid p-6 rounded-lg shadow-lg border border-zinc-200 gap-4 my-12 sm:p-8 md:p-10 lg:p-12 md:gap-10 lg:gap-14 lg:grid-cols-2">
         <div className="flex flex-col space-y-4 md:space-y-6 lg:space-y-8">
@@ -53,6 +53,6 @@ export default function InteriorContact() {
           <ContactForm showHeader={false} />
         </div>
       </section>
-    </>
-  )
+    </div>
+  );
 }

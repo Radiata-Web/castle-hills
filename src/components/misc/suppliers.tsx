@@ -1,4 +1,4 @@
-import Image from "next/image"
+import Image from "next/image";
 
 export default function Suppliers() {
   return (
@@ -9,16 +9,16 @@ export default function Suppliers() {
         alt="Wood Defender logo"
         width={200}
         height={113}
-        className="w-auto ml-auto max-w-250"
+        className="w-auto ml-auto w-250"
       />
       <Image
         src="/logos/afa.png"
         alt="American Fence Associate logo"
         width={345}
         height={113}
-        className="w-52 mr-auto"
+        className="w-52 mr-auto w-250"
       />
       <span className="hidden bg-zinc-200 w-full h-[1px] sm:block"></span>
     </div>
-  )
+  );
 }

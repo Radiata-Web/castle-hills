@@ -1,14 +1,14 @@
-import Link from "next/link"
-import Socials from "@/components/ui/socials"
+import Link from "next/link";
+import Socials from "@/components/ui/socials";
 import {
   OUTDOOR_LIVING_SERVICES,
   FENCING_SERVICES,
   PAINTING_SERVICES,
-} from "@/lib/data"
+} from "@/lib/data";
 
 export default function Footer() {
   return (
-    <footer className="py-12 flex flex-col max-w-8xl mx-auto rounded-lg">
+    <footer className="py-12 flex flex-col max-w-8xl mx-auto rounded-lg px-4 md:px-8 lg:px-8">
       <section className="w-full">
         {/* Two-column section */}
         <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 mb-8 gap-4 md:gap-48">
@@ -128,7 +128,7 @@ export default function Footer() {
         {/* Copyright section */}
         <div className="text-center">
           <p className="text-sm text-muted-foreground">
-            &copy; 2024 Castle Hills Stain and Restoration.{" "}
+            &copy; 2025 Castle Hills Stain and Restoration LLC.{" "}
             <br className="sm:hidden" /> Website by{" "}
             <Link
               href="https://radiataweb.com"
@@ -142,5 +142,5 @@ export default function Footer() {
         </div>
       </section>
     </footer>
-  )
+  );
 }

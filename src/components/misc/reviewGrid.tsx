@@ -1,11 +1,16 @@
-import React from "react"
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { Star } from "lucide-react"
-import { REVIEWS } from "@/lib/data"
-import Image from "next/image"
+import React from "react";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { Star } from "lucide-react";
+import { REVIEWS } from "@/lib/data";
+import Image from "next/image";
 
 interface StarRatingProps {
-  rating: number
+  rating: number;
 }
 
 const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
@@ -20,12 +25,12 @@ const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
         />
       ))}
     </div>
-  )
-}
+  );
+};
 
 export default function ReviewGrid() {
   return (
-    <div className="w-full py-6 md:py-10 lg:py-14">
+    <div className="max-w-8xl mx-auto py-6 md:py-10 lg:py-14 px-4 md:px-8 lg:px-8">
       <h2 className="text-3xl font-bold tracking-tighter mb-8 sm:text-4xl xl:text-5xl/none">
         What do our customers have to say?
       </h2>
@@ -44,14 +49,14 @@ export default function ReviewGrid() {
         ))}
       </section>
     </div>
-  )
+  );
 }
 
 interface Review {
-  id: number
-  rating: number
-  text: string
-  name: string
+  id: number;
+  rating: number;
+  text: string;
+  name: string;
 }
 
 const ReviewCard = ({ review }: { review: Review }) => {
@@ -74,5 +79,5 @@ const ReviewCard = ({ review }: { review: Review }) => {
         />
       </CardFooter>
     </Card>
-  )
-}
+  );
+};

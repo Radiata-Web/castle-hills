@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { isValidPhoneNumber, parsePhoneNumber } from "libphonenumber-js"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { isValidPhoneNumber, parsePhoneNumber } from "libphonenumber-js";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -14,19 +14,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { zfd } from "zod-form-data"
-import { useState } from "react"
-import { CheckCircle, Hourglass, XCircle } from "lucide-react"
+} from "@/components/ui/select";
+import { zfd } from "zod-form-data";
+import { useState } from "react";
+import { CheckCircle, Hourglass, XCircle } from "lucide-react";
 
 // Form validation schema
 const formSchema = zfd.formData({
@@ -58,16 +58,16 @@ const formSchema = zfd.formData({
       }
     ),
   message: z.string({ required_error: "Please write your project details." }),
-})
+});
 
 interface ContactFormProps {
-  showHeader: boolean
+  showHeader: boolean;
 }
 
 // Form component
 export function ContactForm(props: ContactFormProps) {
-  const [status, setStatus] = useState<string | null>(null)
-  const [error, setError] = useState<string | null>(null)
+  const [status, setStatus] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   // Form definition
   const form = useForm<z.infer<typeof formSchema>>({
@@ -76,37 +76,39 @@ export function ContactForm(props: ContactFormProps) {
       name: "",
       email: "",
       phone: "",
-      serviceType: "None selected",
+      serviceType: "",
       message: "",
     },
-  })
+  });
 
   // Submission handler
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
+
+    console.log(e.target);
 
     try {
-      setStatus("pending")
-      setError(null)
+      setStatus("pending");
+      setError(null);
 
-      const myForm = e.target as HTMLFormElement
-      const formData = new FormData(myForm)
+      const myForm = e.target as HTMLFormElement;
+      const formData = new FormData(myForm);
       const res = await fetch("/contact-form.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData as any).toString(),
-      })
+      });
       if (res.status === 200) {
-        setStatus("ok")
+        setStatus("ok");
       } else {
-        setStatus("error")
-        setError(`${res.status} ${res.statusText}`)
+        setStatus("error");
+        setError(`${res.status} ${res.statusText}`);
       }
     } catch (e) {
-      setStatus("error")
-      setError(`${e}`)
+      setStatus("error");
+      setError(`${e}`);
     }
-  }
+  };
 
   return (
     <>
@@ -128,9 +130,10 @@ export function ContactForm(props: ContactFormProps) {
             <FormField
               control={form.control}
               name="name"
+              disabled={status === "pending"}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full Name</FormLabel>
+                  <FormLabel>Full Name*</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="John Smith"
@@ -149,9 +152,10 @@ export function ContactForm(props: ContactFormProps) {
             <FormField
               control={form.control}
               name="email"
+              disabled={status === "pending"}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email Address</FormLabel>
+                  <FormLabel>Email Address*</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="hello@example.com"
@@ -171,9 +175,10 @@ export function ContactForm(props: ContactFormProps) {
             <FormField
               control={form.control}
               name="phone"
+              disabled={status === "pending"}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone Number</FormLabel>
+                  <FormLabel>Phone Number*</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="1234567890"
@@ -194,12 +199,13 @@ export function ContactForm(props: ContactFormProps) {
               control={form.control}
               name="serviceType"
               render={({ field }) => (
-                <FormItem key={field.value}>
-                  <FormLabel>Service Type</FormLabel>
+                <FormItem>
+                  <FormLabel>Service Type*</FormLabel>
                   <Select
                     onValueChange={field.onChange}
-                    value={field.value}
-                    required={true}
+                    defaultValue={field.value}
+                    disabled={status === "pending"}
+                    required
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -243,9 +249,10 @@ export function ContactForm(props: ContactFormProps) {
           <FormField
             control={form.control}
             name="message"
+            disabled={status === "pending"}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Project Details</FormLabel>
+                <FormLabel>Project Details*</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Give us some details about your project! The more we know, the more accurate of an estimate we can give you."
@@ -258,31 +265,31 @@ export function ContactForm(props: ContactFormProps) {
             )}
           />
 
-          <section className="flex flex-row gap-5 items-center">
+          <section className="flex flex-row gap-5 items-center mt-4">
             <Button
               type="submit"
-              className="min-w-full sm:min-w-10 mt-4 transition-all duration-200 ease-in-out sm:hover:scale-105"
+              className="min-w-full sm:min-w-10 transition-all duration-200 ease-in-out sm:hover:scale-105"
             >
               Request estimate
             </Button>
 
             <span className="text-sm text-gray-500">
               {status === "pending" && (
-                <p className="flex flex-row gap-1 items-center">
+                <p className="flex flex-row gap-2 items-center">
                   <Hourglass size={16} />
                   Loading...
                 </p>
               )}
               {status === "ok" && (
-                <p className="flex flex-row gap-1 items-center text-green-500">
+                <p className="flex flex-row gap-2 items-center text-green-500">
                   <CheckCircle size={16} />
                   Form submitted successfully!
                 </p>
               )}
               {status === "error" && (
-                <p className="flex flex-row gap-1 items-center text-red-500">
+                <p className="flex flex-row gap-2 items-center text-red-500">
                   <XCircle size={16} />
-                  Form submission failed: {error}
+                  Submission failed, please try again
                 </p>
               )}
             </span>
@@ -290,5 +297,5 @@ export function ContactForm(props: ContactFormProps) {
         </form>
       </Form>
     </>
-  )
+  );
 }

@@ -1,6 +1,6 @@
 {
-  "name": "rw-next-starter",
-  "version": "0.1.0",
+  "name": "castle-hills",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",

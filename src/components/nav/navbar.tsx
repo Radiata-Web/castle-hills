@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
 import {
   ComponentPropsWithoutRef,
   ElementRef,
   forwardRef,
   useState,
-} from "react"
-import Link from "next/link"
-import { Menu, MoveRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import NavBanner from "@/components/nav/nav-banner"
-import Logo from "@/components/nav/logo"
+} from "react";
+import Link from "next/link";
+import { Menu, MoveRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import NavBanner from "@/components/nav/nav-banner";
+import Logo from "@/components/nav/logo";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -19,31 +19,31 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 import {
   FENCING_SERVICES,
   PAGES,
   PAINTING_SERVICES,
   OUTDOOR_LIVING_SERVICES,
-} from "@/lib/data"
-import Socials from "@/components/ui/socials"
-import DropdownCategory from "@/components/nav/dropdown-category"
-import * as VisuallyHidden from "@radix-ui/react-visually-hidden"
+} from "@/lib/data";
+import Socials from "@/components/ui/socials";
+import DropdownCategory from "@/components/nav/dropdown-category";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenuOpen = (isOpen: boolean) => {
-    setIsMenuOpen(isOpen)
-  }
+    setIsMenuOpen(isOpen);
+  };
 
   // Automatically populates desktop menus, remember to manually populate mobile menu at the bottom
 
@@ -124,6 +124,16 @@ export default function Navbar() {
                     ))}
                   </ul>
                 </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              {/* Home Restoration */}
+              <NavigationMenuItem>
+                <NavigationMenuLink
+                  asChild
+                  className={navigationMenuTriggerStyle()}
+                >
+                  <Link href="/home-restoration">Home Restoration</Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
@@ -225,6 +235,21 @@ export default function Navbar() {
                       links={PAINTING_SERVICES}
                       setIsMenuOpen={setIsMenuOpen}
                     />
+
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start font-semibold text-xl"
+                      onClick={() => setIsMenuOpen(false)}
+                      asChild
+                    >
+                      <Link
+                        href="/home-restoration"
+                        className="block rounded-lg px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        Home Restoration
+                      </Link>
+                    </Button>
                   </div>
                 </nav>
 
@@ -245,7 +270,7 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
 const ListItem = forwardRef<ElementRef<"a">, ComponentPropsWithoutRef<"a">>(
@@ -265,7 +290,7 @@ const ListItem = forwardRef<ElementRef<"a">, ComponentPropsWithoutRef<"a">>(
           </a>
         </NavigationMenuLink>
       </li>
-    )
+    );
   }
-)
-ListItem.displayName = "ListItem"
+);
+ListItem.displayName = "ListItem";

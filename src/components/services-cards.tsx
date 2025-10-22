@@ -33,7 +33,7 @@ export default function ServicesCards() {
           ))}
 
           {/* Contact Us */}
-          <div className="group h-[200px] w-full md:col-span-2 lg:col-span-1">
+          <div className={`group h-[225px] w-full md:col-span-2 lg:col-span-1`}>
             <div className="flex h-full border border-dashed border-accent rounded-lg transition-all duration-200 ease-out">
               <div className="flex flex-col items-center text-center md:items-center md:text-center lg:items-start lg:text-left justify-center p-10 gap-2 w-full">
                 <h3 className="text-2xl font-bold leading-tight">
@@ -64,10 +64,10 @@ export default function ServicesCards() {
 
 function ServiceCard({ service }: { service: Service }) {
   return (
-    <Link href={service.href} className="group h-[200px]" key={service.title}>
+    <Link href={service.href} className={`group h-[225px]`} key={service.title}>
       {/* Image background element */}
       <div
-        key={`${service.title + Math.random() * 4}`}
+        key={`${service.title}-${service.href}`}
         className={`flex h-full bg-cover bg-center rounded-lg`}
         style={{ backgroundImage: `url(/photos${service.cardImg}.webp)` }}
       >

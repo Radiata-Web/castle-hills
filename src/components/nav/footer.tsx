@@ -3,7 +3,7 @@ import Socials from "@/components/ui/socials";
 import {
   OUTDOOR_LIVING_SERVICES,
   FENCING_SERVICES,
-  PAINTING_SERVICES,
+  HOME_RESTORATION_SERVICES,
 } from "@/lib/data";
 
 export default function Footer() {
@@ -70,7 +70,7 @@ export default function Footer() {
 
               {/* Fencing */}
               <div>
-                <h3 className="font-semibold mb-2">Fence & Gate</h3>
+                <h3 className="font-semibold mb-2">Fences & Gates</h3>
                 <ul className="space-y-1">
                   {FENCING_SERVICES.map((service) => (
                     <li key={service.title}>
@@ -102,11 +102,11 @@ export default function Footer() {
                 </ul>
               </div>
 
-              {/* Painting */}
+              {/* Home Restoration */}
               <div>
-                <h3 className="font-semibold mb-2">Painting</h3>
+                <h3 className="font-semibold mb-2">Restoration & Remodeling</h3>
                 <ul className="space-y-1">
-                  {PAINTING_SERVICES.map((service) => (
+                  {HOME_RESTORATION_SERVICES.map((service) => (
                     <li key={service.title}>
                       <Link
                         href={`/services/${service.href}`}

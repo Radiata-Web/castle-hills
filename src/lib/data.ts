@@ -37,7 +37,7 @@ export const OUTDOOR_LIVING_SERVICES: Service[] = [
   },
 ];
 
-export const PAINTING_SERVICES: Service[] = [
+export const HOME_RESTORATION_SERVICES: Service[] = [
   {
     title: "Interior Painting",
     href: "/interior-painting",
@@ -48,19 +48,15 @@ export const PAINTING_SERVICES: Service[] = [
     href: "/exterior-painting",
     cardImg: "/paint/ex-paint-2",
   },
-];
-
-export const HOME_RESTORATION_SERVICES: Service[] = [
   {
-    title: "Home Restoration",
-    href: "/home-restoration",
+    title: "Restoration & Remodeling",
+    href: "/home-restoration-remodeling",
     cardImg: "/restoration/restore-1",
   },
 ];
 
 export const ALL_SERVICES: Service[] = FENCING_SERVICES.concat(
   OUTDOOR_LIVING_SERVICES,
-  PAINTING_SERVICES,
   HOME_RESTORATION_SERVICES
 );
 

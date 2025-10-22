@@ -31,8 +31,8 @@ import { cn } from "@/lib/utils";
 import {
   FENCING_SERVICES,
   PAGES,
-  PAINTING_SERVICES,
   OUTDOOR_LIVING_SERVICES,
+  HOME_RESTORATION_SERVICES,
 } from "@/lib/data";
 import Socials from "@/components/ui/socials";
 import DropdownCategory from "@/components/nav/dropdown-category";
@@ -109,13 +109,17 @@ export default function Navbar() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
-              {/* Painting */}
+              {/* Home Restoration & Remodeling */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Painting</NavigationMenuTrigger>
+                <NavigationMenuTrigger>
+                  Restoration & Remodeling
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <p className="pl-7 pt-5 font-bold">Painting Services</p>
+                  <p className="pl-7 pt-5 font-bold">
+                    Home Restoration & Remodeling Services
+                  </p>
                   <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-2 md:w-[500px] lg:w-[600px]">
-                    {PAINTING_SERVICES.map((service) => (
+                    {HOME_RESTORATION_SERVICES.map((service) => (
                       <ListItem
                         key={service.title}
                         title={service.title}
@@ -124,16 +128,6 @@ export default function Navbar() {
                     ))}
                   </ul>
                 </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              {/* Home Restoration */}
-              <NavigationMenuItem>
-                <NavigationMenuLink
-                  asChild
-                  className={navigationMenuTriggerStyle()}
-                >
-                  <Link href="/home-restoration">Home Restoration</Link>
-                </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
@@ -231,25 +225,10 @@ export default function Navbar() {
                     />
 
                     <DropdownCategory
-                      categoryTitle="Painting"
-                      links={PAINTING_SERVICES}
+                      categoryTitle="Restoration & Remodeling"
+                      links={HOME_RESTORATION_SERVICES}
                       setIsMenuOpen={setIsMenuOpen}
                     />
-
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-start font-semibold text-xl"
-                      onClick={() => setIsMenuOpen(false)}
-                      asChild
-                    >
-                      <Link
-                        href="/home-restoration"
-                        className="block rounded-lg px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        Home Restoration
-                      </Link>
-                    </Button>
                   </div>
                 </nav>
 

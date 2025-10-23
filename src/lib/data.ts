@@ -39,6 +39,11 @@ export const OUTDOOR_LIVING_SERVICES: Service[] = [
 
 export const HOME_RESTORATION_SERVICES: Service[] = [
   {
+    title: "Restoration & Remodeling",
+    href: "/home-restoration-remodeling",
+    cardImg: "/restoration/restore-1",
+  },
+  {
     title: "Interior Painting",
     href: "/interior-painting",
     cardImg: "/paint/in-paint-2",
@@ -47,11 +52,6 @@ export const HOME_RESTORATION_SERVICES: Service[] = [
     title: "Exterior Painting",
     href: "/exterior-painting",
     cardImg: "/paint/ex-paint-2",
-  },
-  {
-    title: "Restoration & Remodeling",
-    href: "/home-restoration-remodeling",
-    cardImg: "/restoration/restore-1",
   },
 ];
 

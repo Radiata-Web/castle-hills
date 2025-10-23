@@ -82,7 +82,7 @@ export default function Footer() {
                   {FENCING_SERVICES.map((service) => (
                     <li key={service.title}>
                       <Link
-                        href={`/services/${service.href}`}
+                        href={`${service.href}`}
                         className="text-sm text-muted-foreground hover:text-primary"
                       >
                         {service.title}
@@ -99,7 +99,7 @@ export default function Footer() {
                   {OUTDOOR_LIVING_SERVICES.map((service) => (
                     <li key={service.title}>
                       <Link
-                        href={`/services/${service.href}`}
+                        href={`${service.href}`}
                         className="text-sm text-muted-foreground hover:text-primary"
                       >
                         {service.title}
@@ -116,7 +116,7 @@ export default function Footer() {
                   {HOME_RESTORATION_SERVICES.map((service) => (
                     <li key={service.title}>
                       <Link
-                        href={`/services/${service.href}`}
+                        href={`${service.href}`}
                         className="text-sm text-muted-foreground hover:text-primary"
                       >
                         {service.title}

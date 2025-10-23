@@ -112,6 +112,7 @@ export function ContactForm(props: ContactFormProps) {
       });
       if (res.status === 200) {
         setStatus("ok");
+        form.reset();
       } else {
         setStatus("error");
         setError(`${res.status} ${res.statusText}`);

@@ -1,19 +1,19 @@
-import type { MetadataRoute } from "next"
+import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const url = "https://chstainandrestoration.com"
+  const url = "https://chstainandrestoration.com";
   return [
     {
       url: `${url}`,
       lastModified: new Date(),
       changeFrequency: "yearly",
-      priority: 1,
+      priority: 2,
     },
     {
       url: `${url}/wood-fences`,
       lastModified: new Date(),
       changeFrequency: "yearly",
-      priority: 0.5,
+      priority: 1,
     },
     {
       url: `${url}/metal-fences`,
@@ -51,5 +51,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.5,
     },
-  ]
+    {
+      url: `${url}/home-restoration-remodeling`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 1,
+    },
+  ];
 }

@@ -37,6 +37,7 @@ import {
 import Socials from "@/components/ui/socials";
 import DropdownCategory from "@/components/nav/dropdown-category";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -166,10 +167,12 @@ export default function Navbar() {
                 <span className="flex flex-col items-start gap-4 mt-4">
                   {/* Logo */}
                   <span className="flex flex-row items-center gap-4">
-                    <img
+                    <Image
                       src="/logos/ch-logo.svg"
                       width={72}
+                      height={72}
                       alt="Castle Hills Stain & Restoration Logo"
+                      priority
                     />
                     <p className="font-bold leading-none">
                       Castle Hills <br />

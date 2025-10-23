@@ -48,6 +48,7 @@ export default function About() {
                   alt="Rate us on Google"
                   width={200}
                   height={100}
+                  loading="lazy"
                 />
               </Link>
               <Link href="https://www.facebook.com/CHPW903">
@@ -56,6 +57,7 @@ export default function About() {
                   alt="See us on Facebook"
                   width={200}
                   height={100}
+                  loading="lazy"
                 />
               </Link>
             </div>

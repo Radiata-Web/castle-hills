@@ -5,6 +5,7 @@ import {
   FENCING_SERVICES,
   HOME_RESTORATION_SERVICES,
 } from "@/lib/data";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -17,7 +18,13 @@ export default function Footer() {
             {/* Logo */}
             <span className="flex flex-col items-start gap-4">
               <span className="flex flex-row items-center gap-4">
-                <img src="/logos/ch-logo.svg" width={84} />
+                <Image
+                  src="/logos/ch-logo.svg"
+                  width={84}
+                  height={84}
+                  alt="Castle Hills Stain & Restoration Logo"
+                  loading="lazy"
+                />
                 <p className="text-xl font-bold leading-none">
                   Castle Hills <br />
                   Stain & Restoration

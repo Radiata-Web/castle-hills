@@ -1,10 +1,11 @@
-import ServiceDesc from "@/components/misc/serviceDesc"
-import { Metadata } from "next"
+import ChooseUs from "@/components/misc/choose-us";
+import ServiceDesc from "@/components/misc/serviceDesc";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Interior Painting | Castle Hills Stain & Restoration",
   description: "Interior painting services in the Dallas-Fort Worth Metroplex.",
-}
+};
 
 export default function Page() {
   return (
@@ -27,6 +28,8 @@ export default function Page() {
           content="A professionally done interior paint job can instantly transform any room, adding color, warmth, and personality. Our expert interior painting services offer precision, high-quality paints, and a flawless finish, giving your home the makeover it deserves. Imagine walking into a space that feels brighter, fresher, and more inviting—reflecting your style perfectly."
         />
       </section>
+
+      <ChooseUs />
     </>
-  )
+  );
 }

@@ -1,3 +1,4 @@
+import ChooseUs from "@/components/misc/choose-us";
 import ServiceDesc from "@/components/misc/serviceDesc";
 import Suppliers from "@/components/misc/suppliers";
 import { Metadata } from "next";
@@ -38,6 +39,8 @@ export default function Page() {
 
         <Suppliers />
       </section>
+
+      <ChooseUs />
     </>
   );
 }

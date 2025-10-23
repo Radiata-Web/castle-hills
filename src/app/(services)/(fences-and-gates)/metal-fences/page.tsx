@@ -1,11 +1,12 @@
-import ServiceDesc from "@/components/misc/serviceDesc"
-import { Metadata } from "next"
+import ChooseUs from "@/components/misc/choose-us";
+import ServiceDesc from "@/components/misc/serviceDesc";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Metal Fences | Castle Hills Stain & Restoration",
   description:
     "Metal fence installation and painting services in the Dallas-Fort Worth Metroplex.",
-}
+};
 
 export default function Page() {
   return (
@@ -35,6 +36,8 @@ export default function Page() {
           content="Our specialized painting service can make your wrought iron fence look brand new while protecting it from the elements. We use top-grade rust-resistant paints and meticulous techniques to ensure a flawless, long-lasting finish, whether you prefer classic black or bold new colors. Imagine your fence gleaming in the sunlight, enhancing your home’s exterior with no more worries about rust or peeling paint."
         />
       </section>
+
+      <ChooseUs />
     </>
-  )
+  );
 }

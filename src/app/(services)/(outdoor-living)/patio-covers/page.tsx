@@ -1,12 +1,13 @@
-import ServiceDesc from "@/components/misc/serviceDesc"
-import Suppliers from "@/components/misc/suppliers"
-import { Metadata } from "next"
+import ChooseUs from "@/components/misc/choose-us";
+import ServiceDesc from "@/components/misc/serviceDesc";
+import Suppliers from "@/components/misc/suppliers";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Patio Covers | Castle Hills Stain & Restoration",
   description:
     "Patio cover installation services in the Dallas-Fort Worth Metroplex.",
-}
+};
 
 export default function Page() {
   return (
@@ -30,6 +31,8 @@ export default function Page() {
 
         <Suppliers />
       </section>
+
+      <ChooseUs />
     </>
-  )
+  );
 }

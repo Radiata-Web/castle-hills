@@ -3,6 +3,8 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import RemodelCarousel from "./remodel-carousel";
+import Logo from "@/components/nav/logo";
+import ChooseUs from "@/components/misc/choose-us";
 
 export const metadata: Metadata = {
   title:
@@ -19,9 +21,11 @@ export default function Page() {
           Home Restoration & Remodeling
         </h1>
         <p className="text-zinc-600">
-          Fast, professional home restoration across DFW—assessment, mitigation,
-          cleanup, and repairs for weather damage, paint damage, and more to
-          return your property to pre‑damage condition.
+          At Castle Hills Stain & Restoration, we don’t just repair homes—we
+          restore and transform them. Whether your project is a full remodel,
+          storm damage repair, or simply bringing new life to an outdated space,
+          our goal is to deliver craftsmanship that lasts and a process that’s
+          stress-free from start to finish.
         </p>
       </header>
 
@@ -46,6 +50,8 @@ export default function Page() {
               <h2 className="text-2xl font-bold sm:text-3xl xl:text-4xl/none mb-4">
                 Home Restoration
               </h2>
+
+              <h3 className="text-xl font-bold mb-4">What We Do</h3>
               <p className="text-zinc-600 max-w-[600px]">
                 When the unexpected happens, our team restores your home to
                 pre‑damage condition with a proven process that covers
@@ -57,6 +63,28 @@ export default function Page() {
                 communicate clearly, and work with care around your property
                 from start to finish.
               </p>
+
+              <h4 className="font-bold">Full Interior Remodeling</h4>
+              <ul className="list-disc ml-6 text-zinc-600">
+                <li>
+                  <span className="font-bold">Kitchens</span> – custom
+                  cabinetry, countertops, backsplash, layout changes
+                </li>
+                <li>
+                  <span className="font-bold">Bathrooms</span> – tile, showers,
+                  vanities, walk-in showers, tub-to-shower conversions
+                </li>
+                <li>
+                  <span className="font-bold">Living Spaces</span> – flooring,
+                  trim, drywall, painting, custom woodwork, fireplace redesigns
+                </li>
+                <li>
+                  <span className="font-bold">Additions & Layout Changes</span>{" "}
+                  – framing, open-concept conversions, wall removal (with
+                  structural reinforcement)
+                </li>
+              </ul>
+
               <p className="text-zinc-600 max-w-[600px]">
                 Request a free estimate to get expert guidance and a prompt,
                 professional plan for recovery.
@@ -79,6 +107,8 @@ export default function Page() {
               <h2 className="text-2xl font-bold sm:text-3xl xl:text-4xl/none mb-4">
                 Home Remodeling
               </h2>
+
+              <h3 className="text-xl font-bold mb-4">What We Do</h3>
               <p className="text-zinc-600 max-w-[600px]">
                 Transform your home with interior and exterior updates that
                 elevate function, style, and long‑term durability. From planning
@@ -91,12 +121,28 @@ export default function Page() {
               </p>
 
               <ul className="list-disc ml-6 text-zinc-600">
+                <li>Roofing (composition, metal, tile)</li>
                 <li>
                   Interior updates and finishing tailored to your space and
                   style.
                 </li>
                 <li>
-                  Exterior improvements that unify curb appeal and durability.
+                  Exterior improvements that unify curb appeal and durability,
+                  like{" "}
+                  <Link
+                    href="/wood-fences"
+                    className="underline text-accent-primary"
+                  >
+                    fencing
+                  </Link>{" "}
+                  &{" "}
+                  <Link
+                    href="/pergolas-and-patio-covers"
+                    className="underline text-accent-primary"
+                  >
+                    pergolas
+                  </Link>{" "}
+                  - including building, staining, repair, and restoration.
                 </li>
                 <li>
                   Professional{" "}
@@ -115,16 +161,7 @@ export default function Page() {
                   </Link>{" "}
                   integration for seamless color and finish selection.
                 </li>
-                <li>
-                  Outdoor features like{" "}
-                  <Link
-                    href="/pergolas-and-patio-covers"
-                    className="underline text-accent-primary"
-                  >
-                    pergolas and patio covers
-                  </Link>{" "}
-                  installed with care and precision.
-                </li>
+                <li>Siding replacement & trim repair</li>
               </ul>
 
               <p className="text-zinc-600 max-w-[600px]">
@@ -142,59 +179,6 @@ export default function Page() {
           </section>
 
           <RemodelCarousel />
-        </article>
-
-        <article
-          className={`flex flex-col rounded-lg md:flex-row-reverse items-center gap-4 md:gap-10 lg:gap-14 ${"right"}`}
-        >
-          {/* Service Image */}
-          <figure className="max-h-[475px] w-full md:w-1/2 overflow-hidden items-center rounded-lg shadow-md">
-            <Image
-              src={`/photos/restoration/restore-6.webp`}
-              alt="Offwhite painted ceiling with grid of gray painted extruded ceiling accent pieces"
-              width={1280}
-              height={720}
-              className="min-w-full md:max-w-[250px] bg-accent-light"
-              loading="lazy"
-            />
-          </figure>
-
-          {/* Service Description */}
-          <section className="w-full md:w-1/2 space-y-8">
-            <span className="space-y-4">
-              <h2 className="text-2xl font-bold sm:text-3xl xl:text-4xl/none mb-4">
-                Interior Painting
-              </h2>
-              <p className="text-zinc-600 max-w-[600px]">
-                A professionally done interior paint job can instantly transform
-                any room, adding color, warmth, and personality. Our expert
-                interior painting services offer precision, high-quality paints,
-                and a flawless finish, giving your home the makeover it
-                deserves. Imagine walking into a space that feels brighter,
-                fresher, and more inviting—reflecting your style perfectly.
-              </p>
-            </span>
-
-            <div className="flex gap-4">
-              <Button
-                size="lg"
-                className="transition-all duration-200 ease-in-out sm:hover:scale-105"
-                asChild
-              >
-                <Link href="#contact">Get an Estimate</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="transition-all duration-200 ease-in-out sm:hover:scale-105"
-                asChild
-              >
-                <Link href="/interior-painting">
-                  Learn more about Interior Painting
-                </Link>
-              </Button>
-            </div>
-          </section>
         </article>
       </section>
 
@@ -246,6 +230,8 @@ export default function Page() {
           />
         </div>
       </section>
+
+      <ChooseUs />
     </>
   );
 }

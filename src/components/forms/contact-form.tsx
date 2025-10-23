@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -31,18 +30,21 @@ import { CheckCircle, Hourglass, XCircle } from "lucide-react";
 // Form validation schema
 const formSchema = zfd.formData({
   "form-name": z.string(),
-  name: z.string({
-      error: (issue) => issue.input === undefined ? "Name is required." : undefined
-}).min(2, {
-      error: "Enter more than 2 characters."
-}),
-  email: z.email("Invalid email.")
-      .min(1, {
-          error: "Email address is required."
-      }),
+  name: z
+    .string({
+      error: (issue) =>
+        issue.input === undefined ? "Name is required." : undefined,
+    })
+    .min(2, {
+      error: "Enter more than 2 characters.",
+    }),
+  email: z.email("Invalid email.").min(1, {
+    error: "Email address is required.",
+  }),
   phone: z
     .string({
-        error: (issue) => issue.input === undefined ? "Phone is required." : undefined
+      error: (issue) =>
+        issue.input === undefined ? "Phone is required." : undefined,
     })
     .refine(
       (val) => isValidPhoneNumber(val, { defaultCountry: "US" }),
@@ -53,17 +55,21 @@ const formSchema = zfd.formData({
     ),
   serviceType: z
     .string({
-        error: (issue) => issue.input === undefined ? "Please select a service type." : undefined
+      error: (issue) =>
+        issue.input === undefined ? "Please select a service type." : undefined,
     })
     .refine(
       (val) => ["staining", "installation", "painting", "custom"].includes(val),
       {
-          error: "Please select a valid service type."
-    }
+        error: "Please select a valid service type.",
+      }
     ),
   message: z.string({
-      error: (issue) => issue.input === undefined ? "Please write your project details." : undefined
-}),
+    error: (issue) =>
+      issue.input === undefined
+        ? "Please write your project details."
+        : undefined,
+  }),
 });
 
 interface ContactFormProps {

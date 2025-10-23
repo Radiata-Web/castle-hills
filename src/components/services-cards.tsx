@@ -48,7 +48,7 @@ export default function ServicesCards() {
                   asChild
                   variant="outline"
                 >
-                  <Link href="/contact-us">
+                  <Link href="#contact">
                     Schedule a consultation
                     <MoveRight className="ml-2 h-4 w-4" />
                   </Link>

@@ -1,13 +1,12 @@
+import { Review } from "@/components/misc/reviewGrid";
+import { Service } from "@/components/services-cards";
+
 export const PAGES: { title: string; href: string }[] = [
   { title: "Home", href: "/" },
   { title: "About", href: "/#about" },
-]
+];
 
-export const FENCING_SERVICES: {
-  title: string
-  href: string
-  cardImg: string
-}[] = [
+export const FENCING_SERVICES: Service[] = [
   {
     title: "Wood Fences",
     href: "/wood-fences",
@@ -28,25 +27,22 @@ export const FENCING_SERVICES: {
     href: "/fence-and-garage-door-stain",
     cardImg: "/garages/garage-1",
   },
-]
+];
 
-export const OUTDOOR_LIVING_SERVICES: {
-  title: string
-  href: string
-  cardImg: string
-}[] = [
+export const OUTDOOR_LIVING_SERVICES: Service[] = [
   {
     title: "Pergolas & Patio Covers",
     href: "/pergolas-and-patio-covers",
     cardImg: "/pergolas/pergola-6",
   },
-]
+];
 
-export const PAINTING_SERVICES: {
-  title: string
-  href: string
-  cardImg: string
-}[] = [
+export const HOME_RESTORATION_SERVICES: Service[] = [
+  {
+    title: "Restoration & Remodeling",
+    href: "/home-restoration-remodeling",
+    cardImg: "/restoration/restore-1",
+  },
   {
     title: "Interior Painting",
     href: "/interior-painting",
@@ -57,19 +53,14 @@ export const PAINTING_SERVICES: {
     href: "/exterior-painting",
     cardImg: "/paint/ex-paint-2",
   },
-]
+];
 
-export const ALL_SERVICES = FENCING_SERVICES.concat(
+export const ALL_SERVICES: Service[] = FENCING_SERVICES.concat(
   OUTDOOR_LIVING_SERVICES,
-  PAINTING_SERVICES
-)
+  HOME_RESTORATION_SERVICES
+);
 
-export const REVIEWS: {
-  id: number
-  text: string
-  rating: number
-  name: string
-}[] = [
+export const REVIEWS: Review[] = [
   {
     id: 1,
     rating: 5,
@@ -106,4 +97,4 @@ export const REVIEWS: {
     name: "Ian F.",
     text: "AJ with Castle Hills Stain & Restoration has always executed our projects together at a high level. He has power washed and stained over 20,000 Square feet of fencing in the last few years for me. I have always received incredible compliments for our clients on the results of his service. I would highly recommend and encourage anyone in need of fence washing and  stain/paint to inquire about their services.",
   },
-]
+];

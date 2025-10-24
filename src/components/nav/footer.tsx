@@ -3,8 +3,9 @@ import Socials from "@/components/ui/socials";
 import {
   OUTDOOR_LIVING_SERVICES,
   FENCING_SERVICES,
-  PAINTING_SERVICES,
+  HOME_RESTORATION_SERVICES,
 } from "@/lib/data";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -17,7 +18,13 @@ export default function Footer() {
             {/* Logo */}
             <span className="flex flex-col items-start gap-4">
               <span className="flex flex-row items-center gap-4">
-                <img src="/logos/ch-logo.svg" width={84} />
+                <Image
+                  src="/logos/ch-logo.svg"
+                  width={84}
+                  height={84}
+                  alt="Castle Hills Stain & Restoration Logo"
+                  loading="lazy"
+                />
                 <p className="text-xl font-bold leading-none">
                   Castle Hills <br />
                   Stain & Restoration
@@ -70,12 +77,12 @@ export default function Footer() {
 
               {/* Fencing */}
               <div>
-                <h3 className="font-semibold mb-2">Fence & Gate</h3>
+                <h3 className="font-semibold mb-2">Fences & Gates</h3>
                 <ul className="space-y-1">
                   {FENCING_SERVICES.map((service) => (
                     <li key={service.title}>
                       <Link
-                        href={`/services/${service.href}`}
+                        href={`${service.href}`}
                         className="text-sm text-muted-foreground hover:text-primary"
                       >
                         {service.title}
@@ -92,7 +99,7 @@ export default function Footer() {
                   {OUTDOOR_LIVING_SERVICES.map((service) => (
                     <li key={service.title}>
                       <Link
-                        href={`/services/${service.href}`}
+                        href={`${service.href}`}
                         className="text-sm text-muted-foreground hover:text-primary"
                       >
                         {service.title}
@@ -102,14 +109,14 @@ export default function Footer() {
                 </ul>
               </div>
 
-              {/* Painting */}
+              {/* Home Restoration */}
               <div>
-                <h3 className="font-semibold mb-2">Painting</h3>
+                <h3 className="font-semibold mb-2">Restoration & Remodeling</h3>
                 <ul className="space-y-1">
-                  {PAINTING_SERVICES.map((service) => (
+                  {HOME_RESTORATION_SERVICES.map((service) => (
                     <li key={service.title}>
                       <Link
-                        href={`/services/${service.href}`}
+                        href={`${service.href}`}
                         className="text-sm text-muted-foreground hover:text-primary"
                       >
                         {service.title}

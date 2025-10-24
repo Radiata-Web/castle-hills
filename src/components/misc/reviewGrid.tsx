@@ -5,9 +5,11 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { Star } from "lucide-react";
+import { ExternalLink, Star, User } from "lucide-react";
 import { REVIEWS } from "@/lib/data";
 import Image from "next/image";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 interface StarRatingProps {
   rating: number;
@@ -30,29 +32,43 @@ const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
 
 export default function ReviewGrid() {
   return (
-    <div className="max-w-8xl mx-auto py-6 md:py-10 lg:py-14 px-4 md:px-8 lg:px-8">
-      <h2 className="text-3xl font-bold tracking-tighter mb-8 sm:text-4xl xl:text-5xl/none">
-        What do our customers have to say?
-      </h2>
+    <section id="reviews">
+      <div className="max-w-8xl mx-auto py-6 md:py-10 lg:py-14 px-4 md:px-8 lg:px-8">
+        <h2 className="text-3xl font-bold tracking-tighter mb-8 sm:text-4xl xl:text-5xl/none">
+          What do our customers have to say?
+        </h2>
 
-      {/* Desktop - Show all reviews */}
-      <section className="hidden md:block columns-1 md:columns-2 lg:columns-3 gap-6 col-auto space-y-6 ">
-        {REVIEWS.map((review) => (
-          <ReviewCard key={review.id} review={review} />
-        ))}
-      </section>
+        {/* Desktop - Show all reviews */}
+        <section className="hidden md:block columns-1 md:columns-2 lg:columns-3 gap-6 col-auto space-y-6 ">
+          {REVIEWS.map((review) => (
+            <ReviewCard key={review.id} review={review} />
+          ))}
+        </section>
 
-      {/* Mobile -- Only show 3 reviews */}
-      <section className="columns-1 gap-6 col-auto space-y-6 w-full md:hidden">
-        {REVIEWS.slice(0, 3).map((review) => (
-          <ReviewCard key={review.id} review={review} />
-        ))}
-      </section>
-    </div>
+        {/* Mobile -- Only show 3 reviews */}
+        <section className="columns-1 gap-6 col-auto space-y-6 w-full md:hidden">
+          {REVIEWS.slice(0, 3).map((review) => (
+            <ReviewCard key={review.id} review={review} />
+          ))}
+        </section>
+      </div>
+
+      <div className="flex justify-center mt-2">
+        <Button variant="outline" asChild>
+          <Link
+            href="https://maps.app.goo.gl/mFHuGgPHYESyk8ng6"
+            target="_blank"
+          >
+            See more reviews on Google Maps
+            <ExternalLink className="ml-2 h-4 w-4" />
+          </Link>
+        </Button>
+      </div>
+    </section>
   );
 }
 
-interface Review {
+export interface Review {
   id: number;
   rating: number;
   text: string;
@@ -69,8 +85,11 @@ const ReviewCard = ({ review }: { review: Review }) => {
       <CardContent>
         <p className="text-zinc-600 text-sm">{review.text}</p>
       </CardContent>
-      <CardFooter className="flex flex-row justify-between items-center font-semibold">
-        <p>{review.name}</p>
+      <CardFooter className="flex flex-row justify-between items-center">
+        <span className="flex flex-row items-center gap-2">
+          <User className="w-4 h-4" />
+          <p>{review.name}</p>
+        </span>
         <Image
           src="/logos/google.png"
           width={20}

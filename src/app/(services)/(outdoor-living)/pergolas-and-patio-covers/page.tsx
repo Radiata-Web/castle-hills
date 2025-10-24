@@ -1,12 +1,13 @@
-import ServiceDesc from "@/components/misc/serviceDesc"
-import Suppliers from "@/components/misc/suppliers"
-import { Metadata } from "next"
+import ChooseUs from "@/components/misc/choose-us";
+import ServiceDesc from "@/components/misc/serviceDesc";
+import Suppliers from "@/components/misc/suppliers";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Pergolas & Patio Covers | Castle Hills Stain & Restoration",
   description:
     "Pergola and patio installation and staining services in the Dallas-Fort Worth Metroplex.",
-}
+};
 
 export default function Page() {
   return (
@@ -36,8 +37,12 @@ export default function Page() {
           content="A custom patio cover can provide the perfect shelter, allowing you to enjoy your outdoor space year-round. Our patio cover installation service offers stylish, durable designs that not only provide shade and weather protection but also enhance your home's curb appeal. Imagine relaxing under your patio cover, shielded from the elements while still enjoying the fresh air."
         />
 
-        <Suppliers />
+        <div className="space-y-12 md:space-y-20">
+          <Suppliers />
+        </div>
       </section>
+
+      <ChooseUs />
     </>
-  )
+  );
 }

@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/forms/contact-form";
+import ChooseUs from "@/components/misc/choose-us";
 import Footer from "@/components/nav/footer";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -38,7 +39,10 @@ export default function Page() {
             />
           </figure>
         </article>
+
+        <ChooseUs />
       </div>
+
       <Footer />
     </>
   );

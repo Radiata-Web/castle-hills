@@ -1,10 +1,11 @@
-import ServiceDesc from "@/components/misc/serviceDesc"
-import { Metadata } from "next"
+import ChooseUs from "@/components/misc/choose-us";
+import ServiceDesc from "@/components/misc/serviceDesc";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Exterior Painting | Castle Hills Stain & Restoration",
   description: "Exterior painting services in the Dallas-Fort Worth Metroplex.",
-}
+};
 
 export default function Page() {
   return (
@@ -27,6 +28,8 @@ export default function Page() {
           content="A professional exterior paint job can completely transform your home's appearance, boosting curb appeal and protecting it from the elements. Our exterior painting services use top-quality paints and expert techniques to ensure a long-lasting, beautiful finish that enhances your home’s character. Imagine pulling up to a house that looks vibrant and refreshed, with a paint job that stands up to the harshest weather."
         />
       </section>
+
+      <ChooseUs />
     </>
-  )
+  );
 }

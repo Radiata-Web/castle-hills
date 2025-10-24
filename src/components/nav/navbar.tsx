@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
 import {
   ComponentPropsWithoutRef,
   ElementRef,
   forwardRef,
   useState,
-} from "react"
-import Link from "next/link"
-import { Menu, MoveRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import NavBanner from "@/components/nav/nav-banner"
-import Logo from "@/components/nav/logo"
+} from "react";
+import Link from "next/link";
+import { Menu, MoveRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import NavBanner from "@/components/nav/nav-banner";
+import Logo from "@/components/nav/logo";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -19,31 +19,32 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 import {
   FENCING_SERVICES,
   PAGES,
-  PAINTING_SERVICES,
   OUTDOOR_LIVING_SERVICES,
-} from "@/lib/data"
-import Socials from "@/components/ui/socials"
-import DropdownCategory from "@/components/nav/dropdown-category"
-import * as VisuallyHidden from "@radix-ui/react-visually-hidden"
+  HOME_RESTORATION_SERVICES,
+} from "@/lib/data";
+import Socials from "@/components/ui/socials";
+import DropdownCategory from "@/components/nav/dropdown-category";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import Image from "next/image";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenuOpen = (isOpen: boolean) => {
-    setIsMenuOpen(isOpen)
-  }
+    setIsMenuOpen(isOpen);
+  };
 
   // Automatically populates desktop menus, remember to manually populate mobile menu at the bottom
 
@@ -109,13 +110,17 @@ export default function Navbar() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
-              {/* Painting */}
+              {/* Home Restoration & Remodeling */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Painting</NavigationMenuTrigger>
+                <NavigationMenuTrigger>
+                  Restoration & Remodeling
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <p className="pl-7 pt-5 font-bold">Painting Services</p>
+                  <p className="pl-7 pt-5 font-bold">
+                    Home Restoration & Remodeling Services
+                  </p>
                   <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-2 md:w-[500px] lg:w-[600px]">
-                    {PAINTING_SERVICES.map((service) => (
+                    {HOME_RESTORATION_SERVICES.map((service) => (
                       <ListItem
                         key={service.title}
                         title={service.title}
@@ -162,10 +167,12 @@ export default function Navbar() {
                 <span className="flex flex-col items-start gap-4 mt-4">
                   {/* Logo */}
                   <span className="flex flex-row items-center gap-4">
-                    <img
+                    <Image
                       src="/logos/ch-logo.svg"
                       width={72}
+                      height={72}
                       alt="Castle Hills Stain & Restoration Logo"
+                      priority
                     />
                     <p className="font-bold leading-none">
                       Castle Hills <br />
@@ -221,8 +228,8 @@ export default function Navbar() {
                     />
 
                     <DropdownCategory
-                      categoryTitle="Painting"
-                      links={PAINTING_SERVICES}
+                      categoryTitle="Restoration & Remodeling"
+                      links={HOME_RESTORATION_SERVICES}
                       setIsMenuOpen={setIsMenuOpen}
                     />
                   </div>
@@ -245,7 +252,7 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
 
 const ListItem = forwardRef<ElementRef<"a">, ComponentPropsWithoutRef<"a">>(
@@ -265,7 +272,7 @@ const ListItem = forwardRef<ElementRef<"a">, ComponentPropsWithoutRef<"a">>(
           </a>
         </NavigationMenuLink>
       </li>
-    )
+    );
   }
-)
-ListItem.displayName = "ListItem"
+);
+ListItem.displayName = "ListItem";

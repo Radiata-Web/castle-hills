@@ -33,6 +33,7 @@ import {
   PAGES,
   OUTDOOR_LIVING_SERVICES,
   HOME_RESTORATION_SERVICES,
+  ALL_SERVICES,
 } from "@/lib/data";
 import Socials from "@/components/ui/socials";
 import DropdownCategory from "@/components/nav/dropdown-category";
@@ -78,49 +79,15 @@ export default function Navbar() {
 
               {/* Fences and Gates */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Fences & Gates</NavigationMenuTrigger>
+                <NavigationMenuTrigger>Services</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <p className="pl-7 pt-5 font-bold">Fence and Gate Services</p>
-                  <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-2 md:w-[500px] lg:w-[600px]">
-                    {FENCING_SERVICES.map((service) => (
-                      <ListItem
-                        key={service.title}
-                        title={service.title}
-                        href={service.href}
-                      />
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              {/* Outdoor Living */}
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Outdoor Living</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <p className="pl-7 pt-5 font-bold">Outdoor Living Services</p>
-                  <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-2 md:w-[500px] lg:w-[600px]">
-                    {OUTDOOR_LIVING_SERVICES.map((service) => (
-                      <ListItem
-                        key={service.title}
-                        title={service.title}
-                        href={service.href}
-                      />
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              {/* Home Restoration & Remodeling */}
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>
-                  Restoration & Remodeling
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <p className="pl-7 pt-5 font-bold">
-                    Home Restoration & Remodeling Services
+                  <p className="pl-7 pt-5 font-bold">Our Services</p>
+                  <p className="px-7 text-sm text-gray-600">
+                    Need something different? We will do our best to accommodate
+                    your needs.
                   </p>
                   <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-2 md:w-[500px] lg:w-[600px]">
-                    {HOME_RESTORATION_SERVICES.map((service) => (
+                    {ALL_SERVICES.map((service) => (
                       <ListItem
                         key={service.title}
                         title={service.title}
@@ -264,7 +231,7 @@ const ListItem = forwardRef<ElementRef<"a">, ComponentPropsWithoutRef<"a">>(
             ref={ref}
             className={cn(
               "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-zinc-100 hover:text-accent-foreground focus:bg-zinc-100 focus:text-accent-foreground",
-              className
+              className,
             )}
             {...props}
           >
@@ -273,6 +240,6 @@ const ListItem = forwardRef<ElementRef<"a">, ComponentPropsWithoutRef<"a">>(
         </NavigationMenuLink>
       </li>
     );
-  }
+  },
 );
 ListItem.displayName = "ListItem";

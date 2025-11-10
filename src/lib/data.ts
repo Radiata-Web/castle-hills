@@ -57,7 +57,7 @@ export const HOME_RESTORATION_SERVICES: Service[] = [
 
 export const ALL_SERVICES: Service[] = FENCING_SERVICES.concat(
   OUTDOOR_LIVING_SERVICES,
-  HOME_RESTORATION_SERVICES
+  HOME_RESTORATION_SERVICES,
 );
 
 export const REVIEWS: Review[] = [

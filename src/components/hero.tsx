@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Check, MoveRight } from "lucide-react";
 import { ContactForm } from "./forms/contact-form";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -18,45 +19,44 @@ export default function Hero() {
           {/* Left column */}
           <div className="flex flex-col justify-center space-y-10">
             <div className="space-y-6">
-              <h1 className="text-4xl text-white font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                Revitalize Your Home & Outdoor Spaces
+              <Image
+                src="/logos/slogan-white.svg"
+                width={260}
+                height={100}
+                alt="Our slogan: Design, Protect, Restore"
+                priority
+              />
+              <h1 className="text-4xl text-white font-bold tracking-tight sm:text-5xl xl:text-6xl/none">
+                Elevate Your Space with Luxury Design & Full Property Remodel
+                Services.
               </h1>
               <p className="max-w-[600px] text-zinc-100 md:text-lg">
-                From fence staining to interior painting, we bring your vision
-                to life with expert craftsmanship. Get a free estimate today and
-                let’s start transforming your home.
+                From custom woodwork to refined remodels, Castle Hills Stain &
+                Restoration brings craftsmanship and lasting quality to homes
+                and businesses across the DFW Metroplex.
               </p>
             </div>
 
             {/* CTA buttons */}
-            <div className="flex gap-2 min-[400px]:flex-row items-center">
+            <div className="flex flex-col gap-2 md:flex-row md:gap-4">
               <Button
+                size="lg"
                 className="transition-all duration-200 ease-in-out sm:hover:scale-105"
                 asChild
               >
-                <Link href="/#services">
-                  See what we do{" "}
+                <Link href="/#contact">
+                  Schedule a Consultation
                   <MoveRight className="ml-2" strokeWidth={1.5} />
                 </Link>
               </Button>
-            </div>
-
-            {/* Provlems to solve */}
-            <div>
-              <ul className="space-y-2 text-sm">
-                <li className="flex flex-row items-center gap-2 text-zinc-100">
-                  <Check className="text-blue-400" />
-                  Protect your investment from fading and wear
-                </li>
-                <li className="flex flex-row items-center gap-2 text-zinc-100">
-                  <Check className="text-blue-400" />
-                  Bring your home together with stunning colors
-                </li>
-                <li className="flex flex-row items-center gap-2 text-zinc-100">
-                  <Check className="text-blue-400" />
-                  Provide a beautiful centerpiece for your home
-                </li>
-              </ul>
+              <Button
+                variant="outline"
+                size="lg"
+                className="transition-all duration-200 ease-in-out sm:hover:scale-105"
+                asChild
+              >
+                <Link href="/#services">View Our Services</Link>
+              </Button>
             </div>
           </div>
 

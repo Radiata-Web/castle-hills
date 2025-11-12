@@ -231,7 +231,7 @@ const ListItem = forwardRef<ElementRef<"a">, ComponentPropsWithoutRef<"a">>(
             ref={ref}
             className={cn(
               "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-zinc-100 hover:text-accent-foreground focus:bg-zinc-100 focus:text-accent-foreground",
-              className,
+              className
             )}
             {...props}
           >
@@ -240,6 +240,6 @@ const ListItem = forwardRef<ElementRef<"a">, ComponentPropsWithoutRef<"a">>(
         </NavigationMenuLink>
       </li>
     );
-  },
+  }
 );
 ListItem.displayName = "ListItem";

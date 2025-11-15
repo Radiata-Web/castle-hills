@@ -16,7 +16,7 @@ export default function Home() {
       <About />
       <CertificationBanner />
       <ServicesCards />
-      <Masonry />
+      {/* <Masonry /> */}
       <ReviewGrid />
       <InteriorContact />
       <Footer />

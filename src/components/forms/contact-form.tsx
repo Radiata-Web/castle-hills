@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/select";
 import { zfd } from "zod-form-data";
 import { useState } from "react";
-import { CheckCircle, Hourglass, XCircle } from "lucide-react";
+import { CheckCircle, Hourglass, SendHorizonal, XCircle } from "lucide-react";
 
 // Form validation schema
 const formSchema = zfd.formData({
@@ -127,8 +127,13 @@ export function ContactForm(props: ContactFormProps) {
     <>
       <Form {...form}>
         {props.showHeader ? (
-          <div className="flex flex-row gap-5 items-center mb-4">
-            <h2 className="text-2xl font-bold">Request an Estimate</h2>
+          <div className="flex flex-col gap-2 mb-6">
+            <h2 className="text-2xl font-bold">
+              Request a Design Consultation
+            </h2>
+            <p className="text-sm text-zinc-600">
+              Our team will reach out within 24 hours.
+            </p>
           </div>
         ) : null}
 
@@ -146,7 +151,7 @@ export function ContactForm(props: ContactFormProps) {
               disabled={status === "pending"}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full Name*</FormLabel>
+                  <FormLabel>Full Name</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="John Smith"
@@ -168,7 +173,7 @@ export function ContactForm(props: ContactFormProps) {
               disabled={status === "pending"}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email Address*</FormLabel>
+                  <FormLabel>Email Address</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="hello@example.com"
@@ -191,7 +196,7 @@ export function ContactForm(props: ContactFormProps) {
               disabled={status === "pending"}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone Number*</FormLabel>
+                  <FormLabel>Phone Number</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="1234567890"
@@ -213,7 +218,7 @@ export function ContactForm(props: ContactFormProps) {
               name="serviceType"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Service Type*</FormLabel>
+                  <FormLabel>Project Type</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
@@ -226,29 +231,32 @@ export function ContactForm(props: ContactFormProps) {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem
-                        value="staining"
-                        className="hover:cursor-pointer"
-                      >
-                        Staining
-                      </SelectItem>
-                      <SelectItem
-                        value="installation"
-                        className="hover:cursor-pointer"
-                      >
-                        Installation
+                      <SelectItem value="wood" className="hover:cursor-pointer">
+                        Custom Wood & Outdoor Living
                       </SelectItem>
                       <SelectItem
                         value="painting"
                         className="hover:cursor-pointer"
                       >
-                        Painting
+                        Painting & Finishes
                       </SelectItem>
                       <SelectItem
-                        value="custom"
+                        value="restoration"
                         className="hover:cursor-pointer"
                       >
-                        Custom
+                        Interior & Exterior Restoration
+                      </SelectItem>
+                      <SelectItem
+                        value="commercial"
+                        className="hover:cursor-pointer"
+                      >
+                        Commercial/HOA Work
+                      </SelectItem>
+                      <SelectItem
+                        value="other"
+                        className="hover:cursor-pointer"
+                      >
+                        Other
                       </SelectItem>
                     </SelectContent>
                   </Select>
@@ -265,10 +273,10 @@ export function ContactForm(props: ContactFormProps) {
             disabled={status === "pending"}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Project Details*</FormLabel>
+                <FormLabel>Project Description</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Give us some details about your project! The more we know, the more accurate of an estimate we can give you."
+                    placeholder="Tell us about your project; the more details you provide, the better we can assist you."
                     required
                     {...field}
                   />
@@ -278,12 +286,14 @@ export function ContactForm(props: ContactFormProps) {
             )}
           />
 
-          <section className="flex flex-row gap-5 items-center mt-4">
+          <section className="flex flex-col sm:flex-row gap-5 items-center pt-6">
             <Button
               type="submit"
+              disabled={status === "pending" || status === "ok"}
+              size="lg"
               className="min-w-full sm:min-w-10 transition-all duration-200 ease-in-out sm:hover:scale-105"
             >
-              Request estimate
+              Request Consultation <SendHorizonal size={16} className="ml-2" />
             </Button>
 
             <span className="text-sm text-gray-500">
@@ -296,13 +306,13 @@ export function ContactForm(props: ContactFormProps) {
               {status === "ok" && (
                 <p className="flex flex-row gap-2 items-center text-green-500">
                   <CheckCircle size={16} />
-                  Form submitted successfully!
+                  Form submitted! We will get back to you as soon as possible.
                 </p>
               )}
               {status === "error" && (
                 <p className="flex flex-row gap-2 items-center text-red-500">
                   <XCircle size={16} />
-                  Submission failed, please try again
+                  Submission failed, please try again.
                 </p>
               )}
             </span>

@@ -35,7 +35,7 @@ export default function ReviewGrid() {
     <section id="reviews">
       <div className="max-w-8xl mx-auto py-6 md:py-10 lg:py-14 px-4 md:px-8 lg:px-8">
         <h2 className="text-3xl font-bold tracking-tighter mb-8 sm:text-4xl xl:text-5xl/none">
-          What do our customers have to say?
+          What do our clients say?
         </h2>
 
         {/* Desktop - Show all reviews */}

@@ -2,6 +2,8 @@ import React from "react";
 import ContactNumber from "./misc/contactNumber";
 import Link from "next/link";
 import Image from "next/image";
+import { Button } from "./ui/button";
+import { MoveRight, Phone } from "lucide-react";
 
 export default function About() {
   return (
@@ -33,14 +35,27 @@ export default function About() {
               </p>
             </span>
 
-            <span className="space-y-1 text-zinc-600">
-              <p>Call us anytime:</p>
-              <ContactNumber
-                iconSize={24}
-                textSize="text-lg"
-                className=" text-zinc-900"
-              />
-            </span>
+            <div className="flex flex-col md:flex-row gap-4 pb-6">
+              <Button
+                className="transition-all duration-200 ease-in-out sm:hover:scale-105"
+                asChild
+              >
+                <Link href="/about-us">
+                  Learn more about us{" "}
+                  <MoveRight className="ml-2" strokeWidth={1.5} />
+                </Link>
+              </Button>
+              <Button
+                variant="outline"
+                className="transition-all duration-200 ease-in-out sm:hover:scale-105"
+                asChild
+              >
+                <Link href="tel:4692153098">
+                  Give us a call
+                  <Phone size={16} className="ml-2" strokeWidth={1.5} />
+                </Link>
+              </Button>
+            </div>
 
             {/* Socials */}
             <div className="flex flex-row gap-4 sm:gap-6 md:gap-8">

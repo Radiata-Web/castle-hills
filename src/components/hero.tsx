@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Check, MoveRight } from "lucide-react";
+import { ArrowDown, Check, MoveRight } from "lucide-react";
 import { ContactForm } from "./forms/contact-form";
 import Image from "next/image";
 
@@ -55,7 +55,9 @@ export default function Hero() {
                 className="transition-all duration-200 ease-in-out sm:hover:scale-105"
                 asChild
               >
-                <Link href="/#services">View Our Services</Link>
+                <Link href="/#services">
+                  View Our Services <ArrowDown size={16} className="ml-2" />
+                </Link>
               </Button>
             </div>
           </div>

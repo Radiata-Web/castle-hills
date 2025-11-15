@@ -49,9 +49,8 @@ export default function Expertise() {
               </p>
             </div>
 
-            <span className=" mt-4 ">
+            <div className="mt-4 flex flex-col md:flex-row gap-4">
               <Button
-                variant="outline"
                 className="transition-all duration-200 ease-in-out sm:hover:scale-105"
                 asChild
               >
@@ -60,7 +59,17 @@ export default function Expertise() {
                   <MoveRight className="ml-2" strokeWidth={1.5} />
                 </Link>
               </Button>
-            </span>
+              <Button
+                variant="outline"
+                className="transition-all duration-200 ease-in-out sm:hover:scale-105"
+                asChild
+              >
+                <Link href="/contact-us">
+                  Schedule a consultation
+                  <MoveRight size={16} className="ml-2" strokeWidth={1.5} />
+                </Link>
+              </Button>
+            </div>
           </div>
 
           <div className="flex justify-center">

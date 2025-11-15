@@ -6,12 +6,16 @@ import Suppliers from "@/components/misc/suppliers";
 import Footer from "@/components/nav/footer";
 import ServicesCards from "@/components/services-cards";
 import Masonry from "@/components/misc/masonry";
+import Expertise from "@/components/expertise";
+import CertificationBanner from "@/components/misc/certification-banner";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <Expertise />
       <About />
+      <CertificationBanner />
       <ServicesCards />
       <Masonry />
       <ReviewGrid />

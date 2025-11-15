@@ -20,14 +20,16 @@ export default function About() {
 
           <div className="flex flex-col justify-center space-y-8">
             <span className="space-y-4">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
-                Who are we?
+              <h2 className="text-3xl font-bold sm:text-4xl xl:text-5xl/none">
+                Design. Protect. Restore.
               </h2>
               <p className="text-zinc-600">
-                Since 2015, Castle Hills Stain & Restoration has been proudly
-                serving the community by offering expert services that keep your
-                property looking its best. We offer our services across the
-                Dallas-Fort Worth metropolitan area.
+                At Castle Hills Stain & Restoration, we design, build, and
+                restore residential and commercial properties across the DFW
+                Metroplex with precision and pride. From luxury exteriors and
+                custom wood structures to select interior restorations and fine
+                finishes, our team delivers craftsmanship that enhances both the
+                look and longevity of every property we touch.
               </p>
             </span>
 

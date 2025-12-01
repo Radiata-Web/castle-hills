@@ -17,24 +17,19 @@ export default function Footer() {
           <div className="flex flex-col space-y-4 md:w-1/4">
             {/* Logo */}
             <span className="flex flex-col items-start gap-4">
-              <span className="flex flex-row items-center gap-4">
-                <Image
-                  src="/logos/ch-logo.svg"
-                  width={84}
-                  height={84}
-                  alt="Castle Hills Stain & Restoration Logo"
-                  loading="lazy"
-                />
-                <p className="text-xl font-bold leading-none">
-                  Castle Hills <br />
-                  Stain & Restoration
-                </p>
-              </span>
+              <Image
+                src="/logos/logo-wordmark.svg"
+                width={300}
+                height={84}
+                alt="Castle Hills Stain & Restoration Logo"
+                loading="lazy"
+                className="mb-2"
+              />
 
               <span className="min-w-full">
                 <p className="text-sm">
-                  Fence and gate contractor serving the Dallas-Fort Worth
-                  Metroplex
+                  Proudly serving Castle Hills, Flower Mound, Southlake, Frisco,
+                  and surrounding areas.
                 </p>
               </span>
               <Socials />

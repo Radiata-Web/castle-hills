@@ -3,7 +3,8 @@ import { Service } from "@/components/services-cards";
 
 export const PAGES: { title: string; href: string }[] = [
   { title: "Home", href: "/" },
-  { title: "About", href: "/#about" },
+  { title: "About", href: "/#about-us" },
+  { title: "Expertise", href: "/our-expertise" },
 ];
 
 export const FENCING_SERVICES: Service[] = [
@@ -57,7 +58,7 @@ export const HOME_RESTORATION_SERVICES: Service[] = [
 
 export const ALL_SERVICES: Service[] = FENCING_SERVICES.concat(
   OUTDOOR_LIVING_SERVICES,
-  HOME_RESTORATION_SERVICES,
+  HOME_RESTORATION_SERVICES
 );
 
 export const REVIEWS: Review[] = [

@@ -141,6 +141,12 @@ export default function Footer() {
             </Link>
             .
           </p>
+          <p className="text-xs text-muted-foreground mt-2">
+            Sherwin-Williams Emerald&reg; and Sherwin-Williams Duration&reg; are
+            registered trademarks of The Sherwin-Williams Company. Romabio
+            Classico Limewash&reg; is a registered trademark of Romabio Paints,
+            LLC.
+          </p>
         </div>
       </section>
     </footer>

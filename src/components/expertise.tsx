@@ -33,8 +33,8 @@ export default function Expertise() {
               </h3>
               <p className="text-gray-600">
                 High-performance painting and limewash systems using
-                Sherwin-Williams Emerald / Duration and Romabio Classico
-                Limewash.
+                Sherwin-Williams Emerald&reg;, Sherwin-Williams Duration&reg;
+                and Romabio Classico Limewash&reg;.
               </p>
             </div>
 

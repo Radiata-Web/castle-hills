@@ -3,7 +3,14 @@ import ChooseUs from "@/components/misc/choose-us";
 import { Hero } from "@/components/misc/hero";
 import Footer from "@/components/nav/footer";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Hammer, Paintbrush, Pencil, Search } from "lucide-react";
+import {
+  Fence,
+  Hammer,
+  Paintbrush,
+  PaintBucket,
+  Pencil,
+  Search,
+} from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -20,10 +27,13 @@ export default function OurExpertise() {
         backgroundImageUrl="/photos/stain/stain-2.webp"
       />
       <div className="max-w-8xl mx-auto px-4 md:px-8 lg:px-8 mb-12 mt-12">
-        <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
+        <section className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 md:gap-8">
           <Card className="border-none shadow-none">
-            <CardHeader className="text-2xl font-bold tracking-tight sm:text-3xl">
-              Custom Wood Structures & Outdoor Design
+            <CardHeader className="text-2xl font-bold sm:text-3xl">
+              <span className="flex justify-center items-center bg-accent w-16 h-16 rounded-lg mb-4">
+                <Fence size={36} className="text-white" strokeWidth={1} />
+              </span>
+              Custom Wood Structures <br /> & Outdoor Design
             </CardHeader>
 
             <CardContent>
@@ -33,8 +43,11 @@ export default function OurExpertise() {
           </Card>
 
           <Card className="border-none shadow-none">
-            <CardHeader className="text-2xl font-bold tracking-tight sm:text-3xl">
-              Luxury Finishes & Coatings
+            <CardHeader className="text-2xl font-bold sm:text-3xl">
+              <span className="flex justify-center items-center bg-accent w-16 h-16 rounded-lg mb-4">
+                <PaintBucket size={36} className="text-white" strokeWidth={1} />
+              </span>
+              Luxury Finishes <br /> & Coatings
             </CardHeader>
 
             <CardContent>
@@ -45,8 +58,11 @@ export default function OurExpertise() {
           </Card>
 
           <Card className="border-none shadow-none">
-            <CardHeader className="text-2xl font-bold tracking-tight sm:text-3xl">
-              Interior & Exterior Restoration
+            <CardHeader className="text-2xl font-bold sm:text-3xl">
+              <span className="flex justify-center items-center bg-accent w-16 h-16 rounded-lg mb-4">
+                <Hammer size={36} className="text-white" strokeWidth={1} />
+              </span>
+              Interior & Exterior <br /> Restoration
             </CardHeader>
 
             <CardContent>

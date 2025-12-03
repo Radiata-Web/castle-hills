@@ -158,11 +158,26 @@ export default function Navbar() {
                     asChild
                   >
                     <Link
-                      href="/#about"
+                      href="/about-us"
                       className="block rounded-lg px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      About
+                      About Us
+                    </Link>
+                  </Button>
+
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start font-semibold text-xl"
+                    onClick={() => setIsMenuOpen(false)}
+                    asChild
+                  >
+                    <Link
+                      href="/our-expertise"
+                      className="block rounded-lg px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Our Expertise
                     </Link>
                   </Button>
 

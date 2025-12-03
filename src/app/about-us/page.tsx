@@ -72,7 +72,7 @@ export default function OurExpertise() {
               height="380"
               className="flex w-full border border-zinc-200 rounded-xl shadow-sm margin-0"
               loading="lazy"
-            ></iframe>
+            />
           </div>
         </section>
 

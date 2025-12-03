@@ -17,7 +17,8 @@ export default function OurExpertise() {
     <>
       <Hero
         title="About Castle Hills Stain & Restoration"
-        subtitle=""
+        subtitle="Proudly serving Castle Hills, Flower Mound, Southlake, Frisco,
+                  and surrounding areas."
         backgroundImageUrl="/photos/garages/garage-1.webp"
       />
 

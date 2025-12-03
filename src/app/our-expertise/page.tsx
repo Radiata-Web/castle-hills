@@ -1,5 +1,6 @@
 import { ContactForm } from "@/components/forms/contact-form";
 import ChooseUs from "@/components/misc/choose-us";
+import { Hero } from "@/components/misc/hero";
 import Footer from "@/components/nav/footer";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Hammer, Paintbrush, Pencil, Search } from "lucide-react";
@@ -13,19 +14,14 @@ export const metadata: Metadata = {
 export default function OurExpertise() {
   return (
     <>
-      <div className="max-w-8xl mx-auto px-4 md:px-8 lg:px-8 mb-12">
-        <header className="space-y-4 mb-12 mt-12">
-          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl xl:text-5xl/none">
-            Our Expertise
-          </h1>
-          <p className="text-zinc-600">
-            Our team of experts is here to help you with any home improvement
-            project.
-          </p>
-        </header>
-
-        <section className="flex flex-col md:flex-row gap-4 md:gap-8">
-          <Card className="md:w-1/3">
+      <Hero
+        title="Our Expertise"
+        subtitle="Our team of experts is here to help you with any home improvement project."
+        backgroundImageUrl="/photos/stain/stain-2.webp"
+      />
+      <div className="max-w-8xl mx-auto px-4 md:px-8 lg:px-8 mb-12 mt-12">
+        <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
+          <Card className="border-none shadow-none">
             <CardHeader className="text-2xl font-bold tracking-tight sm:text-3xl">
               Custom Wood Structures & Outdoor Design
             </CardHeader>
@@ -36,7 +32,7 @@ export default function OurExpertise() {
             </CardContent>
           </Card>
 
-          <Card className="md:w-1/3">
+          <Card className="border-none shadow-none">
             <CardHeader className="text-2xl font-bold tracking-tight sm:text-3xl">
               Luxury Finishes & Coatings
             </CardHeader>
@@ -48,7 +44,7 @@ export default function OurExpertise() {
             </CardContent>
           </Card>
 
-          <Card className="md:w-1/3">
+          <Card className="border-none shadow-none">
             <CardHeader className="text-2xl font-bold tracking-tight sm:text-3xl">
               Interior & Exterior Restoration
             </CardHeader>

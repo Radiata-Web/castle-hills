@@ -3,29 +3,30 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MoveRight } from "lucide-react";
 
+interface ServicesCardsProps {
+  heading: string;
+  paragraph?: string;
+}
+
 export interface Service {
   title: string;
   href: string;
   cardImg: string;
 }
 
-export default function ServicesCards() {
+export default function ServicesCards({
+  heading,
+  paragraph,
+}: ServicesCardsProps) {
   return (
     <>
       <div className="absolute -translate-y-52" id="services"></div>
       <article className="max-w-8xl mx-auto py-6 md:py-10 lg:py-14 px-4 md:px-8 lg:px-8">
         <div className="space-y-4 mb-8">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl xl:text-5xl/none">
-            What can we do for you?
+            {heading}
           </h2>
-          <p className="text-zinc-600">
-            Our comprehensive services cover all your needs—whether it's giving
-            your fence a fresh, protective stain, expertly installing a stunning
-            gazebo, or rejuvenating your home's interior and exterior with
-            professional painting. We use only top-quality materials to ensure
-            your property not only looks amazing but also stands the test of
-            time.
-          </p>
+          {paragraph && <p className="text-zinc-600">{paragraph}</p>}
         </div>
         <div className="grid gap-4 items-stretch justify-stretch grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {ALL_SERVICES.map((service: Service) => (

@@ -14,7 +14,10 @@ export default function Home() {
       <Expertise />
       <About />
       <CertificationBanner />
-      <ServicesCards />
+      <ServicesCards
+        heading="What can we do for you?"
+        paragraph="Our comprehensive services cover all your needs—whether it's giving your fence a fresh, protective stain, expertly installing a stunning gazebo, or rejuvenating your home's interior and exterior with professional painting. We use only top-quality materials to ensure your property not only looks amazing but also stands the test of time."
+      />
       {/* <Masonry /> */}
       <ReviewGrid />
       <InteriorContact />

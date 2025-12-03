@@ -59,7 +59,10 @@ const formSchema = zfd.formData({
         issue.input === undefined ? "Please select a service type." : undefined,
     })
     .refine(
-      (val) => ["staining", "installation", "painting", "custom"].includes(val),
+      (val) =>
+        ["wood", "painting", "restoration", "commercial", "other"].includes(
+          val
+        ),
       {
         error: "Please select a valid service type.",
       }

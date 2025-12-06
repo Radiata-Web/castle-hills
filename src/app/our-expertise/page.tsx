@@ -2,6 +2,7 @@ import { ContactForm } from "@/components/forms/contact-form";
 import ChooseUs from "@/components/misc/choose-us";
 import { Hero } from "@/components/misc/hero";
 import Footer from "@/components/nav/footer";
+import { ServiceCard } from "@/components/service-card";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Fence,
@@ -19,6 +20,42 @@ export const metadata: Metadata = {
 };
 
 export default function OurExpertise() {
+  const services = [
+    {
+      id: 1,
+      icon: <Fence size={48} strokeWidth={1.25} />,
+      title: "Custom Wood Structures & Outdoor Design",
+      description:
+        "Custom pergolas, patio covers, fences, and outdoor kitchens built with precision and premium materials.",
+      href: "/services/digital-strategy",
+      imageSrc:
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
+      imageAlt: "Digital strategy workspace with charts and analytics",
+    },
+    {
+      id: 2,
+      icon: <PaintBucket size={48} strokeWidth={1.25} />,
+      title: "Luxury Finishes & Coatings",
+      description:
+        "High-performance painting and limewash systems using Sherwin-Williams Emerald®, Sherwin-Williams Duration® and Romabio Classico Limewash®.",
+      href: "/services/brand-development",
+      imageSrc:
+        "https://images.unsplash.com/photo-1558655146-d09347e92766?w=800",
+      imageAlt: "Creative brand design workspace",
+    },
+    {
+      id: 3,
+      icon: <Hammer size={48} strokeWidth={1.25} />,
+      title: "Interior & Exterior Restoration",
+      description:
+        "Restoration and rebuild services combining craftsmanship, design, and structural care.",
+      href: "/services/growth-marketing",
+      imageSrc:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800",
+      imageAlt: "Marketing analytics dashboard",
+    },
+  ];
+
   return (
     <>
       <Hero
@@ -26,6 +63,15 @@ export default function OurExpertise() {
         subtitle="Our team of experts is here to help you with any home improvement project."
         backgroundImageUrl="/photos/stain/stain-2.webp"
       />
+
+      <section className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {services.map((service) => (
+            <ServiceCard key={service.id} {...service} />
+          ))}
+        </div>
+      </section>
+
       <div className="max-w-8xl mx-auto px-4 md:px-8 lg:px-8 mb-12 mt-12">
         <section className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 md:gap-8">
           <Card className="border-none shadow-none">

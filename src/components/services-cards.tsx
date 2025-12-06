@@ -18,6 +18,24 @@ export default function ServicesCards({
   heading,
   paragraph,
 }: ServicesCardsProps) {
+  const NEW_SERVICES: Service[] = [
+    {
+      title: "Custom Wood Structures & Outdoor Design",
+      href: "/custom-wood-structures-outdoor-design",
+      cardImg: "/fences/wood/fence-1",
+    },
+    {
+      title: "Luxury Finishes & Coatings",
+      href: "/services/luxury-finishes-coatings",
+      cardImg: "/garages/garage-1",
+    },
+    {
+      title: "Interior & Exterior Restoration",
+      href: "/services/luxury-finishes-coatings",
+      cardImg: "/restoration/restore-1",
+    },
+  ];
+
   return (
     <>
       <div className="absolute -translate-y-52" id="services"></div>
@@ -28,8 +46,8 @@ export default function ServicesCards({
           </h2>
           {paragraph && <p className="text-zinc-600">{paragraph}</p>}
         </div>
-        <div className="grid gap-4 items-stretch justify-stretch grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {ALL_SERVICES.map((service: Service) => (
+        <div className="grid gap-4 items-stretch justify-stretch grid-cols-1 md:grid-cols-2">
+          {NEW_SERVICES.map((service: Service) => (
             <ServiceCard service={service} key={service.title} />
           ))}
 

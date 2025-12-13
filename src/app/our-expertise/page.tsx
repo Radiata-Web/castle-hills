@@ -64,13 +64,13 @@ export default function OurExpertise() {
         backgroundImageUrl="/photos/stain/stain-2.webp"
       />
 
-      <section className="container mx-auto px-4 py-12">
+      {/* <section className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {services.map((service) => (
             <ServiceCard key={service.id} {...service} />
           ))}
         </div>
-      </section>
+      </section> */}
 
       <div className="max-w-8xl mx-auto px-4 md:px-8 lg:px-8 mb-12 mt-12">
         <section className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 md:gap-8">

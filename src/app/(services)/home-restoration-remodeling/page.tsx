@@ -2,8 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import RemodelCarousel from "./remodel-carousel";
-import Logo from "@/components/nav/logo";
+import RemodelCarousel from "@/components/misc/remodel-carousel";
 import ChooseUs from "@/components/misc/choose-us";
 
 export const metadata: Metadata = {

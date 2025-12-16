@@ -98,12 +98,12 @@ export function Hero({
       {/* Content */}
       <div
         className={cn(
-          "relative z-1 flex h-full items-center max-w-6xl",
+          "relative z-1 flex h-full items-center max-w-full",
           minHeightClass
         )}
       >
         <div className="mx-auto flex w-full flex-col gap-4 px-4 py-12 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-4 sm:max-w-4xl max-w-6xl">
+          <div className="flex flex-col gap-4 sm:max-w-4xl max-w-full">
             <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
               {title}
             </h1>

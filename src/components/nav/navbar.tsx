@@ -106,7 +106,10 @@ export default function Navbar() {
               className="transition-all duration-200 ease-in-out sm:hover:scale-105"
               asChild
             >
-              <Link href="/contact-us">Get my free estimate</Link>
+              <Link href="/contact-us">
+                Schedule a Consultation{" "}
+                <MoveRight className="ml-2" strokeWidth={1.5} />
+              </Link>
             </Button>
           </div>
 

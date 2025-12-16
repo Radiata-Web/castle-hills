@@ -26,12 +26,12 @@ export default function ServicesCards({
     },
     {
       title: "Luxury Finishes & Coatings",
-      href: "/services/luxury-finishes-coatings",
+      href: "/luxury-finishes-coatings",
       cardImg: "/garages/garage-1",
     },
     {
       title: "Interior & Exterior Restoration",
-      href: "/services/luxury-finishes-coatings",
+      href: "/interior-exterior-restoration-renovation",
       cardImg: "/restoration/restore-1",
     },
   ];

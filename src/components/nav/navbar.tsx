@@ -33,6 +33,7 @@ import {
   PAGES,
   OUTDOOR_LIVING_SERVICES,
   HOME_RESTORATION_SERVICES,
+  ALL_SERVICES,
 } from "@/lib/data";
 import Socials from "@/components/ui/socials";
 import DropdownCategory from "@/components/nav/dropdown-category";
@@ -78,49 +79,15 @@ export default function Navbar() {
 
               {/* Fences and Gates */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Fences & Gates</NavigationMenuTrigger>
+                <NavigationMenuTrigger>Services</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <p className="pl-7 pt-5 font-bold">Fence and Gate Services</p>
-                  <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-2 md:w-[500px] lg:w-[600px]">
-                    {FENCING_SERVICES.map((service) => (
-                      <ListItem
-                        key={service.title}
-                        title={service.title}
-                        href={service.href}
-                      />
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              {/* Outdoor Living */}
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Outdoor Living</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <p className="pl-7 pt-5 font-bold">Outdoor Living Services</p>
-                  <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-2 md:w-[500px] lg:w-[600px]">
-                    {OUTDOOR_LIVING_SERVICES.map((service) => (
-                      <ListItem
-                        key={service.title}
-                        title={service.title}
-                        href={service.href}
-                      />
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              {/* Home Restoration & Remodeling */}
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>
-                  Restoration & Remodeling
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <p className="pl-7 pt-5 font-bold">
-                    Home Restoration & Remodeling Services
+                  <p className="pl-7 pt-5 font-bold">Our Services</p>
+                  <p className="px-7 text-sm text-gray-600">
+                    Need something different? We will do our best to accommodate
+                    your needs.
                   </p>
                   <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-2 md:w-[500px] lg:w-[600px]">
-                    {HOME_RESTORATION_SERVICES.map((service) => (
+                    {ALL_SERVICES.map((service) => (
                       <ListItem
                         key={service.title}
                         title={service.title}
@@ -164,22 +131,7 @@ export default function Navbar() {
                 <SheetTitle>
                   <VisuallyHidden.Root>Navigation Links</VisuallyHidden.Root>
                 </SheetTitle>
-                <span className="flex flex-col items-start gap-4 mt-4">
-                  {/* Logo */}
-                  <span className="flex flex-row items-center gap-4">
-                    <Image
-                      src="/logos/ch-logo.svg"
-                      width={72}
-                      height={72}
-                      alt="Castle Hills Stain & Restoration Logo"
-                      priority
-                    />
-                    <p className="font-bold leading-none">
-                      Castle Hills <br />
-                      Stain & Restoration
-                    </p>
-                  </span>
-                </span>
+                <Logo />
                 <hr className="mt-6" />
 
                 {/* Nav links */}
@@ -206,30 +158,33 @@ export default function Navbar() {
                     asChild
                   >
                     <Link
-                      href="/#about"
+                      href="/about-us"
                       className="block rounded-lg px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      About
+                      About Us
+                    </Link>
+                  </Button>
+
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start font-semibold text-xl"
+                    onClick={() => setIsMenuOpen(false)}
+                    asChild
+                  >
+                    <Link
+                      href="/our-expertise"
+                      className="block rounded-lg px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Our Expertise
                     </Link>
                   </Button>
 
                   <div className="flex flex-col gap-2">
                     <DropdownCategory
-                      categoryTitle="Fences & Gates"
-                      links={FENCING_SERVICES}
-                      setIsMenuOpen={setIsMenuOpen}
-                    />
-
-                    <DropdownCategory
-                      categoryTitle="Outdoor Living"
-                      links={OUTDOOR_LIVING_SERVICES}
-                      setIsMenuOpen={setIsMenuOpen}
-                    />
-
-                    <DropdownCategory
-                      categoryTitle="Restoration & Remodeling"
-                      links={HOME_RESTORATION_SERVICES}
+                      categoryTitle="Our Services"
+                      links={ALL_SERVICES}
                       setIsMenuOpen={setIsMenuOpen}
                     />
                   </div>
@@ -238,7 +193,7 @@ export default function Navbar() {
                 {/* Estimate button */}
                 <Button className="mt-[8%] w-full" size="lg" asChild>
                   <Link href="#contact" onClick={() => setIsMenuOpen(false)}>
-                    Get your estimate
+                    Schedule a consultation
                     <MoveRight className="ml-2" strokeWidth={1.5} />
                   </Link>
                 </Button>

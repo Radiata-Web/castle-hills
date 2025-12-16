@@ -6,17 +6,16 @@ export default function InteriorContact() {
   return (
     <div className="max-w-8xl mx-auto px-4 md:px-8 lg:px-8">
       <div className="absolute -translate-y-52" id="contact"></div>
-      <section className="grid p-6 rounded-lg shadow-lg border border-zinc-200 gap-4 my-12 sm:p-8 md:p-10 lg:p-12 md:gap-10 lg:gap-14 lg:grid-cols-2">
-        <div className="flex flex-col space-y-4 md:space-y-6 lg:space-y-8">
+      <section className="grid p-6 rounded-2xl shadow-md border border-zinc-300 gap-4 my-12 sm:p-8 md:p-10 lg:p-12 md:gap-10 lg:gap-14 lg:grid-cols-2">
+        <div className="flex flex-col justify-center space-y-4 md:space-y-6 lg:space-y-8">
           <div className="max-w-[600px]">
-            <p className="text-3xl font-bold tracking-tighter md:text-4xl xl:text-5xl/none mb-4">
-              Request a free estimate from us today!
+            <p className="text-2xl font-bold tracking-tight md:text-3xl xl:text-4xl/none mb-4">
+              Transform Your Space — Schedule a Consultation Today.
             </p>
 
             <p className="text-zinc-800">
-              Castle Hills Stain & Restoration is dedicated to bringing your
-              property dreams to life! Give us a call or fill out the form and
-              we will get back to you ASAP!
+              Tell us about your project — our team will reach out within 24
+              hours.
             </p>
           </div>
 

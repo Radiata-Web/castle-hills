@@ -2,6 +2,8 @@ import React from "react";
 import ContactNumber from "./misc/contactNumber";
 import Link from "next/link";
 import Image from "next/image";
+import { Button } from "./ui/button";
+import { MoveRight, Phone } from "lucide-react";
 
 export default function About() {
   return (
@@ -20,25 +22,40 @@ export default function About() {
 
           <div className="flex flex-col justify-center space-y-8">
             <span className="space-y-4">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
-                Who are we?
+              <h2 className="text-3xl font-bold sm:text-4xl xl:text-5xl/none">
+                Design. Protect. Restore.
               </h2>
               <p className="text-zinc-600">
-                Since 2015, Castle Hills Stain & Restoration has been proudly
-                serving the community by offering expert services that keep your
-                property looking its best. We offer our services across the
-                Dallas-Fort Worth metropolitan area.
+                At Castle Hills Stain & Restoration, we design, build, and
+                restore residential and commercial properties across the DFW
+                Metroplex with precision and pride. From luxury exteriors and
+                custom wood structures to select interior restorations and fine
+                finishes, our team delivers craftsmanship that enhances both the
+                look and longevity of every property we touch.
               </p>
             </span>
 
-            <span className="space-y-1 text-zinc-600">
-              <p>Call us anytime:</p>
-              <ContactNumber
-                iconSize={24}
-                textSize="text-lg"
-                className=" text-zinc-900"
-              />
-            </span>
+            <div className="flex flex-col md:flex-row gap-4 pb-6">
+              <Button
+                className="transition-all duration-200 ease-in-out sm:hover:scale-105"
+                asChild
+              >
+                <Link href="/about-us">
+                  Learn more about us{" "}
+                  <MoveRight className="ml-2" strokeWidth={1.5} />
+                </Link>
+              </Button>
+              <Button
+                variant="outline"
+                className="transition-all duration-200 ease-in-out sm:hover:scale-105"
+                asChild
+              >
+                <Link href="tel:4692153098">
+                  Give us a call
+                  <Phone size={16} className="ml-2" strokeWidth={1.5} />
+                </Link>
+              </Button>
+            </div>
 
             {/* Socials */}
             <div className="flex flex-row gap-4 sm:gap-6 md:gap-8">

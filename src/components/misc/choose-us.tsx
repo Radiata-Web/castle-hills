@@ -1,22 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import Logo from "../nav/logo";
 
 export default function ChooseUs() {
   return (
     <article className="p-12 bg-zinc-100 rounded-lg border border-zinc-200 my-24">
-      <div className="flex-shrink-0 flex items-center">
-        <Image
-          src="/logos/ch-logo.svg"
-          width={50}
-          height={50}
-          alt="Castle Hills Stain & Restoration Logo"
-          loading="lazy"
-        />
-        <span className="ml-2 text-sm font-bold leading-none">
-          Castle Hills <br /> Stain & Restoration
-        </span>
-      </div>
+      <Logo />
       <h2 className="text-2xl font-bold sm:text-3xl xl:text-4xl/none mb-4 mt-8">
         Why Homeowners Choose Us
       </h2>

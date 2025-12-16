@@ -3,7 +3,8 @@ import { Service } from "@/components/services-cards";
 
 export const PAGES: { title: string; href: string }[] = [
   { title: "Home", href: "/" },
-  { title: "About", href: "/#about" },
+  { title: "About", href: "/about-us" },
+  { title: "Expertise", href: "/our-expertise" },
 ];
 
 export const FENCING_SERVICES: Service[] = [

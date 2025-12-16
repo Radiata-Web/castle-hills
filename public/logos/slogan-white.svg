@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1018 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-907.783585,-993.806372)">
+        <g transform="matrix(1.615341,0,0,1.615341,-796.754687,728.294003)">
+            <g transform="matrix(1.134155,0,0,1.134155,-166.833053,-119.182305)">
+                <circle cx="1231.936" cy="262.668" r="3.709" style="fill:rgb(18,113,185);"/>
+            </g>
+            <g transform="matrix(1.134155,0,0,1.134155,81.731772,-119.182305)">
+                <circle cx="1231.936" cy="262.668" r="3.709" style="fill:rgb(18,113,185);"/>
+            </g>
+            <g transform="matrix(0.619064,0,0,0.619064,383.75375,20.06694)">
+                <g transform="matrix(62.5,0,0,62.5,1311.145145,278.784921)">
+                </g>
+                <text x="1079.27px" y="278.785px" style="font-family:'InstrumentSans-Regular', 'Instrument Sans';font-size:62.5px;fill:rgb(250,250,255);">DE<tspan x="1163.458px " y="278.785px ">S</tspan>IGN</text>
+            </g>
+            <g transform="matrix(0.619064,0,0,0.619064,596.756821,20.06694)">
+                <g transform="matrix(62.5,0,0,62.5,1367.457645,278.784921)">
+                </g>
+                <text x="1079.27px" y="278.785px" style="font-family:'InstrumentSans-Regular', 'Instrument Sans';font-size:62.5px;fill:rgb(250,250,255);">P<tspan x="1119.645px 1160.083px 1205.77px 1246.27px 1283.583px 1326.958px " y="278.785px 278.785px 278.785px 278.785px 278.785px 278.785px ">ROTECT</tspan></text>
+            </g>
+            <g transform="matrix(0.619064,0,0,0.619064,845.321645,20.06694)">
+                <g transform="matrix(62.5,0,0,62.5,1361.020145,278.784921)">
+                </g>
+                <text x="1079.27px" y="278.785px" style="font-family:'InstrumentSans-Regular', 'Instrument Sans';font-size:62.5px;fill:rgb(250,250,255);">RE<tspan x="1157.458px 1193.958px 1231.02px " y="278.785px 278.785px 278.785px ">STO</tspan>RE</text>
+            </g>
+        </g>
+    </g>
+</svg>

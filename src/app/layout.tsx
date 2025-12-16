@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { Inter } from "next/font/google";
+import { Instrument_Sans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 import Navbar from "@/components/nav/navbar";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const instrumentSans = Instrument_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   title: "Castle Hills Stain & Restoration | DFW",
@@ -34,7 +37,7 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          inter.variable
+          instrumentSans.variable
         )}
       >
         <Navbar />

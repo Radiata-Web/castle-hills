@@ -14,18 +14,17 @@ export default function Page() {
     <>
       <div className="max-w-8xl mx-auto px-4 md:px-8 lg:px-8 mb-12">
         <header className="space-y-4 mb-12 mt-12">
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
-            Contact Us
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl xl:text-5xl/none">
+            Request a Design Consultation
           </h1>
           <p className="text-zinc-600">
-            Looking to get an estimate for a home improvement project? Look no
-            further! Reach out to us now and we'll get back to you as soon as
-            possible!
+            Tell us about your project — our team will reach out within 24
+            hours.
           </p>
         </header>
 
         <article className="flex flex-col rounded-lg md:flex-row items-center gap-4 shadow-lg border border-zinc-100 md:gap-10 lg:gap-14">
-          <section className="w-full md:w-1/2 p-6 md:p-8">
+          <section className="w-full md:w-1/2 p-6 md:p-8 md:px-12">
             <ContactForm showHeader={false} />
           </section>
           {/* Service Image */}

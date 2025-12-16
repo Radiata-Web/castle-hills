@@ -3,32 +3,51 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MoveRight } from "lucide-react";
 
+interface ServicesCardsProps {
+  heading: string;
+  paragraph?: string;
+}
+
 export interface Service {
   title: string;
   href: string;
   cardImg: string;
 }
 
-export default function ServicesCards() {
+export default function ServicesCards({
+  heading,
+  paragraph,
+}: ServicesCardsProps) {
+  const NEW_SERVICES: Service[] = [
+    {
+      title: "Custom Wood Structures & Outdoor Design",
+      href: "/custom-wood-structures-outdoor-design",
+      cardImg: "/fences/wood/fence-1",
+    },
+    {
+      title: "Luxury Finishes & Coatings",
+      href: "/services/luxury-finishes-coatings",
+      cardImg: "/garages/garage-1",
+    },
+    {
+      title: "Interior & Exterior Restoration",
+      href: "/services/luxury-finishes-coatings",
+      cardImg: "/restoration/restore-1",
+    },
+  ];
+
   return (
     <>
       <div className="absolute -translate-y-52" id="services"></div>
       <article className="max-w-8xl mx-auto py-6 md:py-10 lg:py-14 px-4 md:px-8 lg:px-8">
         <div className="space-y-4 mb-8">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
-            What can we do for you?
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl xl:text-5xl/none">
+            {heading}
           </h2>
-          <p className="text-zinc-600">
-            Our comprehensive services cover all your needs—whether it's giving
-            your fence a fresh, protective stain, expertly installing a stunning
-            gazebo, or rejuvenating your home's interior and exterior with
-            professional painting. We use only top-quality materials to ensure
-            your property not only looks amazing but also stands the test of
-            time.
-          </p>
+          {paragraph && <p className="text-zinc-600">{paragraph}</p>}
         </div>
-        <div className="grid gap-4 items-stretch justify-stretch grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {ALL_SERVICES.map((service: Service) => (
+        <div className="grid gap-4 items-stretch justify-stretch grid-cols-1 md:grid-cols-2">
+          {NEW_SERVICES.map((service: Service) => (
             <ServiceCard service={service} key={service.title} />
           ))}
 
@@ -68,13 +87,13 @@ function ServiceCard({ service }: { service: Service }) {
       {/* Image background element */}
       <div
         key={`${service.title}-${service.href}`}
-        className={`flex h-full bg-cover bg-center rounded-lg`}
+        className={`flex h-full bg-cover bg-center rounded-xl`}
         style={{ backgroundImage: `url(/photos${service.cardImg}.webp)` }}
       >
         {/* Content container */}
-        <div className="flex w-full items-center p-10 text-white bg-black bg-opacity-40 transition-all duration-200 ease-in-out group-hover:bg-opacity-60 rounded-lg">
+        <div className="flex w-full items-center p-10 text-white bg-black bg-opacity-40 transition-all duration-200 ease-in-out group-hover:bg-opacity-60 rounded-xl">
           {/* Content */}
-          <h3 className="text-2xl font-bold leading-tight">{service.title}</h3>
+          <h3 className="text-3xl font-bold leading-tight">{service.title}</h3>
         </div>
       </div>
     </Link>

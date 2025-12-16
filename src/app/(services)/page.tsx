@@ -7,7 +7,7 @@ export default function Page() {
         <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">
           Our Services
         </h1>
-        <ServicesCards />
+        <ServicesCards heading="" />
       </section>
     </>
   );

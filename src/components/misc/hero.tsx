@@ -49,14 +49,14 @@ export function Hero({
       // shadcn Button variant
       if (ctaHref) {
         return (
-          <Button asChild className="ml-auto" onClick={onCtaClick}>
+          <Button asChild onClick={onCtaClick}>
             <a href={ctaHref}>{ctaLabel}</a>
           </Button>
         );
       }
 
       return (
-        <Button className="ml-auto" onClick={onCtaClick}>
+        <Button onClick={onCtaClick}>
           {ctaLabel}
         </Button>
       );
@@ -65,7 +65,7 @@ export function Hero({
     // fallback plain button styled with Tailwind
     if (ctaHref) {
       return (
-        <a href={ctaHref} className="ml-auto">
+        <a href={ctaHref}>
           {content}
         </a>
       );
@@ -98,29 +98,25 @@ export function Hero({
       {/* Content */}
       <div
         className={cn(
-          "relative z-1 flex h-full items-center max-w-full",
+          "relative z-1 flex h-full w-full max-w-full items-center justify-center",
           minHeightClass
         )}
       >
-        <div className="mx-auto flex w-full flex-col gap-4 px-4 py-12 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-4 sm:max-w-4xl max-w-full">
-            <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
+        <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-4 px-4 py-12 text-center sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-4">
+            <h1 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
               {title}
             </h1>
             {subtitle && (
-              <p className="text-sm text-zinc-200 sm:text-base md:text-lg">
+              <p className="text-pretty text-sm text-zinc-200 sm:text-base md:text-lg">
                 {subtitle}
               </p>
             )}
           </div>
 
           {hasCta && (
-            <div className="mt-4 flex items-center justify-start">
-              {/* Spacer ensures button aligns to right within the hero width */}
-              <div className="flex w-full items-center gap-3">
-                <div className="flex-1" />
-                <CtaButton />
-              </div>
+            <div className="mt-2 flex w-full justify-center">
+              <CtaButton />
             </div>
           )}
         </div>

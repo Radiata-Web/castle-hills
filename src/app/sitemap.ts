@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 2,
     },
     {
-      url: `${url}/wood-fences`,
+      url: `${url}/fence-staining`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0,
@@ -23,12 +23,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${url}/automatic-gates`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0,
-    },
-    {
-      url: `${url}/fence-and-garage-door-stain`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0,
@@ -47,12 +41,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${url}/exterior-painting`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0,
-    },
-    {
-      url: `${url}/home-restoration-remodeling`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0,

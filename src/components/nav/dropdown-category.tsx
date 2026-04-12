@@ -27,7 +27,7 @@ export default function DropdownCategory({
   links,
   setIsMenuOpen,
 }: DropdownCategoryProps) {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full">

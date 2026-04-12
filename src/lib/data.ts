@@ -9,9 +9,9 @@ export const PAGES: { title: string; href: string }[] = [
 
 export const FENCING_SERVICES: Service[] = [
   {
-    title: "Wood Fences",
-    href: "/wood-fences",
-    cardImg: "/fences/wood/fence-1",
+    title: "Fence Staining",
+    href: "/fence-staining",
+    cardImg: "/stain/stain-2",
   },
   {
     title: "Metal Fences",
@@ -23,11 +23,6 @@ export const FENCING_SERVICES: Service[] = [
     href: "/automatic-gates",
     cardImg: "/gates/gate-1",
   },
-  {
-    title: "Fence & Garage Door Staining",
-    href: "/fence-and-garage-door-stain",
-    cardImg: "/garages/garage-1",
-  },
 ];
 
 export const OUTDOOR_LIVING_SERVICES: Service[] = [
@@ -38,12 +33,7 @@ export const OUTDOOR_LIVING_SERVICES: Service[] = [
   },
 ];
 
-export const HOME_RESTORATION_SERVICES: Service[] = [
-  {
-    title: "Restoration & Remodeling",
-    href: "/home-restoration-remodeling",
-    cardImg: "/restoration/restore-1",
-  },
+export const PAINTING_SERVICES: Service[] = [
   {
     title: "Interior Painting",
     href: "/interior-painting",
@@ -58,7 +48,7 @@ export const HOME_RESTORATION_SERVICES: Service[] = [
 
 export const ALL_SERVICES: Service[] = FENCING_SERVICES.concat(
   OUTDOOR_LIVING_SERVICES,
-  HOME_RESTORATION_SERVICES
+  PAINTING_SERVICES
 );
 
 export const REVIEWS: Review[] = [

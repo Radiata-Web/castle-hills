@@ -127,7 +127,7 @@ export default function InteriorExteriorRestoration() {
                     Exterior improvements that unify curb appeal and durability,
                     like{" "}
                     <Link
-                      href="/wood-fences"
+                      href="/fence-staining"
                       className="underline text-accent-primary"
                     >
                       fencing

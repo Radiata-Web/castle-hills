@@ -1,5 +1,10 @@
 import { Review } from "@/components/misc/reviewGrid";
-import { Service } from "@/components/services-cards";
+
+export interface Service {
+  title: string;
+  href: string;
+  cardImg: string;
+}
 
 export const PAGES: { title: string; href: string }[] = [
   { title: "Home", href: "/" },
@@ -7,49 +12,24 @@ export const PAGES: { title: string; href: string }[] = [
   { title: "Expertise", href: "/our-expertise" },
 ];
 
-export const FENCING_SERVICES: Service[] = [
+/** Matches homepage “What can we do for you?” service cards and nav Services dropdown. */
+export const HOMEPAGE_FEATURED_SERVICES: Service[] = [
   {
-    title: "Fence Staining",
-    href: "/fence-staining",
-    cardImg: "/stain/stain-2",
+    title: "Custom Wood Structures & Outdoor Design",
+    href: "/custom-wood-structures-outdoor-design",
+    cardImg: "/fences/wood/fence-1",
   },
   {
-    title: "Metal Fences",
-    href: "/metal-fences",
-    cardImg: "/fences/metal/metal-1",
+    title: "Luxury Finishes & Coatings",
+    href: "/luxury-finishes-coatings",
+    cardImg: "/garages/garage-1",
   },
   {
-    title: "Automatic Gates",
-    href: "/automatic-gates",
-    cardImg: "/gates/gate-1",
-  },
-];
-
-export const OUTDOOR_LIVING_SERVICES: Service[] = [
-  {
-    title: "Pergolas & Patio Covers",
-    href: "/pergolas-and-patio-covers",
-    cardImg: "/pergolas/pergola-6",
+    title: "Interior & Exterior Restoration",
+    href: "/interior-exterior-restoration-renovation",
+    cardImg: "/restoration/restore-1",
   },
 ];
-
-export const PAINTING_SERVICES: Service[] = [
-  {
-    title: "Interior Painting",
-    href: "/interior-painting",
-    cardImg: "/paint/in-paint-2",
-  },
-  {
-    title: "Exterior Painting",
-    href: "/exterior-painting",
-    cardImg: "/paint/ex-paint-2",
-  },
-];
-
-export const ALL_SERVICES: Service[] = FENCING_SERVICES.concat(
-  OUTDOOR_LIVING_SERVICES,
-  PAINTING_SERVICES
-);
 
 export const REVIEWS: Review[] = [
   {

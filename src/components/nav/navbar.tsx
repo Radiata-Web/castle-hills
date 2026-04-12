@@ -21,7 +21,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { PAGES, ALL_SERVICES } from "@/lib/data";
+import { PAGES, HOMEPAGE_FEATURED_SERVICES } from "@/lib/data";
 import Socials from "@/components/ui/socials";
 import DropdownCategory from "@/components/nav/dropdown-category";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
@@ -62,7 +62,7 @@ export default function Navbar() {
                 />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="min-w-[14rem]">
-                {ALL_SERVICES.map((service) => (
+                {HOMEPAGE_FEATURED_SERVICES.map((service) => (
                   <DropdownMenuItem key={service.href} asChild>
                     <Link href={service.href}>{service.title}</Link>
                   </DropdownMenuItem>
@@ -152,7 +152,7 @@ export default function Navbar() {
                   <div className="flex flex-col gap-2">
                     <DropdownCategory
                       categoryTitle="Our Services"
-                      links={ALL_SERVICES}
+                      links={HOMEPAGE_FEATURED_SERVICES}
                       setIsMenuOpen={setIsMenuOpen}
                     />
                   </div>

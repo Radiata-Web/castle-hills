@@ -1,41 +1,22 @@
-import { ALL_SERVICES } from "@/lib/data";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MoveRight } from "lucide-react";
+import {
+  HOMEPAGE_FEATURED_SERVICES,
+  type Service,
+} from "@/lib/data";
+
+export type { Service };
 
 interface ServicesCardsProps {
   heading: string;
   paragraph?: string;
 }
 
-export interface Service {
-  title: string;
-  href: string;
-  cardImg: string;
-}
-
 export default function ServicesCards({
   heading,
   paragraph,
 }: ServicesCardsProps) {
-  const NEW_SERVICES: Service[] = [
-    {
-      title: "Custom Wood Structures & Outdoor Design",
-      href: "/custom-wood-structures-outdoor-design",
-      cardImg: "/fences/wood/fence-1",
-    },
-    {
-      title: "Luxury Finishes & Coatings",
-      href: "/luxury-finishes-coatings",
-      cardImg: "/garages/garage-1",
-    },
-    {
-      title: "Interior & Exterior Restoration",
-      href: "/interior-exterior-restoration-renovation",
-      cardImg: "/restoration/restore-1",
-    },
-  ];
-
   return (
     <>
       <div className="absolute -translate-y-52" id="services"></div>
@@ -47,7 +28,7 @@ export default function ServicesCards({
           {paragraph && <p className="text-zinc-600">{paragraph}</p>}
         </div>
         <div className="grid gap-4 items-stretch justify-stretch grid-cols-1 md:grid-cols-2">
-          {NEW_SERVICES.map((service: Service) => (
+          {HOMEPAGE_FEATURED_SERVICES.map((service: Service) => (
             <ServiceCard service={service} key={service.title} />
           ))}
 

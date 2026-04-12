@@ -10,42 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 2,
     },
     {
-      url: `${url}/fence-staining`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0,
-    },
-    {
-      url: `${url}/metal-fences`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0,
-    },
-    {
-      url: `${url}/automatic-gates`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0,
-    },
-    {
-      url: `${url}/pergolas-and-patio-covers`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0,
-    },
-    {
-      url: `${url}/interior-painting`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0,
-    },
-    {
-      url: `${url}/exterior-painting`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0,
-    },
-    {
       url: `${url}/custom-wood-structures-outdoor-design`,
       lastModified: new Date(),
       changeFrequency: "yearly",

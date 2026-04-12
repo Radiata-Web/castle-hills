@@ -92,7 +92,7 @@ export default function InteriorExteriorRestoration() {
                 className="transition-all duration-200 ease-in-out sm:hover:scale-105"
                 asChild
               >
-                <Link href="#contact">Get an Estimate</Link>
+                <Link href="#contact">Request a Free Estimate</Link>
               </Button>
             </section>
           </article>
@@ -127,34 +127,20 @@ export default function InteriorExteriorRestoration() {
                     Exterior improvements that unify curb appeal and durability,
                     like{" "}
                     <Link
-                      href="/fence-staining"
+                      href="/custom-wood-structures-outdoor-design"
                       className="underline text-accent-primary"
                     >
-                      fencing
+                      fencing and pergolas
                     </Link>{" "}
-                    &{" "}
-                    <Link
-                      href="/pergolas-and-patio-covers"
-                      className="underline text-accent-primary"
-                    >
-                      pergolas
-                    </Link>{" "}
-                    - including building, staining, repair, and restoration.
+                    — including building, staining, repair, and restoration.
                   </li>
                   <li>
                     Professional{" "}
                     <Link
-                      href="/interior-painting"
+                      href="/luxury-finishes-coatings"
                       className="underline text-accent-primary"
                     >
-                      indoor
-                    </Link>
-                    /
-                    <Link
-                      href="/exterior-painting"
-                      className="underline text-accent-primary"
-                    >
-                      outdoor painting
+                      interior and exterior painting
                     </Link>{" "}
                     integration for seamless color and finish selection.
                   </li>
@@ -171,7 +157,7 @@ export default function InteriorExteriorRestoration() {
                 className="transition-all duration-200 ease-in-out sm:hover:scale-105"
                 asChild
               >
-                <Link href="#contact">Get an Estimate</Link>
+                <Link href="#contact">Request a Free Estimate</Link>
               </Button>
             </section>
 

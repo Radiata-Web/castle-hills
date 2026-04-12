@@ -41,7 +41,7 @@ export default function ServiceDesc(props: ServiceDescProps) {
           className="transition-all duration-200 ease-in-out sm:hover:scale-105"
           asChild
         >
-          <Link href="#contact">Get an Estimate</Link>
+          <Link href="#contact">Request a Free Estimate</Link>
         </Button>
       </section>
     </article>

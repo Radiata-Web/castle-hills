@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Get an Estimate | Castle Hills Stain & Restoration",
+  title: "Request a Free Estimate | Castle Hills Stain & Restoration",
   description: "Get a free estimate for your next home improvement project.",
 };
 

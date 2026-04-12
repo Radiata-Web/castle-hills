@@ -68,7 +68,7 @@ export default function ServicesCards({
                   variant="outline"
                 >
                   <Link href="#contact">
-                    Schedule a consultation
+                    Get a Free Estimate
                     <MoveRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>

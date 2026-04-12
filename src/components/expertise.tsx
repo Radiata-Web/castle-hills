@@ -65,7 +65,7 @@ export default function Expertise() {
                 asChild
               >
                 <Link href="/contact-us">
-                  Schedule a consultation
+                  Get a Free Estimate
                   <MoveRight size={16} className="ml-2" strokeWidth={1.5} />
                 </Link>
               </Button>

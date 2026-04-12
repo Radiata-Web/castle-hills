@@ -107,7 +107,7 @@ export default function Navbar() {
               asChild
             >
               <Link href="/contact-us">
-                Schedule a Consultation{" "}
+                Get a Free Estimate{" "}
                 <MoveRight className="ml-2" strokeWidth={1.5} />
               </Link>
             </Button>
@@ -196,7 +196,7 @@ export default function Navbar() {
                 {/* Estimate button */}
                 <Button className="mt-[8%] w-full" size="lg" asChild>
                   <Link href="#contact" onClick={() => setIsMenuOpen(false)}>
-                    Schedule a consultation
+                    Get a Free Estimate
                     <MoveRight className="ml-2" strokeWidth={1.5} />
                   </Link>
                 </Button>
@@ -222,7 +222,7 @@ const ListItem = forwardRef<ElementRef<"a">, ComponentPropsWithoutRef<"a">>(
             ref={ref}
             className={cn(
               "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-zinc-100 hover:text-accent-foreground focus:bg-zinc-100 focus:text-accent-foreground",
-              className
+              className,
             )}
             {...props}
           >
@@ -231,6 +231,6 @@ const ListItem = forwardRef<ElementRef<"a">, ComponentPropsWithoutRef<"a">>(
         </NavigationMenuLink>
       </li>
     );
-  }
+  },
 );
 ListItem.displayName = "ListItem";

@@ -45,7 +45,7 @@ export default function Hero() {
                 asChild
               >
                 <Link href="/#contact">
-                  Schedule a Consultation
+                  Get a Free Estimate
                   <MoveRight className="ml-2" strokeWidth={1.5} />
                 </Link>
               </Button>

@@ -24,9 +24,9 @@ export default function OurExpertise() {
     {
       id: 1,
       icon: <Fence size={48} strokeWidth={1.25} />,
-      title: "Custom Wood Structures & Outdoor Design",
+      title: "Fence Staining & Wood Protection",
       description:
-        "Custom pergolas, patio covers, fences, and outdoor kitchens built with precision and premium materials.",
+        "Protect and enhance your fence with premium oil-based stains designed to withstand the Texas sun and weather. Our process ensures even coverage, deep penetration, and long-lasting results.",
       href: "/services/digital-strategy",
       imageSrc:
         "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
@@ -35,9 +35,9 @@ export default function OurExpertise() {
     {
       id: 2,
       icon: <PaintBucket size={48} strokeWidth={1.25} />,
-      title: "Luxury Finishes & Coatings",
+      title: "Exterior & Interior Painting",
       description:
-        "High-performance painting and limewash systems using Sherwin-Williams Emerald®, Sherwin-Williams Duration® and Romabio Classico Limewash®.",
+        "Professional painting services using high-quality materials and clean application methods to deliver a durable, consistent finish inside and out.",
       href: "/services/brand-development",
       imageSrc:
         "https://images.unsplash.com/photo-1558655146-d09347e92766?w=800",
@@ -46,9 +46,9 @@ export default function OurExpertise() {
     {
       id: 3,
       icon: <Hammer size={48} strokeWidth={1.25} />,
-      title: "Interior & Exterior Restoration",
+      title: "Home Maintenance & Restoration",
       description:
-        "Restoration and rebuild services combining craftsmanship, design, and structural care.",
+        "From wood repairs to exterior touch-ups, we help keep your home looking its best with ongoing maintenance and restoration services.",
       href: "/services/growth-marketing",
       imageSrc:
         "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800",
@@ -79,12 +79,13 @@ export default function OurExpertise() {
               <span className="flex justify-center items-center bg-accent w-16 h-16 rounded-lg mb-4">
                 <Fence size={36} className="text-white" strokeWidth={1} />
               </span>
-              Custom Wood Structures <br /> & Outdoor Design
+              Fence Staining & Wood Protection
             </CardHeader>
 
             <CardContent>
-              Custom pergolas, patio covers, fences, and outdoor kitchens built
-              with precision and premium materials.
+              Protect and enhance your fence with premium oil-based stains
+              designed to withstand the Texas sun and weather. Our process
+              ensures even coverage, deep penetration, and long-lasting results.
             </CardContent>
           </Card>
 
@@ -93,13 +94,13 @@ export default function OurExpertise() {
               <span className="flex justify-center items-center bg-accent w-16 h-16 rounded-lg mb-4">
                 <PaintBucket size={36} className="text-white" strokeWidth={1} />
               </span>
-              Luxury Finishes <br /> & Coatings
+              Exterior & Interior Painting
             </CardHeader>
 
             <CardContent>
-              High-performance painting and limewash systems using
-              Sherwin-Williams Emerald&reg;, Sherwin-Williams Duration&reg; and
-              Romabio Classico Limewash&reg;.
+              Professional painting services using high-quality materials and
+              clean application methods to deliver a durable, consistent finish
+              inside and out.
             </CardContent>
           </Card>
 
@@ -108,12 +109,13 @@ export default function OurExpertise() {
               <span className="flex justify-center items-center bg-accent w-16 h-16 rounded-lg mb-4">
                 <Hammer size={36} className="text-white" strokeWidth={1} />
               </span>
-              Interior & Exterior <br /> Restoration
+              Home Maintenance & Restoration
             </CardHeader>
 
             <CardContent>
-              Restoration and rebuild services combining craftsmanship, design,
-              and structural care.
+              From wood repairs to exterior touch-ups, we help keep your home
+              looking its best with ongoing maintenance and restoration
+              services.
             </CardContent>
           </Card>
         </section>
@@ -143,12 +145,12 @@ export default function OurExpertise() {
               <span className="text-6xl font-bold text-accent/80">1.</span>
               <div className="flex flex-col">
                 <h3 className="text-2xl font-semibold mb-2 flex items-center gap-2">
-                  Consultation{" "}
+                  On-Site Consultation
                   <Search className="inline opacity-50" size={18} />
                 </h3>
                 <p className="leading-relaxed text-muted-foreground">
-                  We meet on-site to understand your goals, evaluate your
-                  property, and provide recommendations.
+                  We assess your project, provide recommendations, and answer
+                  any questions.
                 </p>
               </div>
             </li>
@@ -157,11 +159,12 @@ export default function OurExpertise() {
               <span className="text-6xl font-bold text-accent/80">2.</span>
               <div className="flex flex-col">
                 <h3 className="text-2xl font-semibold mb-2 flex items-center gap-2">
-                  Design <Pencil className="inline opacity-50" size={18} />
+                  Clear Proposal{" "}
+                  <Pencil className="inline opacity-50" size={18} />
                 </h3>
                 <p className="leading-relaxed text-muted-foreground">
-                  Our design team refines your vision with detailed drawings and
-                  renderings.
+                  You’ll receive a detailed estimate with options based on your
+                  goals and budget.
                 </p>
               </div>
             </li>
@@ -170,11 +173,12 @@ export default function OurExpertise() {
               <span className="text-6xl font-bold text-accent/80">3.</span>
               <div className="flex flex-col">
                 <h3 className="text-2xl font-semibold mb-2 flex items-center gap-2">
-                  Build <Hammer className="inline opacity-50" size={18} />
+                  Professional Execution{" "}
+                  <Hammer className="inline opacity-50" size={18} />
                 </h3>
                 <p className="leading-relaxed text-muted-foreground">
-                  Our in-house craftsmen execute every project with supervision,
-                  precision, and care.
+                  Our team completes the work with clean job sites, proper prep,
+                  and attention to detail.
                 </p>
               </div>
             </li>
@@ -183,12 +187,12 @@ export default function OurExpertise() {
               <span className="text-6xl font-bold text-accent/80">4.</span>
               <div className="flex flex-col">
                 <h3 className="text-2xl font-semibold mb-2 flex items-center gap-2">
-                  Maintain{" "}
+                  Final Walkthrough{" "}
                   <Paintbrush className="inline opacity-50" size={18} />
                 </h3>
                 <p className="leading-relaxed text-muted-foreground">
-                  Follow-up services, maintenance, and protection plans keep
-                  your investment looking exceptional.
+                  We ensure everything meets our standards and yours before
+                  closing out the project.
                 </p>
               </div>
             </li>

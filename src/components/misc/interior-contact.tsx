@@ -10,7 +10,7 @@ export default function InteriorContact() {
         <div className="flex flex-col justify-center space-y-4 md:space-y-6 lg:space-y-8">
           <div className="max-w-[600px]">
             <p className="text-2xl font-bold tracking-tight md:text-3xl xl:text-4xl/none mb-4">
-              Transform Your Space — Schedule a Consultation Today.
+              Transform Your Space — Get a Free Estimate Today.
             </p>
 
             <p className="text-zinc-800">
@@ -20,7 +20,7 @@ export default function InteriorContact() {
           </div>
 
           <div className="space-y-1 text-zinc-600">
-            <p>Give us a call:</p>
+            <p>Call Now:</p>
             <ContactNumber
               iconSize={24}
               textSize="text-lg"

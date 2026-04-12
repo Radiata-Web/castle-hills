@@ -51,7 +51,7 @@ export default function About() {
                 asChild
               >
                 <Link href="tel:4692153098">
-                  Give us a call
+                  Call Now
                   <Phone size={16} className="ml-2" strokeWidth={1.5} />
                 </Link>
               </Button>

@@ -12,8 +12,7 @@ export default function CertificationBanner() {
           Professional certifications and advanced training are actively being
           completed to elevate our craftsmanship and expertise. We are committed
           to providing the highest level of service and quality to our clients.
-          Some of our certifications include: EPA, IICRC, OSHA 30, PCA, NADRA,
-          and a proud BBB A+ rating.
+          We're PCA certified and have a proud BBB A+ rating.
         </p>
       </div>
       <div className="flex flex-col items-center justify-center md:flex-row md:items-start md:justify-between md:space-x-10">

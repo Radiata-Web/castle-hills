@@ -1,10 +1,6 @@
 import Link from "next/link";
 import Socials from "@/components/ui/socials";
-import {
-  OUTDOOR_LIVING_SERVICES,
-  FENCING_SERVICES,
-  HOME_RESTORATION_SERVICES,
-} from "@/lib/data";
+import { HOMEPAGE_FEATURED_SERVICES } from "@/lib/data";
 import Image from "next/image";
 
 export default function Footer() {
@@ -38,7 +34,7 @@ export default function Footer() {
 
           {/* Right Column */}
           <div className="md:w-3/4">
-            <nav className="grid grid-cols-2 gap-6 md:gap-8 lg:grid-cols-4">
+            <nav className="grid grid-cols-2 gap-6 md:gap-8 lg:grid-cols-2">
               {/* Company */}
               <div>
                 <h3 className="font-semibold mb-2">Company</h3>
@@ -53,7 +49,7 @@ export default function Footer() {
                   </li>
                   <li>
                     <Link
-                      href="/services"
+                      href="/#services"
                       className="text-sm text-muted-foreground hover:text-primary"
                     >
                       Services
@@ -67,51 +63,24 @@ export default function Footer() {
                       Contact
                     </Link>
                   </li>
+                  <li>
+                    <Link
+                      href="/privacy"
+                      className="text-sm text-muted-foreground hover:text-primary"
+                    >
+                      Privacy Policy
+                    </Link>
+                  </li>
                 </ul>
               </div>
 
-              {/* Fencing */}
               <div>
-                <h3 className="font-semibold mb-2">Fences & Gates</h3>
+                <h3 className="font-semibold mb-2">Services</h3>
                 <ul className="space-y-1">
-                  {FENCING_SERVICES.map((service) => (
-                    <li key={service.title}>
+                  {HOMEPAGE_FEATURED_SERVICES.map((service) => (
+                    <li key={service.href}>
                       <Link
-                        href={`${service.href}`}
-                        className="text-sm text-muted-foreground hover:text-primary"
-                      >
-                        {service.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Outdoor Living */}
-              <div>
-                <h3 className="font-semibold mb-2">Outdoor Living</h3>
-                <ul className="space-y-1">
-                  {OUTDOOR_LIVING_SERVICES.map((service) => (
-                    <li key={service.title}>
-                      <Link
-                        href={`${service.href}`}
-                        className="text-sm text-muted-foreground hover:text-primary"
-                      >
-                        {service.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Home Restoration */}
-              <div>
-                <h3 className="font-semibold mb-2">Restoration & Remodeling</h3>
-                <ul className="space-y-1">
-                  {HOME_RESTORATION_SERVICES.map((service) => (
-                    <li key={service.title}>
-                      <Link
-                        href={`${service.href}`}
+                        href={service.href}
                         className="text-sm text-muted-foreground hover:text-primary"
                       >
                         {service.title}

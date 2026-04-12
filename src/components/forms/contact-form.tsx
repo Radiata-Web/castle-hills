@@ -48,10 +48,10 @@ const formSchema = zfd.formData({
     })
     .refine(
       (val) => isValidPhoneNumber(val, { defaultCountry: "US" }),
-      "Please provide a valid phone number."
+      "Please provide a valid phone number.",
     )
     .transform((val) =>
-      parsePhoneNumber(val, { defaultCountry: "US" }).number.toString()
+      parsePhoneNumber(val, { defaultCountry: "US" }).number.toString(),
     ),
   serviceType: z
     .string({
@@ -61,11 +61,11 @@ const formSchema = zfd.formData({
     .refine(
       (val) =>
         ["wood", "painting", "restoration", "commercial", "other"].includes(
-          val
+          val,
         ),
       {
         error: "Please select a valid service type.",
-      }
+      },
     ),
   message: z.string({
     error: (issue) =>
@@ -131,9 +131,7 @@ export function ContactForm(props: ContactFormProps) {
       <Form {...form}>
         {props.showHeader ? (
           <div className="flex flex-col gap-2 mb-6">
-            <h2 className="text-2xl font-bold">
-              Request a Design Consultation
-            </h2>
+            <h2 className="text-2xl font-bold">Request a Free Estimate</h2>
             <p className="text-sm text-zinc-600">
               Our team will reach out within 24 hours.
             </p>
@@ -296,7 +294,8 @@ export function ContactForm(props: ContactFormProps) {
               size="lg"
               className="min-w-full sm:min-w-10 transition-all duration-200 ease-in-out sm:hover:scale-105"
             >
-              Request Consultation <SendHorizonal size={16} className="ml-2" />
+              Request a Free Estimate{" "}
+              <SendHorizonal size={16} className="ml-2" />
             </Button>
 
             <span className="text-sm text-gray-500">

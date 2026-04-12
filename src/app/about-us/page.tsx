@@ -29,16 +29,23 @@ export default function OurExpertise() {
               Design. Build. Restore.
             </h2>
             <p className="text-zinc-600 max-w-2xl">
-              Founded by AJ Cruz, Castle Hills Stain & Restoration has evolved
-              from a local staining service into a full-service construction and
-              restoration firm serving luxury residential and commercial clients
-              across the DFW Metroplex.
+              Founded by Alexander Cruz, Castle Hills Stain & Restoration has
+              grown from a specialized wood staining company into a full-service
+              exterior and interior painting company serving homeowners across
+              the DFW Metroplex.
             </p>
             <p className="text-zinc-600 max-w-2xl">
-              We specialize in custom outdoor structures, fine finishes, and
-              both exterior and select interior restorations — offering a
-              refined blend of design, craftsmanship, and professional
-              execution.
+              We focus on delivering high-quality craftsmanship, clean
+              execution, and long-lasting results that enhance both the
+              appearance and durability of your home. From custom fences and
+              outdoor structures to professional exterior and interior painting,
+              every project is completed with attention to detail and materials
+              designed to perform in the Texas climate.
+            </p>
+
+            <p className="text-zinc-600 max-w-2xl">
+              We’re not just here to complete a project—we’re here to help you
+              protect and elevate your home.
             </p>
 
             <div className="flex flex-col gap-2 md:flex-row md:gap-4 mt-8">
@@ -47,7 +54,7 @@ export default function OurExpertise() {
                 asChild
               >
                 <Link href="/#contact">
-                  Schedule a Consultation
+                  Get a Free Estimate
                   <MoveRight className="ml-2" strokeWidth={1.5} />
                 </Link>
               </Button>
@@ -57,7 +64,7 @@ export default function OurExpertise() {
                 asChild
               >
                 <Link href="tel:4692153098">
-                  Give us a call
+                  Call Now
                   <Phone size={16} className="ml-2" strokeWidth={1.5} />
                 </Link>
               </Button>

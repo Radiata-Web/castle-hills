@@ -23,7 +23,7 @@ export default function About() {
           <div className="flex flex-col justify-center space-y-8">
             <span className="space-y-4">
               <h2 className="text-3xl font-bold sm:text-4xl xl:text-5xl/none">
-                Design. Protect. Restore.
+                Restore. Protect. Enhance.
               </h2>
               <p className="text-zinc-600">
                 At Castle Hills Stain & Restoration, we design, build, and

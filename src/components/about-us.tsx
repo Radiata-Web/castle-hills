@@ -1,5 +1,4 @@
 import React from "react";
-import ContactNumber from "./misc/contactNumber";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "./ui/button";
@@ -21,7 +20,10 @@ export default function About() {
           ></iframe>
 
           <div className="flex flex-col justify-center space-y-8">
-            <span className="space-y-4">
+            <div className="space-y-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                Castle Hills Stain & Restoration
+              </p>
               <h2 className="text-3xl font-bold sm:text-4xl xl:text-5xl/none">
                 Restore. Protect. Enhance.
               </h2>
@@ -33,7 +35,7 @@ export default function About() {
                 finishes, our team delivers craftsmanship that enhances both the
                 look and longevity of every property we touch.
               </p>
-            </span>
+            </div>
 
             <div className="flex flex-col md:flex-row gap-4 pb-6">
               <Button

@@ -16,7 +16,7 @@ export default function Home() {
       <CertificationBanner />
       <ServicesCards
         heading="What can we do for you?"
-        paragraph="Our comprehensive services cover all your needs—whether it's giving your fence a fresh, protective stain, expertly installing a stunning gazebo, or rejuvenating your home's interior and exterior with professional painting. We use only top-quality materials to ensure your property not only looks amazing but also stands the test of time."
+        paragraph="Outdoor structures, fence installation and staining, interior and exterior painting, and full restoration—we use quality materials and careful prep so results hold up in North Texas."
       />
       {/* <Masonry /> */}
       <ReviewGrid />

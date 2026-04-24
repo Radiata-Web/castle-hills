@@ -2,21 +2,21 @@ import ChooseUs from "@/components/misc/choose-us";
 import { Hero } from "@/components/misc/hero";
 import ServiceDesc from "@/components/misc/serviceDesc";
 import Footer from "@/components/nav/footer";
-import { Hammer, Paintbrush, Pencil, Search } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Our Expertise | Castle Hills Stain & Restoration",
-  description: "Get a free estimate for your next home improvement project.",
+  title: "Outdoor Structures | Castle Hills Stain & Restoration",
+  description:
+    "Custom outdoor structure installation and pergola and patio cover staining in the Dallas–Fort Worth area.",
 };
 
 export default function WoodAndOutdoorDesign() {
   return (
     <>
       <Hero
-        title="Custom Wood Structures & Outdoor Design"
-        subtitle="Custom pergolas, patio covers, fences, and outdoor kitchens built with precision and premium materials."
-        backgroundImageUrl="/photos/stain/stain-2.webp"
+        title="Outdoor Structures"
+        subtitle="Custom builds and professional staining for pergolas, patio covers, and other outdoor wood structures."
+        backgroundImageUrl="/photos/gates/gate-1.webp"
       />
 
       <div className="max-w-8xl mx-auto px-4 md:px-8 lg:px-8 mb-12 mt-12">
@@ -25,29 +25,15 @@ export default function WoodAndOutdoorDesign() {
             imagePosition="left"
             image="pergolas/pergola-6"
             imageAlt="Dark brown stained wooden pergola in a home's backyard alcove, with lights strung across it and greenery beneath it"
-            header="Pergola Installation & Staining"
-            content="Dreaming of a stylish, shaded retreat in your backyard? A custom pergola can transform your outdoor space into the perfect spot for relaxation and entertaining. Our expert pergola installation and staining services deliver both beauty and durability, with high-quality craftsmanship and a rich stain that protects and enhances the wood’s natural charm."
+            header="Custom Outdoor Structure Installation"
+            content="Need shade, shelter, or a focal point in the yard? We install custom outdoor structures—including pergolas, patio covers, and related carpentry—with layout and details matched to your home, so the finished piece feels built-in, not bolted on."
           />
           <ServiceDesc
             imagePosition="right"
             image="patio-cover"
             imageAlt="Bright acacia-colored patio cover attached to the back of a brick house"
-            header="Patio Cover Installation"
-            content="A custom patio cover can provide the perfect shelter, allowing you to enjoy your outdoor space year-round. Our patio cover installation service offers stylish, durable designs that not only provide shade and weather protection but also enhance your home's curb appeal. Imagine relaxing under your patio cover, shielded from the elements while still enjoying the fresh air."
-          />
-          <ServiceDesc
-            imagePosition="left"
-            image="fences/wood/fence-3"
-            imageAlt="Unstained wooden fence in a residential backyard from the sidewalk"
-            header="Wood Fence Installation"
-            content="A beautifully installed wood fence adds both charm and security to your home. Our wood fence installation service uses top-quality materials and skilled craftsmanship to create a durable, aesthetically pleasing barrier that stands up to the elements. Imagine your yard framed by a stunning wood fence that complements your landscape and boosts your home’s value."
-          />
-          <ServiceDesc
-            imagePosition="right"
-            image="gates/gate-1"
-            imageAlt="Deep brown stained wooden automatic gate along a brown wooden fence on a driveway"
-            header="Automatic Wooden Gates"
-            content="Tired of manually opening your gate every time you come home? An automatic gate can provide both convenience and enhanced security for your property. Our automatic gate installation service offers seamless operation, durable materials, and customizable designs to fit your style. Imagine pulling up to your home, pressing a button, and watching your gate glide open effortlessly—adding both ease and sophistication to your daily routine."
+            header="Pergola & Patio Cover Staining"
+            content="Sun and rain fade exposed beams fast. Our staining service evens out color, highlights the grain, and adds a protective coat so your pergola or patio cover keeps looking intentional. We work with premium stains and prep every surface for adhesion and longevity."
           />
         </section>
 

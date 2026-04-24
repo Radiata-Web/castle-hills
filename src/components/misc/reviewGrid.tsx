@@ -22,7 +22,7 @@ const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
         <Star
           key={star}
           className={`w-4 h-4 ${
-            star <= rating ? "text-accent fill-accent" : "text-gray-300"
+            star <= rating ? "text-accent fill-accent" : "text-zinc-300"
           }`}
         />
       ))}
@@ -34,9 +34,18 @@ export default function ReviewGrid() {
   return (
     <section id="reviews">
       <div className="max-w-8xl mx-auto py-6 md:py-10 lg:py-14 px-4 md:px-8 lg:px-8">
-        <h2 className="text-3xl font-bold tracking-tight mb-8 sm:text-4xl xl:text-5xl/none">
-          What do our clients say?
-        </h2>
+        <div className="mb-8 max-w-3xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent mb-2">
+            Social proof
+          </p>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl xl:text-5xl/none">
+            What do our clients say?
+          </h2>
+          <p className="mt-3 text-zinc-600">
+            Real jobs across DFW—swipe the cards on mobile, or open Google for
+            the full thread.
+          </p>
+        </div>
 
         {/* Desktop - Show all reviews */}
         <section className="hidden md:block columns-1 md:columns-2 lg:columns-3 gap-6 col-auto space-y-6 ">
@@ -51,19 +60,24 @@ export default function ReviewGrid() {
             <ReviewCard key={review.id} review={review} />
           ))}
         </section>
-      </div>
 
-      {/* <div className="flex justify-center mt-2">
-        <Button variant="outline" asChild>
-          <Link
-            href="https://maps.app.goo.gl/mFHuGgPHYESyk8ng6"
-            target="_blank"
-          >
-            See more reviews on Google Maps
-            <ExternalLink className="ml-2 h-4 w-4" />
-          </Link>
-        </Button>
-      </div> */}
+        <div className="mt-10 flex flex-col gap-4 rounded-2xl border border-zinc-200/90 bg-zinc-50/90 p-6 sm:flex-row sm:items-center sm:justify-between md:mt-12 md:p-8">
+          <p className="text-sm text-zinc-600 md:max-w-lg">
+            Showing a sample here—on Google you&apos;ll find the full set of
+            reviews and photos from recent projects.
+          </p>
+          <Button variant="outline" className="shrink-0 sm:hover:scale-105 transition-transform" asChild>
+            <Link
+              href="https://maps.app.goo.gl/RteUFevUMNKuLVkv8"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read more on Google
+              <ExternalLink className="ml-2 h-4 w-4" aria-hidden />
+            </Link>
+          </Button>
+        </div>
+      </div>
     </section>
   );
 }

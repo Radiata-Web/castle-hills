@@ -34,6 +34,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: `${url}/fence-services`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 1,
+    },
+    {
       url: `${url}/interior-exterior-restoration-renovation`,
       lastModified: new Date(),
       changeFrequency: "yearly",

@@ -27,13 +27,13 @@ export default function Hero() {
                 priority
               />
               <h1 className="text-4xl text-white font-bold tracking-tight sm:text-5xl xl:text-6xl/none">
-                Elevate Your Space with Luxury Design & Full Property Remodel
-                Services.
+                DFW Fence Staining, Installation & Exterior Painting Experts
               </h1>
-              <p className="max-w-[600px] text-zinc-100 md:text-lg">
-                From custom woodwork to refined remodels, Castle Hills Stain &
-                Restoration brings craftsmanship and lasting quality to homes
-                and businesses across the DFW Metroplex.
+              <p className="max-w-[600px] text-zinc-100 md:text-lg leading-relaxed">
+                Trusted by homeowners across DFW for clean, professional exterior
+                work—fences, outdoor structures, painting, and restoration built
+                for long-term durability. Scroll to explore each service in
+                depth, or request an estimate with the form.
               </p>
             </div>
 

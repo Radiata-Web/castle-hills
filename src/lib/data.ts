@@ -4,6 +4,8 @@ export interface Service {
   title: string;
   href: string;
   cardImg: string;
+  /** Short line on homepage service cards to invite a click. */
+  teaser: string;
 }
 
 export const PAGES: { title: string; href: string }[] = [
@@ -15,19 +17,22 @@ export const PAGES: { title: string; href: string }[] = [
 /** Matches homepage “What can we do for you?” service cards and nav Services dropdown. */
 export const HOMEPAGE_FEATURED_SERVICES: Service[] = [
   {
-    title: "Custom Wood Structures & Outdoor Design",
+    title: "Outdoor Structures",
     href: "/custom-wood-structures-outdoor-design",
+    cardImg: "/pergolas/pergola-6",
+    teaser: "Custom builds and pro staining for pergolas, patio covers, and outdoor wood.",
+  },
+  {
+    title: "Fence Services",
+    href: "/fence-services",
     cardImg: "/fences/wood/fence-1",
+    teaser: "Install, stain, repair, gates, and prep—finished for North Texas weather.",
   },
   {
-    title: "Luxury Finishes & Coatings",
+    title: "Interior & Exterior Painting",
     href: "/luxury-finishes-coatings",
-    cardImg: "/garages/garage-1",
-  },
-  {
-    title: "Interior & Exterior Restoration",
-    href: "/interior-exterior-restoration-renovation",
-    cardImg: "/restoration/restore-1",
+    cardImg: "/paint/ex-paint-2",
+    teaser: "Coatings, color, and detail work that holds up where you live.",
   },
 ];
 

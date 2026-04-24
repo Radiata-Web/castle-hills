@@ -92,7 +92,7 @@ export default function InteriorExteriorRestoration() {
                 className="transition-all duration-200 ease-in-out sm:hover:scale-105"
                 asChild
               >
-                <Link href="#contact">Request a Free Estimate</Link>
+                <Link href="/contact-us">Request a Free Estimate</Link>
               </Button>
             </section>
           </article>
@@ -125,14 +125,21 @@ export default function InteriorExteriorRestoration() {
                   </li>
                   <li>
                     Exterior improvements that unify curb appeal and durability,
-                    like{" "}
+                    including{" "}
                     <Link
                       href="/custom-wood-structures-outdoor-design"
                       className="underline text-accent-primary"
                     >
-                      fencing and pergolas
+                      pergolas and patio covers
                     </Link>{" "}
-                    — including building, staining, repair, and restoration.
+                    and{" "}
+                    <Link
+                      href="/fence-services"
+                      className="underline text-accent-primary"
+                    >
+                      fence and gate work
+                    </Link>{" "}
+                    — build, stain, repair, and restoration.
                   </li>
                   <li>
                     Professional{" "}
@@ -157,7 +164,7 @@ export default function InteriorExteriorRestoration() {
                 className="transition-all duration-200 ease-in-out sm:hover:scale-105"
                 asChild
               >
-                <Link href="#contact">Request a Free Estimate</Link>
+                <Link href="/contact-us">Request a Free Estimate</Link>
               </Button>
             </section>
 

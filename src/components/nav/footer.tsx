@@ -2,6 +2,7 @@ import Link from "next/link";
 import Socials from "@/components/ui/socials";
 import { HOMEPAGE_FEATURED_SERVICES } from "@/lib/data";
 import Image from "next/image";
+import { ExternalLink } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -34,7 +35,7 @@ export default function Footer() {
 
           {/* Right Column */}
           <div className="md:w-3/4">
-            <nav className="grid grid-cols-2 gap-6 md:gap-8 lg:grid-cols-2">
+            <nav className="grid grid-cols-2 gap-6 md:gap-8 lg:grid-cols-3">
               {/* Company */}
               <div>
                 <h3 className="font-semibold mb-2">Company</h3>
@@ -42,7 +43,7 @@ export default function Footer() {
                   <li>
                     <Link
                       href="/#about"
-                      className="text-sm text-muted-foreground hover:text-primary"
+                      className="text-sm text-muted-foreground hover:text-primary hover:underline"
                     >
                       About Us
                     </Link>
@@ -50,7 +51,7 @@ export default function Footer() {
                   <li>
                     <Link
                       href="/#services"
-                      className="text-sm text-muted-foreground hover:text-primary"
+                      className="text-sm text-muted-foreground hover:text-primary hover:underline"
                     >
                       Services
                     </Link>
@@ -58,7 +59,7 @@ export default function Footer() {
                   <li>
                     <Link
                       href="/contact-us"
-                      className="text-sm text-muted-foreground hover:text-primary"
+                      className="text-sm text-muted-foreground hover:text-primary hover:underline"
                     >
                       Contact
                     </Link>
@@ -66,7 +67,7 @@ export default function Footer() {
                   <li>
                     <Link
                       href="/privacy"
-                      className="text-sm text-muted-foreground hover:text-primary"
+                      className="text-sm text-muted-foreground hover:text-primary hover:underline"
                     >
                       Privacy Policy
                     </Link>
@@ -81,12 +82,21 @@ export default function Footer() {
                     <li key={service.href}>
                       <Link
                         href={service.href}
-                        className="text-sm text-muted-foreground hover:text-primary"
+                        className="text-sm text-muted-foreground hover:text-primary hover:underline"
                       >
                         {service.title}
                       </Link>
                     </li>
                   ))}
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-semibold mb-2">Trusted Vendors</h3>
+                <ul className="space-y-1">
+                  <li className="flex items-center gap-1">
+                    <Link href="https://www.zebrajunkremoval.net/" target="_blank" className="text-sm text-muted-foreground hover:text-primary hover:underline flex items-center gap-1">Zebra Junk Removal <ExternalLink size={12} /></Link>
+                  </li>
                 </ul>
               </div>
             </nav>

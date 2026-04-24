@@ -159,7 +159,7 @@ export default function Navbar() {
                 </nav>
 
                 <Button className="mt-[8%] w-full" size="lg" asChild>
-                  <Link href="#contact" onClick={() => setIsMenuOpen(false)}>
+                  <Link href="/contact-us" onClick={() => setIsMenuOpen(false)}>
                     Get a Free Estimate
                     <MoveRight className="ml-2" strokeWidth={1.5} />
                   </Link>

@@ -5,7 +5,7 @@ import Logo from "../nav/logo";
 
 export default function ChooseUs() {
   return (
-    <article className="p-12 bg-zinc-100 rounded-lg border border-zinc-200 my-24">
+    <article className="p-8 sm:p-10 md:p-12 bg-zinc-100 rounded-lg border border-zinc-200 my-12 md:my-16">
       <Logo />
       <h2 className="text-2xl font-bold sm:text-3xl xl:text-4xl/none mb-4 mt-8">
         Why Homeowners Choose Us
@@ -89,7 +89,7 @@ export default function ChooseUs() {
         className="transition-all duration-200 ease-in-out sm:hover:scale-105 mt-8"
         asChild
       >
-        <Link href="#contact">Get in contact</Link>
+        <Link href="/contact-us">Request a free estimate</Link>
       </Button>
     </article>
   );

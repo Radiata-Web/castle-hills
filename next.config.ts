@@ -2,6 +2,7 @@ import { NextConfig } from "next";
 
 const customWood = "/custom-wood-structures-outdoor-design";
 const luxuryFinishes = "/luxury-finishes-coatings";
+const fenceServices = "/fence-services";
 
 const nextConfig: NextConfig = {
   images: {
@@ -11,27 +12,27 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/wood-fences",
-        destination: customWood,
+        destination: fenceServices,
         permanent: true,
       },
       {
         source: "/fence-and-garage-door-stain",
-        destination: customWood,
+        destination: fenceServices,
         permanent: true,
       },
       {
         source: "/fence-staining",
-        destination: customWood,
+        destination: fenceServices,
         permanent: true,
       },
       {
         source: "/metal-fences",
-        destination: customWood,
+        destination: fenceServices,
         permanent: true,
       },
       {
         source: "/automatic-gates",
-        destination: customWood,
+        destination: fenceServices,
         permanent: true,
       },
       {

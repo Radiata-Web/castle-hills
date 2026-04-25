@@ -77,7 +77,7 @@ export default function Expertise() {
         <div className="flex w-full justify-center lg:sticky lg:top-24 lg:justify-end lg:self-start">
           <GlossyPhotoFrame
             figureClassName="w-full max-w-xl lg:max-w-none"
-            src="/photos/paint/ex-paint-2.webp"
+            src="/photos/stain/stain-4.webp"
             alt="Residential home exterior with a clean professional paint finish"
             width={700}
             height={500}

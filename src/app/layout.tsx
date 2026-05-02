@@ -7,6 +7,7 @@ import Navbar from "@/components/nav/navbar";
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
+  display: "swap",
   variable: "--font-sans",
 });
 
@@ -42,8 +43,8 @@ export default function RootLayout({
       >
         <Navbar />
         <main className="mx-auto">{children}</main>
+        <GoogleAnalytics gaId="G-N53ZFX5V5H" />
       </body>
-      <GoogleAnalytics gaId="G-N53ZFX5V5H" />
     </html>
   );
 }

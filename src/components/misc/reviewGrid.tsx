@@ -17,10 +17,15 @@ interface StarRatingProps {
 
 const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
   return (
-    <div className="flex flex-row items-center align-middle">
+    <div
+      className="flex flex-row items-center align-middle"
+      role="img"
+      aria-label={`${rating} out of 5 stars`}
+    >
       {[1, 2, 3, 4, 5].map((star) => (
         <Star
           key={star}
+          aria-hidden
           className={`w-4 h-4 ${
             star <= rating ? "text-accent fill-accent" : "text-zinc-300"
           }`}
@@ -94,7 +99,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
     <Card key={review.id} className="w-full break-inside-avoid-column">
       <CardHeader className="flex flex-row text-sm gap-2 font-semibold text-accent items-center">
         <StarRating rating={review.rating} />
-        5.0
+        <span aria-hidden>5.0</span>
       </CardHeader>
       <CardContent>
         <p className="text-zinc-600 text-sm">{review.text}</p>

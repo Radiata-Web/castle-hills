@@ -1,5 +1,6 @@
 import ChooseUs from "@/components/misc/choose-us";
 import { Hero } from "@/components/misc/hero";
+import PaintBeforeAfter from "@/components/misc/paint-before-after";
 import ServiceDesc from "@/components/misc/serviceDesc";
 import Footer from "@/components/nav/footer";
 import Link from "next/link";
@@ -31,12 +32,14 @@ export default function LuxuryFinishesCoatings() {
           />
           <ServiceDesc
             imagePosition="right"
-            image="paint/ex-paint-2"
+            image="paint/ex-paint-4"
             imageAlt="Exterior of a home with professional paint finish"
             header="Exterior Painting"
             content="Exterior paint is your first defense against heat, wind, and moisture. We prep siding and trim properly, use quality coatings suited to the substrate, and pay attention to details like caulk lines and cut-ins so your curb appeal looks crisp and stays protected."
           />
         </section>
+
+        <PaintBeforeAfter />
 
         <p className="text-zinc-600 max-w-[720px] -mt-8 mb-16">
           Wood fences and gates need a different process than siding and

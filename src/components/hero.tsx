@@ -1,20 +1,30 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowDown, Check, MoveRight } from "lucide-react";
+import { ArrowDown, MoveRight } from "lucide-react";
 import { ContactForm } from "./forms/contact-form";
 import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section
-      id="hero"
-      className="relative bg-cover bg-center bg-no-repeat bg-opacity-80 bg-black"
-      style={{
-        backgroundImage:
-          "url('https://raw.githubusercontent.com/Radiata-Web/castle-hills/refs/heads/main/public/photos/gates/gate-1.webp')",
-      }}
-    >
-      <div className="bg-gradient-to-r from-black/80 to-black/20">
+    <section id="hero" className="relative isolate overflow-hidden bg-zinc-900">
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <Image
+          src="/photos/gates/gate-1.webp"
+          alt=""
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          quality={80}
+          className="object-cover object-center"
+          aria-hidden
+        />
+      </div>
+      <div
+        className="absolute inset-0 z-[1] bg-gradient-to-r from-black/80 to-black/20"
+        aria-hidden
+      />
+      <div className="relative z-10">
         <div className="max-w-8xl mx-auto grid gap-12 px-4 md:px-8 lg:px-8 py-12 md:py-24 lg:py-32 xl:py-38 lg:grid-cols-2 lg:gap-20">
           {/* Left column */}
           <div className="flex flex-col justify-center space-y-10">

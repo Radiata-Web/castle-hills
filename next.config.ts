@@ -5,8 +5,11 @@ const luxuryFinishes = "/luxury-finishes-coatings";
 const fenceServices = "/fence-services";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    optimizePackageImports: ["lucide-react"],
+  },
   images: {
-    formats: ["image/webp"],
+    formats: ["image/avif", "image/webp"],
   },
   async redirects() {
     return [

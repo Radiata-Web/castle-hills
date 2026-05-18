@@ -12,6 +12,7 @@ import {
 import type { ReactNode } from "react";
 import Navbar from "@/components/nav/navbar";
 import { Button } from "@/components/ui/button";
+import { ctaPrimaryClassName } from "@/lib/cta";
 import { GA_ID } from "@/lib/site";
 import { pageHead, rootMeta } from "@/lib/seo";
 import { cn } from "@/lib/utils";
@@ -85,8 +86,13 @@ function NotFoundPage() {
         Oops! The page you&apos;re looking for doesn&apos;t exist.
       </h1>
       <p className="text-xl mb-8">Error 404</p>
-      <Button asChild>
-        <Link to="/">Return to Home</Link>
+      <Button
+        size="lg"
+        className={ctaPrimaryClassName}
+        render={<Link to="/" />}
+        nativeButton={false}
+      >
+        Return to Home
       </Button>
     </div>
   );

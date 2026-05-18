@@ -2,6 +2,11 @@ import React from "react";
 import { Link } from "@tanstack/react-router";
 import Image from "@/components/ui/optimized-image";
 import { Button } from "./ui/button";
+import {
+  ctaGroupClassName,
+  ctaPrimaryClassName,
+} from "@/lib/cta";
+import { cn } from "@/lib/utils";
 import { MoveRight, Phone } from "lucide-react";
 
 export default function About() {
@@ -39,25 +44,25 @@ export default function About() {
               </p>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-4 pb-6">
+            <div className={cn(ctaGroupClassName, "pb-2")}>
               <Button
-                className="transition-all duration-200 ease-in-out sm:hover:scale-105"
-                asChild
+                size="lg"
+                className={ctaPrimaryClassName}
+                render={<Link to="/about-us" />}
+                nativeButton={false}
               >
-                <Link to="/about-us">
-                  Learn more about us{" "}
-                  <MoveRight className="ml-2" strokeWidth={1.5} />
-                </Link>
+                Learn more about us
+                <MoveRight className="ml-2 size-5" strokeWidth={1.5} />
               </Button>
               <Button
                 variant="outline"
-                className="transition-all duration-200 ease-in-out sm:hover:scale-105"
-                asChild
+                size="lg"
+                className={ctaPrimaryClassName}
+                render={<a href="tel:4692153098" />}
+                nativeButton={false}
               >
-                <a href="tel:4692153098">
-                  Call Now
-                  <Phone size={16} className="ml-2" strokeWidth={1.5} />
-                </a>
+                Call Now
+                <Phone className="ml-2 size-5" strokeWidth={1.5} />
               </Button>
             </div>
 

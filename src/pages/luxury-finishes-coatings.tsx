@@ -16,7 +16,7 @@ export default function LuxuryFinishesCoatings() {
       />
 
       <div className="max-w-8xl mx-auto px-4 md:px-8 lg:px-8 mb-12 mt-12">
-        <section className="flex flex-col gap-4 md:gap-8 py-16">
+        <section className="flex flex-col gap-10 py-10 md:gap-12 md:py-16">
           <ServiceDesc
             imagePosition="left"
             image="paint/in-paint-2"

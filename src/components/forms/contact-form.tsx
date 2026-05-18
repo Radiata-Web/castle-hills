@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
+import { ctaPrimaryClassName } from "@/lib/cta";
 import {
   Form,
   FormControl,
@@ -227,7 +228,7 @@ export function ContactForm(props: ContactFormProps) {
                     required
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select a service" />
                       </SelectTrigger>
                     </FormControl>
@@ -287,12 +288,12 @@ export function ContactForm(props: ContactFormProps) {
             )}
           />
 
-          <section className="flex flex-col sm:flex-row gap-5 items-center pt-6">
+          <section className="flex flex-col gap-4 pt-8 sm:flex-row sm:items-center sm:gap-6">
             <Button
               type="submit"
               disabled={status === "pending" || status === "ok"}
               size="lg"
-              className="min-w-full sm:min-w-10 transition-all duration-200 ease-in-out sm:hover:scale-105"
+              className={`min-w-full sm:min-w-[12rem] ${ctaPrimaryClassName}`}
             >
               Request a Free Estimate{" "}
               <SendHorizonal size={16} className="ml-2" />

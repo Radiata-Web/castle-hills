@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ctaAfterCopyClassName, ctaPrimaryClassName } from "@/lib/cta";
+import { cn } from "@/lib/utils";
 import Logo from "../nav/logo";
 
 export default function ChooseUs() {
@@ -86,10 +88,12 @@ export default function ChooseUs() {
 
       <Button
         variant="outline"
-        className="transition-all duration-200 ease-in-out sm:hover:scale-105 mt-8"
-        asChild
+        size="lg"
+        className={cn(ctaPrimaryClassName, ctaAfterCopyClassName)}
+        render={<Link to="/contact-us" />}
+        nativeButton={false}
       >
-        <Link to="/contact-us">Request a free estimate</Link>
+        Request a free estimate
       </Button>
     </article>
   );

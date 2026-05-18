@@ -4,6 +4,8 @@ import { Hero } from "@/components/misc/hero";
 import ServiceDesc from "@/components/misc/serviceDesc";
 import Footer from "@/components/nav/footer";
 import { Button } from "@/components/ui/button";
+import { ctaPrimaryClassName } from "@/lib/cta";
+import { cn } from "@/lib/utils";
 import { Link } from "@tanstack/react-router";
 
 
@@ -21,7 +23,7 @@ export default function FenceServices() {
 
         <section
           id="fence-details"
-          className="flex flex-col gap-4 md:gap-8 py-12 md:py-16 scroll-mt-24"
+          className="flex flex-col gap-10 py-10 md:gap-12 md:py-16 scroll-mt-24"
         >
           <ServiceDesc
             imagePosition="left"
@@ -74,15 +76,16 @@ export default function FenceServices() {
           <p className="text-sm font-semibold uppercase tracking-wide text-zinc-500 mb-2">
             Our workflow
           </p>
-          <p className="text-lg font-medium text-zinc-800 mb-8">
+          <p className="text-lg font-medium text-zinc-800 mb-0">
             Restore → Prep → Stain → Long-term protection
           </p>
           <Button
             size="lg"
-            className="transition-all duration-200 ease-in-out sm:hover:scale-105"
-            asChild
+            className={cn(ctaPrimaryClassName, "mt-5 sm:mt-6")}
+            render={<Link to="/contact-us" />}
+            nativeButton={false}
           >
-            <Link to="/contact-us">Request a Free Estimate</Link>
+            Request a Free Estimate
           </Button>
         </section>
 

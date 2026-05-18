@@ -9,6 +9,8 @@ import { ExternalLink, Star, User } from "lucide-react";
 import { REVIEWS } from "@/lib/data";
 import Image from "@/components/ui/optimized-image";
 import { Button } from "../ui/button";
+import { ctaPrimaryClassName } from "@/lib/cta";
+import { cn } from "@/lib/utils";
 import { Link } from "@tanstack/react-router";
 
 interface StarRatingProps {
@@ -71,15 +73,21 @@ export default function ReviewGrid() {
             Showing a sample here—on Google you&apos;ll find the full set of
             reviews and photos from recent projects.
           </p>
-          <Button variant="outline" className="shrink-0 sm:hover:scale-105 transition-transform" asChild>
-            <a
-              href="https://maps.app.goo.gl/RteUFevUMNKuLVkv8"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Read more on Google
-              <ExternalLink className="ml-2 h-4 w-4" aria-hidden />
-            </a>
+          <Button
+            variant="outline"
+            size="lg"
+            className={cn(ctaPrimaryClassName, "shrink-0")}
+            render={
+              <a
+                href="https://maps.app.goo.gl/RteUFevUMNKuLVkv8"
+                target="_blank"
+                rel="noopener noreferrer"
+              />
+            }
+            nativeButton={false}
+          >
+            Read more on Google
+            <ExternalLink className="ml-2 h-4 w-4" aria-hidden />
           </Button>
         </div>
       </div>

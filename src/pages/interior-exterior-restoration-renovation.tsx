@@ -1,6 +1,8 @@
 import { Hero } from "@/components/misc/hero";
 import Footer from "@/components/nav/footer";
 import { Button } from "@/components/ui/button";
+import { ctaPrimaryClassName } from "@/lib/cta";
+import { cn } from "@/lib/utils";
 import Image from "@/components/ui/optimized-image";
 import { Link } from "@tanstack/react-router";
 import RemodelCarousel from "@/components/misc/remodel-carousel";
@@ -32,7 +34,7 @@ export default function InteriorExteriorRestoration() {
             </figure>
 
             {/* Service Description */}
-            <section className="w-full md:w-1/2 space-y-8">
+            <section className="w-full space-y-5 md:w-1/2 md:space-y-6">
               <span className="space-y-4">
                 <h2 className="text-2xl font-bold sm:text-3xl xl:text-4xl/none mb-4">
                   Home Restoration
@@ -83,17 +85,18 @@ export default function InteriorExteriorRestoration() {
               </span>
               <Button
                 size="lg"
-                className="transition-all duration-200 ease-in-out sm:hover:scale-105"
-                asChild
+                className={ctaPrimaryClassName}
+                render={<Link to="/contact-us" />}
+                nativeButton={false}
               >
-                <Link to="/contact-us">Request a Free Estimate</Link>
+                Request a Free Estimate
               </Button>
             </section>
           </article>
 
           <article className="flex flex-col rounded-lg lg:flex-row-reverse items-center justify-between gap-4 md:gap-10 lg:gap-18">
             {/* Service Description */}
-            <section className="w-full lg:w-1/2 space-y-8">
+            <section className="w-full space-y-5 lg:w-1/2 md:space-y-6">
               <span className="space-y-4">
                 <h2 className="text-2xl font-bold sm:text-3xl xl:text-4xl/none mb-4">
                   Home Remodeling
@@ -155,10 +158,11 @@ export default function InteriorExteriorRestoration() {
               </span>
               <Button
                 size="lg"
-                className="transition-all duration-200 ease-in-out sm:hover:scale-105"
-                asChild
+                className={ctaPrimaryClassName}
+                render={<Link to="/contact-us" />}
+                nativeButton={false}
               >
-                <Link to="/contact-us">Request a Free Estimate</Link>
+                Request a Free Estimate
               </Button>
             </section>
 

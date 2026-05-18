@@ -3,6 +3,12 @@ import { Hero } from "@/components/misc/hero";
 import Footer from "@/components/nav/footer";
 import ServicesCards from "@/components/services-cards";
 import { Button } from "@/components/ui/button";
+import {
+  ctaAfterCopyClassName,
+  ctaGroupClassName,
+  ctaPrimaryClassName,
+} from "@/lib/cta";
+import { cn } from "@/lib/utils";
 import { MoveRight, Phone } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
@@ -43,25 +49,25 @@ export default function OurExpertise() {
               protect and elevate your home.
             </p>
 
-            <div className="flex flex-col gap-2 md:flex-row md:gap-4 mt-8">
+            <div className={cn(ctaGroupClassName, ctaAfterCopyClassName)}>
               <Button
-                className="transition-all duration-200 ease-in-out sm:hover:scale-105"
-                asChild
+                size="lg"
+                className={ctaPrimaryClassName}
+                render={<a href="/#contact" />}
+                nativeButton={false}
               >
-                <a href="/#contact">
-                  Get a Free Estimate
-                  <MoveRight className="ml-2" strokeWidth={1.5} />
-                </a>
+                Get a Free Estimate
+                <MoveRight className="ml-2 size-5" strokeWidth={1.5} />
               </Button>
               <Button
                 variant="outline"
-                className="transition-all duration-200 ease-in-out sm:hover:scale-105"
-                asChild
+                size="lg"
+                className={ctaPrimaryClassName}
+                render={<a href="tel:4692153098" />}
+                nativeButton={false}
               >
-                <a href="tel:4692153098">
-                  Call Now
-                  <Phone size={16} className="ml-2" strokeWidth={1.5} />
-                </a>
+                Call Now
+                <Phone className="ml-2 size-5" strokeWidth={1.5} />
               </Button>
             </div>
           </div>

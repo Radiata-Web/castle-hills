@@ -1,6 +1,6 @@
 import React from "react";
-import Link from "next/link";
-import Image from "next/image";
+import { Link } from "@tanstack/react-router";
+import Image from "@/components/ui/optimized-image";
 import { Button } from "./ui/button";
 import { MoveRight, Phone } from "lucide-react";
 
@@ -44,7 +44,7 @@ export default function About() {
                 className="transition-all duration-200 ease-in-out sm:hover:scale-105"
                 asChild
               >
-                <Link href="/about-us">
+                <Link to="/about-us">
                   Learn more about us{" "}
                   <MoveRight className="ml-2" strokeWidth={1.5} />
                 </Link>
@@ -54,16 +54,16 @@ export default function About() {
                 className="transition-all duration-200 ease-in-out sm:hover:scale-105"
                 asChild
               >
-                <Link href="tel:4692153098">
+                <a href="tel:4692153098">
                   Call Now
                   <Phone size={16} className="ml-2" strokeWidth={1.5} />
-                </Link>
+                </a>
               </Button>
             </div>
 
             {/* Socials */}
             <div className="flex flex-row gap-4 sm:gap-6 md:gap-8">
-              <Link
+              <a
                 href="https://maps.app.goo.gl/RteUFevUMNKuLVkv8"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -76,8 +76,8 @@ export default function About() {
                   height={100}
                   loading="lazy"
                 />
-              </Link>
-              <Link
+              </a>
+              <a
                 href="https://www.facebook.com/CHPW903"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -90,7 +90,7 @@ export default function About() {
                   height={100}
                   loading="lazy"
                 />
-              </Link>
+              </a>
             </div>
           </div>
         </div>

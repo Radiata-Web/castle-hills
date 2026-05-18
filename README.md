@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Castle Hills Stain & Restoration
 
-## Getting Started
+Marketing site built with [TanStack Start](https://tanstack.com/start) and deployed on [Netlify](https://www.netlify.com/).
 
-First, run the development server:
+This repo uses [pnpm](https://pnpm.io/) only (`package-lock.json` and `bun.lock` are not used).
+
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+pnpm build
+```
 
-## Learn More
+Production output:
 
-To learn more about Next.js, take a look at the following resources:
+- Client assets: `dist/client`
+- Netlify SSR handler: `.netlify/v1/functions/server.mjs`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy (Netlify)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+`netlify.toml` configures:
 
-## Deploy on Vercel
+- Build: `pnpm run build`
+- Publish: `dist/client`
+- Legacy URL redirects (ported from former Next.js config)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Contact form uses Netlify Forms via `public/contact-form.html` and POST to `/contact-form.html`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Project layout
+
+- `src/routes/` — file-based routes (URL + SEO `head`)
+- `src/pages/` — page UI components
+- `src/components/` — shared UI
+- `public/` — static assets, `robots.txt`, `sitemap.xml`
+- `docs/MIGRATION_PARITY.md` — route/SEO parity checklist

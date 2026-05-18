@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { ArrowDown, MoveRight } from "lucide-react";
 import { ContactForm } from "./forms/contact-form";
-import Image from "next/image";
+import Image from "@/components/ui/optimized-image";
 
 export default function Hero() {
   return (
@@ -54,10 +54,10 @@ export default function Hero() {
                 className="transition-all duration-200 ease-in-out sm:hover:scale-105"
                 asChild
               >
-                <Link href="/#contact">
+                <a href="/#contact">
                   Get a Free Estimate
                   <MoveRight className="ml-2" strokeWidth={1.5} />
-                </Link>
+                </a>
               </Button>
               <Button
                 variant="outline"
@@ -65,9 +65,9 @@ export default function Hero() {
                 className="transition-all duration-200 ease-in-out sm:hover:scale-105"
                 asChild
               >
-                <Link href="/#services">
+                <a href="/#services">
                   View Our Services <ArrowDown size={16} className="ml-2" />
-                </Link>
+                </a>
               </Button>
             </div>
           </div>

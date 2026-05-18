@@ -1,9 +1,9 @@
-import Link from "next/link";
-import Image from "next/image";
+import { Link } from "@tanstack/react-router";
+import Image from "@/components/ui/optimized-image";
 
 export default function Logo({ className }: { className?: string }) {
   return (
-    <Link href="/" className={`flex-shrink-0 flex items-center ${className}`}>
+    <Link to="/" className={`flex-shrink-0 flex items-center ${className}`}>
       <Image
         src="/logos/logo-wordmark.svg"
         width={200}

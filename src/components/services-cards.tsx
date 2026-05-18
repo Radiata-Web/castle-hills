@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { MoveRight } from "lucide-react";
 import {
@@ -57,10 +57,10 @@ export default function ServicesCards({
                   asChild
                   variant="outline"
                 >
-                  <Link href="#contact">
+                  <a href="#contact">
                     Get a Free Estimate
                     <MoveRight className="ml-2 h-4 w-4" />
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </div>
@@ -74,7 +74,7 @@ export default function ServicesCards({
 function ServiceCard({ service }: { service: Service }) {
   return (
     <Link
-      href={service.href}
+      to={service.href}
       className="group relative isolate min-h-[260px] overflow-hidden rounded-2xl ring-1 ring-black/10 shadow-sm transition-[transform,box-shadow,ring-color] duration-500 ease-out hover:-translate-y-1 hover:shadow-xl hover:ring-accent/22 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       key={service.title}
     >

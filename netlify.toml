@@ -1,0 +1,69 @@
+[build]
+  command = "pnpm run build"
+  publish = "dist/client"
+
+[[redirects]]
+  from = "/wood-fences"
+  to = "/fence-services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/fence-and-garage-door-stain"
+  to = "/fence-services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/fence-staining"
+  to = "/fence-services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/metal-fences"
+  to = "/fence-services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/automatic-gates"
+  to = "/fence-services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pergolas-and-patio-covers"
+  to = "/custom-wood-structures-outdoor-design"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/patio-covers"
+  to = "/custom-wood-structures-outdoor-design"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/home-restoration-remodeling"
+  to = "/interior-exterior-restoration-renovation"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/interior-painting"
+  to = "/luxury-finishes-coatings"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/exterior-painting"
+  to = "/luxury-finishes-coatings"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/interior-exterior-painting"
+  to = "/luxury-finishes-coatings"
+  status = 301
+  force = true

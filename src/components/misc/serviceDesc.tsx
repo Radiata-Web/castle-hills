@@ -1,6 +1,6 @@
-import Image from "next/image";
+import Image from "@/components/ui/optimized-image";
 import { Button } from "../ui/button";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 
 interface ServiceDescProps {
   imagePosition: "left" | "right";
@@ -45,7 +45,7 @@ export default function ServiceDesc(props: ServiceDescProps) {
           className="transition-all duration-200 ease-in-out sm:hover:scale-105"
           asChild
         >
-          <Link href={estimateHref}>Request a Free Estimate</Link>
+          <Link to={estimateHref}>Request a Free Estimate</Link>
         </Button>
       </section>
     </article>

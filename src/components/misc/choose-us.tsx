@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Logo from "../nav/logo";
@@ -89,7 +89,7 @@ export default function ChooseUs() {
         className="transition-all duration-200 ease-in-out sm:hover:scale-105 mt-8"
         asChild
       >
-        <Link href="/contact-us">Request a free estimate</Link>
+        <Link to="/contact-us">Request a free estimate</Link>
       </Button>
     </article>
   );

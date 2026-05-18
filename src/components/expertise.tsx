@@ -1,7 +1,7 @@
 import { CheckCircle, MoveRight } from "lucide-react";
 import { GlossyPhotoFrame } from "@/components/misc/glossy-photo-frame";
 import { Button } from "./ui/button";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 
 const PILLARS = [
   {
@@ -64,7 +64,7 @@ export default function Expertise() {
                 {body}
               </p>
               <Link
-                href={href}
+                to={href}
                 className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent underline-offset-4 hover:underline"
               >
                 Read more
@@ -90,7 +90,7 @@ export default function Expertise() {
             className="transition-all duration-200 ease-in-out sm:hover:scale-105"
             asChild
           >
-            <Link href="/our-expertise">
+            <Link to="/our-expertise">
               Full expertise overview
               <MoveRight className="ml-2" strokeWidth={1.5} />
             </Link>
@@ -100,7 +100,7 @@ export default function Expertise() {
             className="transition-all duration-200 ease-in-out sm:hover:scale-105"
             asChild
           >
-            <Link href="/contact-us">
+            <Link to="/contact-us">
               Get a Free Estimate
               <MoveRight size={16} className="ml-2" strokeWidth={1.5} />
             </Link>

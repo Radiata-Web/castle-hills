@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/ui/optimized-image";
 
 export default function Suppliers() {
   return (

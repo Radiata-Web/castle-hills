@@ -1,7 +1,7 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import Socials from "@/components/ui/socials";
 import { HOMEPAGE_FEATURED_SERVICES } from "@/lib/data";
-import Image from "next/image";
+import Image from "@/components/ui/optimized-image";
 import { ExternalLink } from "lucide-react";
 
 export default function Footer() {
@@ -41,24 +41,24 @@ export default function Footer() {
                 <h3 className="font-semibold mb-2">Company</h3>
                 <ul className="space-y-1">
                   <li>
-                    <Link
+                    <a
                       href="/#about"
                       className="text-sm text-muted-foreground hover:text-primary hover:underline"
                     >
                       About Us
-                    </Link>
+                    </a>
                   </li>
                   <li>
-                    <Link
+                    <a
                       href="/#services"
                       className="text-sm text-muted-foreground hover:text-primary hover:underline"
                     >
                       Services
-                    </Link>
+                    </a>
                   </li>
                   <li>
                     <Link
-                      href="/contact-us"
+                      to="/contact-us"
                       className="text-sm text-muted-foreground hover:text-primary hover:underline"
                     >
                       Contact
@@ -66,7 +66,7 @@ export default function Footer() {
                   </li>
                   <li>
                     <Link
-                      href="/privacy"
+                      to="/privacy"
                       className="text-sm text-muted-foreground hover:text-primary hover:underline"
                     >
                       Privacy Policy
@@ -81,7 +81,7 @@ export default function Footer() {
                   {HOMEPAGE_FEATURED_SERVICES.map((service) => (
                     <li key={service.href}>
                       <Link
-                        href={service.href}
+                        to={service.href}
                         className="text-sm text-muted-foreground hover:text-primary hover:underline"
                       >
                         {service.title}
@@ -95,7 +95,7 @@ export default function Footer() {
                 <h3 className="font-semibold mb-2">Trusted Vendors</h3>
                 <ul className="space-y-1">
                   <li className="flex items-center gap-1">
-                    <Link href="https://www.zebrajunkremoval.net/" target="_blank" className="text-sm text-muted-foreground hover:text-primary hover:underline flex items-center gap-1">Zebra Junk Removal <ExternalLink size={12} /></Link>
+                    <a href="https://www.zebrajunkremoval.net/" target="_blank" className="text-sm text-muted-foreground hover:text-primary hover:underline flex items-center gap-1">Zebra Junk Removal <ExternalLink size={12} /></a>
                   </li>
                 </ul>
               </div>
@@ -111,13 +111,13 @@ export default function Footer() {
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} Castle Hills Stain and Restoration
             LLC. <br className="sm:hidden" /> Website by{" "}
-            <Link
+            <a
               href="https://radiataweb.com"
               target="_blank"
               className="text-accent"
             >
               Radiata Web
-            </Link>
+            </a>
             .
           </p>
           <p className="text-xs text-muted-foreground mt-2">

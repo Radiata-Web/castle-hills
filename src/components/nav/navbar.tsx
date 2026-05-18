@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { ChevronDown, Menu, MoveRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NavBanner from "@/components/nav/nav-banner";
@@ -41,7 +41,7 @@ export default function Navbar() {
             {PAGES.map((page) => (
               <Link
                 key={page.title}
-                href={page.href}
+                to={page.href}
                 className={navigationMenuTriggerStyle()}
               >
                 {page.title}
@@ -64,7 +64,7 @@ export default function Navbar() {
               <DropdownMenuContent align="start" className="min-w-[14rem]">
                 {HOMEPAGE_FEATURED_SERVICES.map((service) => (
                   <DropdownMenuItem key={service.href} asChild>
-                    <Link href={service.href}>{service.title}</Link>
+                    <Link to={service.href}>{service.title}</Link>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -76,7 +76,7 @@ export default function Navbar() {
               className="transition-all duration-200 ease-in-out sm:hover:scale-105"
               asChild
             >
-              <Link href="/contact-us">
+              <Link to="/contact-us">
                 Get a Free Estimate{" "}
                 <MoveRight className="ml-2" strokeWidth={1.5} />
               </Link>
@@ -111,7 +111,7 @@ export default function Navbar() {
                     asChild
                   >
                     <Link
-                      href="/"
+                      to="/"
                       className="block rounded-lg px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
                       onClick={() => setIsMenuOpen(false)}
                     >
@@ -126,7 +126,7 @@ export default function Navbar() {
                     asChild
                   >
                     <Link
-                      href="/about-us"
+                      to="/about-us"
                       className="block rounded-lg px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
                       onClick={() => setIsMenuOpen(false)}
                     >
@@ -141,7 +141,7 @@ export default function Navbar() {
                     asChild
                   >
                     <Link
-                      href="/our-expertise"
+                      to="/our-expertise"
                       className="block rounded-lg px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
                       onClick={() => setIsMenuOpen(false)}
                     >
@@ -159,7 +159,7 @@ export default function Navbar() {
                 </nav>
 
                 <Button className="mt-[8%] w-full" size="lg" asChild>
-                  <Link href="/contact-us" onClick={() => setIsMenuOpen(false)}>
+                  <Link to="/contact-us" onClick={() => setIsMenuOpen(false)}>
                     Get a Free Estimate
                     <MoveRight className="ml-2" strokeWidth={1.5} />
                   </Link>

@@ -28,6 +28,15 @@ import { zfd } from "zod-form-data";
 import { useState } from "react";
 import { CheckCircle, Hourglass, SendHorizonal, XCircle } from "lucide-react";
 
+/** Must match `public/contact-form.html` option values for Netlify Forms. */
+const PROJECT_TYPES = [
+  "Custom Wood & Outdoor Living",
+  "Painting & Finishes",
+  "Interior & Exterior Restoration",
+  "Commercial/HOA Work",
+  "Other",
+] as const;
+
 // Form validation schema
 const formSchema = zfd.formData({
   "form-name": z.string(),
@@ -54,20 +63,12 @@ const formSchema = zfd.formData({
     .transform((val) =>
       parsePhoneNumber(val, { defaultCountry: "US" }).number.toString(),
     ),
-  serviceType: z
-    .string({
-      error: (issue) =>
-        issue.input === undefined ? "Please select a service type." : undefined,
-    })
-    .refine(
-      (val) =>
-        ["wood", "painting", "restoration", "commercial", "other"].includes(
-          val,
-        ),
-      {
-        error: "Please select a valid service type.",
-      },
-    ),
+  serviceType: z.enum(PROJECT_TYPES, {
+    error: (issue) =>
+      issue.input === undefined
+        ? "Please select a service type."
+        : "Please select a valid service type.",
+  }),
   message: z.string({
     error: (issue) =>
       issue.input === undefined
@@ -221,9 +222,10 @@ export function ContactForm(props: ContactFormProps) {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Project Type</FormLabel>
+                  <input type="hidden" name="serviceType" value={field.value} />
                   <Select
+                    value={field.value}
                     onValueChange={field.onChange}
-                    defaultValue={field.value}
                     disabled={status === "pending"}
                     required
                   >
@@ -233,33 +235,15 @@ export function ContactForm(props: ContactFormProps) {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="wood" className="hover:cursor-pointer">
-                        Custom Wood & Outdoor Living
-                      </SelectItem>
-                      <SelectItem
-                        value="painting"
-                        className="hover:cursor-pointer"
-                      >
-                        Painting & Finishes
-                      </SelectItem>
-                      <SelectItem
-                        value="restoration"
-                        className="hover:cursor-pointer"
-                      >
-                        Interior & Exterior Restoration
-                      </SelectItem>
-                      <SelectItem
-                        value="commercial"
-                        className="hover:cursor-pointer"
-                      >
-                        Commercial/HOA Work
-                      </SelectItem>
-                      <SelectItem
-                        value="other"
-                        className="hover:cursor-pointer"
-                      >
-                        Other
-                      </SelectItem>
+                      {PROJECT_TYPES.map((projectType) => (
+                        <SelectItem
+                          key={projectType}
+                          value={projectType}
+                          className="hover:cursor-pointer"
+                        >
+                          {projectType}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                   <FormMessage />

@@ -1,5 +1,7 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import { ctaAfterCopyClassName, ctaPrimaryClassName } from "@/lib/cta";
+import { cn } from "@/lib/utils";
 import { MoveRight } from "lucide-react";
 import {
   HOMEPAGE_FEATURED_SERVICES,
@@ -53,14 +55,14 @@ export default function ServicesCards({
                 </p>
 
                 <Button
-                  className="transition-all duration-200 ease-in-out sm:hover:scale-105 w-fit mt-4"
-                  asChild
+                  size="lg"
                   variant="outline"
+                  className={cn(ctaPrimaryClassName, ctaAfterCopyClassName, "w-fit sm:w-auto")}
+                  render={<a href="#contact" />}
+                  nativeButton={false}
                 >
-                  <Link href="#contact">
-                    Get a Free Estimate
-                    <MoveRight className="ml-2 h-4 w-4" />
-                  </Link>
+                  Get a Free Estimate
+                  <MoveRight className="ml-2 size-5" />
                 </Button>
               </div>
             </div>
@@ -74,7 +76,7 @@ export default function ServicesCards({
 function ServiceCard({ service }: { service: Service }) {
   return (
     <Link
-      href={service.href}
+      to={service.href}
       className="group relative isolate min-h-[260px] overflow-hidden rounded-2xl ring-1 ring-black/10 shadow-sm transition-[transform,box-shadow,ring-color] duration-500 ease-out hover:-translate-y-1 hover:shadow-xl hover:ring-accent/22 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
       key={service.title}
     >

@@ -1,4 +1,4 @@
-import Image, { type ImageProps } from "next/image";
+import Image, { type OptimizedImageProps as ImageProps } from "@/components/ui/optimized-image";
 import { cn } from "@/lib/utils";
 
 type GlossyPhotoFrameProps = ImageProps & {

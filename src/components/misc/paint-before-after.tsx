@@ -1,10 +1,4 @@
-import Image from "next/image";
-import { Fraunces } from "next/font/google";
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  display: "swap",
-});
+import Image from "@/components/ui/optimized-image";
 
 function Pair(props: {
   beforeSrc: string;
@@ -108,8 +102,8 @@ export default function PaintBeforeAfter() {
             <span className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-300 to-zinc-200" />
           </div>
           <Pair
-            beforeSrc="/photos/paint/in-paint-1.webp"
-            afterSrc="/photos/paint/in-paint-2.webp"
+            beforeSrc="/photos/paint/in-paint-2.webp"
+            afterSrc="/photos/paint/in-paint-1.webp"
             beforeAlt="Interior room before painting refresh"
             afterAlt="Same interior after fresh paint"
             delayClass="motion-safe:[animation-delay:120ms]"
@@ -125,8 +119,8 @@ export default function PaintBeforeAfter() {
             <span className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-300 to-zinc-200" />
           </div>
           <Pair
-            beforeSrc="/photos/paint/ex-paint-3.webp"
-            afterSrc="/photos/paint/ex-paint-4.webp"
+            beforeSrc="/photos/paint/ex-paint-1-before.webp"
+            afterSrc="/photos/paint/ex-paint-1-after.webp"
             beforeAlt="Home exterior before professional repaint"
             afterAlt="Same home exterior after professional repaint"
             delayClass="motion-safe:[animation-delay:160ms]"

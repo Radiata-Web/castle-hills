@@ -1,6 +1,7 @@
-import Image from "next/image";
+import Image from "@/components/ui/optimized-image";
 import { Button } from "../ui/button";
-import Link from "next/link";
+import { ctaPrimaryClassName } from "@/lib/cta";
+import { Link } from "@tanstack/react-router";
 
 interface ServiceDescProps {
   imagePosition: "left" | "right";
@@ -33,7 +34,7 @@ export default function ServiceDesc(props: ServiceDescProps) {
       </figure>
 
       {/* Service Description */}
-      <section className="w-full md:w-1/2 space-y-8">
+      <section className="w-full space-y-5 md:w-1/2 md:space-y-6">
         <div className="space-y-4">
           <h2 className="text-2xl font-bold sm:text-3xl xl:text-4xl/none mb-4">
             {props.header}
@@ -42,10 +43,11 @@ export default function ServiceDesc(props: ServiceDescProps) {
         </div>
         <Button
           size="lg"
-          className="transition-all duration-200 ease-in-out sm:hover:scale-105"
-          asChild
+          className={ctaPrimaryClassName}
+          render={<Link to={estimateHref} />}
+          nativeButton={false}
         >
-          <Link href={estimateHref}>Request a Free Estimate</Link>
+          Request a Free Estimate
         </Button>
       </section>
     </article>

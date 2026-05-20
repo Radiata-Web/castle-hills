@@ -1,7 +1,13 @@
 import { CheckCircle, MoveRight } from "lucide-react";
 import { GlossyPhotoFrame } from "@/components/misc/glossy-photo-frame";
 import { Button } from "./ui/button";
-import Link from "next/link";
+import {
+  ctaAfterCopyClassName,
+  ctaGroupClassName,
+  ctaPrimaryClassName,
+} from "@/lib/cta";
+import { cn } from "@/lib/utils";
+import { Link } from "@tanstack/react-router";
 
 const PILLARS = [
   {
@@ -64,7 +70,7 @@ export default function Expertise() {
                 {body}
               </p>
               <Link
-                href={href}
+                to={href}
                 className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent underline-offset-4 hover:underline"
               >
                 Read more
@@ -85,25 +91,25 @@ export default function Expertise() {
           />
         </div>
 
-        <div className="flex flex-col gap-4 sm:flex-row lg:col-span-2">
+        <div className={cn(ctaGroupClassName, ctaAfterCopyClassName, "lg:col-span-2")}>
           <Button
-            className="transition-all duration-200 ease-in-out sm:hover:scale-105"
-            asChild
+            size="lg"
+            className={ctaPrimaryClassName}
+            render={<Link to="/our-expertise" />}
+            nativeButton={false}
           >
-            <Link href="/our-expertise">
-              Full expertise overview
-              <MoveRight className="ml-2" strokeWidth={1.5} />
-            </Link>
+            Full expertise overview
+            <MoveRight className="ml-2 size-5" strokeWidth={1.5} />
           </Button>
           <Button
             variant="outline"
-            className="transition-all duration-200 ease-in-out sm:hover:scale-105"
-            asChild
+            size="lg"
+            className={ctaPrimaryClassName}
+            render={<Link to="/contact-us" />}
+            nativeButton={false}
           >
-            <Link href="/contact-us">
-              Get a Free Estimate
-              <MoveRight size={16} className="ml-2" strokeWidth={1.5} />
-            </Link>
+            Get a Free Estimate
+            <MoveRight className="ml-2 size-5" strokeWidth={1.5} />
           </Button>
         </div>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { ChevronDown, Menu, MoveRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NavBanner from "@/components/nav/nav-banner";
@@ -20,14 +20,34 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { ctaPrimaryClassName } from "@/lib/cta";
 import { cn } from "@/lib/utils";
 import { PAGES, HOMEPAGE_FEATURED_SERVICES } from "@/lib/data";
 import Socials from "@/components/ui/socials";
 import DropdownCategory from "@/components/nav/dropdown-category";
-import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+
+const mobileNavLinkClass =
+  "flex min-h-12 w-full items-center rounded-lg px-4 py-3 text-lg font-semibold leading-snug text-foreground transition-colors hover:bg-zinc-100 hover:text-zinc-900";
+
+function MobileNavLink({
+  to,
+  children,
+  onNavigate,
+}: {
+  to: string;
+  children: React.ReactNode;
+  onNavigate: () => void;
+}) {
+  return (
+    <Link to={to} className={mobileNavLinkClass} onClick={onNavigate}>
+      {children}
+    </Link>
+  );
+}
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <nav className="sticky top-0 z-10 bg-background shadow-md">
@@ -41,7 +61,7 @@ export default function Navbar() {
             {PAGES.map((page) => (
               <Link
                 key={page.title}
-                href={page.href}
+                to={page.href}
                 className={navigationMenuTriggerStyle()}
               >
                 {page.title}
@@ -52,19 +72,22 @@ export default function Navbar() {
               <DropdownMenuTrigger
                 className={cn(
                   navigationMenuTriggerStyle(),
-                  "group gap-0 border-0 bg-transparent font-medium shadow-none data-[state=open]:shadow-none",
+                  "group gap-0 border-0 bg-transparent font-medium shadow-none data-popup-open:shadow-none",
                 )}
               >
                 Services
                 <ChevronDown
-                  className="relative top-[1px] ml-1 h-3 w-3 opacity-60 transition duration-200 group-data-[state=open]:rotate-180"
+                  className="relative top-px ml-1 size-3 opacity-60 transition duration-200 group-data-popup-open:rotate-180"
                   aria-hidden
                 />
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="min-w-[14rem]">
+              <DropdownMenuContent align="start" className="min-w-56">
                 {HOMEPAGE_FEATURED_SERVICES.map((service) => (
-                  <DropdownMenuItem key={service.href} asChild>
-                    <Link href={service.href}>{service.title}</Link>
+                  <DropdownMenuItem
+                    key={service.href}
+                    render={<Link to={service.href} />}
+                  >
+                    {service.title}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -73,83 +96,55 @@ export default function Navbar() {
 
           <div className="hidden lg:block">
             <Button
-              className="transition-all duration-200 ease-in-out sm:hover:scale-105"
-              asChild
+              size="lg"
+              className={ctaPrimaryClassName}
+              render={<Link to="/contact-us" />}
+              nativeButton={false}
             >
-              <Link href="/contact-us">
-                Get a Free Estimate{" "}
-                <MoveRight className="ml-2" strokeWidth={1.5} />
-              </Link>
+              Get a Free Estimate{" "}
+              <MoveRight className="ml-2" strokeWidth={1.5} />
             </Button>
           </div>
 
           <div className="lg:hidden">
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-              <SheetDescription>
-                <VisuallyHidden.Root>Navigation Menu</VisuallyHidden.Root>
+              <SheetDescription className="sr-only">
+                Navigation Menu
               </SheetDescription>
 
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="w-10 h-10 p-2">
-                  <Menu className="h-6 w-6" />
-                  <span className="sr-only">Toggle navigation menu</span>
-                </Button>
+              <SheetTrigger
+                render={
+                  <Button variant="ghost" size="icon" className="size-11" />
+                }
+              >
+                <Menu className="size-6" />
+                <span className="sr-only">Toggle navigation menu</span>
               </SheetTrigger>
 
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                <SheetTitle>
-                  <VisuallyHidden.Root>Navigation Links</VisuallyHidden.Root>
-                </SheetTitle>
-                <Logo />
-                <hr className="mt-6" />
+              <SheetContent
+                side="right"
+                className="w-[min(100vw-2rem,400px)] gap-0 sm:w-[400px]"
+              >
+                <SheetTitle className="sr-only">Navigation Links</SheetTitle>
 
-                <nav className="flex flex-col gap-2 mt-6">
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start font-semibold text-xl"
-                    onClick={() => setIsMenuOpen(false)}
-                    asChild
-                  >
-                    <Link
-                      href="/"
-                      className="block rounded-lg px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Home
-                    </Link>
-                  </Button>
+                <div className="pr-12">
+                  <Logo />
+                </div>
 
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start font-semibold text-xl"
-                    onClick={() => setIsMenuOpen(false)}
-                    asChild
-                  >
-                    <Link
-                      href="/about-us"
-                      className="block rounded-lg px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      About Us
-                    </Link>
-                  </Button>
+                <hr className="my-8 border-zinc-200" />
 
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start font-semibold text-xl"
-                    onClick={() => setIsMenuOpen(false)}
-                    asChild
-                  >
-                    <Link
-                      href="/our-expertise"
-                      className="block rounded-lg px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Our Expertise
-                    </Link>
-                  </Button>
+                <nav className="flex flex-col gap-2">
+                  <MobileNavLink to="/" onNavigate={closeMenu}>
+                    Home
+                  </MobileNavLink>
+                  <MobileNavLink to="/about-us" onNavigate={closeMenu}>
+                    About Us
+                  </MobileNavLink>
+                  <MobileNavLink to="/our-expertise" onNavigate={closeMenu}>
+                    Our Expertise
+                  </MobileNavLink>
 
-                  <div className="flex flex-col gap-2">
+                  <div className="pt-1">
                     <DropdownCategory
                       categoryTitle="Our Services"
                       links={HOMEPAGE_FEATURED_SERVICES}
@@ -158,16 +153,27 @@ export default function Navbar() {
                   </div>
                 </nav>
 
-                <Button className="mt-[8%] w-full" size="lg" asChild>
-                  <Link href="/contact-us" onClick={() => setIsMenuOpen(false)}>
-                    Get a Free Estimate
-                    <MoveRight className="ml-2" strokeWidth={1.5} />
-                  </Link>
+                <Button
+                  className={cn(ctaPrimaryClassName, "mt-8 w-full")}
+                  size="lg"
+                  render={
+                    <Link
+                      to="/contact-us"
+                      className="flex w-full items-center justify-center gap-2"
+                      onClick={closeMenu}
+                    />
+                  }
+                  nativeButton={false}
+                >
+                  Get a Free Estimate
+                  <MoveRight className="size-5" strokeWidth={1.5} />
                 </Button>
 
-                <hr className="my-6" />
+                <hr className="my-8 border-zinc-200" />
 
-                <Socials />
+                <div className="pt-1">
+                  <Socials />
+                </div>
               </SheetContent>
             </Sheet>
           </div>

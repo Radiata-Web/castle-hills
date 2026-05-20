@@ -1,5 +1,5 @@
-import Link from "next/link";
-import Image from "next/image";
+import { Link } from "@tanstack/react-router";
+import Image from "@/components/ui/optimized-image";
 import { ContactForm } from "../forms/contact-form";
 import ContactNumber from "@/components/misc/contactNumber";
 export default function InteriorContact() {
@@ -33,22 +33,22 @@ export default function InteriorContact() {
 
           {/* Socials */}
           <div className="flex flex-row gap-4 sm:gap-6 md:gap-8">
-            <Link href="https://maps.app.goo.gl/RteUFevUMNKuLVkv8">
+            <a href="https://maps.app.goo.gl/RteUFevUMNKuLVkv8">
               <Image
                 src="/gl-badge.png"
                 alt="Rate us on Google"
                 width={200}
                 height={100}
               />
-            </Link>
-            <Link href="https://www.facebook.com/CHPW903">
+            </a>
+            <a href="https://www.facebook.com/CHPW903">
               <Image
                 src="/fb-badge.png"
                 alt="See us on Facebook"
                 width={200}
                 height={100}
               />
-            </Link>
+            </a>
           </div>
         </div>
         <div>

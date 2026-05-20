@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import Image from "next/image";
+import Image from "@/components/ui/optimized-image";
 import React from "react";
 
 export default function remodelCarousel() {

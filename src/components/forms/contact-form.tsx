@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
+import { ctaPrimaryClassName } from "@/lib/cta";
 import {
   Form,
   FormControl,
@@ -26,6 +27,15 @@ import {
 import { zfd } from "zod-form-data";
 import { useState } from "react";
 import { CheckCircle, Hourglass, SendHorizonal, XCircle } from "lucide-react";
+
+/** Must match `public/contact-form.html` option values for Netlify Forms. */
+const PROJECT_TYPES = [
+  "Custom Wood & Outdoor Living",
+  "Painting & Finishes",
+  "Interior & Exterior Restoration",
+  "Commercial/HOA Work",
+  "Other",
+] as const;
 
 // Form validation schema
 const formSchema = zfd.formData({
@@ -53,20 +63,12 @@ const formSchema = zfd.formData({
     .transform((val) =>
       parsePhoneNumber(val, { defaultCountry: "US" }).number.toString(),
     ),
-  serviceType: z
-    .string({
-      error: (issue) =>
-        issue.input === undefined ? "Please select a service type." : undefined,
-    })
-    .refine(
-      (val) =>
-        ["wood", "painting", "restoration", "commercial", "other"].includes(
-          val,
-        ),
-      {
-        error: "Please select a valid service type.",
-      },
-    ),
+  serviceType: z.enum(PROJECT_TYPES, {
+    error: (issue) =>
+      issue.input === undefined
+        ? "Please select a service type."
+        : "Please select a valid service type.",
+  }),
   message: z.string({
     error: (issue) =>
       issue.input === undefined
@@ -220,45 +222,28 @@ export function ContactForm(props: ContactFormProps) {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Project Type</FormLabel>
+                  <input type="hidden" name="serviceType" value={field.value} />
                   <Select
+                    value={field.value}
                     onValueChange={field.onChange}
-                    defaultValue={field.value}
                     disabled={status === "pending"}
                     required
                   >
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select a service" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="wood" className="hover:cursor-pointer">
-                        Custom Wood & Outdoor Living
-                      </SelectItem>
-                      <SelectItem
-                        value="painting"
-                        className="hover:cursor-pointer"
-                      >
-                        Painting & Finishes
-                      </SelectItem>
-                      <SelectItem
-                        value="restoration"
-                        className="hover:cursor-pointer"
-                      >
-                        Interior & Exterior Restoration
-                      </SelectItem>
-                      <SelectItem
-                        value="commercial"
-                        className="hover:cursor-pointer"
-                      >
-                        Commercial/HOA Work
-                      </SelectItem>
-                      <SelectItem
-                        value="other"
-                        className="hover:cursor-pointer"
-                      >
-                        Other
-                      </SelectItem>
+                      {PROJECT_TYPES.map((projectType) => (
+                        <SelectItem
+                          key={projectType}
+                          value={projectType}
+                          className="hover:cursor-pointer"
+                        >
+                          {projectType}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -287,12 +272,12 @@ export function ContactForm(props: ContactFormProps) {
             )}
           />
 
-          <section className="flex flex-col sm:flex-row gap-5 items-center pt-6">
+          <section className="flex flex-col gap-4 pt-8 sm:flex-row sm:items-center sm:gap-6">
             <Button
               type="submit"
               disabled={status === "pending" || status === "ok"}
               size="lg"
-              className="min-w-full sm:min-w-10 transition-all duration-200 ease-in-out sm:hover:scale-105"
+              className={`min-w-full sm:min-w-[12rem] ${ctaPrimaryClassName}`}
             >
               Request a Free Estimate{" "}
               <SendHorizonal size={16} className="ml-2" />

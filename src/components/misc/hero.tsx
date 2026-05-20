@@ -1,19 +1,22 @@
 // Hero.tsx
 import * as React from "react";
-import { Button } from "@/components/ui/button"; // shadcn button (optional)
+import { Button } from "@/components/ui/button";
+import {
+  ctaAfterCopyClassName,
+  ctaGroupClassName,
+  ctaPrimaryClassName,
+} from "@/lib/cta";
 import { cn } from "@/lib/utils";
 
 type HeroProps = {
   title: string;
   subtitle?: string;
   backgroundImageUrl: string;
-  // Optional CTA
   ctaLabel?: string;
   onCtaClick?: () => void;
   ctaHref?: string;
-  // Layout / style options
-  minHeightClass?: string; // e.g. "min-h-[60vh]" or "min-h-screen"
-  overlayOpacityClass?: string; // e.g. "bg-black/60" or "bg-neutral-900/70"
+  minHeightClass?: string;
+  overlayOpacityClass?: string;
   useShadcnButton?: boolean;
 };
 
@@ -30,43 +33,38 @@ export function Hero({
 }: HeroProps) {
   const hasCta = Boolean(ctaLabel && (onCtaClick || ctaHref));
 
-  const content = (
-    <div
-      className={[
-        "inline-flex items-center justify-center rounded-md px-5 py-2.5 text-sm font-medium",
-        "bg-primary text-primary-foreground shadow",
-        "hover:bg-primary/90 transition-colors",
-      ].join(" ")}
-    >
-      {ctaLabel}
-    </div>
-  );
-
   const CtaButton = () => {
     if (!hasCta) return null;
 
     if (useShadcnButton) {
-      // shadcn Button variant
       if (ctaHref) {
         return (
-          <Button asChild onClick={onCtaClick}>
-            <a href={ctaHref}>{ctaLabel}</a>
+          <Button
+            size="lg"
+            className={ctaPrimaryClassName}
+            render={<a href={ctaHref} />}
+            nativeButton={false}
+            onClick={onCtaClick}
+          >
+            {ctaLabel}
           </Button>
         );
       }
 
       return (
-        <Button onClick={onCtaClick}>
+        <Button size="lg" className={ctaPrimaryClassName} onClick={onCtaClick}>
           {ctaLabel}
         </Button>
       );
     }
 
-    // fallback plain button styled with Tailwind
     if (ctaHref) {
       return (
-        <a href={ctaHref}>
-          {content}
+        <a
+          href={ctaHref}
+          className="inline-flex min-h-12 items-center justify-center rounded-md bg-accent px-6 text-base font-semibold text-white shadow-sm transition-colors hover:bg-accent/90"
+        >
+          {ctaLabel}
         </a>
       );
     }
@@ -75,7 +73,7 @@ export function Hero({
       <button
         type="button"
         onClick={onCtaClick}
-        className="inline-flex items-center justify-center rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+        className="inline-flex min-h-12 items-center justify-center rounded-md bg-accent px-6 text-base font-semibold text-white shadow-sm transition-colors hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
       >
         {ctaLabel}
       </button>
@@ -84,38 +82,35 @@ export function Hero({
 
   return (
     <section
-      className={[
-        "relative w-full overflow-hidden h-full",
-        "bg-cover bg-center bg-no-repeat",
+      className={cn(
+        "relative w-full overflow-hidden bg-cover bg-center bg-no-repeat",
         minHeightClass,
-      ].join(" ")}
+      )}
       style={{ backgroundImage: `url(${backgroundImageUrl})` }}
       aria-label="Hero section"
     >
-      {/* Dark overlay */}
-      <div className={`absolute inset-0 h-full ${overlayOpacityClass}`} />
+      <div className={cn("absolute inset-0 h-full", overlayOpacityClass)} />
 
-      {/* Content */}
       <div
         className={cn(
           "relative z-1 flex h-full w-full max-w-full items-center justify-center",
-          minHeightClass
+          minHeightClass,
         )}
       >
-        <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-4 px-4 py-12 text-center sm:px-6 lg:px-8">
+        <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-6 px-4 py-14 text-center sm:px-6 sm:py-16 lg:px-8">
           <div className="flex flex-col gap-4">
             <h1 className="text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
               {title}
             </h1>
             {subtitle && (
-              <p className="text-pretty text-sm text-zinc-200 sm:text-base md:text-lg">
+              <p className="text-pretty text-sm leading-relaxed text-zinc-100 sm:text-base md:text-lg">
                 {subtitle}
               </p>
             )}
           </div>
 
           {hasCta && (
-            <div className="mt-2 flex w-full justify-center">
+            <div className={cn(ctaGroupClassName, ctaAfterCopyClassName, "w-full justify-center")}>
               <CtaButton />
             </div>
           )}

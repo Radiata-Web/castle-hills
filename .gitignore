@@ -5,13 +5,20 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+package-lock.json
+bun.lock
+yarn.lock
 
 # testing
 /coverage
 
-# next.js
+# next.js (legacy)
 /.next/
 /out/
+
+# tanstack start / vite
+/dist/
+.netlify/
 
 # production
 /build

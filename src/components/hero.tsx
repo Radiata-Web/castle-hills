@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import {
+  ctaGroupClassName,
+  ctaPrimaryClassName,
+} from "@/lib/cta";
 import { ArrowDown, MoveRight } from "lucide-react";
 import { ContactForm } from "./forms/contact-form";
-import Image from "next/image";
+import Image from "@/components/ui/optimized-image";
 
 export default function Hero() {
   return (
@@ -48,26 +51,25 @@ export default function Hero() {
             </div>
 
             {/* CTA buttons */}
-            <div className="flex flex-col gap-2 md:flex-row md:gap-4">
+            <div className={ctaGroupClassName}>
               <Button
                 size="lg"
-                className="transition-all duration-200 ease-in-out sm:hover:scale-105"
-                asChild
+                className={ctaPrimaryClassName}
+                render={<a href="/#contact" />}
+                nativeButton={false}
               >
-                <Link href="/#contact">
-                  Get a Free Estimate
-                  <MoveRight className="ml-2" strokeWidth={1.5} />
-                </Link>
+                Get a Free Estimate
+                <MoveRight className="ml-2 size-5" strokeWidth={1.5} />
               </Button>
               <Button
-                variant="outline"
+                variant="heroOutline"
                 size="lg"
-                className="transition-all duration-200 ease-in-out sm:hover:scale-105"
-                asChild
+                className={ctaPrimaryClassName}
+                render={<a href="/#services" />}
+                nativeButton={false}
               >
-                <Link href="/#services">
-                  View Our Services <ArrowDown size={16} className="ml-2" />
-                </Link>
+                View Our Services
+                <ArrowDown className="ml-2 size-5" strokeWidth={1.5} />
               </Button>
             </div>
           </div>

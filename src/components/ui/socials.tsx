@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, MapPin } from "lucide-react";
 
 export default function Socials() {
@@ -25,7 +25,7 @@ export default function Socials() {
       {SOCIALS.map((social) => (
         <Link
           key={social.name}
-          href={social.url}
+          to={social.url}
           className="text-white bg-accent rounded-lg p-2 items-center hover:text-primary"
           aria-label={social.name}
         >

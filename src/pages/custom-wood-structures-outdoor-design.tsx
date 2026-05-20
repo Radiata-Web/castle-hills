@@ -3,7 +3,6 @@ import { Hero } from "@/components/misc/hero";
 import ServiceDesc from "@/components/misc/serviceDesc";
 import Footer from "@/components/nav/footer";
 
-
 export default function WoodAndOutdoorDesign() {
   return (
     <>

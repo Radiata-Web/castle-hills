@@ -48,7 +48,7 @@
   --color-accent-light: var(--accent-light);
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
   --container-2xl: 1400px;
-  --width-8xl: 100rem;
+  --max-width-8xl: 100rem;
   --animate-paint-rise: paint-rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);

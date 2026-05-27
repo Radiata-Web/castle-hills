@@ -30,10 +30,10 @@ import { CheckCircle, Hourglass, SendHorizonal, XCircle } from "lucide-react";
 
 /** Must match `public/contact-form.html` option values for Netlify Forms. */
 const PROJECT_TYPES = [
-  "Custom Wood & Outdoor Living",
-  "Painting & Finishes",
-  "Interior & Exterior Restoration",
-  "Commercial/HOA Work",
+  "Fence Staining & Wood Restoration",
+  "Interior & Exterior Painting",
+  "Fence Installation & Repairs",
+  "Exterior Wood Structures",
   "Other",
 ] as const;
 

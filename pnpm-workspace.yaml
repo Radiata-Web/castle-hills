@@ -1,0 +1,5 @@
+allowBuilds:
+  esbuild: set this to true or false
+  sharp: set this to true or false
+minimumReleaseAgeExclude:
+  - react-hook-form@7.84.0

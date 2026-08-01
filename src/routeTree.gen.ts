@@ -9,40 +9,29 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as OurExpertiseRouteImport } from './routes/our-expertise'
-import { Route as LuxuryFinishesCoatingsRouteImport } from './routes/luxury-finishes-coatings'
-import { Route as InteriorExteriorRestorationRenovationRouteImport } from './routes/interior-exterior-restoration-renovation'
-import { Route as FenceServicesRouteImport } from './routes/fence-services'
-import { Route as CustomWoodStructuresOutdoorDesignRouteImport } from './routes/custom-wood-structures-outdoor-design'
-import { Route as ContactUsRouteImport } from './routes/contact-us'
-import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutUsRouteImport } from './routes/about-us'
+import { Route as ContactUsRouteImport } from './routes/contact-us'
+import { Route as CustomWoodStructuresOutdoorDesignRouteImport } from './routes/custom-wood-structures-outdoor-design'
+import { Route as FenceServicesRouteImport } from './routes/fence-services'
+import { Route as InteriorExteriorRestorationRenovationRouteImport } from './routes/interior-exterior-restoration-renovation'
+import { Route as LuxuryFinishesCoatingsRouteImport } from './routes/luxury-finishes-coatings'
+import { Route as OurExpertiseRouteImport } from './routes/our-expertise'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 
-const PrivacyRoute = PrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OurExpertiseRoute = OurExpertiseRouteImport.update({
-  id: '/our-expertise',
-  path: '/our-expertise',
+const AboutUsRoute = AboutUsRouteImport.update({
+  id: '/about-us',
+  path: '/about-us',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LuxuryFinishesCoatingsRoute = LuxuryFinishesCoatingsRouteImport.update({
-  id: '/luxury-finishes-coatings',
-  path: '/luxury-finishes-coatings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InteriorExteriorRestorationRenovationRoute =
-  InteriorExteriorRestorationRenovationRouteImport.update({
-    id: '/interior-exterior-restoration-renovation',
-    path: '/interior-exterior-restoration-renovation',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const FenceServicesRoute = FenceServicesRouteImport.update({
-  id: '/fence-services',
-  path: '/fence-services',
+const ContactUsRoute = ContactUsRouteImport.update({
+  id: '/contact-us',
+  path: '/contact-us',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CustomWoodStructuresOutdoorDesignRoute =
@@ -51,19 +40,30 @@ const CustomWoodStructuresOutdoorDesignRoute =
     path: '/custom-wood-structures-outdoor-design',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ContactUsRoute = ContactUsRouteImport.update({
-  id: '/contact-us',
-  path: '/contact-us',
+const FenceServicesRoute = FenceServicesRouteImport.update({
+  id: '/fence-services',
+  path: '/fence-services',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutUsRoute = AboutUsRouteImport.update({
-  id: '/about-us',
-  path: '/about-us',
+const InteriorExteriorRestorationRenovationRoute =
+  InteriorExteriorRestorationRenovationRouteImport.update({
+    id: '/interior-exterior-restoration-renovation',
+    path: '/interior-exterior-restoration-renovation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LuxuryFinishesCoatingsRoute = LuxuryFinishesCoatingsRouteImport.update({
+  id: '/luxury-finishes-coatings',
+  path: '/luxury-finishes-coatings',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const OurExpertiseRoute = OurExpertiseRouteImport.update({
+  id: '/our-expertise',
+  path: '/our-expertise',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -151,53 +151,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/privacy': {
-      id: '/privacy'
-      path: '/privacy'
-      fullPath: '/privacy'
-      preLoaderRoute: typeof PrivacyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/our-expertise': {
-      id: '/our-expertise'
-      path: '/our-expertise'
-      fullPath: '/our-expertise'
-      preLoaderRoute: typeof OurExpertiseRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/luxury-finishes-coatings': {
-      id: '/luxury-finishes-coatings'
-      path: '/luxury-finishes-coatings'
-      fullPath: '/luxury-finishes-coatings'
-      preLoaderRoute: typeof LuxuryFinishesCoatingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/interior-exterior-restoration-renovation': {
-      id: '/interior-exterior-restoration-renovation'
-      path: '/interior-exterior-restoration-renovation'
-      fullPath: '/interior-exterior-restoration-renovation'
-      preLoaderRoute: typeof InteriorExteriorRestorationRenovationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/fence-services': {
-      id: '/fence-services'
-      path: '/fence-services'
-      fullPath: '/fence-services'
-      preLoaderRoute: typeof FenceServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/custom-wood-structures-outdoor-design': {
-      id: '/custom-wood-structures-outdoor-design'
-      path: '/custom-wood-structures-outdoor-design'
-      fullPath: '/custom-wood-structures-outdoor-design'
-      preLoaderRoute: typeof CustomWoodStructuresOutdoorDesignRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact-us': {
-      id: '/contact-us'
-      path: '/contact-us'
-      fullPath: '/contact-us'
-      preLoaderRoute: typeof ContactUsRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about-us': {
@@ -207,11 +165,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutUsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/contact-us': {
+      id: '/contact-us'
+      path: '/contact-us'
+      fullPath: '/contact-us'
+      preLoaderRoute: typeof ContactUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/custom-wood-structures-outdoor-design': {
+      id: '/custom-wood-structures-outdoor-design'
+      path: '/custom-wood-structures-outdoor-design'
+      fullPath: '/custom-wood-structures-outdoor-design'
+      preLoaderRoute: typeof CustomWoodStructuresOutdoorDesignRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fence-services': {
+      id: '/fence-services'
+      path: '/fence-services'
+      fullPath: '/fence-services'
+      preLoaderRoute: typeof FenceServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/interior-exterior-restoration-renovation': {
+      id: '/interior-exterior-restoration-renovation'
+      path: '/interior-exterior-restoration-renovation'
+      fullPath: '/interior-exterior-restoration-renovation'
+      preLoaderRoute: typeof InteriorExteriorRestorationRenovationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/luxury-finishes-coatings': {
+      id: '/luxury-finishes-coatings'
+      path: '/luxury-finishes-coatings'
+      fullPath: '/luxury-finishes-coatings'
+      preLoaderRoute: typeof LuxuryFinishesCoatingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/our-expertise': {
+      id: '/our-expertise'
+      path: '/our-expertise'
+      fullPath: '/our-expertise'
+      preLoaderRoute: typeof OurExpertiseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

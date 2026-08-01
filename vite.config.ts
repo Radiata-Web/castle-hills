@@ -11,12 +11,13 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@": path.resolve(import.meta.dirname, "./src"),
     },
   },
-  // The dep optimizer doesn't emit maplibre's worker chunk, so tiles never load.
-  optimizeDeps: {
-    exclude: ["maplibre-gl"],
+  // maplibre starts its worker with `{ type: "module" }`, so the chunk Vite
+  // emits for it has to be an ES module rather than the default IIFE.
+  worker: {
+    format: "es",
   },
   plugins: [tanstackStart(), viteReact(), tailwindcss(), netlify()],
 });

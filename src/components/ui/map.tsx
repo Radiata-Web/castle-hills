@@ -4,6 +4,10 @@
 import * as MapLibreGL from "maplibre-gl";
 import type { PopupOptions, MarkerOptions } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+// v6 resolves its worker at runtime as a sibling of `import.meta.url`, which no
+// bundler can see. Left alone the built chunk requests /assets/maplibre-gl-worker.mjs
+// and 404s. `?worker&url` makes Vite emit the worker (needs worker.format: "es").
+import maplibreWorkerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 import type * as GeoJSON from "geojson";
 import {
   createContext,
@@ -22,6 +26,8 @@ import { createPortal } from "react-dom";
 import { X, Minus, Plus, Locate, Maximize, Loader2 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+
+MapLibreGL.setWorkerUrl(maplibreWorkerUrl);
 
 const defaultStyles = {
   dark: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",

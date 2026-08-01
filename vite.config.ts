@@ -14,5 +14,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // The dep optimizer doesn't emit maplibre's worker chunk, so tiles never load.
+  optimizeDeps: {
+    exclude: ["maplibre-gl"],
+  },
   plugins: [tanstackStart(), viteReact(), tailwindcss(), netlify()],
 });

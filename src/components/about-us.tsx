@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import Image from "@/components/ui/optimized-image";
 import { Button } from "./ui/button";
@@ -9,22 +9,50 @@ import {
 import { cn } from "@/lib/utils";
 import { MoveRight, Phone } from "lucide-react";
 
+// Keeps maplibre (~700kB) out of the shared route chunk.
+const ServiceMap = lazy(() => import("@/components/misc/service-map"));
+
 export default function About() {
+  const mapSlotRef = useRef<HTMLDivElement>(null);
+  // Visitors who never scroll this far never download maplibre at all.
+  const [mapInView, setMapInView] = useState(false);
+
+  useEffect(() => {
+    const slot = mapSlotRef.current;
+    if (!slot) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setMapInView(true);
+        observer.disconnect();
+      },
+      // Start fetching just before the slot scrolls in, so the map is
+      // usually painted by the time it's on screen.
+      { rootMargin: "300px" },
+    );
+    observer.observe(slot);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <div className="absolute -translate-y-52" id="about"></div>
       <section className="max-w-8xl mx-auto py-6 md:py-10 lg:py-14 px-4 md:px-8 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 xl:grid-cols-2">
-          {/* Google Maps embed */}
-          <iframe
-            title="Map: Castle Hills Stain & Restoration service area in Dallas–Fort Worth"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d859115.2185226647!2d-97.62291295118169!3d32.74134616817178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xacd9370584827891%3A0x2ef8c59ff7f32580!2sCastle%20Hills%20Stain%20%26%20Restoration!5e0!3m2!1sen!2sus!4v1725206080160!5m2!1sen!2sus"
-            width="600"
-            height="380"
-            className="flex w-full border border-zinc-200 rounded-xl shadow-sm"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
+          <div
+            ref={mapSlotRef}
+            role="region"
+            aria-label="Map: Castle Hills Stain & Restoration service area in Dallas–Fort Worth"
+            className="h-95 w-full overflow-hidden rounded-xl border border-zinc-200 shadow-sm"
+          >
+            {mapInView && (
+              <Suspense fallback={null}>
+                <ServiceMap />
+              </Suspense>
+            )}
+          </div>
 
           <div className="flex flex-col justify-center space-y-8">
             <div className="space-y-4">

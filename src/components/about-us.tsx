@@ -48,9 +48,11 @@ export default function About() {
             className="h-95 w-full overflow-hidden rounded-xl border border-zinc-200 shadow-sm"
           >
             {mapInView && (
-              <Suspense fallback={null}>
-                <ServiceMap />
-              </Suspense>
+              <MapLoadBoundary>
+                <Suspense fallback={null}>
+                  <ServiceMap />
+                </Suspense>
+              </MapLoadBoundary>
             )}
           </div>
 
@@ -130,4 +132,24 @@ export default function About() {
       </section>
     </>
   );
+}
+
+// ponytail: maplibre can throw on import (worker URL) or when WebGL is missing.
+// Googlebot still executes JS; an uncaught error replaces the whole homepage
+// with TanStack's default error UI, which is what Google indexed. Empty slot
+// is fine — the rest of the page is the product.
+class MapLoadBoundary extends React.Component<
+  { children: React.ReactNode },
+  { failed: boolean }
+> {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  render() {
+    if (this.state.failed) return null;
+    return this.props.children;
+  }
 }

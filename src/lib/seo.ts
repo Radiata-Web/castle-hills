@@ -10,6 +10,7 @@ export function pageHead(meta: PageMeta) {
   const tags: Array<
     | { title: string }
     | { name: string; content: string }
+    | { property: string; content: string }
     | { charSet: string }
     | { name: "viewport"; content: string }
   > = [
@@ -17,6 +18,9 @@ export function pageHead(meta: PageMeta) {
     { name: "viewport", content: "width=device-width, initial-scale=1" },
     { title: meta.title },
     { name: "description", content: meta.description },
+    { property: "og:title", content: meta.title },
+    { property: "og:description", content: meta.description },
+    { property: "og:type", content: "website" },
   ];
 
   if (meta.keywords?.length) {

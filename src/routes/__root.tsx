@@ -8,9 +8,11 @@ import {
   Outlet,
   Scripts,
   createRootRoute,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import Navbar from "@/components/nav/navbar";
+import { RouteError } from "@/components/misc/route-error";
 import { Button } from "@/components/ui/button";
 import { ctaPrimaryClassName } from "@/lib/cta";
 import { GA_ID } from "@/lib/site";
@@ -24,6 +26,7 @@ export const Route = createRootRoute({
     links: [{ rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
   }),
   component: RootComponent,
+  errorComponent: RootErrorPage,
   notFoundComponent: NotFoundPage,
 });
 
@@ -76,6 +79,17 @@ function GoogleAnalyticsScript() {
         }}
       />
     </>
+  );
+}
+
+function RootErrorPage(props: ErrorComponentProps) {
+  // ponytail: TanStack's default error UI is "Something went wrong! Show Error".
+  // Google indexed that as the homepage title+snippet. Keep real company copy
+  // here so a failed render still crawls as the business, not a stack-trace toggle.
+  return (
+    <RootDocument>
+      <RouteError {...props} />
+    </RootDocument>
   );
 }
 

@@ -3,3 +3,10 @@ allowBuilds:
   sharp: true
 minimumReleaseAgeExclude:
   - react-hook-form@7.84.0
+# Transitive security patches. Selectors pin the current major so we don't
+# float nanoid 3 → 6 or js-yaml 4 → 5.
+overrides:
+  sharp: "^0.35.3"
+  hono: "^4.12.34"
+  js-yaml@4: "4.3.1"
+  nanoid@3: "3.3.18"

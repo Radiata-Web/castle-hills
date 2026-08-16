@@ -27,7 +27,9 @@ import { X, Minus, Plus, Locate, Maximize, Loader2 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-MapLibreGL.setWorkerUrl(maplibreWorkerUrl);
+if (typeof window !== "undefined") {
+  MapLibreGL.setWorkerUrl(maplibreWorkerUrl);
+}
 
 const defaultStyles = {
   dark: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",

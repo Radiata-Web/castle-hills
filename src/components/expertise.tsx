@@ -1,11 +1,7 @@
 import { CheckCircle, MoveRight } from "lucide-react";
 import { GlossyPhotoFrame } from "@/components/misc/glossy-photo-frame";
 import { Button } from "./ui/button";
-import {
-  ctaAfterCopyClassName,
-  ctaGroupClassName,
-  ctaPrimaryClassName,
-} from "@/lib/cta";
+import { ctaAfterCopyClassName, ctaGroupClassName, ctaPrimaryClassName } from "@/lib/cta";
 import { cn } from "@/lib/utils";
 import { Link } from "@tanstack/react-router";
 
@@ -47,8 +43,8 @@ export default function Expertise() {
             Our Expertise
           </h2>
           <p className="mt-3 max-w-3xl text-zinc-600">
-            Four pillars of work we take from estimate to finish—tap any line to
-            see how we approach it.
+            Four pillars of work we take from estimate to finish—tap any line to see how we approach
+            it.
           </p>
         </div>
 
@@ -60,15 +56,9 @@ export default function Expertise() {
             >
               <h3 className="mb-2 flex items-center gap-2 text-lg font-bold leading-snug text-zinc-900">
                 <span className="min-w-0">{title}</span>
-                <CheckCircle
-                  className="shrink-0 text-accent"
-                  size={18}
-                  aria-hidden
-                />
+                <CheckCircle className="shrink-0 text-accent" size={18} aria-hidden />
               </h3>
-              <p className="flex-1 text-sm leading-relaxed text-zinc-600">
-                {body}
-              </p>
+              <p className="flex-1 text-sm leading-relaxed text-zinc-600">{body}</p>
               <Link
                 to={href}
                 className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent underline-offset-4 hover:underline"

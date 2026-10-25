@@ -5,7 +5,6 @@ import ServiceDesc from "@/components/misc/serviceDesc";
 import Footer from "@/components/nav/footer";
 import { Link } from "@tanstack/react-router";
 
-
 export default function LuxuryFinishesCoatings() {
   return (
     <>
@@ -36,16 +35,15 @@ export default function LuxuryFinishesCoatings() {
         <PaintBeforeAfter />
 
         <p className="text-zinc-600 max-w-[720px] -mt-8 mb-16">
-          Wood fences and gates need a different process than siding and
-          trim—see our{" "}
+          Wood fences and gates need a different process than siding and trim—see our{" "}
           <Link
             to="/fence-services"
             className="font-medium text-primary underline underline-offset-4 hover:text-primary/90"
           >
             Fence Services
           </Link>{" "}
-          page for fence cleaning, restoration, and premium oil-based staining
-          tailored to Texas weather.
+          page for fence cleaning, restoration, and premium oil-based staining tailored to Texas
+          weather.
         </p>
 
         <ChooseUs />

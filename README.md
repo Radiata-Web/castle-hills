@@ -2,21 +2,24 @@
 
 Marketing site built with [TanStack Start](https://tanstack.com/start) and deployed on [Netlify](https://www.netlify.com/).
 
-This repo uses [pnpm](https://pnpm.io/) only (`package-lock.json` and `bun.lock` are not used).
+This repo uses [Vite+](https://viteplus.dev/) (`vite-plus`) with [pnpm](https://pnpm.io/) only (`package-lock.json` and `bun.lock` are not used). Scripts are the Vite+ CLI (`vp`); run them via pnpm (`pnpm dev`) or `pnpm exec vp …`.
 
 ## Development
 
 ```bash
 pnpm install
 pnpm dev
+# equivalent: pnpm exec vp install && pnpm exec vp dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Build
+## Checks and build
 
 ```bash
-pnpm build
+pnpm exec vp check   # format, lint, type-check
+pnpm types           # tsc --noEmit (also covered by vp check)
+pnpm build           # vp build
 ```
 
 Production output:
@@ -33,6 +36,8 @@ Production output:
 - Legacy URL redirects (ported from former Next.js config)
 
 Contact form uses Netlify Forms via `public/contact-form.html` and POST to `/contact-form.html`.
+
+Local Netlify Edge Functions emulation is disabled (unused); redirects and other Netlify Vite plugin features remain.
 
 ## Project layout
 

@@ -2,10 +2,7 @@ import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import Image from "@/components/ui/optimized-image";
 import { Button } from "./ui/button";
-import {
-  ctaGroupClassName,
-  ctaPrimaryClassName,
-} from "@/lib/cta";
+import { ctaGroupClassName, ctaPrimaryClassName } from "@/lib/cta";
 import { cn } from "@/lib/utils";
 import { MoveRight, Phone } from "lucide-react";
 
@@ -65,12 +62,11 @@ export default function About() {
                 Restore. Protect. Enhance.
               </h2>
               <p className="text-zinc-600">
-                At Castle Hills Stain & Restoration, we design, build, and
-                restore residential and commercial properties across the DFW
-                Metroplex with precision and pride. From luxury exteriors and
-                custom wood structures to select interior restorations and fine
-                finishes, our team delivers craftsmanship that enhances both the
-                look and longevity of every property we touch.
+                At Castle Hills Stain & Restoration, we design, build, and restore residential and
+                commercial properties across the DFW Metroplex with precision and pride. From luxury
+                exteriors and custom wood structures to select interior restorations and fine
+                finishes, our team delivers craftsmanship that enhances both the look and longevity
+                of every property we touch.
               </p>
             </div>
 
@@ -104,13 +100,7 @@ export default function About() {
                 rel="noopener noreferrer"
                 aria-label="Read Castle Hills reviews on Google Maps"
               >
-                <Image
-                  src="/gl-badge.png"
-                  alt=""
-                  width={200}
-                  height={100}
-                  loading="lazy"
-                />
+                <Image src="/gl-badge.png" alt="" width={200} height={100} loading="lazy" />
               </a>
               <a
                 href="https://www.facebook.com/CHPW903"
@@ -118,13 +108,7 @@ export default function About() {
                 rel="noopener noreferrer"
                 aria-label="Castle Hills on Facebook"
               >
-                <Image
-                  src="/fb-badge.png"
-                  alt=""
-                  width={200}
-                  height={100}
-                  loading="lazy"
-                />
+                <Image src="/fb-badge.png" alt="" width={200} height={100} loading="lazy" />
               </a>
             </div>
           </div>
@@ -138,10 +122,7 @@ export default function About() {
 // Googlebot still executes JS; an uncaught error replaces the whole homepage
 // with TanStack's default error UI, which is what Google indexed. Empty slot
 // is fine — the rest of the page is the product.
-class MapLoadBoundary extends React.Component<
-  { children: React.ReactNode },
-  { failed: boolean }
-> {
+class MapLoadBoundary extends React.Component<{ children: React.ReactNode }, { failed: boolean }> {
   state = { failed: false };
 
   static getDerivedStateFromError() {

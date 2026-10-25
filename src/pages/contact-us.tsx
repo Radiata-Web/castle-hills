@@ -3,7 +3,6 @@ import ChooseUs from "@/components/misc/choose-us";
 import Footer from "@/components/nav/footer";
 import Image from "@/components/ui/optimized-image";
 
-
 export default function Page() {
   return (
     <>
@@ -13,8 +12,7 @@ export default function Page() {
             Request a Free Estimate
           </h1>
           <p className="text-zinc-600">
-            Tell us about your project — our team will reach out within 24
-            hours.
+            Tell us about your project — our team will reach out within 24 hours.
           </p>
         </header>
 

@@ -10,3 +10,12 @@ overrides:
   hono: "^4.12.34"
   js-yaml@4: "4.3.1"
   nanoid@3: "3.3.18"
+  vite@*: "catalog:"
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@1.4.0
+  vite-plus: 1.4.0
+peerDependencyRules:
+  allowAny:
+    - vite
+  allowedVersions:
+    vite: "*"

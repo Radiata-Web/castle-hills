@@ -1,8 +1,5 @@
 import { Button } from "@/components/ui/button";
-import {
-  ctaGroupClassName,
-  ctaPrimaryClassName,
-} from "@/lib/cta";
+import { ctaGroupClassName, ctaPrimaryClassName } from "@/lib/cta";
 import { ArrowDown, MoveRight } from "lucide-react";
 import { ContactForm } from "./forms/contact-form";
 import Image from "@/components/ui/optimized-image";
@@ -43,10 +40,9 @@ export default function Hero() {
                 DFW Fence Staining, Installation & Exterior Painting Experts
               </h1>
               <p className="max-w-[600px] text-zinc-100 md:text-lg leading-relaxed">
-                Trusted by homeowners across DFW for clean, professional exterior
-                work—fences, outdoor structures, painting, and restoration built
-                for long-term durability. Scroll to explore each service in
-                depth, or request an estimate with the form.
+                Trusted by homeowners across DFW for clean, professional exterior work—fences,
+                outdoor structures, painting, and restoration built for long-term durability. Scroll
+                to explore each service in depth, or request an estimate with the form.
               </p>
             </div>
 

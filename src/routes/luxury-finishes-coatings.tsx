@@ -6,8 +6,7 @@ export const Route = createFileRoute("/luxury-finishes-coatings")({
   head: () =>
     pageHead({
       title: "Interior & Exterior Painting | Castle Hills Stain & Restoration",
-      description:
-        "Professional interior and exterior painting in the Dallas–Fort Worth area.",
+      description: "Professional interior and exterior painting in the Dallas–Fort Worth area.",
     }),
   component: LuxuryFinishesPage,
 });

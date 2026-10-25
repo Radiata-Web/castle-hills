@@ -1,36 +1,32 @@
-"use client"
+"use client";
 
-import { Link } from "@tanstack/react-router"
-import { ChevronDown, ChevronUp } from "lucide-react"
+import { Link } from "@tanstack/react-router";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible"
-import { useState } from "react"
+import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { useState } from "react";
 
 interface LinkItem {
-  title: string
-  href: string
+  title: string;
+  href: string;
 }
 
 interface DropdownCategoryProps {
-  categoryTitle: string
-  links: LinkItem[]
-  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
+  categoryTitle: string;
+  links: LinkItem[];
+  setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const serviceLinkClass =
-  "flex min-h-11 w-full items-center rounded-lg px-4 py-3 text-base leading-snug text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900"
+  "flex min-h-11 w-full items-center rounded-lg px-4 py-3 text-base leading-snug text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900";
 
 export default function DropdownCategory({
   categoryTitle,
   links,
   setIsMenuOpen,
 }: DropdownCategoryProps) {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full">
@@ -62,5 +58,5 @@ export default function DropdownCategory({
         ))}
       </CollapsibleContent>
     </Collapsible>
-  )
+  );
 }

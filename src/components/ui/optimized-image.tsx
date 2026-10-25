@@ -1,10 +1,7 @@
 import { cn } from "@/lib/utils";
 import type { CSSProperties, ImgHTMLAttributes } from "react";
 
-export type OptimizedImageProps = Omit<
-  ImgHTMLAttributes<HTMLImageElement>,
-  "width" | "height"
-> & {
+export type OptimizedImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, "width" | "height"> & {
   src: string;
   alt: string;
   width?: number | string;
@@ -30,7 +27,7 @@ export default function OptimizedImage({
   loading,
   ...rest
 }: OptimizedImageProps) {
-  const resolvedLoading = priority ? undefined : loading ?? "lazy";
+  const resolvedLoading = priority ? undefined : (loading ?? "lazy");
   const resolvedFetchPriority = fetchPriority ?? (priority ? "high" : undefined);
 
   const fillStyle: CSSProperties | undefined = fill

@@ -1,8 +1,6 @@
 allowBuilds:
   esbuild: true
   sharp: true
-minimumReleaseAgeExclude:
-  - react-hook-form@7.84.0
 # Transitive security patches. Selectors pin the current major so we don't
 # float nanoid 3 → 6 or js-yaml 4 → 5.
 overrides:
@@ -11,9 +9,13 @@ overrides:
   js-yaml@4: "4.3.1"
   nanoid@3: "3.3.18"
   vite@*: "catalog:"
+  # Keep Vitest locked to the Vite+ 1.4.0 bundled runner
+  # (https://viteplus.dev/guide/upgrade-project).
+  vitest@*: "catalog:"
 catalog:
   vite: npm:@voidzero-dev/vite-plus-core@1.4.0
   vite-plus: 1.4.0
+  vitest: 5.0.5
 peerDependencyRules:
   allowAny:
     - vite

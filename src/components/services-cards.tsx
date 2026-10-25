@@ -3,10 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ctaAfterCopyClassName, ctaPrimaryClassName } from "@/lib/cta";
 import { cn } from "@/lib/utils";
 import { MoveRight } from "lucide-react";
-import {
-  HOMEPAGE_FEATURED_SERVICES,
-  type Service,
-} from "@/lib/data";
+import { HOMEPAGE_FEATURED_SERVICES, type Service } from "@/lib/data";
 
 export type { Service };
 
@@ -15,18 +12,13 @@ interface ServicesCardsProps {
   paragraph?: string;
 }
 
-export default function ServicesCards({
-  heading,
-  paragraph,
-}: ServicesCardsProps) {
+export default function ServicesCards({ heading, paragraph }: ServicesCardsProps) {
   return (
     <>
       <div className="absolute -translate-y-52" id="services"></div>
       <article className="max-w-8xl mx-auto py-6 md:py-10 lg:py-14 px-4 md:px-8 lg:px-8">
         <div className="space-y-4 mb-8 max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-            Services
-          </p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Services</p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl xl:text-5xl/none">
             {heading}
           </h2>
@@ -47,9 +39,7 @@ export default function ServicesCards({
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
                   Still deciding?
                 </p>
-                <h3 className="text-2xl font-bold leading-tight">
-                  Not sure what you need?
-                </h3>
+                <h3 className="text-2xl font-bold leading-tight">Not sure what you need?</h3>
                 <p className="text-zinc-600 max-w-md">
                   We'll find the perfect solution to your needs.
                 </p>
@@ -95,12 +85,8 @@ function ServiceCard({ service }: { service: Service }) {
         aria-hidden
       />
       <div className="relative flex h-full min-h-[260px] flex-col justify-end gap-2 p-8 pt-24 text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.35)]">
-        <h3 className="text-2xl font-bold leading-tight sm:text-3xl">
-          {service.title}
-        </h3>
-        <p className="max-w-md text-sm leading-relaxed text-white/95">
-          {service.teaser}
-        </p>
+        <h3 className="text-2xl font-bold leading-tight sm:text-3xl">{service.title}</h3>
+        <p className="max-w-md text-sm leading-relaxed text-white/95">{service.teaser}</p>
         <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-white">
           Read more
           <MoveRight

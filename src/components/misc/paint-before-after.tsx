@@ -87,8 +87,8 @@ export default function PaintBeforeAfter() {
           after
         </h2>
         <p className="font-sans text-sm leading-relaxed text-zinc-600 md:text-base">
-          Same space—prep, color, and finish brought together so the change
-          reads clearly in the room and from the curb.
+          Same space—prep, color, and finish brought together so the change reads clearly in the
+          room and from the curb.
         </p>
       </header>
 

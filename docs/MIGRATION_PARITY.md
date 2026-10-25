@@ -4,17 +4,17 @@ Canonical host: `https://chstainandrestoration.com`
 
 ## Routes (must return 200 with same content)
 
-| Path | Title | Notes |
-|------|-------|-------|
-| `/` | Castle Hills Stain & Restoration \| DFW | Home |
-| `/about-us` | About Us \| Castle Hills Stain & Restoration | |
-| `/contact-us` | Request a Free Estimate \| Castle Hills Stain & Restoration | Netlify form POST `/contact-form.html` |
-| `/our-expertise` | Our Expertise \| Castle Hills Stain & Restoration | |
-| `/privacy` | Privacy Policy \| Castle Hills Stain & Restoration | |
-| `/fence-services` | Fence Services \| Castle Hills Stain & Restoration | |
-| `/custom-wood-structures-outdoor-design` | Outdoor Structures \| ... | |
-| `/luxury-finishes-coatings` | Interior & Exterior Painting \| ... | |
-| `/interior-exterior-restoration-renovation` | Interior & Exterior Restoration \| ... | |
+| Path                                        | Title                                                       | Notes                                  |
+| ------------------------------------------- | ----------------------------------------------------------- | -------------------------------------- |
+| `/`                                         | Castle Hills Stain & Restoration \| DFW                     | Home                                   |
+| `/about-us`                                 | About Us \| Castle Hills Stain & Restoration                |                                        |
+| `/contact-us`                               | Request a Free Estimate \| Castle Hills Stain & Restoration | Netlify form POST `/contact-form.html` |
+| `/our-expertise`                            | Our Expertise \| Castle Hills Stain & Restoration           |                                        |
+| `/privacy`                                  | Privacy Policy \| Castle Hills Stain & Restoration          |                                        |
+| `/fence-services`                           | Fence Services \| Castle Hills Stain & Restoration          |                                        |
+| `/custom-wood-structures-outdoor-design`    | Outdoor Structures \| ...                                   |                                        |
+| `/luxury-finishes-coatings`                 | Interior & Exterior Painting \| ...                         |                                        |
+| `/interior-exterior-restoration-renovation` | Interior & Exterior Restoration \| ...                      |                                        |
 
 ## Redirects (301 permanent)
 

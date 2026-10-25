@@ -64,10 +64,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 function GoogleAnalyticsScript() {
   return (
     <>
-      <script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-      />
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
       <script
         dangerouslySetInnerHTML={{
           __html: `

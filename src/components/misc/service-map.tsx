@@ -1,9 +1,4 @@
-import {
-  Map,
-  MapMarker,
-  MarkerContent,
-  MarkerTooltip,
-} from "@/components/ui/map";
+import { Map, MapMarker, MarkerContent, MarkerTooltip } from "@/components/ui/map";
 
 // Castle Hills, Lewisville TX — zoomed out enough to read as the DFW service area.
 const CENTER: [number, number] = [-96.9497, 33.0465];

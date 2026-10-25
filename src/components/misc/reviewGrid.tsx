@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { ExternalLink, Star, User } from "lucide-react";
 import { REVIEWS } from "@/lib/data";
 import Image from "@/components/ui/optimized-image";
@@ -28,9 +23,7 @@ const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
         <Star
           key={star}
           aria-hidden
-          className={`w-4 h-4 ${
-            star <= rating ? "text-accent fill-accent" : "text-zinc-300"
-          }`}
+          className={`w-4 h-4 ${star <= rating ? "text-accent fill-accent" : "text-zinc-300"}`}
         />
       ))}
     </div>
@@ -49,8 +42,7 @@ export default function ReviewGrid() {
             What do our clients say?
           </h2>
           <p className="mt-3 text-zinc-600">
-            Real jobs across DFW—swipe the cards on mobile, or open Google for
-            the full thread.
+            Real jobs across DFW—swipe the cards on mobile, or open Google for the full thread.
           </p>
         </div>
 
@@ -70,8 +62,8 @@ export default function ReviewGrid() {
 
         <div className="mt-10 flex flex-col gap-4 rounded-2xl border border-zinc-200/90 bg-zinc-50/90 p-6 sm:flex-row sm:items-center sm:justify-between md:mt-12 md:p-8">
           <p className="text-sm text-zinc-600 md:max-w-lg">
-            Showing a sample here—on Google you&apos;ll find the full set of
-            reviews and photos from recent projects.
+            Showing a sample here—on Google you&apos;ll find the full set of reviews and photos from
+            recent projects.
           </p>
           <Button
             variant="outline"
@@ -117,12 +109,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
           <User className="w-4 h-4" />
           <p>{review.name}</p>
         </span>
-        <Image
-          src="/logos/google.png"
-          width={20}
-          height={20}
-          alt="Google logo"
-        />
+        <Image src="/logos/google.png" width={20} height={20} alt="Google logo" />
       </CardFooter>
     </Card>
   );

@@ -8,7 +8,6 @@ import { ctaPrimaryClassName } from "@/lib/cta";
 import { cn } from "@/lib/utils";
 import { Link } from "@tanstack/react-router";
 
-
 export default function FenceServices() {
   return (
     <>
@@ -64,13 +63,12 @@ export default function FenceServices() {
           </h2>
           <ul className="list-disc pl-6 text-zinc-600 max-w-[720px] space-y-3 mb-6">
             <li>
-              We remove dirt, mildew, and old buildup, then prep every board so
-              stain takes evenly—not blotchy or dry in patches.
+              We remove dirt, mildew, and old buildup, then prep every board so stain takes
+              evenly—not blotchy or dry in patches.
             </li>
             <li>
-              Premium oil-based stain goes on after the wood is ready, giving a
-              rich finish and long-term protection against harsh Texas sun and
-              moisture.
+              Premium oil-based stain goes on after the wood is ready, giving a rich finish and
+              long-term protection against harsh Texas sun and moisture.
             </li>
           </ul>
           <p className="text-sm font-semibold uppercase tracking-wide text-zinc-500 mb-2">

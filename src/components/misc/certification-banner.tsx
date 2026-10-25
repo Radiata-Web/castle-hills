@@ -13,9 +13,8 @@ export default function CertificationBanner() {
             Certified for Excellence
           </h2>
           <p className="text-zinc-600 text-lg leading-relaxed">
-            Professional certifications and advanced training back our
-            craftsmanship. We&apos;re PCA certified and carry a proud BBB A+
-            rating—so you know the work meets serious standards.
+            Professional certifications and advanced training back our craftsmanship. We&apos;re PCA
+            certified and carry a proud BBB A+ rating—so you know the work meets serious standards.
           </p>
         </div>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 sm:gap-6 md:gap-8 w-full items-center">

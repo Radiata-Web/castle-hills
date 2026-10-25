@@ -25,8 +25,8 @@ export default function Footer() {
 
               <span className="min-w-full">
                 <p className="text-sm">
-                  Proudly serving Castle Hills, Flower Mound, Southlake, Frisco,
-                  and surrounding areas.
+                  Proudly serving Castle Hills, Flower Mound, Southlake, Frisco, and surrounding
+                  areas.
                 </p>
               </span>
               <Socials />
@@ -95,7 +95,13 @@ export default function Footer() {
                 <h3 className="font-semibold mb-2">Trusted Vendors</h3>
                 <ul className="space-y-1">
                   <li className="flex items-center gap-1">
-                    <a href="https://www.zebrajunkremoval.net/" target="_blank" className="text-sm text-muted-foreground hover:text-primary hover:underline flex items-center gap-1">Zebra Junk Removal <ExternalLink size={12} /></a>
+                    <a
+                      href="https://www.zebrajunkremoval.net/"
+                      target="_blank"
+                      className="text-sm text-muted-foreground hover:text-primary hover:underline flex items-center gap-1"
+                    >
+                      Zebra Junk Removal <ExternalLink size={12} />
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -109,22 +115,17 @@ export default function Footer() {
         {/* Copyright section */}
         <div className="text-center">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Castle Hills Stain and Restoration
-            LLC. <br className="sm:hidden" /> Website by{" "}
-            <a
-              href="https://radiataweb.com"
-              target="_blank"
-              className="text-accent"
-            >
+            &copy; {new Date().getFullYear()} Castle Hills Stain and Restoration LLC.{" "}
+            <br className="sm:hidden" /> Website by{" "}
+            <a href="https://radiataweb.com" target="_blank" className="text-accent">
               Radiata Web
             </a>
             .
           </p>
           <p className="text-xs text-muted-foreground mt-2">
-            Sherwin-Williams Emerald&reg; and Sherwin-Williams Duration&reg; are
-            registered trademarks of The Sherwin-Williams Company. Romabio
-            Classico Limewash&reg; is a registered trademark of Romabio Paints,
-            LLC.
+            Sherwin-Williams Emerald&reg; and Sherwin-Williams Duration&reg; are registered
+            trademarks of The Sherwin-Williams Company. Romabio Classico Limewash&reg; is a
+            registered trademark of Romabio Paints, LLC.
           </p>
         </div>
       </section>

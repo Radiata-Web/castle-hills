@@ -36,9 +36,7 @@ export default function ServiceDesc(props: ServiceDescProps) {
       {/* Service Description */}
       <section className="w-full space-y-5 md:w-1/2 md:space-y-6">
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold sm:text-3xl xl:text-4xl/none mb-4">
-            {props.header}
-          </h2>
+          <h2 className="text-2xl font-bold sm:text-3xl xl:text-4xl/none mb-4">{props.header}</h2>
           <p className="text-zinc-600 max-w-[600px]">{props.content}</p>
         </div>
         <Button

@@ -8,7 +8,6 @@ import { Link } from "@tanstack/react-router";
 import RemodelCarousel from "@/components/misc/remodel-carousel";
 import ChooseUs from "@/components/misc/choose-us";
 
-
 export default function InteriorExteriorRestoration() {
   return (
     <>
@@ -42,45 +41,38 @@ export default function InteriorExteriorRestoration() {
 
                 <h3 className="text-xl font-bold mb-4">What We Do</h3>
                 <p className="text-zinc-600 max-w-[600px]">
-                  When the unexpected happens, our team restores your home to
-                  pre‑damage condition with a proven process that covers
-                  assessment, mitigation, cleanup, repairs, and finishing. From
-                  the first inspection to the final walkthrough, we use
-                  top‑quality materials and detail‑focused craftsmanship to
-                  protect your investment and bring back comfort and safety.
-                  Serving the Dallas–Fort Worth area since 2015, we act quickly,
-                  communicate clearly, and work with care around your property
-                  from start to finish.
+                  When the unexpected happens, our team restores your home to pre‑damage condition
+                  with a proven process that covers assessment, mitigation, cleanup, repairs, and
+                  finishing. From the first inspection to the final walkthrough, we use top‑quality
+                  materials and detail‑focused craftsmanship to protect your investment and bring
+                  back comfort and safety. Serving the Dallas–Fort Worth area since 2015, we act
+                  quickly, communicate clearly, and work with care around your property from start
+                  to finish.
                 </p>
 
                 <h4 className="font-bold">Full Interior Remodeling</h4>
                 <ul className="list-disc ml-6 text-zinc-600">
                   <li>
-                    <span className="font-bold">Kitchens</span> – custom
-                    cabinetry, countertops, backsplash, layout changes
+                    <span className="font-bold">Kitchens</span> – custom cabinetry, countertops,
+                    backsplash, layout changes
                   </li>
                   <li>
-                    <span className="font-bold">Bathrooms</span> – tile,
-                    showers, vanities, walk-in showers, tub-to-shower
-                    conversions
+                    <span className="font-bold">Bathrooms</span> – tile, showers, vanities, walk-in
+                    showers, tub-to-shower conversions
                   </li>
                   <li>
-                    <span className="font-bold">Living Spaces</span> – flooring,
-                    trim, drywall, painting, custom woodwork, fireplace
-                    redesigns
+                    <span className="font-bold">Living Spaces</span> – flooring, trim, drywall,
+                    painting, custom woodwork, fireplace redesigns
                   </li>
                   <li>
-                    <span className="font-bold">
-                      Additions & Layout Changes
-                    </span>{" "}
-                    – framing, open-concept conversions, wall removal (with
-                    structural reinforcement)
+                    <span className="font-bold">Additions & Layout Changes</span> – framing,
+                    open-concept conversions, wall removal (with structural reinforcement)
                   </li>
                 </ul>
 
                 <p className="text-zinc-600 max-w-[600px]">
-                  Request a free estimate to get expert guidance and a prompt,
-                  professional plan for recovery.
+                  Request a free estimate to get expert guidance and a prompt, professional plan for
+                  recovery.
                 </p>
               </span>
               <Button
@@ -104,25 +96,19 @@ export default function InteriorExteriorRestoration() {
 
                 <h3 className="text-xl font-bold mb-4">What We Do</h3>
                 <p className="text-zinc-600 max-w-[600px]">
-                  Transform your home with interior and exterior updates that
-                  elevate function, style, and long‑term durability. From
-                  planning and prep to build and finish, our crews focus on
-                  clean job sites, protected surroundings, and craftsmanship
-                  that brings your vision together with stunning, cohesive
-                  finishes. Projects can include interior upgrades, exterior
-                  improvements, professional painting, and custom outdoor
-                  features to create a beautiful centerpiece for your home.
+                  Transform your home with interior and exterior updates that elevate function,
+                  style, and long‑term durability. From planning and prep to build and finish, our
+                  crews focus on clean job sites, protected surroundings, and craftsmanship that
+                  brings your vision together with stunning, cohesive finishes. Projects can include
+                  interior upgrades, exterior improvements, professional painting, and custom
+                  outdoor features to create a beautiful centerpiece for your home.
                 </p>
 
                 <ul className="list-disc ml-6 text-zinc-600">
                   <li>Roofing (composition, metal, tile)</li>
+                  <li>Interior updates and finishing tailored to your space and style.</li>
                   <li>
-                    Interior updates and finishing tailored to your space and
-                    style.
-                  </li>
-                  <li>
-                    Exterior improvements that unify curb appeal and durability,
-                    including{" "}
+                    Exterior improvements that unify curb appeal and durability, including{" "}
                     <Link
                       to="/custom-wood-structures-outdoor-design"
                       className="underline text-accent-primary"
@@ -130,20 +116,14 @@ export default function InteriorExteriorRestoration() {
                       pergolas and patio covers
                     </Link>{" "}
                     and{" "}
-                    <Link
-                      to="/fence-services"
-                      className="underline text-accent-primary"
-                    >
+                    <Link to="/fence-services" className="underline text-accent-primary">
                       fence and gate work
                     </Link>{" "}
                     — build, stain, repair, and restoration.
                   </li>
                   <li>
                     Professional{" "}
-                    <Link
-                      to="/luxury-finishes-coatings"
-                      className="underline text-accent-primary"
-                    >
+                    <Link to="/luxury-finishes-coatings" className="underline text-accent-primary">
                       interior and exterior painting
                     </Link>{" "}
                     integration for seamless color and finish selection.
@@ -152,8 +132,8 @@ export default function InteriorExteriorRestoration() {
                 </ul>
 
                 <p className="text-zinc-600 max-w-[600px]">
-                  Request a free estimate to discuss timeline, materials, and
-                  options that fit your goals in the Dallas–Fort Worth area.
+                  Request a free estimate to discuss timeline, materials, and options that fit your
+                  goals in the Dallas–Fort Worth area.
                 </p>
               </span>
               <Button

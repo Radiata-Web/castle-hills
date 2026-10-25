@@ -1,10 +1,10 @@
-import { cn } from "@/lib/utils"
-import { PhoneIcon } from "lucide-react"
+import { cn } from "@/lib/utils";
+import { PhoneIcon } from "lucide-react";
 
 interface ContactProps {
-  iconSize: number
-  textSize: string
-  className: string
+  iconSize: number;
+  textSize: string;
+  className: string;
 }
 
 export default function ContactNumber(props: ContactProps) {
@@ -17,11 +17,11 @@ export default function ContactNumber(props: ContactProps) {
         href="tel:4692153098"
         className={cn(
           `${props.textSize}`,
-          "transition-all duration-200 ease-in-out hover:text-accent"
+          "transition-all duration-200 ease-in-out hover:text-accent",
         )}
       >
         (469) 215-3098
       </a>
     </div>
-  )
+  );
 }

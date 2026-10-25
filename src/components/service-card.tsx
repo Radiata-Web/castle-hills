@@ -28,18 +28,13 @@ export const ServiceCard = ({
         "group relative block overflow-hidden rounded-lg transition-all duration-200 ease-in-out shadow-lg border",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         "h-80 w-full",
-        className
+        className,
       )}
       aria-label={`Learn more about ${title}`}
     >
       {/* Background Image */}
       <div className="absolute inset-0 z-0" role="img" aria-label={imageAlt}>
-        <img
-          src={imageSrc}
-          alt={imageAlt}
-          className="h-full w-full object-cover"
-          loading="lazy"
-        />
+        <img src={imageSrc} alt={imageAlt} className="h-full w-full object-cover" loading="lazy" />
       </div>
 
       {/* Default State Gradient Overlay */}

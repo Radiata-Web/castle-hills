@@ -1,11 +1,4 @@
-import {
-  ChevronDown,
-  DoorOpen,
-  Fence,
-  Paintbrush,
-  Sparkles,
-  Wrench,
-} from "lucide-react";
+import { ChevronDown, DoorOpen, Fence, Paintbrush, Sparkles, Wrench } from "lucide-react";
 
 const SUMMARIES = [
   {
@@ -20,7 +13,8 @@ const SUMMARIES = [
   },
   {
     title: "Repair & restoration",
-    blurb: "Save solid sections—rebuild framing, blend repairs, skip full tear-out when it makes sense.",
+    blurb:
+      "Save solid sections—rebuild framing, blend repairs, skip full tear-out when it makes sense.",
     icon: Wrench,
   },
   {
@@ -51,9 +45,7 @@ export function FenceServicesSummary() {
       />
 
       <div className="relative mx-auto max-w-3xl text-center">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-          At a glance
-        </p>
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">At a glance</p>
         <h2
           id="fence-services-summary-heading"
           className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl"
@@ -61,8 +53,7 @@ export function FenceServicesSummary() {
           Every fence service we offer
         </h2>
         <p className="mt-3 text-base text-zinc-600 sm:text-lg">
-          Quick overview below—scroll for photos, process detail, and how we
-          work on your property.
+          Quick overview below—scroll for photos, process detail, and how we work on your property.
         </p>
         <a
           href="#fence-details"
@@ -80,12 +71,8 @@ export function FenceServicesSummary() {
               <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-lg bg-accent/12 text-accent transition-colors group-hover:bg-accent/18">
                 <Icon className="h-5 w-5" strokeWidth={2} aria-hidden />
               </div>
-              <h3 className="text-lg font-bold leading-snug text-zinc-900">
-                {title}
-              </h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-600">
-                {blurb}
-              </p>
+              <h3 className="text-lg font-bold leading-snug text-zinc-900">{title}</h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-600">{blurb}</p>
             </div>
           </li>
         ))}

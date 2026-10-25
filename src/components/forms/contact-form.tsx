@@ -42,8 +42,7 @@ const formSchema = zfd.formData({
   "form-name": z.string(),
   name: z
     .string({
-      error: (issue) =>
-        issue.input === undefined ? "Name is required." : undefined,
+      error: (issue) => (issue.input === undefined ? "Name is required." : undefined),
     })
     .min(2, {
       error: "Enter more than 2 characters.",
@@ -53,16 +52,13 @@ const formSchema = zfd.formData({
   }),
   phone: z
     .string({
-      error: (issue) =>
-        issue.input === undefined ? "Phone is required." : undefined,
+      error: (issue) => (issue.input === undefined ? "Phone is required." : undefined),
     })
     .refine(
       (val) => isValidPhoneNumber(val, { defaultCountry: "US" }),
       "Please provide a valid phone number.",
     )
-    .transform((val) =>
-      parsePhoneNumber(val, { defaultCountry: "US" }).number.toString(),
-    ),
+    .transform((val) => parsePhoneNumber(val, { defaultCountry: "US" }).number.toString()),
   serviceType: z.enum(PROJECT_TYPES, {
     error: (issue) =>
       issue.input === undefined
@@ -71,9 +67,7 @@ const formSchema = zfd.formData({
   }),
   message: z.string({
     error: (issue) =>
-      issue.input === undefined
-        ? "Please write your project details."
-        : undefined,
+      issue.input === undefined ? "Please write your project details." : undefined,
   }),
 });
 
@@ -134,9 +128,7 @@ export function ContactForm(props: ContactFormProps) {
         {props.showHeader ? (
           <div className="flex flex-col gap-2 mb-6">
             <h2 className="text-2xl font-bold">Request a Free Estimate</h2>
-            <p className="text-sm text-zinc-600">
-              Our team will reach out within 24 hours.
-            </p>
+            <p className="text-sm text-zinc-600">Our team will reach out within 24 hours.</p>
           </div>
         ) : null}
 
@@ -156,13 +148,7 @@ export function ContactForm(props: ContactFormProps) {
                 <FormItem>
                   <FormLabel>Full Name</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="John Smith"
-                      required
-                      minLength={2}
-                      type="text"
-                      {...field}
-                    />
+                    <Input placeholder="John Smith" required minLength={2} type="text" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -178,12 +164,7 @@ export function ContactForm(props: ContactFormProps) {
                 <FormItem>
                   <FormLabel>Email Address</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="hello@example.com"
-                      required
-                      type="email"
-                      {...field}
-                    />
+                    <Input placeholder="hello@example.com" required type="email" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -279,8 +260,7 @@ export function ContactForm(props: ContactFormProps) {
               size="lg"
               className={`min-w-full sm:min-w-[12rem] ${ctaPrimaryClassName}`}
             >
-              Request a Free Estimate{" "}
-              <SendHorizonal size={16} className="ml-2" />
+              Request a Free Estimate <SendHorizonal size={16} className="ml-2" />
             </Button>
 
             <span className="text-sm text-gray-500">

@@ -12,9 +12,7 @@ export default function NavBanner() {
           <div className="flex-row items-center gap-1 pr-5 border-r-2 border-r-accent-light hidden sm:flex">
             <MapPin size={15} />
             {/* Link to Google Maps page */}
-            <a href="https://maps.app.goo.gl/MNGT76dBbYbfbzRK8">
-              Serving the DFW Metroplex.
-            </a>
+            <a href="https://maps.app.goo.gl/MNGT76dBbYbfbzRK8">Serving the DFW Metroplex.</a>
           </div>
 
           {/* Contact phone number */}

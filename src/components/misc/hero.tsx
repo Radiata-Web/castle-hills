@@ -1,11 +1,7 @@
 // Hero.tsx
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import {
-  ctaAfterCopyClassName,
-  ctaGroupClassName,
-  ctaPrimaryClassName,
-} from "@/lib/cta";
+import { ctaAfterCopyClassName, ctaGroupClassName, ctaPrimaryClassName } from "@/lib/cta";
 import { cn } from "@/lib/utils";
 
 type HeroProps = {

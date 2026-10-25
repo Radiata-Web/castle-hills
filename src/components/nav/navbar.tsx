@@ -59,11 +59,7 @@ export default function Navbar() {
 
           <div className="hidden lg:flex ml-6 items-center gap-1">
             {PAGES.map((page) => (
-              <Link
-                key={page.title}
-                to={page.href}
-                className={navigationMenuTriggerStyle()}
-              >
+              <Link key={page.title} to={page.href} className={navigationMenuTriggerStyle()}>
                 {page.title}
               </Link>
             ))}
@@ -83,10 +79,7 @@ export default function Navbar() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="min-w-56">
                 {HOMEPAGE_FEATURED_SERVICES.map((service) => (
-                  <DropdownMenuItem
-                    key={service.href}
-                    render={<Link to={service.href} />}
-                  >
+                  <DropdownMenuItem key={service.href} render={<Link to={service.href} />}>
                     {service.title}
                   </DropdownMenuItem>
                 ))}
@@ -101,30 +94,20 @@ export default function Navbar() {
               render={<Link to="/contact-us" />}
               nativeButton={false}
             >
-              Get a Free Estimate{" "}
-              <MoveRight className="ml-2" strokeWidth={1.5} />
+              Get a Free Estimate <MoveRight className="ml-2" strokeWidth={1.5} />
             </Button>
           </div>
 
           <div className="lg:hidden">
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-              <SheetDescription className="sr-only">
-                Navigation Menu
-              </SheetDescription>
+              <SheetDescription className="sr-only">Navigation Menu</SheetDescription>
 
-              <SheetTrigger
-                render={
-                  <Button variant="ghost" size="icon" className="size-11" />
-                }
-              >
+              <SheetTrigger render={<Button variant="ghost" size="icon" className="size-11" />}>
                 <Menu className="size-6" />
                 <span className="sr-only">Toggle navigation menu</span>
               </SheetTrigger>
 
-              <SheetContent
-                side="right"
-                className="w-[min(100vw-2rem,400px)] gap-0 sm:w-[400px]"
-              >
+              <SheetContent side="right" className="w-[min(100vw-2rem,400px)] gap-0 sm:w-[400px]">
                 <SheetTitle className="sr-only">Navigation Links</SheetTitle>
 
                 <div className="pr-12">

@@ -17,37 +17,22 @@ export default function InteriorContact() {
             </p>
 
             <p className="text-zinc-800">
-              Tell us about your project — our team will reach out within 24
-              hours.
+              Tell us about your project — our team will reach out within 24 hours.
             </p>
           </div>
 
           <div className="space-y-1 text-zinc-600">
             <p>Call Now:</p>
-            <ContactNumber
-              iconSize={24}
-              textSize="text-lg"
-              className="text-zinc-900"
-            />
+            <ContactNumber iconSize={24} textSize="text-lg" className="text-zinc-900" />
           </div>
 
           {/* Socials */}
           <div className="flex flex-row gap-4 sm:gap-6 md:gap-8">
             <a href="https://maps.app.goo.gl/RteUFevUMNKuLVkv8">
-              <Image
-                src="/gl-badge.png"
-                alt="Rate us on Google"
-                width={200}
-                height={100}
-              />
+              <Image src="/gl-badge.png" alt="Rate us on Google" width={200} height={100} />
             </a>
             <a href="https://www.facebook.com/CHPW903">
-              <Image
-                src="/fb-badge.png"
-                alt="See us on Facebook"
-                width={200}
-                height={100}
-              />
+              <Image src="/fb-badge.png" alt="See us on Facebook" width={200} height={100} />
             </a>
           </div>
         </div>

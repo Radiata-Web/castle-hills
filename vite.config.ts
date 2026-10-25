@@ -19,5 +19,19 @@ export default defineConfig({
   worker: {
     format: "es",
   },
-  plugins: [tanstackStart(), viteReact(), tailwindcss(), netlify()],
+  plugins: [
+    tanstackStart(),
+    viteReact(),
+    tailwindcss(),
+    // Edge Functions local Deno emulator crashes under Deno 2.9+
+    // (`deno eval --allow-scripts` is rejected). This site does not use
+    // edge functions; keep other Netlify dev emulation (redirects, etc.).
+    netlify({
+      dev: {
+        edgeFunctions: {
+          enabled: false,
+        },
+      },
+    }),
+  ],
 });

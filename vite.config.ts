@@ -6,7 +6,10 @@ import viteReact from "@vitejs/plugin-react";
 import { defineConfig, lazyPlugins } from "vite-plus";
 
 export default defineConfig({
-  fmt: {},
+  fmt: {
+    // TanStack regenerates this on build/dev; keep oxfmt off it.
+    ignorePatterns: ["src/routeTree.gen.ts"],
+  },
   lint: {
     jsPlugins: [{ name: "vite-plus", specifier: "vite-plus/oxlint-plugin" }],
     rules: { "vite-plus/prefer-vite-plus-imports": "error" },

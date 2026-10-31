@@ -83,7 +83,6 @@ export function Hero({
         minHeightClass,
       )}
       style={{ backgroundImage: `url(${backgroundImageUrl})` }}
-      aria-label="Hero section"
     >
       <div className={cn("absolute inset-0 h-full", overlayOpacityClass)} />
 

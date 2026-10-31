@@ -21,10 +21,13 @@ import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 
 export const Route = createRootRoute({
-  head: () => ({
-    ...pageHead(rootMeta),
-    links: [{ rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
-  }),
+  head: () => {
+    const head = pageHead(rootMeta);
+    return {
+      ...head,
+      links: [...(head.links ?? []), { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
+    };
+  },
   component: RootComponent,
   errorComponent: RootErrorPage,
   notFoundComponent: NotFoundPage,

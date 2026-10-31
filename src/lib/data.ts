@@ -1,4 +1,5 @@
 import { Review } from "@/components/misc/reviewGrid";
+import { SERVICE_NAV_GROUPS } from "@/lib/service-ia";
 
 export interface Service {
   title: string;
@@ -15,28 +16,21 @@ export const PAGES: { title: string; href: string }[] = [
 ];
 
 /**
- * Production nav / homepage featured services (unchanged until Phase 2 cutover).
- * New Painting / Wood Staining IA lives in `@/lib/service-ia` (`SERVICE_NAV_GROUPS`).
+ * Homepage / about service cards — Painting + Wood Staining hubs (launch IA).
+ * Full nav tree lives in `@/lib/service-ia` (`SERVICE_NAV_GROUPS`).
  */
-/** Matches homepage “What can we do for you?” service cards and nav Services dropdown. */
 export const HOMEPAGE_FEATURED_SERVICES: Service[] = [
   {
-    title: "Outdoor Structures",
-    href: "/custom-wood-structures-outdoor-design",
-    cardImg: "/pergolas/pergola-6",
-    teaser: "Custom builds and pro staining for pergolas, patio covers, and outdoor wood.",
-  },
-  {
-    title: "Fence Services",
-    href: "/fence-services",
-    cardImg: "/fences/wood/fence-1",
-    teaser: "Install, stain, repair, gates, and prep—finished for North Texas weather.",
-  },
-  {
-    title: "Interior & Exterior Painting",
-    href: "/luxury-finishes-coatings",
+    title: "Painting",
+    href: "/painting",
     cardImg: "/paint/ex-paint-2",
-    teaser: "Coatings, color, and detail work that holds up where you live.",
+    teaser: SERVICE_NAV_GROUPS[0].description,
+  },
+  {
+    title: "Wood Staining",
+    href: "/wood-staining",
+    cardImg: "/stain/stain-2",
+    teaser: SERVICE_NAV_GROUPS[1].description,
   },
 ];
 

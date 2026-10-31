@@ -12,10 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as ContactUsRouteImport } from './routes/contact-us'
-import { Route as CustomWoodStructuresOutdoorDesignRouteImport } from './routes/custom-wood-structures-outdoor-design'
-import { Route as FenceServicesRouteImport } from './routes/fence-services'
-import { Route as InteriorExteriorRestorationRenovationRouteImport } from './routes/interior-exterior-restoration-renovation'
-import { Route as LuxuryFinishesCoatingsRouteImport } from './routes/luxury-finishes-coatings'
 import { Route as OurExpertiseRouteImport } from './routes/our-expertise'
 import { Route as PaintingRouteImport } from './routes/painting'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -41,28 +37,6 @@ const AboutUsRoute = AboutUsRouteImport.update({
 const ContactUsRoute = ContactUsRouteImport.update({
   id: '/contact-us',
   path: '/contact-us',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CustomWoodStructuresOutdoorDesignRoute =
-  CustomWoodStructuresOutdoorDesignRouteImport.update({
-    id: '/custom-wood-structures-outdoor-design',
-    path: '/custom-wood-structures-outdoor-design',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const FenceServicesRoute = FenceServicesRouteImport.update({
-  id: '/fence-services',
-  path: '/fence-services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InteriorExteriorRestorationRenovationRoute =
-  InteriorExteriorRestorationRenovationRouteImport.update({
-    id: '/interior-exterior-restoration-renovation',
-    path: '/interior-exterior-restoration-renovation',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const LuxuryFinishesCoatingsRoute = LuxuryFinishesCoatingsRouteImport.update({
-  id: '/luxury-finishes-coatings',
-  path: '/luxury-finishes-coatings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OurExpertiseRoute = OurExpertiseRouteImport.update({
@@ -127,10 +101,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
   '/contact-us': typeof ContactUsRoute
-  '/custom-wood-structures-outdoor-design': typeof CustomWoodStructuresOutdoorDesignRoute
-  '/fence-services': typeof FenceServicesRoute
-  '/interior-exterior-restoration-renovation': typeof InteriorExteriorRestorationRenovationRoute
-  '/luxury-finishes-coatings': typeof LuxuryFinishesCoatingsRoute
   '/our-expertise': typeof OurExpertiseRoute
   '/painting': typeof PaintingRouteWithChildren
   '/privacy': typeof PrivacyRoute
@@ -147,10 +117,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
   '/contact-us': typeof ContactUsRoute
-  '/custom-wood-structures-outdoor-design': typeof CustomWoodStructuresOutdoorDesignRoute
-  '/fence-services': typeof FenceServicesRoute
-  '/interior-exterior-restoration-renovation': typeof InteriorExteriorRestorationRenovationRoute
-  '/luxury-finishes-coatings': typeof LuxuryFinishesCoatingsRoute
   '/our-expertise': typeof OurExpertiseRoute
   '/privacy': typeof PrivacyRoute
   '/painting/exterior': typeof PaintingExteriorRoute
@@ -166,10 +132,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
   '/contact-us': typeof ContactUsRoute
-  '/custom-wood-structures-outdoor-design': typeof CustomWoodStructuresOutdoorDesignRoute
-  '/fence-services': typeof FenceServicesRoute
-  '/interior-exterior-restoration-renovation': typeof InteriorExteriorRestorationRenovationRoute
-  '/luxury-finishes-coatings': typeof LuxuryFinishesCoatingsRoute
   '/our-expertise': typeof OurExpertiseRoute
   '/painting': typeof PaintingRouteWithChildren
   '/privacy': typeof PrivacyRoute
@@ -188,10 +150,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about-us'
     | '/contact-us'
-    | '/custom-wood-structures-outdoor-design'
-    | '/fence-services'
-    | '/interior-exterior-restoration-renovation'
-    | '/luxury-finishes-coatings'
     | '/our-expertise'
     | '/painting'
     | '/privacy'
@@ -208,10 +166,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about-us'
     | '/contact-us'
-    | '/custom-wood-structures-outdoor-design'
-    | '/fence-services'
-    | '/interior-exterior-restoration-renovation'
-    | '/luxury-finishes-coatings'
     | '/our-expertise'
     | '/privacy'
     | '/painting/exterior'
@@ -226,10 +180,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about-us'
     | '/contact-us'
-    | '/custom-wood-structures-outdoor-design'
-    | '/fence-services'
-    | '/interior-exterior-restoration-renovation'
-    | '/luxury-finishes-coatings'
     | '/our-expertise'
     | '/painting'
     | '/privacy'
@@ -247,10 +197,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutUsRoute: typeof AboutUsRoute
   ContactUsRoute: typeof ContactUsRoute
-  CustomWoodStructuresOutdoorDesignRoute: typeof CustomWoodStructuresOutdoorDesignRoute
-  FenceServicesRoute: typeof FenceServicesRoute
-  InteriorExteriorRestorationRenovationRoute: typeof InteriorExteriorRestorationRenovationRoute
-  LuxuryFinishesCoatingsRoute: typeof LuxuryFinishesCoatingsRoute
   OurExpertiseRoute: typeof OurExpertiseRoute
   PaintingRoute: typeof PaintingRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
@@ -278,34 +224,6 @@ declare module '@tanstack/react-router' {
       path: '/contact-us'
       fullPath: '/contact-us'
       preLoaderRoute: typeof ContactUsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/custom-wood-structures-outdoor-design': {
-      id: '/custom-wood-structures-outdoor-design'
-      path: '/custom-wood-structures-outdoor-design'
-      fullPath: '/custom-wood-structures-outdoor-design'
-      preLoaderRoute: typeof CustomWoodStructuresOutdoorDesignRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/fence-services': {
-      id: '/fence-services'
-      path: '/fence-services'
-      fullPath: '/fence-services'
-      preLoaderRoute: typeof FenceServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/interior-exterior-restoration-renovation': {
-      id: '/interior-exterior-restoration-renovation'
-      path: '/interior-exterior-restoration-renovation'
-      fullPath: '/interior-exterior-restoration-renovation'
-      preLoaderRoute: typeof InteriorExteriorRestorationRenovationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/luxury-finishes-coatings': {
-      id: '/luxury-finishes-coatings'
-      path: '/luxury-finishes-coatings'
-      fullPath: '/luxury-finishes-coatings'
-      preLoaderRoute: typeof LuxuryFinishesCoatingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/our-expertise': {
@@ -426,12 +344,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutUsRoute: AboutUsRoute,
   ContactUsRoute: ContactUsRoute,
-  CustomWoodStructuresOutdoorDesignRoute:
-    CustomWoodStructuresOutdoorDesignRoute,
-  FenceServicesRoute: FenceServicesRoute,
-  InteriorExteriorRestorationRenovationRoute:
-    InteriorExteriorRestorationRenovationRoute,
-  LuxuryFinishesCoatingsRoute: LuxuryFinishesCoatingsRoute,
   OurExpertiseRoute: OurExpertiseRoute,
   PaintingRoute: PaintingRouteWithChildren,
   PrivacyRoute: PrivacyRoute,

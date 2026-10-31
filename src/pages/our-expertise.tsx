@@ -25,7 +25,7 @@ export default function OurExpertise() {
                 Craft you can see in the details
               </h2>
               <p className="text-lg leading-relaxed text-zinc-600">
-                From outdoor wood and fences to interior paint and full restoration, we bring the
+                From interior and exterior paint to fence and outdoor wood staining, we bring the
                 same mindset: prep done right, materials chosen for Texas conditions, and finishes
                 built to look sharp for years—not weeks.
               </p>
@@ -78,12 +78,12 @@ export default function OurExpertise() {
               <span className="flex justify-center items-center bg-accent w-16 h-16 rounded-lg mb-4">
                 <Hammer size={36} className="text-white" strokeWidth={1} />
               </span>
-              Home Maintenance & Restoration
+              Prep, Repair & Long-Term Care
             </CardHeader>
 
             <CardContent>
-              From wood repairs to exterior touch-ups, we help keep your home looking its best with
-              ongoing maintenance and restoration services.
+              From drywall touch-ups before paint to fence prep before stain, we handle the details
+              that make finishes last in North Texas weather.
             </CardContent>
           </Card>
         </section>

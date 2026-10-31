@@ -1,6 +1,5 @@
 /**
- * Launch service IA for Painting + Wood Staining.
- * Ready for Phase 2 nav cutover — do not wire into production Navbar/footer yet.
+ * Launch service IA for Painting + Wood Staining (production nav source of truth).
  * Cabinets + deck child URLs are intentionally omitted until the photo pack lands.
  */
 

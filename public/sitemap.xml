@@ -26,30 +26,10 @@
   </url>
   <url>
     <loc>https://chstainandrestoration.com/our-expertise</loc>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://chstainandrestoration.com/custom-wood-structures-outdoor-design</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://chstainandrestoration.com/luxury-finishes-coatings</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://chstainandrestoration.com/fence-services</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://chstainandrestoration.com/interior-exterior-restoration-renovation</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <!-- Phase 1 launch IA (old umbrellas remain until Phase 2 cutover) -->
   <url>
     <loc>https://chstainandrestoration.com/painting</loc>
     <lastmod>2026-10-31</lastmod>
@@ -93,4 +73,3 @@
     <priority>0.85</priority>
   </url>
 </urlset>
-

@@ -11,10 +11,7 @@ import { cn } from "@/lib/utils";
 const linkClass =
   "flex min-h-11 w-full items-center rounded-lg px-4 py-3 text-base leading-snug text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900";
 
-/**
- * Accessible two-group Services nav prototype for Phase 2 cutover.
- * Not wired into production Navbar yet — use for QA / future swap.
- */
+/** Accessible two-group Services nav (Painting / Wood Staining) for mobile sheet. */
 export function ServiceNavPrototype({
   className,
   onNavigate,

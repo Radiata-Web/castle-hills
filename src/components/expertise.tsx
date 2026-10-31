@@ -2,31 +2,15 @@ import { CheckCircle, MoveRight } from "lucide-react";
 import { GlossyPhotoFrame } from "@/components/misc/glossy-photo-frame";
 import { Button } from "./ui/button";
 import { ctaAfterCopyClassName, ctaGroupClassName, ctaPrimaryClassName } from "@/lib/cta";
+import { SERVICE_NAV_GROUPS } from "@/lib/service-ia";
 import { cn } from "@/lib/utils";
 import { Link } from "@tanstack/react-router";
 
-const PILLARS = [
-  {
-    title: "Outdoor Structures",
-    href: "/custom-wood-structures-outdoor-design",
-    body: "Custom outdoor structure installation and staining for pergolas, patio covers, and related woodwork.",
-  },
-  {
-    title: "Fence Services",
-    href: "/fence-services",
-    body: "Fence install, stain and seal, repair, custom gates, and cleaning and prep for long-lasting oil-based finishes.",
-  },
-  {
-    title: "Interior & Exterior Painting",
-    href: "/luxury-finishes-coatings",
-    body: "Interior and exterior painting with high-performance coatings, including Sherwin-Williams Emerald® and Sherwin-Williams Duration®, plus Romabio Classico Limewash® where it fits your design.",
-  },
-  {
-    title: "Interior & Exterior Restoration",
-    href: "/interior-exterior-restoration-renovation",
-    body: "Restoration and rebuild services combining craftsmanship, design, and structural care.",
-  },
-] as const;
+const PILLARS = SERVICE_NAV_GROUPS.map((group) => ({
+  title: group.title,
+  href: group.href,
+  body: group.description,
+}));
 
 export default function Expertise() {
   return (
@@ -43,8 +27,8 @@ export default function Expertise() {
             Our Expertise
           </h2>
           <p className="mt-3 max-w-3xl text-zinc-600">
-            Four pillars of work we take from estimate to finish—tap any line to see how we approach
-            it.
+            Two focuses we take from estimate to finish—painting and wood staining for North Texas
+            homes.
           </p>
         </div>
 

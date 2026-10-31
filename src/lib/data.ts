@@ -14,6 +14,10 @@ export const PAGES: { title: string; href: string }[] = [
   { title: "Expertise", href: "/our-expertise" },
 ];
 
+/**
+ * Production nav / homepage featured services (unchanged until Phase 2 cutover).
+ * New Painting / Wood Staining IA lives in `@/lib/service-ia` (`SERVICE_NAV_GROUPS`).
+ */
 /** Matches homepage “What can we do for you?” service cards and nav Services dropdown. */
 export const HOMEPAGE_FEATURED_SERVICES: Service[] = [
   {

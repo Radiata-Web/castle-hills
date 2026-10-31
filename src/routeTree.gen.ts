@@ -17,7 +17,16 @@ import { Route as FenceServicesRouteImport } from './routes/fence-services'
 import { Route as InteriorExteriorRestorationRenovationRouteImport } from './routes/interior-exterior-restoration-renovation'
 import { Route as LuxuryFinishesCoatingsRouteImport } from './routes/luxury-finishes-coatings'
 import { Route as OurExpertiseRouteImport } from './routes/our-expertise'
+import { Route as PaintingRouteImport } from './routes/painting'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as WoodStainingRouteImport } from './routes/wood-staining'
+import { Route as PaintingIndexRouteImport } from './routes/painting.index'
+import { Route as PaintingExteriorRouteImport } from './routes/painting.exterior'
+import { Route as PaintingInteriorRouteImport } from './routes/painting.interior'
+import { Route as WoodStainingIndexRouteImport } from './routes/wood-staining.index'
+import { Route as WoodStainingExteriorWoodRouteImport } from './routes/wood-staining.exterior-wood'
+import { Route as WoodStainingFenceRouteImport } from './routes/wood-staining.fence'
+import { Route as WoodStainingPatioPergolaRouteImport } from './routes/wood-staining.patio-pergola'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -61,11 +70,58 @@ const OurExpertiseRoute = OurExpertiseRouteImport.update({
   path: '/our-expertise',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PaintingRoute = PaintingRouteImport.update({
+  id: '/painting',
+  path: '/painting',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WoodStainingRoute = WoodStainingRouteImport.update({
+  id: '/wood-staining',
+  path: '/wood-staining',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PaintingIndexRoute = PaintingIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PaintingRoute,
+} as any)
+const PaintingExteriorRoute = PaintingExteriorRouteImport.update({
+  id: '/exterior',
+  path: '/exterior',
+  getParentRoute: () => PaintingRoute,
+} as any)
+const PaintingInteriorRoute = PaintingInteriorRouteImport.update({
+  id: '/interior',
+  path: '/interior',
+  getParentRoute: () => PaintingRoute,
+} as any)
+const WoodStainingIndexRoute = WoodStainingIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => WoodStainingRoute,
+} as any)
+const WoodStainingExteriorWoodRoute =
+  WoodStainingExteriorWoodRouteImport.update({
+    id: '/exterior-wood',
+    path: '/exterior-wood',
+    getParentRoute: () => WoodStainingRoute,
+  } as any)
+const WoodStainingFenceRoute = WoodStainingFenceRouteImport.update({
+  id: '/fence',
+  path: '/fence',
+  getParentRoute: () => WoodStainingRoute,
+} as any)
+const WoodStainingPatioPergolaRoute =
+  WoodStainingPatioPergolaRouteImport.update({
+    id: '/patio-pergola',
+    path: '/patio-pergola',
+    getParentRoute: () => WoodStainingRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -76,7 +132,16 @@ export interface FileRoutesByFullPath {
   '/interior-exterior-restoration-renovation': typeof InteriorExteriorRestorationRenovationRoute
   '/luxury-finishes-coatings': typeof LuxuryFinishesCoatingsRoute
   '/our-expertise': typeof OurExpertiseRoute
+  '/painting': typeof PaintingRouteWithChildren
   '/privacy': typeof PrivacyRoute
+  '/wood-staining': typeof WoodStainingRouteWithChildren
+  '/painting/exterior': typeof PaintingExteriorRoute
+  '/painting/interior': typeof PaintingInteriorRoute
+  '/wood-staining/exterior-wood': typeof WoodStainingExteriorWoodRoute
+  '/wood-staining/fence': typeof WoodStainingFenceRoute
+  '/wood-staining/patio-pergola': typeof WoodStainingPatioPergolaRoute
+  '/painting/': typeof PaintingIndexRoute
+  '/wood-staining/': typeof WoodStainingIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -88,6 +153,13 @@ export interface FileRoutesByTo {
   '/luxury-finishes-coatings': typeof LuxuryFinishesCoatingsRoute
   '/our-expertise': typeof OurExpertiseRoute
   '/privacy': typeof PrivacyRoute
+  '/painting/exterior': typeof PaintingExteriorRoute
+  '/painting/interior': typeof PaintingInteriorRoute
+  '/wood-staining/exterior-wood': typeof WoodStainingExteriorWoodRoute
+  '/wood-staining/fence': typeof WoodStainingFenceRoute
+  '/wood-staining/patio-pergola': typeof WoodStainingPatioPergolaRoute
+  '/painting': typeof PaintingIndexRoute
+  '/wood-staining': typeof WoodStainingIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -99,7 +171,16 @@ export interface FileRoutesById {
   '/interior-exterior-restoration-renovation': typeof InteriorExteriorRestorationRenovationRoute
   '/luxury-finishes-coatings': typeof LuxuryFinishesCoatingsRoute
   '/our-expertise': typeof OurExpertiseRoute
+  '/painting': typeof PaintingRouteWithChildren
   '/privacy': typeof PrivacyRoute
+  '/wood-staining': typeof WoodStainingRouteWithChildren
+  '/painting/exterior': typeof PaintingExteriorRoute
+  '/painting/interior': typeof PaintingInteriorRoute
+  '/wood-staining/exterior-wood': typeof WoodStainingExteriorWoodRoute
+  '/wood-staining/fence': typeof WoodStainingFenceRoute
+  '/wood-staining/patio-pergola': typeof WoodStainingPatioPergolaRoute
+  '/painting/': typeof PaintingIndexRoute
+  '/wood-staining/': typeof WoodStainingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -112,7 +193,16 @@ export interface FileRouteTypes {
     | '/interior-exterior-restoration-renovation'
     | '/luxury-finishes-coatings'
     | '/our-expertise'
+    | '/painting'
     | '/privacy'
+    | '/wood-staining'
+    | '/painting/exterior'
+    | '/painting/interior'
+    | '/wood-staining/exterior-wood'
+    | '/wood-staining/fence'
+    | '/wood-staining/patio-pergola'
+    | '/painting/'
+    | '/wood-staining/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -124,6 +214,13 @@ export interface FileRouteTypes {
     | '/luxury-finishes-coatings'
     | '/our-expertise'
     | '/privacy'
+    | '/painting/exterior'
+    | '/painting/interior'
+    | '/wood-staining/exterior-wood'
+    | '/wood-staining/fence'
+    | '/wood-staining/patio-pergola'
+    | '/painting'
+    | '/wood-staining'
   id:
     | '__root__'
     | '/'
@@ -134,7 +231,16 @@ export interface FileRouteTypes {
     | '/interior-exterior-restoration-renovation'
     | '/luxury-finishes-coatings'
     | '/our-expertise'
+    | '/painting'
     | '/privacy'
+    | '/wood-staining'
+    | '/painting/exterior'
+    | '/painting/interior'
+    | '/wood-staining/exterior-wood'
+    | '/wood-staining/fence'
+    | '/wood-staining/patio-pergola'
+    | '/painting/'
+    | '/wood-staining/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -146,7 +252,9 @@ export interface RootRouteChildren {
   InteriorExteriorRestorationRenovationRoute: typeof InteriorExteriorRestorationRenovationRoute
   LuxuryFinishesCoatingsRoute: typeof LuxuryFinishesCoatingsRoute
   OurExpertiseRoute: typeof OurExpertiseRoute
+  PaintingRoute: typeof PaintingRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
+  WoodStainingRoute: typeof WoodStainingRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -207,6 +315,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OurExpertiseRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/painting': {
+      id: '/painting'
+      path: '/painting'
+      fullPath: '/painting'
+      preLoaderRoute: typeof PaintingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -214,8 +329,98 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/wood-staining': {
+      id: '/wood-staining'
+      path: '/wood-staining'
+      fullPath: '/wood-staining'
+      preLoaderRoute: typeof WoodStainingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painting/': {
+      id: '/painting/'
+      path: '/'
+      fullPath: '/painting/'
+      preLoaderRoute: typeof PaintingIndexRouteImport
+      parentRoute: typeof PaintingRoute
+    }
+    '/painting/exterior': {
+      id: '/painting/exterior'
+      path: '/exterior'
+      fullPath: '/painting/exterior'
+      preLoaderRoute: typeof PaintingExteriorRouteImport
+      parentRoute: typeof PaintingRoute
+    }
+    '/painting/interior': {
+      id: '/painting/interior'
+      path: '/interior'
+      fullPath: '/painting/interior'
+      preLoaderRoute: typeof PaintingInteriorRouteImport
+      parentRoute: typeof PaintingRoute
+    }
+    '/wood-staining/': {
+      id: '/wood-staining/'
+      path: '/'
+      fullPath: '/wood-staining/'
+      preLoaderRoute: typeof WoodStainingIndexRouteImport
+      parentRoute: typeof WoodStainingRoute
+    }
+    '/wood-staining/exterior-wood': {
+      id: '/wood-staining/exterior-wood'
+      path: '/exterior-wood'
+      fullPath: '/wood-staining/exterior-wood'
+      preLoaderRoute: typeof WoodStainingExteriorWoodRouteImport
+      parentRoute: typeof WoodStainingRoute
+    }
+    '/wood-staining/fence': {
+      id: '/wood-staining/fence'
+      path: '/fence'
+      fullPath: '/wood-staining/fence'
+      preLoaderRoute: typeof WoodStainingFenceRouteImport
+      parentRoute: typeof WoodStainingRoute
+    }
+    '/wood-staining/patio-pergola': {
+      id: '/wood-staining/patio-pergola'
+      path: '/patio-pergola'
+      fullPath: '/wood-staining/patio-pergola'
+      preLoaderRoute: typeof WoodStainingPatioPergolaRouteImport
+      parentRoute: typeof WoodStainingRoute
+    }
   }
 }
+
+interface PaintingRouteChildren {
+  PaintingExteriorRoute: typeof PaintingExteriorRoute
+  PaintingInteriorRoute: typeof PaintingInteriorRoute
+  PaintingIndexRoute: typeof PaintingIndexRoute
+}
+
+const PaintingRouteChildren: PaintingRouteChildren = {
+  PaintingExteriorRoute: PaintingExteriorRoute,
+  PaintingInteriorRoute: PaintingInteriorRoute,
+  PaintingIndexRoute: PaintingIndexRoute,
+}
+
+const PaintingRouteWithChildren = PaintingRoute._addFileChildren(
+  PaintingRouteChildren,
+)
+
+interface WoodStainingRouteChildren {
+  WoodStainingExteriorWoodRoute: typeof WoodStainingExteriorWoodRoute
+  WoodStainingFenceRoute: typeof WoodStainingFenceRoute
+  WoodStainingPatioPergolaRoute: typeof WoodStainingPatioPergolaRoute
+  WoodStainingIndexRoute: typeof WoodStainingIndexRoute
+}
+
+const WoodStainingRouteChildren: WoodStainingRouteChildren = {
+  WoodStainingExteriorWoodRoute: WoodStainingExteriorWoodRoute,
+  WoodStainingFenceRoute: WoodStainingFenceRoute,
+  WoodStainingPatioPergolaRoute: WoodStainingPatioPergolaRoute,
+  WoodStainingIndexRoute: WoodStainingIndexRoute,
+}
+
+const WoodStainingRouteWithChildren = WoodStainingRoute._addFileChildren(
+  WoodStainingRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -228,7 +433,9 @@ const rootRouteChildren: RootRouteChildren = {
     InteriorExteriorRestorationRenovationRoute,
   LuxuryFinishesCoatingsRoute: LuxuryFinishesCoatingsRoute,
   OurExpertiseRoute: OurExpertiseRoute,
+  PaintingRoute: PaintingRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
+  WoodStainingRoute: WoodStainingRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -2,14 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://chstainandrestoration.com</loc>
-    <lastmod>2026-08-16</lastmod>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://chstainandrestoration.com/custom-wood-structures-outdoor-design</loc>
+    <loc>https://chstainandrestoration.com/about-us</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chstainandrestoration.com/contact-us</loc>
+    <lastmod>2026-10-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chstainandrestoration.com/privacy</loc>
+    <lastmod>2026-10-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://chstainandrestoration.com/our-expertise</loc>
@@ -17,7 +30,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://chstainandrestoration.com/contact</loc>
+    <loc>https://chstainandrestoration.com/custom-wood-structures-outdoor-design</loc>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>

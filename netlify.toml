@@ -3,6 +3,12 @@ command = "pnpm run build"
 publish = "dist/client"
 
 [[redirects]]
+from = "/contact"
+to = "/contact-us"
+status = 301
+force = true
+
+[[redirects]]
 from = "/wood-fences"
 to = "/fence-services"
 status = 301

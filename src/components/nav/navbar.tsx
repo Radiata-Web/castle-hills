@@ -86,9 +86,9 @@ export default function Navbar() {
                   <div key={group.id}>
                     {index > 0 ? <DropdownMenuSeparator className="my-2" /> : null}
                     <DropdownMenuGroup>
-                      <DropdownMenuLabel className="px-2 py-1.5 text-xs font-semibold uppercase tracking-wide text-accent">
-                        {group.title}
-                      </DropdownMenuLabel>
+                    <DropdownMenuLabel className="px-2 py-1.5 text-sm font-semibold text-zinc-900">
+                      {group.title}
+                    </DropdownMenuLabel>
                       <DropdownMenuItem render={<Link to={group.href} />}>
                         All {group.title}
                       </DropdownMenuItem>
@@ -145,9 +145,6 @@ export default function Navbar() {
                   </MobileNavLink>
 
                   <div className="pt-1">
-                    <p className="mb-2 px-4 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-                      Our Services
-                    </p>
                     <ServiceNavPrototype onNavigate={closeMenu} />
                   </div>
                 </nav>

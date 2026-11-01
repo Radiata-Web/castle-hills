@@ -19,9 +19,6 @@ export default function OurExpertise() {
         <section className="grid grid-cols-1 items-center gap-10 pb-12 md:gap-12 lg:grid-cols-2 lg:gap-x-12 lg:gap-y-8 lg:pb-16">
           <div className="order-2 flex w-full justify-center lg:order-1 lg:justify-end">
             <div className="w-full max-w-xl text-left">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent mb-2">
-                On the job
-              </p>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl xl:text-5xl/none mb-4">
                 Craft you can see in the details
               </h2>

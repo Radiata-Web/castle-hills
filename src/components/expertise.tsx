@@ -21,9 +21,6 @@ export default function Expertise() {
     >
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-x-12 lg:gap-y-6">
         <div className="lg:col-span-2">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent mb-2">
-            What we do best
-          </p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl xl:text-5xl/none">
             Our Expertise
           </h2>

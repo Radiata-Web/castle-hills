@@ -23,9 +23,7 @@ function Pair(props: {
           className="object-cover"
         />
         <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/40 to-transparent px-4 pb-4 pt-14">
-          <span className="font-sans text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-white/95">
-            Before
-          </span>
+          <span className="font-sans text-sm font-medium text-white/95">Before</span>
         </figcaption>
       </figure>
 
@@ -48,9 +46,7 @@ function Pair(props: {
           className="object-cover"
         />
         <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0c4a7a]/90 via-[#0c4a7a]/35 to-transparent px-4 pb-4 pt-14">
-          <span className="font-sans text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-white">
-            After
-          </span>
+          <span className="font-sans text-sm font-medium text-white">After</span>
         </figcaption>
       </figure>
     </div>
@@ -61,9 +57,7 @@ function SectionLabel({ children }: { children: string }) {
   return (
     <div className="flex items-center gap-4 motion-safe:animate-paint-rise motion-safe:[animation-delay:80ms]">
       <span className="h-px flex-1 bg-gradient-to-r from-transparent via-zinc-300 to-zinc-200" />
-      <h3 className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
-        {children}
-      </h3>
+      <h3 className="font-sans text-sm font-semibold text-zinc-600">{children}</h3>
       <span className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-300 to-zinc-200" />
     </div>
   );
@@ -124,9 +118,6 @@ export default function PaintBeforeAfter({ variant = "hub" }: PaintBeforeAfterPr
       />
 
       <header className="relative max-w-2xl space-y-3 motion-safe:animate-paint-rise">
-        <p className="font-sans text-[0.65rem] font-semibold uppercase tracking-[0.38em] text-accent">
-          Real projects
-        </p>
         <h2
           id="paint-before-after-heading"
           className="text-[2rem] font-bold leading-[1.15] tracking-tight text-zinc-900 sm:text-4xl md:text-[2.75rem]"

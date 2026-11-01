@@ -9,9 +9,6 @@ export default function InteriorContact() {
       <section className="grid gap-4 my-12 rounded-2xl border border-zinc-200/90 bg-gradient-to-br from-white via-accent-light/15 to-zinc-50/80 p-6 shadow-md sm:p-8 md:gap-10 md:p-10 lg:grid-cols-2 lg:gap-14 lg:p-12">
         <div className="flex flex-col justify-center space-y-4 md:space-y-6 lg:space-y-8">
           <div className="max-w-[600px]">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent mb-2">
-              Next step
-            </p>
             <p className="text-2xl font-bold tracking-tight md:text-3xl xl:text-4xl/none mb-4">
               Transform Your Space — Get a Free Estimate Today.
             </p>

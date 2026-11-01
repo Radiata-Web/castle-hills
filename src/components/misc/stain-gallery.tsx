@@ -28,9 +28,6 @@ export default function StainGallery({ labels }: StainGalleryProps) {
       />
 
       <header className="relative max-w-2xl space-y-3 motion-safe:animate-paint-rise">
-        <p className="font-sans text-[0.65rem] font-semibold uppercase tracking-[0.38em] text-accent">
-          Project photos
-        </p>
         <h2
           id="stain-gallery-heading"
           className="text-[2rem] font-bold leading-[1.15] tracking-tight text-zinc-900 sm:text-4xl md:text-[2.75rem]"
@@ -60,9 +57,7 @@ export default function StainGallery({ labels }: StainGalleryProps) {
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
               />
               <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-zinc-950/80 via-zinc-950/35 to-transparent px-4 pb-4 pt-12">
-                <span className="font-sans text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-white/95">
-                  {shot.label}
-                </span>
+                <span className="font-sans text-sm font-medium text-white/95">{shot.label}</span>
               </figcaption>
             </figure>
           </li>

@@ -5,6 +5,7 @@ import ServicesCards from "@/components/services-cards";
 import { Button } from "@/components/ui/button";
 import { ctaAfterCopyClassName, ctaGroupClassName, ctaPrimaryClassName } from "@/lib/cta";
 import { PHOTOS } from "@/lib/images";
+import { PHONE_TEL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { MoveRight, Phone } from "lucide-react";
 import { Link } from "@tanstack/react-router";
@@ -57,7 +58,7 @@ export default function OurExpertise() {
                 variant="outline"
                 size="lg"
                 className={ctaPrimaryClassName}
-                render={<a href="tel:4692153098" />}
+                render={<a href={PHONE_TEL} />}
                 nativeButton={false}
               >
                 Call Now

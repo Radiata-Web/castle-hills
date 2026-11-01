@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import Image from "@/components/ui/optimized-image";
 import { Button } from "./ui/button";
 import { ctaGroupClassName, ctaPrimaryClassName } from "@/lib/cta";
+import { PHONE_TEL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { MoveRight, Phone } from "lucide-react";
 
@@ -81,7 +82,7 @@ export default function About() {
                 variant="outline"
                 size="lg"
                 className={ctaPrimaryClassName}
-                render={<a href="tel:4692153098" />}
+                render={<a href={PHONE_TEL} />}
                 nativeButton={false}
               >
                 Call Now

@@ -19,14 +19,10 @@ export default function ServicesCards({ heading, paragraph }: ServicesCardsProps
       <div className="absolute -translate-y-52" id="services"></div>
       <article className="max-w-8xl mx-auto py-6 md:py-10 lg:py-14 px-4 md:px-8 lg:px-8">
         <div className="space-y-4 mb-8 max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Services</p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl xl:text-5xl/none">
             {heading}
           </h2>
           {paragraph && <p className="text-zinc-600 text-lg leading-relaxed">{paragraph}</p>}
-          <p className="text-sm text-zinc-500">
-            Each card opens a dedicated page with scope, photos, and how we work.
-          </p>
         </div>
         <div className="grid gap-4 items-stretch justify-stretch grid-cols-1 md:grid-cols-2">
           {HOMEPAGE_FEATURED_SERVICES.map((service: Service) => (
@@ -37,9 +33,6 @@ export default function ServicesCards({ heading, paragraph }: ServicesCardsProps
           <div className="group min-h-[225px] w-full md:col-span-2">
             <div className="flex h-full min-h-[225px] border border-dashed border-accent/60 rounded-2xl bg-accent-light/20 transition-all duration-200 ease-out group-hover:border-accent group-hover:bg-accent-light/35">
               <div className="flex flex-col items-center text-center md:items-center md:text-center lg:items-start lg:text-left justify-center p-10 gap-2 w-full">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-                  Still deciding?
-                </p>
                 <h3 className="text-2xl font-bold leading-tight">Not sure what you need?</h3>
                 <p className="text-zinc-600 max-w-md">
                   We'll find the perfect solution to your needs.

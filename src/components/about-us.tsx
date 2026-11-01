@@ -55,9 +55,6 @@ export default function About() {
 
           <div className="flex flex-col justify-center space-y-8">
             <div className="space-y-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-                Castle Hills Stain & Restoration
-              </p>
               <h2 className="text-3xl font-bold sm:text-4xl xl:text-5xl/none">
                 Restore. Protect. Enhance.
               </h2>

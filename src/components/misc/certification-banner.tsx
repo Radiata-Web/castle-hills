@@ -6,9 +6,6 @@ export default function CertificationBanner() {
     <section className="max-w-8xl mx-auto py-6 md:py-10 lg:py-14 px-4 md:px-8 lg:px-8">
       <div className="rounded-2xl border border-zinc-200/90 bg-gradient-to-br from-accent-light/25 via-white to-zinc-50/90 px-6 py-10 shadow-sm sm:px-10 md:py-12">
         <div className="mb-8 max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent mb-2">
-            Trust & training
-          </p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl xl:text-5xl/none mb-4">
             Certified for Excellence
           </h2>

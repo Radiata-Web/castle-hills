@@ -26,9 +26,6 @@ export default function FenceStainingPage() {
       </section>
 
       <section className="mb-16 rounded-2xl border border-zinc-200/90 bg-gradient-to-br from-accent-light/30 via-muted/40 to-zinc-50/80 px-6 py-10 shadow-sm md:px-10 md:py-12">
-        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-          Prep & finish
-        </p>
         <h2 className="mb-4 text-2xl font-bold sm:text-3xl xl:text-4xl/none">
           Fence cleaning & restoration
         </h2>
@@ -46,9 +43,6 @@ export default function FenceStainingPage() {
             workflow so the finished fence looks intentional.
           </li>
         </ul>
-        <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-zinc-500">
-          Our workflow
-        </p>
         <p className="mb-0 text-lg font-medium text-zinc-800">
           Restore → Prep → Stain → Long-term protection
         </p>

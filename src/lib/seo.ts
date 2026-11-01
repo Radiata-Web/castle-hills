@@ -1,35 +1,12 @@
-import { PHOTOS, photoAbsoluteSrc } from "@/lib/images";
-import { SITE_URL } from "@/lib/site";
-
 export type PageMeta = {
   title: string;
   description: string;
-  /** Site path for canonical + og:url, e.g. `/about-us` or `/`. */
-  pathname: string;
   keywords?: string[];
   applicationName?: string;
   referrer?: string;
-  /** Absolute or site-root path / photo id for og:image. Defaults to stain hero. */
-  ogImage?: string;
 };
 
-const DEFAULT_OG_IMAGE = PHOTOS.stain2;
-
-function absoluteUrl(pathname: string): string {
-  if (pathname === "/" || pathname === "") {
-    return SITE_URL;
-  }
-  const path = pathname.startsWith("/") ? pathname : `/${pathname}`;
-  return `${SITE_URL}${path}`;
-}
-
 export function pageHead(meta: PageMeta) {
-  const canonical = absoluteUrl(meta.pathname);
-  const ogImage = photoAbsoluteSrc(meta.ogImage ?? DEFAULT_OG_IMAGE, {
-    variant: "og",
-    siteUrl: SITE_URL,
-  });
-
   const tags: Array<
     | { title: string }
     | { name: string; content: string }
@@ -44,8 +21,6 @@ export function pageHead(meta: PageMeta) {
     { property: "og:title", content: meta.title },
     { property: "og:description", content: meta.description },
     { property: "og:type", content: "website" },
-    { property: "og:url", content: canonical },
-    { property: "og:image", content: ogImage },
   ];
 
   if (meta.keywords?.length) {
@@ -60,34 +35,22 @@ export function pageHead(meta: PageMeta) {
     tags.push({ name: "referrer", content: meta.referrer });
   }
 
-  return {
-    meta: tags,
-    links: [{ rel: "canonical", href: canonical }],
-  };
-}
-
-/** JSON-LD script entries for TanStack Router `head`. */
-export function jsonLdScript(data: Record<string, unknown> | Record<string, unknown>[]) {
-  return {
-    type: "application/ld+json" as const,
-    children: JSON.stringify(data),
-  };
+  return { meta: tags };
 }
 
 export const rootMeta: PageMeta = {
   title: "Castle Hills Stain & Restoration | DFW",
-  pathname: "/",
   applicationName: "Home · Castle Hills Stain & Restoration",
   description:
-    "Interior and exterior painting, wood staining, and exterior wood care in the Dallas–Fort Worth area. Get your free estimate today!",
+    "Wood installation, wood restoration, wood stain, and property painting services in the Dallas-Fort Worth area. Get your free estimate today!",
   keywords: [
-    "Interior painting DFW",
-    "Exterior painting Dallas",
-    "Fence staining",
-    "Deck and wood staining",
-    "Pergola patio cover staining",
-    "Castle Hills painters",
-    "Wood stain Carrollton",
+    "Wood fence installation",
+    "Metal fence installation",
+    "Wood fence repair",
+    "Fencing contractor",
+    "Fence company near me",
+    "Residential fence",
+    "Fence company carrollton",
   ],
   referrer: "origin-when-cross-origin",
 };

@@ -4,7 +4,6 @@ import Footer from "@/components/nav/footer";
 import ServicesCards from "@/components/services-cards";
 import { Button } from "@/components/ui/button";
 import { ctaAfterCopyClassName, ctaGroupClassName, ctaPrimaryClassName } from "@/lib/cta";
-import { PHOTOS } from "@/lib/images";
 import { cn } from "@/lib/utils";
 import { MoveRight, Phone } from "lucide-react";
 import { Link } from "@tanstack/react-router";
@@ -16,7 +15,7 @@ export default function OurExpertise() {
         title="About Castle Hills Stain & Restoration"
         subtitle="Proudly serving Castle Hills, Flower Mound, Southlake, Frisco,
                   and surrounding areas."
-        backgroundImageUrl={PHOTOS.paintExt7}
+        backgroundImageUrl="/photos/garages/garage-1.webp"
       />
 
       <div className="max-w-8xl mx-auto px-4 md:px-8 lg:px-8 mb-12">

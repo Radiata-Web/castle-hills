@@ -3,7 +3,6 @@ import { GlossyPhotoFrame } from "@/components/misc/glossy-photo-frame";
 import { Hero } from "@/components/misc/hero";
 import Footer from "@/components/nav/footer";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { PHOTOS } from "@/lib/images";
 import { Fence, Hammer, Paintbrush, PaintBucket, Pencil, Search } from "lucide-react";
 
 export default function OurExpertise() {
@@ -12,7 +11,7 @@ export default function OurExpertise() {
       <Hero
         title="Our Expertise"
         subtitle="Our team of experts is here to help you with any home improvement project."
-        backgroundImageUrl={PHOTOS.stain2}
+        backgroundImageUrl="/photos/stain/stain-2.webp"
       />
 
       <div className="max-w-8xl mx-auto px-4 md:px-8 lg:px-8 mb-12 mt-8 md:mt-12">
@@ -26,7 +25,7 @@ export default function OurExpertise() {
                 Craft you can see in the details
               </h2>
               <p className="text-lg leading-relaxed text-zinc-600">
-                From interior and exterior paint to fence and outdoor wood staining, we bring the
+                From outdoor wood and fences to interior paint and full restoration, we bring the
                 same mindset: prep done right, materials chosen for Texas conditions, and finishes
                 built to look sharp for years—not weeks.
               </p>
@@ -35,7 +34,7 @@ export default function OurExpertise() {
           <div className="order-1 flex w-full justify-center lg:order-2 lg:justify-start">
             <GlossyPhotoFrame
               figureClassName="w-full max-w-md sm:max-w-lg lg:max-w-xl xl:max-w-2xl"
-              src={PHOTOS.stain5}
+              src="/photos/pergolas/pergola-6.webp"
               alt="Stained wooden pergola in a backyard, representing custom outdoor structure work"
               width={800}
               height={560}
@@ -79,12 +78,12 @@ export default function OurExpertise() {
               <span className="flex justify-center items-center bg-accent w-16 h-16 rounded-lg mb-4">
                 <Hammer size={36} className="text-white" strokeWidth={1} />
               </span>
-              Prep, Repair & Long-Term Care
+              Home Maintenance & Restoration
             </CardHeader>
 
             <CardContent>
-              From drywall touch-ups before paint to fence prep before stain, we handle the details
-              that make finishes last in North Texas weather.
+              From wood repairs to exterior touch-ups, we help keep your home looking its best with
+              ongoing maintenance and restoration services.
             </CardContent>
           </Card>
         </section>

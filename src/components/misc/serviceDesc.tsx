@@ -25,10 +25,9 @@ export default function ServiceDesc(props: ServiceDescProps) {
       {/* Service Image */}
       <figure className="relative aspect-[4/3] w-full overflow-hidden rounded-lg shadow-md md:aspect-auto md:h-[min(475px,70vh)] md:w-1/2 md:max-h-[475px]">
         <Image
-          src={props.image}
+          src={`/photos/${props.image}.webp`}
           alt={props.imageAlt}
           fill
-          variant="gallery"
           sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover bg-accent-light"
         />

@@ -5,7 +5,6 @@ import PrivacyPage from "@/pages/privacy";
 export const Route = createFileRoute("/privacy")({
   head: () =>
     pageHead({
-      pathname: "/privacy",
       title: "Privacy Policy | Castle Hills Stain & Restoration",
       description:
         "How Castle Hills Stain and Restoration LLC collects, uses, and protects information when you use our website.",

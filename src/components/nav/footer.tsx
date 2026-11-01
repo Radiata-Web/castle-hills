@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import Socials from "@/components/ui/socials";
-import { SERVICE_NAV_GROUPS } from "@/lib/service-ia";
+import { HOMEPAGE_FEATURED_SERVICES } from "@/lib/data";
 import Image from "@/components/ui/optimized-image";
 import { ExternalLink } from "lucide-react";
 
@@ -8,8 +8,11 @@ export default function Footer() {
   return (
     <footer className="py-12 flex flex-col max-w-8xl mx-auto rounded-lg px-4 md:px-8 lg:px-8">
       <section className="w-full">
+        {/* Two-column section */}
         <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 mb-8 gap-4 md:gap-48">
+          {/* Left Column */}
           <div className="flex flex-col space-y-4 md:w-1/4">
+            {/* Logo */}
             <span className="flex flex-col items-start gap-4">
               <Image
                 src="/logos/logo-wordmark.svg"
@@ -30,8 +33,10 @@ export default function Footer() {
             </span>
           </div>
 
+          {/* Right Column */}
           <div className="md:w-3/4">
-            <nav className="grid grid-cols-2 gap-6 md:gap-8 lg:grid-cols-4">
+            <nav className="grid grid-cols-2 gap-6 md:gap-8 lg:grid-cols-3">
+              {/* Company */}
               <div>
                 <h3 className="font-semibold mb-2">Company</h3>
                 <ul className="space-y-1">
@@ -70,31 +75,21 @@ export default function Footer() {
                 </ul>
               </div>
 
-              {SERVICE_NAV_GROUPS.map((group) => (
-                <div key={group.id}>
-                  <h3 className="font-semibold mb-2">{group.title}</h3>
-                  <ul className="space-y-1">
-                    <li>
+              <div>
+                <h3 className="font-semibold mb-2">Services</h3>
+                <ul className="space-y-1">
+                  {HOMEPAGE_FEATURED_SERVICES.map((service) => (
+                    <li key={service.href}>
                       <Link
-                        to={group.href}
+                        to={service.href}
                         className="text-sm text-muted-foreground hover:text-primary hover:underline"
                       >
-                        All {group.title}
+                        {service.title}
                       </Link>
                     </li>
-                    {group.children.map((child) => (
-                      <li key={child.href}>
-                        <Link
-                          to={child.href}
-                          className="text-sm text-muted-foreground hover:text-primary hover:underline"
-                        >
-                          {child.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+                  ))}
+                </ul>
+              </div>
 
               <div>
                 <h3 className="font-semibold mb-2">Trusted Vendors</h3>
@@ -104,7 +99,6 @@ export default function Footer() {
                       href="https://www.zebrajunkremoval.net/"
                       target="_blank"
                       className="text-sm text-muted-foreground hover:text-primary hover:underline flex items-center gap-1"
-                      rel="noreferrer"
                     >
                       Zebra Junk Removal <ExternalLink size={12} />
                     </a>
@@ -115,18 +109,15 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Divider */}
         <div className="border-t border-muted-foreground/20 my-8" />
 
+        {/* Copyright section */}
         <div className="text-center">
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} Castle Hills Stain and Restoration LLC.{" "}
             <br className="sm:hidden" /> Website by{" "}
-            <a
-              href="https://radiataweb.com"
-              target="_blank"
-              className="text-accent"
-              rel="noreferrer"
-            >
+            <a href="https://radiataweb.com" target="_blank" className="text-accent">
               Radiata Web
             </a>
             .

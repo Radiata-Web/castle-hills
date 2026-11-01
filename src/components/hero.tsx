@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ctaGroupClassName, ctaPrimaryClassName } from "@/lib/cta";
+import { PHOTOS } from "@/lib/images";
 import { ArrowDown, MoveRight } from "lucide-react";
 import { ContactForm } from "./forms/contact-form";
 import Image from "@/components/ui/optimized-image";
@@ -9,13 +10,13 @@ export default function Hero() {
     <section id="hero" className="relative isolate overflow-hidden bg-zinc-900">
       <div className="pointer-events-none absolute inset-0 z-0">
         <Image
-          src="/photos/gates/gate-1.webp"
+          src={PHOTOS.stain1}
           alt=""
           fill
+          variant="hero"
           priority
           fetchPriority="high"
           sizes="100vw"
-          quality={80}
           className="object-cover object-center"
           aria-hidden
         />
@@ -37,12 +38,12 @@ export default function Hero() {
                 priority
               />
               <h1 className="text-4xl text-white font-bold tracking-tight sm:text-5xl xl:text-6xl/none">
-                DFW Fence Staining, Installation & Exterior Painting Experts
+                DFW Interior & Exterior Painting Experts
               </h1>
               <p className="max-w-[600px] text-zinc-100 md:text-lg leading-relaxed">
-                Trusted by homeowners across DFW for clean, professional exterior work—fences,
-                outdoor structures, painting, and restoration built for long-term durability. Scroll
-                to explore each service in depth, or request an estimate with the form.
+                Transform your home with professional painting, cabinet refinishing, and fence and
+                deck staining. Proudly serving Dallas-Fort Worth with exceptional craftsmanship and
+                dependable service.
               </p>
             </div>
 

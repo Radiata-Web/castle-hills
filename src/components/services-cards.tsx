@@ -4,6 +4,7 @@ import { ctaAfterCopyClassName, ctaPrimaryClassName } from "@/lib/cta";
 import { cn } from "@/lib/utils";
 import { MoveRight } from "lucide-react";
 import { HOMEPAGE_FEATURED_SERVICES, type Service } from "@/lib/data";
+import { photoCssUrl } from "@/lib/images";
 
 export type { Service };
 
@@ -72,7 +73,7 @@ function ServiceCard({ service }: { service: Service }) {
     >
       <div
         className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out will-change-transform group-hover:scale-[1.02]"
-        style={{ backgroundImage: `url(/photos${service.cardImg}.webp)` }}
+        style={{ backgroundImage: photoCssUrl(service.cardImg, "card") }}
         aria-hidden
       />
       {/* Light wash + gradient — readable type without crushing the photo */}

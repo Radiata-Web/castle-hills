@@ -3,67 +3,101 @@ command = "pnpm run build"
 publish = "dist/client"
 
 [[redirects]]
+from = "/contact"
+to = "/contact-us"
+status = 301
+force = true
+
+# --- Umbrella retirements (Phase 2 cutover) ---
+
+[[redirects]]
+from = "/luxury-finishes-coatings"
+to = "/painting"
+status = 301
+force = true
+
+[[redirects]]
+from = "/fence-services"
+to = "/wood-staining/fence"
+status = 301
+force = true
+
+[[redirects]]
+from = "/custom-wood-structures-outdoor-design"
+to = "/wood-staining/patio-pergola"
+status = 301
+force = true
+
+[[redirects]]
+from = "/interior-exterior-restoration-renovation"
+to = "/painting"
+status = 301
+force = true
+
+# --- Legacy path retargets (§2.2) ---
+
+[[redirects]]
 from = "/wood-fences"
-to = "/fence-services"
+to = "/wood-staining/fence"
 status = 301
 force = true
 
 [[redirects]]
 from = "/fence-and-garage-door-stain"
-to = "/fence-services"
+to = "/wood-staining/fence"
 status = 301
 force = true
 
 [[redirects]]
 from = "/fence-staining"
-to = "/fence-services"
+to = "/wood-staining/fence"
 status = 301
 force = true
 
 [[redirects]]
 from = "/metal-fences"
-to = "/fence-services"
+to = "/wood-staining"
 status = 301
 force = true
 
 [[redirects]]
 from = "/automatic-gates"
-to = "/fence-services"
+to = "/wood-staining"
 status = 301
 force = true
 
 [[redirects]]
 from = "/pergolas-and-patio-covers"
-to = "/custom-wood-structures-outdoor-design"
+to = "/wood-staining/patio-pergola"
 status = 301
 force = true
 
 [[redirects]]
 from = "/patio-covers"
-to = "/custom-wood-structures-outdoor-design"
+to = "/wood-staining/patio-pergola"
 status = 301
 force = true
 
 [[redirects]]
 from = "/home-restoration-remodeling"
-to = "/interior-exterior-restoration-renovation"
+to = "/painting"
 status = 301
 force = true
 
 [[redirects]]
 from = "/interior-painting"
-to = "/luxury-finishes-coatings"
+to = "/painting/interior"
 status = 301
 force = true
 
 [[redirects]]
 from = "/exterior-painting"
-to = "/luxury-finishes-coatings"
+to = "/painting/exterior"
 status = 301
 force = true
 
 [[redirects]]
 from = "/interior-exterior-painting"
-to = "/luxury-finishes-coatings"
+to = "/painting"
 status = 301
 force = true

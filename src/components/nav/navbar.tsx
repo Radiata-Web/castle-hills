@@ -10,7 +10,10 @@ import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -22,9 +25,10 @@ import {
 } from "@/components/ui/sheet";
 import { ctaPrimaryClassName } from "@/lib/cta";
 import { cn } from "@/lib/utils";
-import { PAGES, HOMEPAGE_FEATURED_SERVICES } from "@/lib/data";
+import { PAGES } from "@/lib/data";
+import { SERVICE_NAV_GROUPS } from "@/lib/service-ia";
 import Socials from "@/components/ui/socials";
-import DropdownCategory from "@/components/nav/dropdown-category";
+import { ServiceNavPrototype } from "@/components/services/service-nav-prototype";
 
 const mobileNavLinkClass =
   "flex min-h-12 w-full items-center rounded-lg px-4 py-3 text-lg font-semibold leading-snug text-foreground transition-colors hover:bg-zinc-100 hover:text-zinc-900";
@@ -77,11 +81,24 @@ export default function Navbar() {
                   aria-hidden
                 />
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="min-w-56">
-                {HOMEPAGE_FEATURED_SERVICES.map((service) => (
-                  <DropdownMenuItem key={service.href} render={<Link to={service.href} />}>
-                    {service.title}
-                  </DropdownMenuItem>
+              <DropdownMenuContent align="start" className="min-w-64 p-2">
+                {SERVICE_NAV_GROUPS.map((group, index) => (
+                  <div key={group.id}>
+                    {index > 0 ? <DropdownMenuSeparator className="my-2" /> : null}
+                    <DropdownMenuGroup>
+                      <DropdownMenuLabel className="px-2 py-1.5 text-xs font-semibold uppercase tracking-wide text-accent">
+                        {group.title}
+                      </DropdownMenuLabel>
+                      <DropdownMenuItem render={<Link to={group.href} />}>
+                        All {group.title}
+                      </DropdownMenuItem>
+                      {group.children.map((child) => (
+                        <DropdownMenuItem key={child.href} render={<Link to={child.href} />}>
+                          {child.title}
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuGroup>
+                  </div>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
@@ -128,11 +145,10 @@ export default function Navbar() {
                   </MobileNavLink>
 
                   <div className="pt-1">
-                    <DropdownCategory
-                      categoryTitle="Our Services"
-                      links={HOMEPAGE_FEATURED_SERVICES}
-                      setIsMenuOpen={setIsMenuOpen}
-                    />
+                    <p className="mb-2 px-4 text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+                      Our Services
+                    </p>
+                    <ServiceNavPrototype onNavigate={closeMenu} />
                   </div>
                 </nav>
 

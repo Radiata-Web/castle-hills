@@ -10,6 +10,7 @@ import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -84,17 +85,19 @@ export default function Navbar() {
                 {SERVICE_NAV_GROUPS.map((group, index) => (
                   <div key={group.id}>
                     {index > 0 ? <DropdownMenuSeparator className="my-2" /> : null}
-                    <DropdownMenuLabel className="px-2 py-1.5 text-xs font-semibold uppercase tracking-wide text-accent">
-                      {group.title}
-                    </DropdownMenuLabel>
-                    <DropdownMenuItem render={<Link to={group.href} />}>
-                      All {group.title}
-                    </DropdownMenuItem>
-                    {group.children.map((child) => (
-                      <DropdownMenuItem key={child.href} render={<Link to={child.href} />}>
-                        {child.title}
+                    <DropdownMenuGroup>
+                      <DropdownMenuLabel className="px-2 py-1.5 text-xs font-semibold uppercase tracking-wide text-accent">
+                        {group.title}
+                      </DropdownMenuLabel>
+                      <DropdownMenuItem render={<Link to={group.href} />}>
+                        All {group.title}
                       </DropdownMenuItem>
-                    ))}
+                      {group.children.map((child) => (
+                        <DropdownMenuItem key={child.href} render={<Link to={child.href} />}>
+                          {child.title}
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuGroup>
                   </div>
                 ))}
               </DropdownMenuContent>

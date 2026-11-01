@@ -1,18 +1,19 @@
 import { Link } from "@tanstack/react-router";
 import ServiceDesc from "@/components/misc/serviceDesc";
 import { ServicePageLayout } from "@/components/services/service-page-layout";
+import { PHOTOS } from "@/lib/images";
 
 export default function ExteriorPaintingPage() {
   return (
     <ServicePageLayout
       title="Exterior Painting"
       subtitle="Prep and coatings that protect siding and trim from North Texas heat, wind, and moisture."
-      backgroundImageUrl="/photos/paint/ex-paint-2.webp"
+      backgroundImageUrl={PHOTOS.paintExt2}
     >
       <section className="mb-12 flex flex-col gap-10 py-6 md:gap-12 md:py-10">
         <ServiceDesc
           imagePosition="right"
-          image="paint/ex-paint-4"
+          image={PHOTOS.paintExt4}
           imageAlt="Exterior of a home with professional paint finish"
           header="Curb appeal that lasts"
           content="Exterior paint is your first defense against heat, wind, and moisture. We prep siding and trim properly, use quality coatings suited to the substrate, and pay attention to details like caulk lines and cut-ins so your curb appeal looks crisp and stays protected. High-performance options include Sherwin-Williams Emerald® and Duration®, plus Romabio Classico Limewash® where it fits your design."

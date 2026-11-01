@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PHOTOS } from "@/lib/images";
 import { servicePageHead } from "@/lib/service-seo";
 import ExteriorPaintingPage from "@/pages/painting/exterior";
 
@@ -9,7 +10,7 @@ export const Route = createFileRoute("/painting/exterior")({
       title: "Exterior Painting in DFW | Castle Hills Stain & Restoration",
       description:
         "Exterior painting and coatings that protect siding and trim in the Dallas–Fort Worth area.",
-      ogImage: "/photos/paint/ex-paint-2.webp",
+      ogImage: PHOTOS.paintExt2,
       serviceName: "Exterior Painting",
       serviceType: "Exterior painting",
       breadcrumbs: [

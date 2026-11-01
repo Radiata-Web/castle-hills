@@ -1,3 +1,4 @@
+import { PHOTOS, photoAbsoluteSrc } from "@/lib/images";
 import { SITE_URL } from "@/lib/site";
 
 export type PageMeta = {
@@ -8,11 +9,11 @@ export type PageMeta = {
   keywords?: string[];
   applicationName?: string;
   referrer?: string;
-  /** Absolute or site-root path for og:image. Defaults to a brand hero photo. */
+  /** Absolute or site-root path / photo id for og:image. Defaults to stain hero. */
   ogImage?: string;
 };
 
-const DEFAULT_OG_IMAGE = `${SITE_URL}/photos/stain/stain-2.webp`;
+const DEFAULT_OG_IMAGE = PHOTOS.stain2;
 
 function absoluteUrl(pathname: string): string {
   if (pathname === "/" || pathname === "") {
@@ -22,16 +23,12 @@ function absoluteUrl(pathname: string): string {
   return `${SITE_URL}${path}`;
 }
 
-function absoluteAsset(src: string): string {
-  if (src.startsWith("http://") || src.startsWith("https://")) {
-    return src;
-  }
-  return `${SITE_URL}${src.startsWith("/") ? src : `/${src}`}`;
-}
-
 export function pageHead(meta: PageMeta) {
   const canonical = absoluteUrl(meta.pathname);
-  const ogImage = absoluteAsset(meta.ogImage ?? DEFAULT_OG_IMAGE);
+  const ogImage = photoAbsoluteSrc(meta.ogImage ?? DEFAULT_OG_IMAGE, {
+    variant: "og",
+    siteUrl: SITE_URL,
+  });
 
   const tags: Array<
     | { title: string }

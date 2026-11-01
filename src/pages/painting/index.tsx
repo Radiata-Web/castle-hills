@@ -3,6 +3,7 @@ import PaintBeforeAfter from "@/components/misc/paint-before-after";
 import ServiceDesc from "@/components/misc/serviceDesc";
 import { ServiceChildLinks } from "@/components/services/service-child-links";
 import { ServicePageLayout } from "@/components/services/service-page-layout";
+import { PHOTOS } from "@/lib/images";
 import { DEFERRED_SERVICE_NOTES, SERVICE_NAV_GROUPS } from "@/lib/service-ia";
 
 const paintingGroup = SERVICE_NAV_GROUPS.find((g) => g.id === "painting")!;
@@ -12,7 +13,7 @@ export default function PaintingHubPage() {
     <ServicePageLayout
       title="Interior & Exterior Painting"
       subtitle="Clean lines, durable coatings, and colors chosen to suit your home and how you live in it."
-      backgroundImageUrl="/photos/paint/ex-paint-2.webp"
+      backgroundImageUrl={PHOTOS.paintExt2}
     >
       <ServiceChildLinks
         heading="Painting services"
@@ -23,14 +24,14 @@ export default function PaintingHubPage() {
       <section className="mb-16 flex flex-col gap-10 md:gap-12">
         <ServiceDesc
           imagePosition="left"
-          image="paint/in-paint-2"
+          image={PHOTOS.paintInt1Before}
           imageAlt="Offwhite painted ceiling with grid of gray painted extruded ceiling accent pieces"
           header="Interior Painting"
           content="Fresh interior paint changes how every room feels. We protect floors and furniture, repair minor wall imperfections, and apply consistent coats so corners, trim, and ceilings read sharp."
         />
         <ServiceDesc
           imagePosition="right"
-          image="paint/ex-paint-4"
+          image={PHOTOS.paintExt4}
           imageAlt="Exterior of a home with professional paint finish"
           header="Exterior Painting"
           content="Exterior paint is your first defense against heat, wind, and moisture. We prep siding and trim properly, use quality coatings suited to the substrate, and pay attention to caulk lines and cut-ins."

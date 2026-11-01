@@ -1,4 +1,5 @@
 import Image from "@/components/ui/optimized-image";
+import { PHOTOS } from "@/lib/images";
 
 function Pair(props: {
   beforeSrc: string;
@@ -17,6 +18,7 @@ function Pair(props: {
           src={props.beforeSrc}
           alt={props.beforeAlt}
           fill
+          variant="gallery"
           sizes="(max-width: 640px) 100vw, 45vw"
           className="object-cover"
         />
@@ -43,6 +45,7 @@ function Pair(props: {
           src={props.afterSrc}
           alt={props.afterAlt}
           fill
+          variant="gallery"
           sizes="(max-width: 640px) 100vw, 45vw"
           className="object-cover"
         />
@@ -102,8 +105,8 @@ export default function PaintBeforeAfter() {
             <span className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-300 to-zinc-200" />
           </div>
           <Pair
-            beforeSrc="/photos/paint/in-paint-2.webp"
-            afterSrc="/photos/paint/in-paint-1.webp"
+            beforeSrc={PHOTOS.paintInt1Before}
+            afterSrc={PHOTOS.paintInt1After}
             beforeAlt="Interior room before painting refresh"
             afterAlt="Same interior after fresh paint"
             delayClass="motion-safe:[animation-delay:120ms]"
@@ -119,8 +122,8 @@ export default function PaintBeforeAfter() {
             <span className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-300 to-zinc-200" />
           </div>
           <Pair
-            beforeSrc="/photos/paint/ex-paint-1-before.webp"
-            afterSrc="/photos/paint/ex-paint-1-after.webp"
+            beforeSrc={PHOTOS.paintExt1Before}
+            afterSrc={PHOTOS.paintExt1After}
             beforeAlt="Home exterior before professional repaint"
             afterAlt="Same home exterior after professional repaint"
             delayClass="motion-safe:[animation-delay:160ms]"

@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import ServiceDesc from "@/components/misc/serviceDesc";
 import { ServicePageLayout } from "@/components/services/service-page-layout";
+import { PHOTOS } from "@/lib/images";
 import { DEFERRED_SERVICE_NOTES } from "@/lib/service-ia";
 
 export default function InteriorPaintingPage() {
@@ -8,12 +9,12 @@ export default function InteriorPaintingPage() {
     <ServicePageLayout
       title="Interior Painting"
       subtitle="Protected floors, sharp cut-ins, and finishes that hold up to daily life in your home."
-      backgroundImageUrl="/photos/paint/in-paint-2.webp"
+      backgroundImageUrl={PHOTOS.paintInt1Before}
     >
       <section className="mb-12 flex flex-col gap-10 py-6 md:gap-12 md:py-10">
         <ServiceDesc
           imagePosition="left"
-          image="paint/in-paint-2"
+          image={PHOTOS.paintInt1Before}
           imageAlt="Offwhite painted ceiling with grid of gray painted extruded ceiling accent pieces"
           header="Rooms, trim, and ceilings done right"
           content="Fresh interior paint changes how every room feels. We protect floors and furniture, repair minor wall imperfections, and apply consistent coats so corners, trim, and ceilings read sharp. You get a livable schedule, clear communication, and a finish that holds up to daily use."

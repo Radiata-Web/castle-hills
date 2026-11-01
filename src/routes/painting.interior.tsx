@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { PHOTOS } from "@/lib/images";
 import { servicePageHead } from "@/lib/service-seo";
 import InteriorPaintingPage from "@/pages/painting/interior";
 
@@ -9,7 +10,7 @@ export const Route = createFileRoute("/painting/interior")({
       title: "Interior Painting in DFW | Castle Hills Stain & Restoration",
       description:
         "Interior painting with careful prep, drywall repair when needed, and durable finishes in Dallas–Fort Worth.",
-      ogImage: "/photos/paint/in-paint-2.webp",
+      ogImage: PHOTOS.paintInt1Before,
       serviceName: "Interior Painting",
       serviceType: "Interior painting",
       breadcrumbs: [

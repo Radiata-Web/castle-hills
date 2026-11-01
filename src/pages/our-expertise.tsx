@@ -3,6 +3,7 @@ import { GlossyPhotoFrame } from "@/components/misc/glossy-photo-frame";
 import { Hero } from "@/components/misc/hero";
 import Footer from "@/components/nav/footer";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { PHOTOS } from "@/lib/images";
 import { Fence, Hammer, Paintbrush, PaintBucket, Pencil, Search } from "lucide-react";
 
 export default function OurExpertise() {
@@ -11,7 +12,7 @@ export default function OurExpertise() {
       <Hero
         title="Our Expertise"
         subtitle="Our team of experts is here to help you with any home improvement project."
-        backgroundImageUrl="/photos/stain/stain-2.webp"
+        backgroundImageUrl={PHOTOS.stain2}
       />
 
       <div className="max-w-8xl mx-auto px-4 md:px-8 lg:px-8 mb-12 mt-8 md:mt-12">
@@ -34,7 +35,7 @@ export default function OurExpertise() {
           <div className="order-1 flex w-full justify-center lg:order-2 lg:justify-start">
             <GlossyPhotoFrame
               figureClassName="w-full max-w-md sm:max-w-lg lg:max-w-xl xl:max-w-2xl"
-              src="/photos/pergolas/pergola-6.webp"
+              src={PHOTOS.stain5}
               alt="Stained wooden pergola in a backyard, representing custom outdoor structure work"
               width={800}
               height={560}

@@ -2,6 +2,7 @@
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { ctaAfterCopyClassName, ctaGroupClassName, ctaPrimaryClassName } from "@/lib/cta";
+import { photoCssUrl } from "@/lib/images";
 import { cn } from "@/lib/utils";
 
 type HeroProps = {
@@ -82,7 +83,7 @@ export function Hero({
         "relative w-full overflow-hidden bg-cover bg-center bg-no-repeat",
         minHeightClass,
       )}
-      style={{ backgroundImage: `url(${backgroundImageUrl})` }}
+      style={{ backgroundImage: photoCssUrl(backgroundImageUrl, "hero") }}
     >
       <div className={cn("absolute inset-0 h-full", overlayOpacityClass)} />
 

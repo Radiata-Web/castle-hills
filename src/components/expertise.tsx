@@ -19,7 +19,7 @@ export default function Expertise() {
       id="expertise"
       className="scroll-mt-24 max-w-8xl mx-auto px-4 py-10 md:px-8 md:py-14 lg:px-8 lg:py-16"
     >
-      <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-x-12 lg:gap-y-8">
+      <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-x-12">
         <div className="min-w-0">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl xl:text-5xl/none">
             Our Expertise
@@ -53,9 +53,31 @@ export default function Expertise() {
               </li>
             ))}
           </ul>
+
+          <div className={cn(ctaGroupClassName, ctaAfterCopyClassName)}>
+            <Button
+              size="lg"
+              className={ctaPrimaryClassName}
+              render={<Link to="/our-expertise" />}
+              nativeButton={false}
+            >
+              Full expertise overview
+              <MoveRight className="ml-2 size-5" strokeWidth={1.5} />
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className={ctaPrimaryClassName}
+              render={<Link to="/contact-us" />}
+              nativeButton={false}
+            >
+              Get a Free Estimate
+              <MoveRight className="ml-2 size-5" strokeWidth={1.5} />
+            </Button>
+          </div>
         </div>
 
-        <div className="flex w-full justify-center lg:justify-end">
+        <div className="flex w-full justify-center lg:justify-end lg:sticky lg:top-24">
           <GlossyPhotoFrame
             figureClassName="w-full max-w-xl lg:max-w-none"
             src={PHOTOS.stain4}
@@ -65,28 +87,6 @@ export default function Expertise() {
             sizes="(max-width: 1024px) 100vw, 42vw"
             variant="gallery"
           />
-        </div>
-
-        <div className={cn(ctaGroupClassName, ctaAfterCopyClassName, "lg:col-span-2")}>
-          <Button
-            size="lg"
-            className={ctaPrimaryClassName}
-            render={<Link to="/our-expertise" />}
-            nativeButton={false}
-          >
-            Full expertise overview
-            <MoveRight className="ml-2 size-5" strokeWidth={1.5} />
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className={ctaPrimaryClassName}
-            render={<Link to="/contact-us" />}
-            nativeButton={false}
-          >
-            Get a Free Estimate
-            <MoveRight className="ml-2 size-5" strokeWidth={1.5} />
-          </Button>
         </div>
       </div>
     </section>

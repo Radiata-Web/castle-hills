@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import PaintBeforeAfter from "@/components/misc/paint-before-after";
 import ServiceDesc from "@/components/misc/serviceDesc";
 import { ServicePageLayout } from "@/components/services/service-page-layout";
 import { PHOTOS } from "@/lib/images";
@@ -20,6 +21,8 @@ export default function InteriorPaintingPage() {
           content="Fresh interior paint changes how every room feels. We protect floors and furniture, repair minor wall imperfections, and apply consistent coats so corners, trim, and ceilings read sharp. You get a livable schedule, clear communication, and a finish that holds up to daily use."
         />
       </section>
+
+      <PaintBeforeAfter variant="interior" />
 
       <section aria-labelledby="interior-drywall-heading" className="mb-12 max-w-[720px]">
         <h2 id="interior-drywall-heading" className="text-2xl font-bold sm:text-3xl">

@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import PaintBeforeAfter from "@/components/misc/paint-before-after";
 import ServiceDesc from "@/components/misc/serviceDesc";
 import { ServicePageLayout } from "@/components/services/service-page-layout";
 import { PHOTOS } from "@/lib/images";
@@ -19,6 +20,8 @@ export default function ExteriorPaintingPage() {
           content="Exterior paint is your first defense against heat, wind, and moisture. We prep siding and trim properly, use quality coatings suited to the substrate, and pay attention to details like caulk lines and cut-ins so your curb appeal looks crisp and stays protected. High-performance options include Sherwin-Williams Emerald® and Duration®, plus Romabio Classico Limewash® where it fits your design."
         />
       </section>
+
+      <PaintBeforeAfter variant="exterior" />
 
       <p className="mb-16 max-w-[720px] text-zinc-600">
         Fences, pergolas, and other outdoor wood need stain—not siding paint. Visit{" "}

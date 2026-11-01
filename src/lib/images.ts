@@ -67,6 +67,99 @@ export const PHOTOS = {
 
 export type PhotoId = (typeof PHOTOS)[keyof typeof PHOTOS];
 
+export type BeforeAfterPair = {
+  before: PhotoId;
+  after: PhotoId;
+  beforeAlt: string;
+  afterAlt: string;
+};
+
+/** Curated paint before/after sets for service galleries. */
+export const PAINT_GALLERY = {
+  interior: [
+    {
+      before: PHOTOS.paintInt1Before,
+      after: PHOTOS.paintInt1After,
+      beforeAlt: "Interior room before painting refresh",
+      afterAlt: "Same interior after fresh paint",
+    },
+  ] satisfies BeforeAfterPair[],
+  /** Hub: two strong exterior pairs without overwhelming the page. */
+  exteriorHub: [
+    {
+      before: PHOTOS.paintExt1Before,
+      after: PHOTOS.paintExt1After,
+      beforeAlt: "Home exterior before professional repaint",
+      afterAlt: "Same home exterior after professional repaint",
+    },
+    {
+      before: PHOTOS.paintExt3Before,
+      after: PHOTOS.paintExt3After,
+      beforeAlt: "House exterior with faded paint before refresh",
+      afterAlt: "Same house after fresh exterior paint",
+    },
+  ] satisfies BeforeAfterPair[],
+  /** Exterior child page: deeper set from the CDN pack. */
+  exteriorFull: [
+    {
+      before: PHOTOS.paintExt1Before,
+      after: PHOTOS.paintExt1After,
+      beforeAlt: "Home exterior before professional repaint",
+      afterAlt: "Same home exterior after professional repaint",
+    },
+    {
+      before: PHOTOS.paintExt3Before,
+      after: PHOTOS.paintExt3After,
+      beforeAlt: "House exterior with faded paint before refresh",
+      afterAlt: "Same house after fresh exterior paint",
+    },
+    {
+      before: PHOTOS.paintExt5Before,
+      after: PHOTOS.paintExt5After,
+      beforeAlt: "Residential exterior before paint project",
+      afterAlt: "Residential exterior after completed paint project",
+    },
+    {
+      before: PHOTOS.paintExt8Before,
+      after: PHOTOS.paintExt8After,
+      beforeAlt: "Curb view before exterior painting",
+      afterAlt: "Curb view after exterior painting",
+    },
+  ] satisfies BeforeAfterPair[],
+} as const;
+
+export type StainGalleryShot = {
+  src: PhotoId;
+  alt: string;
+  label: string;
+};
+
+/** Stain set is singles (no a/b) — project grid for wood-staining pages. */
+export const STAIN_GALLERY: StainGalleryShot[] = [
+  { src: PHOTOS.stain1, alt: "Freshly stained wooden fence boards", label: "Fence" },
+  { src: PHOTOS.stain2, alt: "Dark brown stained fence in a residential backyard", label: "Fence" },
+  {
+    src: PHOTOS.stain3,
+    alt: "Stained wooden pergola in a backyard alcove",
+    label: "Pergola",
+  },
+  {
+    src: PHOTOS.stain4,
+    alt: "Home exterior wood with a rich stain finish",
+    label: "Exterior wood",
+  },
+  {
+    src: PHOTOS.stain5,
+    alt: "Stained outdoor wood structure with even color",
+    label: "Outdoor wood",
+  },
+  {
+    src: PHOTOS.stain6,
+    alt: "Patio cover with a warm stained finish",
+    label: "Patio cover",
+  },
+];
+
 /**
  * Legacy local files under `public/photos` used when CDN is off.
  * Keys = canonical CDN logical ids.

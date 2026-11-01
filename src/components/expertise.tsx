@@ -19,40 +19,43 @@ export default function Expertise() {
       id="expertise"
       className="scroll-mt-24 max-w-8xl mx-auto px-4 py-10 md:px-8 md:py-14 lg:px-8 lg:py-16"
     >
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-x-12 lg:gap-y-6">
-        <div className="lg:col-span-2">
+      <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-x-12 lg:gap-y-8">
+        <div className="min-w-0">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl xl:text-5xl/none">
             Our Expertise
           </h2>
-          <p className="mt-3 max-w-3xl text-zinc-600">
+          <p className="mt-3 max-w-xl text-zinc-600">
             Two focuses we take from estimate to finish—painting and wood staining for North Texas
             homes.
           </p>
+
+          <ul className="mt-8 flex list-none flex-col gap-4 p-0">
+            {PILLARS.map(({ title, href, body }) => (
+              <li key={href}>
+                <Link
+                  to={href}
+                  className="group flex flex-col rounded-xl border border-zinc-200/90 bg-zinc-50/40 p-5 shadow-sm transition-colors hover:border-accent/40 hover:bg-white"
+                >
+                  <h3 className="mb-2 flex items-center gap-2 text-lg font-bold leading-snug text-zinc-900">
+                    <span className="min-w-0">{title}</span>
+                    <CheckCircle className="shrink-0 text-accent" size={18} aria-hidden />
+                  </h3>
+                  <p className="text-sm leading-relaxed text-zinc-600">{body}</p>
+                  <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent underline-offset-4 group-hover:underline">
+                    Read more
+                    <MoveRight
+                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                      strokeWidth={2}
+                      aria-hidden
+                    />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 sm:gap-4 lg:min-w-0">
-          {PILLARS.map(({ title, href, body }) => (
-            <div
-              key={href}
-              className="flex flex-col rounded-xl border border-zinc-200/90 bg-zinc-50/40 p-4 shadow-sm sm:p-5"
-            >
-              <h3 className="mb-2 flex items-center gap-2 text-lg font-bold leading-snug text-zinc-900">
-                <span className="min-w-0">{title}</span>
-                <CheckCircle className="shrink-0 text-accent" size={18} aria-hidden />
-              </h3>
-              <p className="flex-1 text-sm leading-relaxed text-zinc-600">{body}</p>
-              <Link
-                to={href}
-                className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent underline-offset-4 hover:underline"
-              >
-                Read more
-                <MoveRight className="h-4 w-4" strokeWidth={2} aria-hidden />
-              </Link>
-            </div>
-          ))}
-        </div>
-
-        <div className="flex w-full justify-center lg:sticky lg:top-24 lg:justify-end lg:self-start">
+        <div className="flex w-full justify-center lg:justify-end">
           <GlossyPhotoFrame
             figureClassName="w-full max-w-xl lg:max-w-none"
             src={PHOTOS.stain4}

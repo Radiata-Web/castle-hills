@@ -12,10 +12,10 @@ export default function Hero() {
           src="/photos/gates/gate-1.webp"
           alt=""
           fill
+          variant="hero"
           priority
           fetchPriority="high"
           sizes="100vw"
-          quality={80}
           className="object-cover object-center"
           aria-hidden
         />

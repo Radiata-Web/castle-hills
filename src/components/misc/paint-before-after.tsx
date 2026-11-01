@@ -17,6 +17,7 @@ function Pair(props: {
           src={props.beforeSrc}
           alt={props.beforeAlt}
           fill
+          variant="gallery"
           sizes="(max-width: 640px) 100vw, 45vw"
           className="object-cover"
         />
@@ -43,6 +44,7 @@ function Pair(props: {
           src={props.afterSrc}
           alt={props.afterAlt}
           fill
+          variant="gallery"
           sizes="(max-width: 640px) 100vw, 45vw"
           className="object-cover"
         />

@@ -62,6 +62,7 @@ export default function Expertise() {
             width={700}
             height={500}
             sizes="(max-width: 1024px) 100vw, 42vw"
+            variant="gallery"
           />
         </div>
 

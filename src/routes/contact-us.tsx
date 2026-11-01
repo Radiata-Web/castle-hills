@@ -5,7 +5,6 @@ import ContactUsPage from "@/pages/contact-us";
 export const Route = createFileRoute("/contact-us")({
   head: () =>
     pageHead({
-      pathname: "/contact-us",
       title: "Request a Free Estimate | Castle Hills Stain & Restoration",
       description: "Get a free estimate for your next home improvement project.",
     }),

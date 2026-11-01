@@ -1,6 +1,4 @@
 import { Review } from "@/components/misc/reviewGrid";
-import { PHOTOS } from "@/lib/images";
-import { SERVICE_NAV_GROUPS } from "@/lib/service-ia";
 
 export interface Service {
   title: string;
@@ -16,22 +14,25 @@ export const PAGES: { title: string; href: string }[] = [
   { title: "Expertise", href: "/our-expertise" },
 ];
 
-/**
- * Homepage / about service cards — Painting + Wood Staining hubs (launch IA).
- * Full nav tree lives in `@/lib/service-ia` (`SERVICE_NAV_GROUPS`).
- */
+/** Matches homepage “What can we do for you?” service cards and nav Services dropdown. */
 export const HOMEPAGE_FEATURED_SERVICES: Service[] = [
   {
-    title: "Painting",
-    href: "/painting",
-    cardImg: PHOTOS.paintExt2,
-    teaser: SERVICE_NAV_GROUPS[0].description,
+    title: "Outdoor Structures",
+    href: "/custom-wood-structures-outdoor-design",
+    cardImg: "/pergolas/pergola-6",
+    teaser: "Custom builds and pro staining for pergolas, patio covers, and outdoor wood.",
   },
   {
-    title: "Wood Staining",
-    href: "/wood-staining",
-    cardImg: PHOTOS.stain2,
-    teaser: SERVICE_NAV_GROUPS[1].description,
+    title: "Fence Services",
+    href: "/fence-services",
+    cardImg: "/fences/wood/fence-1",
+    teaser: "Install, stain, repair, gates, and prep—finished for North Texas weather.",
+  },
+  {
+    title: "Interior & Exterior Painting",
+    href: "/luxury-finishes-coatings",
+    cardImg: "/paint/ex-paint-2",
+    teaser: "Coatings, color, and detail work that holds up where you live.",
   },
 ];
 

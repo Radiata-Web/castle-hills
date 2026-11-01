@@ -2,7 +2,6 @@ import { ContactForm } from "@/components/forms/contact-form";
 import ChooseUs from "@/components/misc/choose-us";
 import Footer from "@/components/nav/footer";
 import Image from "@/components/ui/optimized-image";
-import { PHOTOS } from "@/lib/images";
 
 export default function Page() {
   return (
@@ -24,7 +23,7 @@ export default function Page() {
           {/* Service Image */}
           <figure className="max-h-[475px] w-full md:w-1/2 overflow-hidden items-center rounded-lg md:rounded-l-none md:rounded-r-lg">
             <Image
-              src={PHOTOS.stain2}
+              src={`/photos/stain/stain-2.webp`}
               alt="Dark brown stained wooden fence in a residential backyard"
               width={1000}
               height={1000}

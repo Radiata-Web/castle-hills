@@ -2,6 +2,7 @@ import { CheckCircle, MoveRight } from "lucide-react";
 import { GlossyPhotoFrame } from "@/components/misc/glossy-photo-frame";
 import { Button } from "./ui/button";
 import { ctaAfterCopyClassName, ctaGroupClassName, ctaPrimaryClassName } from "@/lib/cta";
+import { PHOTOS } from "@/lib/images";
 import { SERVICE_NAV_GROUPS } from "@/lib/service-ia";
 import { cn } from "@/lib/utils";
 import { Link } from "@tanstack/react-router";
@@ -57,7 +58,7 @@ export default function Expertise() {
         <div className="flex w-full justify-center lg:sticky lg:top-24 lg:justify-end lg:self-start">
           <GlossyPhotoFrame
             figureClassName="w-full max-w-xl lg:max-w-none"
-            src="/photos/stain/stain-4.webp"
+            src={PHOTOS.stain4}
             alt="Residential home exterior with a clean professional paint finish"
             width={700}
             height={500}

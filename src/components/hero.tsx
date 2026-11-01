@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ctaGroupClassName, ctaPrimaryClassName } from "@/lib/cta";
+import { PHOTOS } from "@/lib/images";
 import { ArrowDown, MoveRight } from "lucide-react";
 import { ContactForm } from "./forms/contact-form";
 import Image from "@/components/ui/optimized-image";
@@ -9,7 +10,7 @@ export default function Hero() {
     <section id="hero" className="relative isolate overflow-hidden bg-zinc-900">
       <div className="pointer-events-none absolute inset-0 z-0">
         <Image
-          src="/photos/gates/gate-1.webp"
+          src={PHOTOS.stain1}
           alt=""
           fill
           variant="hero"

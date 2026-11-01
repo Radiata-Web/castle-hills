@@ -1,4 +1,5 @@
 import { Review } from "@/components/misc/reviewGrid";
+import { PHOTOS } from "@/lib/images";
 import { SERVICE_NAV_GROUPS } from "@/lib/service-ia";
 
 export interface Service {
@@ -23,13 +24,13 @@ export const HOMEPAGE_FEATURED_SERVICES: Service[] = [
   {
     title: "Painting",
     href: "/painting",
-    cardImg: "/paint/ex-paint-2",
+    cardImg: PHOTOS.paintExt2,
     teaser: SERVICE_NAV_GROUPS[0].description,
   },
   {
     title: "Wood Staining",
     href: "/wood-staining",
-    cardImg: "/stain/stain-2",
+    cardImg: PHOTOS.stain2,
     teaser: SERVICE_NAV_GROUPS[1].description,
   },
 ];

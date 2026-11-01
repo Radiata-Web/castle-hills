@@ -4,18 +4,19 @@
  * Production: Cloudflare R2 custom domain + Image Transformations
  *   https://img.chstainandrestoration.com/cdn-cgi/image/<opts>/<objectKey>
  *
- * Local / unset CDN: `/photos/<id>.webp` from `public/photos`.
+ * Object keys (current bucket layout):
+ *   painting/paint-ext-1a.jpg  — before (a) / after (b) when paired
+ *   painting/paint-ext-2.jpg   — single shot (no a/b)
+ *   staining/stain-1.jpg
  *
- * Logical IDs stay path-like without leading slash or extension, e.g. `paint/ex-paint-2`.
- * If R2 object keys differ after renames, add entries to `PHOTO_KEY_ALIASES`.
+ * Local `vp dev` (no CDN): maps to leftover files under `public/photos/` via
+ * LOCAL_FALLBACKS so WAF-blocked localhost still renders.
  */
 
 export type ImageVariant = "hero" | "card" | "gallery" | "thumb" | "og" | "raw";
 
 type VariantConfig = {
-  /** Primary width used for `src`. */
   width: number;
-  /** Extra widths for `srcset` (omit for raw). */
   srcSetWidths?: number[];
   quality: number;
   fit?: "scale-down" | "contain" | "cover" | "crop" | "pad";
@@ -31,20 +32,97 @@ const VARIANTS: Record<ImageVariant, VariantConfig> = {
 };
 
 /**
- * Map logical photo id → R2 object key when names diverge after upload/rename.
- * Keys are normalized logical ids (`paint/ex-paint-2`).
- * Values are full object keys in the bucket (e.g. `photos/paint/exterior-2.webp`).
+ * Canonical photo IDs used by the app (no extension).
+ * Prefer these over legacy `/photos/...` paths.
  */
-export const PHOTO_KEY_ALIASES: Record<string, string> = {
-  // Example after Ryan shares R2 keys:
-  // "paint/ex-paint-2": "photos/paint/exterior-home-2.webp",
+export const PHOTOS = {
+  /** Exterior paint — hero / cards */
+  paintExt2: "painting/paint-ext-2",
+  paintExt4: "painting/paint-ext-4",
+  paintExt7: "painting/paint-ext-7",
+  /** Exterior before/after pair */
+  paintExt1Before: "painting/paint-ext-1a",
+  paintExt1After: "painting/paint-ext-1b",
+  paintExt3Before: "painting/paint-ext-3a",
+  paintExt3After: "painting/paint-ext-3b",
+  paintExt5Before: "painting/paint-ext-5a",
+  paintExt5After: "painting/paint-ext-5b",
+  paintExt6Before: "painting/paint-ext-6a",
+  paintExt6After: "painting/paint-ext-6b",
+  paintExt8Before: "painting/paint-ext-8a",
+  paintExt8After: "painting/paint-ext-8b",
+  paintExt9Before: "painting/paint-ext-9a",
+  paintExt9After: "painting/paint-ext-9b",
+  /** Interior before/after */
+  paintInt1Before: "painting/paint-int-1a",
+  paintInt1After: "painting/paint-int-1b",
+  /** Stain set */
+  stain1: "staining/stain-1",
+  stain2: "staining/stain-2",
+  stain3: "staining/stain-3",
+  stain4: "staining/stain-4",
+  stain5: "staining/stain-5",
+  stain6: "staining/stain-6",
+} as const;
+
+export type PhotoId = (typeof PHOTOS)[keyof typeof PHOTOS];
+
+/**
+ * Legacy local files under `public/photos` used when CDN is off.
+ * Keys = canonical CDN logical ids.
+ */
+const LOCAL_FALLBACKS: Record<string, string> = {
+  "painting/paint-ext-1a": "photos/paint/ex-paint-1-before.webp",
+  "painting/paint-ext-1b": "photos/paint/ex-paint-1-after.webp",
+  "painting/paint-ext-2": "photos/paint/ex-paint-2.webp",
+  "painting/paint-ext-3a": "photos/paint/ex-paint-3.webp",
+  "painting/paint-ext-3b": "photos/paint/ex-paint-3.webp",
+  "painting/paint-ext-4": "photos/paint/ex-paint-4.webp",
+  "painting/paint-ext-5a": "photos/paint/ex-paint-5.webp",
+  "painting/paint-ext-5b": "photos/paint/ex-paint-5.webp",
+  "painting/paint-ext-6a": "photos/paint/ex-paint-2.webp",
+  "painting/paint-ext-6b": "photos/paint/ex-paint-4.webp",
+  "painting/paint-ext-7": "photos/paint/ex-paint-5.webp",
+  "painting/paint-ext-8a": "photos/paint/ex-paint-1-before.webp",
+  "painting/paint-ext-8b": "photos/paint/ex-paint-1-after.webp",
+  "painting/paint-ext-9a": "photos/paint/ex-paint-3.webp",
+  "painting/paint-ext-9b": "photos/paint/ex-paint-4.webp",
+  "painting/paint-int-1a": "photos/paint/in-paint-2.webp",
+  "painting/paint-int-1b": "photos/paint/in-paint-1.webp",
+  "staining/stain-1": "photos/stain/stain-1.webp",
+  "staining/stain-2": "photos/stain/stain-2.webp",
+  "staining/stain-3": "photos/stain/stain-3.webp",
+  "staining/stain-4": "photos/stain/stain-4.webp",
+  "staining/stain-5": "photos/pergolas/pergola-6.webp",
+  "staining/stain-6": "photos/patio-cover.webp",
 };
 
-const CDN_BASE =
-  (import.meta.env.VITE_IMAGE_CDN_BASE as string | undefined)?.replace(/\/$/, "") ?? "";
+/**
+ * Map leftover legacy logical ids (old `/photos/...` layout) → canonical CDN ids.
+ */
+const LEGACY_TO_CANONICAL: Record<string, string> = {
+  "paint/ex-paint-1-before": PHOTOS.paintExt1Before,
+  "paint/ex-paint-1-after": PHOTOS.paintExt1After,
+  "paint/ex-paint-2": PHOTOS.paintExt2,
+  "paint/ex-paint-3": PHOTOS.paintExt3After,
+  "paint/ex-paint-4": PHOTOS.paintExt4,
+  "paint/ex-paint-5": PHOTOS.paintExt7,
+  "paint/in-paint-1": PHOTOS.paintInt1After,
+  "paint/in-paint-2": PHOTOS.paintInt1Before,
+  "stain/stain-1": PHOTOS.stain1,
+  "stain/stain-2": PHOTOS.stain2,
+  "stain/stain-3": PHOTOS.stain3,
+  "stain/stain-4": PHOTOS.stain4,
+  "pergolas/pergola-1": PHOTOS.stain3,
+  "pergolas/pergola-6": PHOTOS.stain5,
+  "patio-cover": PHOTOS.stain6,
+  "gates/gate-1": PHOTOS.stain1,
+  "garages/garage-1": PHOTOS.paintExt7,
+};
+
+const CDN_BASE = (import.meta.env.VITE_IMAGE_CDN_BASE as string | undefined)?.replace(/\/$/, "") ?? "";
 const FORCE_CDN = import.meta.env.VITE_IMAGE_CDN_FORCE === "true";
 
-/** True when we should emit img.chstainandrestoration.com URLs. */
 export function useImageCdn(): boolean {
   if (!CDN_BASE) return false;
   if (FORCE_CDN) return true;
@@ -55,7 +133,7 @@ export function imageCdnBase(): string {
   return CDN_BASE;
 }
 
-/** Strip `/photos/`, leading slash, and `.webp`/`.jpg`/… → logical id. */
+/** Strip URL /photos / extension → logical id. */
 export function toLogicalPhotoId(input: string): string {
   let id = input.trim();
   if (id.startsWith("http://") || id.startsWith("https://")) {
@@ -72,13 +150,23 @@ export function toLogicalPhotoId(input: string): string {
   return id;
 }
 
-/** Resolve logical id (or path) to the R2 object key / local public path segment. */
-export function toObjectKey(input: string): string {
+/** Resolve any input to the canonical logical id (`painting/...` or `staining/...`). */
+export function toCanonicalPhotoId(input: string): string {
   const logical = toLogicalPhotoId(input);
-  if (PHOTO_KEY_ALIASES[logical]) {
-    return PHOTO_KEY_ALIASES[logical].replace(/^\/+/, "");
+  if (logical.startsWith("painting/") || logical.startsWith("staining/")) {
+    return logical;
   }
-  return `photos/${logical}.webp`;
+  return LEGACY_TO_CANONICAL[logical] ?? logical;
+}
+
+/** R2 object key (with extension) for CDN requests. */
+export function toObjectKey(input: string): string {
+  const canonical = toCanonicalPhotoId(input);
+  if (canonical.startsWith("painting/") || canonical.startsWith("staining/")) {
+    return `${canonical}.jpg`;
+  }
+  // Unknown — assume jpg under the given path
+  return `${canonical}.jpg`;
 }
 
 function transformOptions(variant: ImageVariant, widthOverride?: number): string {
@@ -92,17 +180,12 @@ function transformOptions(variant: ImageVariant, widthOverride?: number): string
   return parts.join(",");
 }
 
-/**
- * Public URL for a photo.
- * Absolute http(s) inputs pass through unchanged.
- */
 export function photoSrc(
   input: string,
   options: { variant?: ImageVariant; width?: number } = {},
 ): string {
   if (input.startsWith("http://") || input.startsWith("https://")) {
     if (!useImageCdn() || !CDN_BASE) return input;
-    // Already on our CDN without transforms — optionally wrap.
     if (input.startsWith(CDN_BASE) && !input.includes("/cdn-cgi/image/")) {
       const key = input.slice(CDN_BASE.length).replace(/^\/+/, "");
       const variant = options.variant ?? "gallery";
@@ -111,36 +194,38 @@ export function photoSrc(
     return input;
   }
 
-  const key = toObjectKey(input);
+  // Logos and other static public assets — never send through photo CDN.
+  if (input.startsWith("/logos/") || input.startsWith("/favicon") || input.endsWith(".svg")) {
+    return input.startsWith("/") ? input : `/${input}`;
+  }
+
+  const canonical = toCanonicalPhotoId(input);
   const variant = options.variant ?? "gallery";
 
   if (!useImageCdn()) {
-    return `/${key}`;
+    const local = LOCAL_FALLBACKS[canonical] ?? `photos/${toLogicalPhotoId(input)}.webp`;
+    return `/${local}`;
   }
 
+  const key = toObjectKey(canonical);
   if (variant === "raw") {
     return `${CDN_BASE}/${key}`;
   }
-
   return `${CDN_BASE}/cdn-cgi/image/${transformOptions(variant, options.width)}/${key}`;
 }
 
-/** `srcset` string for responsive delivery (CDN only; empty when local). */
 export function photoSrcSet(input: string, variant: ImageVariant = "gallery"): string | undefined {
   if (!useImageCdn()) return undefined;
   const cfg = VARIANTS[variant];
   const widths = cfg.srcSetWidths;
   if (!widths?.length) return undefined;
-
   return widths.map((w) => `${photoSrc(input, { variant, width: w })} ${w}w`).join(", ");
 }
 
-/** CSS `url(...)` value for background-image heroes/cards. */
 export function photoCssUrl(input: string, variant: ImageVariant = "hero"): string {
   return `url(${photoSrc(input, { variant })})`;
 }
 
-/** Absolute URL for Open Graph / JSON-LD (always absolute). */
 export function photoAbsoluteSrc(
   input: string,
   options: { variant?: ImageVariant; siteUrl: string },
@@ -150,19 +235,5 @@ export function photoAbsoluteSrc(
   return `${options.siteUrl.replace(/\/$/, "")}${src.startsWith("/") ? src : `/${src}`}`;
 }
 
-/** Logical ids currently referenced by the app (for R2 audit / probe script). */
-export const REFERENCED_PHOTO_IDS = [
-  "paint/ex-paint-1-after",
-  "paint/ex-paint-1-before",
-  "paint/ex-paint-2",
-  "paint/ex-paint-4",
-  "paint/in-paint-1",
-  "paint/in-paint-2",
-  "stain/stain-2",
-  "stain/stain-4",
-  "pergolas/pergola-1",
-  "pergolas/pergola-6",
-  "patio-cover",
-  "gates/gate-1",
-  "garages/garage-1",
-] as const;
+/** All known-live CDN keys discovered by probe (no extension). */
+export const REFERENCED_PHOTO_IDS = Object.values(PHOTOS);

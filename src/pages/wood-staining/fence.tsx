@@ -3,6 +3,7 @@ import ServiceDesc from "@/components/misc/serviceDesc";
 import { Button } from "@/components/ui/button";
 import { ServicePageLayout } from "@/components/services/service-page-layout";
 import { ctaPrimaryClassName } from "@/lib/cta";
+import { PHOTOS } from "@/lib/images";
 import { DEFERRED_SERVICE_NOTES } from "@/lib/service-ia";
 import { cn } from "@/lib/utils";
 
@@ -11,12 +12,12 @@ export default function FenceStainingPage() {
     <ServicePageLayout
       title="Fence Staining"
       subtitle="Clean, prep, and premium oil-based stain so your fence looks rich and stands up to North Texas weather."
-      backgroundImageUrl="/photos/stain/stain-2.webp"
+      backgroundImageUrl={PHOTOS.stain2}
     >
       <section className="mb-10 flex flex-col gap-10 py-6 md:gap-12 md:py-10">
         <ServiceDesc
           imagePosition="right"
-          image="stain/stain-2"
+          image={PHOTOS.stain2}
           imageAlt="Dark brown stained wooden fence in a residential backyard"
           header="Fence staining & sealing"
           content="Stain and seal lock out moisture, cut UV damage, and keep boards from checking and graying. We help you choose a color that complements your home, then apply premium products so the grain looks rich and the finish lasts."

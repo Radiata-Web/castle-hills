@@ -1,12 +1,8 @@
 #!/usr/bin/env node
 /**
- * Probe img.chstainandrestoration.com for object keys used by the site.
+ * Probe img.chstainandrestoration.com for painting/ + staining/ object keys.
  *
- * Usage:
- *   node scripts/probe-cf-images.mjs
- *   node scripts/probe-cf-images.mjs --keys-file /tmp/r2-keys.txt
- *
- * Exit 0 always; prints a markdown table of results.
+ * Usage: pnpm run probe:images
  */
 
 const CDN = (process.env.VITE_IMAGE_CDN_BASE || "https://img.chstainandrestoration.com").replace(
@@ -15,33 +11,31 @@ const CDN = (process.env.VITE_IMAGE_CDN_BASE || "https://img.chstainandrestorati
 );
 const REFERER = process.env.PROBE_REFERER || "https://chstainandrestoration.com/";
 
-const DEFAULT_IDS = [
-  "paint/ex-paint-1-after",
-  "paint/ex-paint-1-before",
-  "paint/ex-paint-2",
-  "paint/ex-paint-4",
-  "paint/in-paint-1",
-  "paint/in-paint-2",
-  "stain/stain-2",
-  "stain/stain-4",
-  "pergolas/pergola-1",
-  "pergolas/pergola-6",
-  "patio-cover",
-  "gates/gate-1",
-  "garages/garage-1",
+const KNOWN = [
+  "painting/paint-ext-1a",
+  "painting/paint-ext-1b",
+  "painting/paint-ext-2",
+  "painting/paint-ext-3a",
+  "painting/paint-ext-3b",
+  "painting/paint-ext-4",
+  "painting/paint-ext-5a",
+  "painting/paint-ext-5b",
+  "painting/paint-ext-6a",
+  "painting/paint-ext-6b",
+  "painting/paint-ext-7",
+  "painting/paint-ext-8a",
+  "painting/paint-ext-8b",
+  "painting/paint-ext-9a",
+  "painting/paint-ext-9b",
+  "painting/paint-int-1a",
+  "painting/paint-int-1b",
+  "staining/stain-1",
+  "staining/stain-2",
+  "staining/stain-3",
+  "staining/stain-4",
+  "staining/stain-5",
+  "staining/stain-6",
 ];
-
-function keysForId(id) {
-  const base = id.replace(/^\/+/, "").replace(/^photos\//, "").replace(/\.(webp|jpe?g|png)$/i, "");
-  return [
-    `photos/${base}.webp`,
-    `${base}.webp`,
-    `photos/${base}.jpg`,
-    `${base}.jpg`,
-    `photos/${base}.jpeg`,
-    `photos/${base}.png`,
-  ];
-}
 
 async function head(url) {
   const res = await fetch(url, {
@@ -56,42 +50,24 @@ async function head(url) {
 }
 
 async function main() {
-  const args = process.argv.slice(2);
-  let ids = DEFAULT_IDS;
-  const keysFileIdx = args.indexOf("--keys-file");
-  if (keysFileIdx >= 0 && args[keysFileIdx + 1]) {
-    const { readFileSync } = await import("node:fs");
-    ids = readFileSync(args[keysFileIdx + 1], "utf8")
-      .split(/\r?\n/)
-      .map((l) => l.trim())
-      .filter(Boolean);
-  }
-
   console.log(`CDN: ${CDN}`);
   console.log(`Referer: ${REFERER}`);
   console.log("");
-  console.log("| logical id | first 200 key | status |");
+  console.log("| key | raw | transform |");
   console.log("|---|---|---|");
 
-  for (const id of ids) {
-    let hit = null;
-    let hitStatus = null;
-    for (const key of keysForId(id)) {
-      const status = await head(`${CDN}/${key}`);
-      if (status === 200) {
-        hit = key;
-        hitStatus = status;
-        break;
-      }
-      hitStatus = status;
-    }
-    const transformStatus = hit
-      ? await head(`${CDN}/cdn-cgi/image/width=400,format=auto/${hit}`)
-      : "—";
-    console.log(
-      `| \`${id}\` | ${hit ? `\`${hit}\`` : "_none_"} | raw ${hitStatus}${hit ? `, transform ${transformStatus}` : ""} |`,
-    );
+  let ok = 0;
+  for (const id of KNOWN) {
+    const key = `${id}.jpg`;
+    const raw = await head(`${CDN}/${key}`);
+    const transform =
+      raw === 200 ? await head(`${CDN}/cdn-cgi/image/width=400,format=auto/${key}`) : "—";
+    if (raw === 200) ok += 1;
+    console.log(`| \`${key}\` | ${raw} | ${transform} |`);
   }
+  console.log("");
+  console.log(`OK ${ok}/${KNOWN.length}`);
+  if (ok !== KNOWN.length) process.exitCode = 1;
 }
 
 main().catch((err) => {

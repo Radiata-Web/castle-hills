@@ -1,4 +1,4 @@
-import { photoAbsoluteSrc } from "@/lib/images";
+import { PHOTOS, photoAbsoluteSrc } from "@/lib/images";
 import { SITE_URL } from "@/lib/site";
 
 export type PageMeta = {
@@ -13,7 +13,7 @@ export type PageMeta = {
   ogImage?: string;
 };
 
-const DEFAULT_OG_IMAGE = "stain/stain-2";
+const DEFAULT_OG_IMAGE = PHOTOS.stain2;
 
 function absoluteUrl(pathname: string): string {
   if (pathname === "/" || pathname === "") {

@@ -20,10 +20,12 @@ function shouldResolvePhoto(src: string): boolean {
   if (src.startsWith("http://") || src.startsWith("https://")) return false;
   if (src.startsWith("/logos/") || src.startsWith("/favicon")) return false;
   if (src.endsWith(".svg")) return false;
-  // Site photos under /photos or bare logical ids used by ServiceDesc
+  // Site photos: /photos legacy paths, or canonical painting/ / staining/ ids
   return (
     src.startsWith("/photos/") ||
     src.startsWith("photos/") ||
+    src.startsWith("painting/") ||
+    src.startsWith("staining/") ||
     (!src.startsWith("/") && !src.includes("://"))
   );
 }

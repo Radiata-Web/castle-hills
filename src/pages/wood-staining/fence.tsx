@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import ServiceDesc from "@/components/misc/serviceDesc";
+import StainGallery from "@/components/misc/stain-gallery";
 import { Button } from "@/components/ui/button";
 import { ServicePageLayout } from "@/components/services/service-page-layout";
 import { ctaPrimaryClassName } from "@/lib/cta";
@@ -60,6 +61,8 @@ export default function FenceStainingPage() {
           Request a Free Estimate
         </Button>
       </section>
+
+      <StainGallery labels={["Fence"]} />
 
       <p className="mb-6 max-w-[720px] text-zinc-600">{DEFERRED_SERVICE_NOTES.deck}</p>
 

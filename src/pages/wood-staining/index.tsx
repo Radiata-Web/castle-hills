@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import ServiceDesc from "@/components/misc/serviceDesc";
+import StainGallery from "@/components/misc/stain-gallery";
 import { ServiceChildLinks } from "@/components/services/service-child-links";
 import { ServicePageLayout } from "@/components/services/service-page-layout";
 import { PHOTOS } from "@/lib/images";
@@ -36,6 +37,8 @@ export default function WoodStainingHubPage() {
           content="Sun and rain fade exposed beams fast. Our staining service evens out color, highlights the grain, and adds a protective coat so your pergola or patio cover keeps looking intentional."
         />
       </section>
+
+      <StainGallery />
 
       <p className="mb-6 max-w-[720px] text-zinc-600">{DEFERRED_SERVICE_NOTES.deck}</p>
 

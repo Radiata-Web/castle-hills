@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import ServiceDesc from "@/components/misc/serviceDesc";
+import StainGallery from "@/components/misc/stain-gallery";
 import { ServicePageLayout } from "@/components/services/service-page-layout";
 import { PHOTOS } from "@/lib/images";
 
@@ -26,6 +27,8 @@ export default function PatioPergolaStainingPage() {
           content="Whether the cover is attached to the house or freestanding, we stain for consistent tone and weather protection so the structure reads as part of the home—not an afterthought."
         />
       </section>
+
+      <StainGallery labels={["Pergola", "Patio cover", "Outdoor wood"]} />
 
       <p className="mb-16 max-w-[720px] text-zinc-600">
         Looking for broader exterior wood care? See{" "}

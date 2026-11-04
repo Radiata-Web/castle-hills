@@ -30,13 +30,9 @@ export default function Hero() {
           {/* Left column */}
           <div className="flex flex-col justify-center space-y-10">
             <div className="space-y-6">
-              <Image
-                src="/logos/slogan-white.svg"
-                width={260}
-                height={100}
-                alt="Our slogan: Design, Protect, Restore"
-                priority
-              />
+              <p className="font-sans text-xs uppercase tracking-[0.28em] text-zinc-50">
+                Design · Protect · Restore
+              </p>
               <h1 className="text-4xl text-white font-bold tracking-tight sm:text-5xl xl:text-6xl/none">
                 DFW Interior & Exterior Painting Experts
               </h1>

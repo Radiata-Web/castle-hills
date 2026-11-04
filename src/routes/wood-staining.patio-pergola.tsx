@@ -10,7 +10,7 @@ export const Route = createFileRoute("/wood-staining/patio-pergola")({
       title: "Pergola & Patio Cover Staining | Castle Hills Stain & Restoration",
       description:
         "Professional staining for pergolas and patio covers in the Dallas–Fort Worth area.",
-      ogImage: PHOTOS.stain3,
+      ogImage: PHOTOS.stainPergola1,
       serviceName: "Patio Cover & Pergola Staining",
       serviceType: "Pergola and patio cover staining",
       breadcrumbs: [

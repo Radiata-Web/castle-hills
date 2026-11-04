@@ -35,6 +35,9 @@ const KNOWN = [
   "staining/stain-4",
   "staining/stain-5",
   "staining/stain-6",
+  "staining/stain-pergola-1",
+  "staining/stain-pergola-2",
+  "staining/stain-pergola-3",
 ];
 
 async function head(url) {

@@ -63,6 +63,10 @@ export const PHOTOS = {
   stain4: "staining/stain-4",
   stain5: "staining/stain-5",
   stain6: "staining/stain-6",
+  /** Patio / pergola set (dedicated CDN pack) */
+  stainPergola1: "staining/stain-pergola-1",
+  stainPergola2: "staining/stain-pergola-2",
+  stainPergola3: "staining/stain-pergola-3",
 } as const;
 
 export type PhotoId = (typeof PHOTOS)[keyof typeof PHOTOS];
@@ -139,24 +143,24 @@ export const STAIN_GALLERY: StainGalleryShot[] = [
   { src: PHOTOS.stain1, alt: "Freshly stained wooden fence boards", label: "Fence" },
   { src: PHOTOS.stain2, alt: "Dark brown stained fence in a residential backyard", label: "Fence" },
   {
-    src: PHOTOS.stain3,
-    alt: "Stained wooden pergola in a backyard alcove",
+    src: PHOTOS.stainPergola1,
+    alt: "Stained wooden pergola in a residential backyard",
     label: "Pergola",
+  },
+  {
+    src: PHOTOS.stainPergola2,
+    alt: "Pergola beams with a rich, even stain finish",
+    label: "Pergola",
+  },
+  {
+    src: PHOTOS.stainPergola3,
+    alt: "Patio cover with a warm stained finish",
+    label: "Patio cover",
   },
   {
     src: PHOTOS.stain4,
     alt: "Home exterior wood with a rich stain finish",
     label: "Exterior wood",
-  },
-  {
-    src: PHOTOS.stain5,
-    alt: "Stained outdoor wood structure with even color",
-    label: "Outdoor wood",
-  },
-  {
-    src: PHOTOS.stain6,
-    alt: "Patio cover with a warm stained finish",
-    label: "Patio cover",
   },
 ];
 
@@ -188,6 +192,9 @@ const LOCAL_FALLBACKS: Record<string, string> = {
   "staining/stain-4": "photos/stain/stain-4.webp",
   "staining/stain-5": "photos/pergolas/pergola-6.webp",
   "staining/stain-6": "photos/patio-cover.webp",
+  "staining/stain-pergola-1": "photos/pergolas/pergola-1.webp",
+  "staining/stain-pergola-2": "photos/pergolas/pergola-5.webp",
+  "staining/stain-pergola-3": "photos/pergolas/pergola-6.webp",
 };
 
 /**
@@ -206,9 +213,10 @@ const LEGACY_TO_CANONICAL: Record<string, string> = {
   "stain/stain-2": PHOTOS.stain2,
   "stain/stain-3": PHOTOS.stain3,
   "stain/stain-4": PHOTOS.stain4,
-  "pergolas/pergola-1": PHOTOS.stain3,
-  "pergolas/pergola-6": PHOTOS.stain5,
-  "patio-cover": PHOTOS.stain6,
+  "pergolas/pergola-1": PHOTOS.stainPergola1,
+  "pergolas/pergola-5": PHOTOS.stainPergola2,
+  "pergolas/pergola-6": PHOTOS.stainPergola3,
+  "patio-cover": PHOTOS.stainPergola3,
   "gates/gate-1": PHOTOS.stain1,
   "garages/garage-1": PHOTOS.paintExt7,
 };

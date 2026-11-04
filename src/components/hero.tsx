@@ -1,3 +1,4 @@
+import BrandSlogan from "@/components/brand-slogan";
 import { Button } from "@/components/ui/button";
 import { ctaGroupClassName, ctaPrimaryClassName } from "@/lib/cta";
 import { PHOTOS } from "@/lib/images";
@@ -30,13 +31,7 @@ export default function Hero() {
           {/* Left column */}
           <div className="flex flex-col justify-center space-y-10">
             <div className="space-y-6">
-              <Image
-                src="/logos/slogan-white.svg"
-                width={260}
-                height={100}
-                alt="Our slogan: Design, Protect, Restore"
-                priority
-              />
+              <BrandSlogan />
               <h1 className="text-4xl text-white font-bold tracking-tight sm:text-5xl xl:text-6xl/none">
                 DFW Interior & Exterior Painting Experts
               </h1>

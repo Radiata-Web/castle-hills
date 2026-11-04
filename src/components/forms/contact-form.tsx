@@ -24,7 +24,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { zfd } from "zod-form-data";
 import { useState } from "react";
 import { CheckCircle, Hourglass, SendHorizonal, XCircle } from "lucide-react";
 
@@ -37,8 +36,8 @@ const PROJECT_TYPES = [
   "Other",
 ] as const;
 
-// Form validation schema
-const formSchema = zfd.formData({
+// RHF + zodResolver validates a plain object (not FormData), so z.object is enough.
+const formSchema = z.object({
   "form-name": z.string(),
   name: z
     .string({
@@ -80,14 +79,14 @@ export function ContactForm(props: ContactFormProps) {
   const [status, setStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Form definition
-  const form = useForm<z.infer<typeof formSchema>>({
+  // Resolvers v6: Input vs Output (phone transform) need the 3-type useForm form.
+  const form = useForm<z.input<typeof formSchema>, unknown, z.output<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
       phone: "",
-      serviceType: "",
+      serviceType: "" as z.input<typeof formSchema>["serviceType"],
       message: "",
     },
   });

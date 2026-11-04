@@ -35,9 +35,6 @@ export default function ReviewGrid() {
     <section id="reviews">
       <div className="max-w-8xl mx-auto py-6 md:py-10 lg:py-14 px-4 md:px-8 lg:px-8">
         <div className="mb-8 max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent mb-2">
-            Social proof
-          </p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl xl:text-5xl/none">
             What do our clients say?
           </h2>

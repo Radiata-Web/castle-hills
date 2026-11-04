@@ -1,5 +1,6 @@
 import { Hero } from "@/components/misc/hero";
 import Footer from "@/components/nav/footer";
+import { PHOTOS } from "@/lib/images";
 import { Link } from "@tanstack/react-router";
 
 const linkClass = "font-medium text-primary underline underline-offset-2 hover:text-primary/90";
@@ -10,7 +11,7 @@ export default function PrivacyPage() {
       <Hero
         title="Privacy Policy"
         subtitle="Last updated: April 7, 2026"
-        backgroundImageUrl="/photos/gates/gate-1.webp"
+        backgroundImageUrl={PHOTOS.stain1}
       />
 
       <div className="max-w-8xl mx-auto px-4 md:px-8 lg:px-8 mb-12">

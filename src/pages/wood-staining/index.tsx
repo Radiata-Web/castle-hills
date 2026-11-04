@@ -31,8 +31,8 @@ export default function WoodStainingHubPage() {
         />
         <ServiceDesc
           imagePosition="right"
-          image={PHOTOS.stain3}
-          imageAlt="Dark brown stained wooden pergola in a home's backyard alcove"
+          image={PHOTOS.stainPergola1}
+          imageAlt="Stained wooden pergola in a residential backyard"
           header="Patio covers & pergolas"
           content="Sun and rain fade exposed beams fast. Our staining service evens out color, highlights the grain, and adds a protective coat so your pergola or patio cover keeps looking intentional."
         />

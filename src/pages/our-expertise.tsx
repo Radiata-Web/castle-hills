@@ -32,7 +32,7 @@ export default function OurExpertise() {
           <div className="order-1 flex w-full justify-center lg:order-2 lg:justify-start">
             <GlossyPhotoFrame
               figureClassName="w-full max-w-md sm:max-w-lg lg:max-w-xl xl:max-w-2xl"
-              src={PHOTOS.stain5}
+              src={PHOTOS.stainPergola1}
               alt="Stained wooden pergola in a backyard, representing custom outdoor structure work"
               width={800}
               height={560}

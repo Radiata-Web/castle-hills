@@ -3,8 +3,9 @@
 **Repo:** Radiata-Web/castle-hills  
 **Source of truth:** `develop`  
 **Brief:** `/cursor/stores/self/internal/cf-pages-estimator-brief.md`  
-**Scaffolding branch:** `adw/cf-pages-estimator-0187` (PR → develop)  
-**Status:** Architecture + stubs only. **No pricing fields or math** until Ryan supplies them.
+**Scaffolding branch:** `adw/cf-pages-estimator-0187` (PR #43 → develop — plan/stubs only)  
+**CF preview branch (do not merge to develop/main):** `cf-preview` — Workers-wired, deployable; see `docs/cloudflare-preview-setup.md`  
+**Status:** Architecture + stubs + preview host wiring. **No pricing fields or math** until Ryan supplies them.
 
 This plan covers hosting cutover (Netlify → Cloudflare), Turnstile, lead email, and the ballpark estimator API/UI shape. It does **not** invent final pricing inputs.
 
@@ -42,7 +43,7 @@ Treat **“Cloudflare edge hosting”** as the goal. In 2025–2026 Cloudflare s
 
 ### DNS / Porkbun note
 
-Workers custom domains expect an **active Cloudflare zone** (nameservers on Cloudflare). Castle Hills already uses Cloudflare for `img.chstainandrestoration.com` (R2 + Transformations), so a CF zone is already in play or easy to complete. **Porkbun can keep domain registration**; DNS for the apex/www should live in Cloudflare for the cleanest Worker + Email Routing setup. See §3.
+Workers custom domains expect an **active Cloudflare zone** (nameservers on Cloudflare). Castle Hills already uses Cloudflare for `img.chstainandrestoration.com` (R2 + Transformations), so a CF zone is already in play or easy to complete. **Porkbun can keep domain registration** (and MX/forwarding for lean leads — §3.2); apex/`www` moves to Cloudflare at website cutover.
 
 ---
 
@@ -57,32 +58,34 @@ Workers custom domains expect an **active Cloudflare zone** (nameservers on Clou
 
 ---
 
-## 3. DNS, Porkbun, Email Routing
+## 3. DNS, Porkbun, and lean lead email
 
-### 3.1 Target DNS shape
+### 3.1 Target DNS shape (hosting)
 
 1. **Registrar:** Porkbun (unchanged).
-2. **Authoritative DNS:** Cloudflare zone for `chstainandrestoration.com` (recommended).
-3. **Records (illustrative):**
-   - Apex / `www` → Worker custom domain (or CNAME to `*.workers.dev` / Workers route per CF UI).
-   - `img` → existing R2 / Transform custom domain (already working).
-   - MX → **Cloudflare Email Routing** (free inbound) **or** keep Porkbun forwarding MX if Email Routing is deferred.
+2. **Authoritative DNS for the website:** Cloudflare zone for `chstainandrestoration.com` when Workers get the custom domain (cutover). Until then Netlify stays on apex/`www`.
+3. **`img`:** existing R2 / Transform custom domain (unchanged).
 
-### 3.2 Free lead-mail path (compatible with Porkbun)
+### 3.2 Recommended lead path (one approach — keep it lean)
 
-**Inbound (company receives mail):** Prefer **Cloudflare Email Routing** → forward `leads@…` / `contact@…` to the company inbox (Gmail or whatever is coming). Porkbun’s existing forwarding remains valid if MX stays on Porkbun; do not run both MX configs at once.
+**Goal:** contact + ballpark submissions land in the company inbox. No marketing blasts, queues, or multi-provider pipelines.
 
-**Outbound (Worker sends the lead notification):** Email Routing does **not** send outbound. Free-compatible options:
+**Chosen path:** Worker → **Resend free tier** → `LEAD_TO_EMAIL` = an address that **Porkbun already forwards** (or will forward) into the company mailbox.
 
-| Option | Cost | Notes |
-|--------|------|--------|
-| **A. Resend (or similar) free tier** | Free allowance | Worker `fetch` to API; `to:` = Porkbun-forwarded or CF-routed company address. Recommended default. |
-| **B. Web3Forms / similar form→email** | Free tier | Worker posts after Turnstile; destination can be any inbox Porkbun already forwards. |
-| **C. Wait for CF transactional send** | TBD | Revisit if CF shipping fits free plan later. |
+| Piece | Who owns it | Notes |
+|-------|-------------|--------|
+| Company inbox | Ryan (Porkbun / mailbox) | Create/keep the inbox; Porkbun forwarding as today. |
+| MX / forwarding | **Stay on Porkbun for now** | Do **not** flip MX to Cloudflare Email Routing unless you intentionally consolidate inbound later. Routing is **inbound-only** — it cannot send mail from the Worker and is **not** required for this path. |
+| Outbound from Worker | Resend | Free tier is enough for lead volume. Verify a `LEAD_FROM_EMAIL` sender in Resend (e.g. `noreply@chstainandrestoration.com`). |
+| Runtime config | Worker secrets/vars | `RESEND_API_KEY`, `LEAD_TO_EMAIL` (real inbox/forward address), `LEAD_FROM_EMAIL`. |
 
-**Do not** depend on Netlify Forms after cutover. Scaffold: `src/server/lead-email.ts` with a pluggable `sendLeadEmail()` and env-driven provider.
+**Why not Email Routing alone?** It only receives mail for the domain; the Worker still needs an outbound API. Using Routing + Porkbun MX at the same time conflicts. Lean setup = leave Porkbun MX alone, send via Resend to a forwarded address.
 
-**Contact form path after cutover:** Same Turnstile + Worker endpoint pattern as the ballpark tool (e.g. `POST /api/v1/contact`), replacing `public/contact-form.html` / Netlify Forms. Can ship in the same cutover or immediately after estimator API is live.
+**Preview:** `LEAD_TO_EMAIL` uses a non-sending placeholder (`.invalid`); handler **logs + skips** until a real address + Resend key are set. No anonymous Wrangler sandboxes.
+
+**Do not** depend on Netlify Forms after cutover. Implementation: `src/server/lead-email.ts`.
+
+**Contact form after cutover:** Same Turnstile + Worker pattern (`POST /api/v1/contact`) as the ballpark tool, replacing `public/contact-form.html` / Netlify Forms.
 
 ---
 
@@ -102,16 +105,21 @@ Workers custom domains expect an **active Cloudflare zone** (nameservers on Clou
 
 - [x] Plan (this doc).
 - [x] Scaffold: Turnstile helper, estimate handler stub, Pages Function-shaped `cloudflare/functions/api/v1/estimate.ts` (shared core), wrangler draft, `/ballpark-estimate` placeholder UI, `.env.example`, redirect inventory notes.
-- [ ] Ryan: Turnstile keys, lead inbox address, confirm CF zone / Email Routing vs Porkbun MX.
+- [ ] Ryan: Turnstile keys; Resend free + `LEAD_TO_EMAIL` (Porkbun-forwarded address); leave Porkbun MX as-is.
 - [ ] Ryan: pricing questionnaire + rates (**do not invent**).
 
-### Phase B — Wire Workers build (feature PR on develop)
+### Phase B — Wire Workers build
 
-1. Add `@cloudflare/vite-plugin` + `wrangler`; remove `@netlify/vite-plugin-tanstack-start` when switching.
-2. Custom entry `src/server.ts`: Hono for `/api/v1/*`, else TanStack `handler.fetch`.
-3. Port `netlify.toml` redirects → `public/_redirects` (Pages/Workers assets) **and/or** Wrangler/Bulk Redirects. Keep `force`-equivalent behavior for umbrellas.
-4. Preview deploy on `*.workers.dev` or CF preview URLs; run `probe:redirects` + `probe:images` against preview host where possible.
-5. Move contact form off Netlify Forms onto `/api/v1/contact` (Turnstile + lead email).
+**Done on `cf-preview` (preview-only, not merged):** Cloudflare Vite plugin, `src/server.ts` (Hono `/api/v1/*` + TanStack), `wrangler.jsonc` (`castle-hills-preview`), `public/_redirects`, `pnpm run deploy`, GitHub workflow `.github/workflows/cf-preview.yml` (needs secrets).  
+**Redeploy:** `git checkout cf-preview && pnpm run deploy` (needs CF API token) **or** Workers Builds / Actions watching `cf-preview` — details in `docs/cloudflare-preview-setup.md`.  
+**Auth:** durable preview needs Ryan’s CF account (token or Git link). **Do not** use `wrangler deploy --temporary` / anonymous sandboxes.
+
+Still open before cutover:
+
+1. Ryan: connect Git or provide API token (Cursor/GitHub secrets — not chat); first `workers.dev` URL.
+2. Allowlist preview hostname in Turnstile when keys exist.
+3. Port remaining contact form off Netlify Forms onto `/api/v1/contact`.
+4. When ready for develop: cherry-pick / PR CF host wiring from `cf-preview` → `develop` (separate authorization).
 
 ### Phase C — Cutover
 
@@ -199,7 +207,7 @@ Shared implementation: `src/server/estimate.ts`. Edge entry: `cloudflare/functio
 |------|--------|---------|
 | `VITE_TURNSTILE_SITE_KEY` | Build / public | Widget |
 | `TURNSTILE_SECRET_KEY` | Worker secret | `siteverify` |
-| `LEAD_TO_EMAIL` | Worker var/secret | Destination (Porkbun-forwarded or CF-routed inbox) |
+| `LEAD_TO_EMAIL` | Worker var/secret | Porkbun-forwarded company address (Resend destination) |
 | `LEAD_FROM_EMAIL` | Worker var | Verified sender for provider |
 | `RESEND_API_KEY` (or alt) | Worker secret | Outbound mail |
 | `VITE_IMAGE_CDN_BASE` | Build | Existing R2 CDN |

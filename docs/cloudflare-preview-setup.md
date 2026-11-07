@@ -12,6 +12,8 @@ Do **not** merge `cf-preview` into `develop` or `main` until Ryan authorizes the
 
 **Forbidden:** Never use `wrangler deploy --temporary` (or any anonymous/public sandbox account). Preview deploys must use Ryan’s Cloudflare account only.
 
+**Trigger:** Push to `origin/cf-preview` is the signal for Ryan’s Workers Builds / dashboard deploy (his account). Agents do not deploy this Worker without his CF auth.
+
 ## What’s wired in-repo
 
 - `@cloudflare/vite-plugin` + TanStack Start SSR

@@ -10,7 +10,8 @@ type WorkerEnv = {
   TURNSTILE_SECRET_KEY?: string;
   LEAD_TO_EMAIL?: string;
   LEAD_FROM_EMAIL?: string;
-  RESEND_API_KEY?: string;
+  /** Cloudflare `send_email` binding */
+  LEAD_EMAIL?: import("@/server/lead-email").SendEmailBinding;
 };
 
 const api = new Hono<{ Bindings: WorkerEnv }>();

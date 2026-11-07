@@ -2,11 +2,10 @@
  * Cloudflare Workers Static Assets — long-lived preview branch `cf-preview`.
  * Do NOT attach a production custom domain here; Netlify remains live on main.
  *
- * Workers Builds runs `wrangler preview` for non-production branches and
- * requires an explicit `previews` block (vars are NOT inherited from top-level).
+ * Lead mail: `send_email` binding → Verified Destination Address (free).
+ * Preview vars stay non-sending placeholders until Ryan verifies a destination.
  *
- * Redeploy: push to `cf-preview` (Ryan’s Workers Builds) or `pnpm run deploy`
- * on his authenticated account. Never `wrangler deploy --temporary`.
+ * Never `wrangler deploy --temporary`.
  *
  * @see docs/cloudflare-pages-migration-plan.md
  * @see docs/cloudflare-preview-setup.md
@@ -19,18 +18,26 @@
   "observability": {
     "enabled": true,
   },
-  // Top-level = production-shaped Wrangler deploy path (unused for cutover;
-  // this Worker stays preview-only until Ryan authorizes hosting move).
   "vars": {
     "LEAD_TO_EMAIL": "",
     "LEAD_FROM_EMAIL": "noreply@chstainandrestoration.com",
   },
-  // Preview Builds (`wrangler preview`) — required; does not inherit `vars`.
-  // Placeholders only: lead mail stays stubbed without RESEND_API_KEY.
+  // Free path: send only to Verified Destination Addresses in the CF account.
+  // Optionally lock with "destination_address": "<verified inbox>" after setup.
+  "send_email": [
+    {
+      "name": "LEAD_EMAIL",
+    },
+  ],
   "previews": {
     "vars": {
       "LEAD_TO_EMAIL": "preview-leads-disabled@example.invalid",
       "LEAD_FROM_EMAIL": "noreply-preview@chstainandrestoration.com",
     },
+    "send_email": [
+      {
+        "name": "LEAD_EMAIL",
+      },
+    ],
   },
 }

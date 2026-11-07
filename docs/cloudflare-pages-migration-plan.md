@@ -63,27 +63,30 @@ Workers custom domains expect an **active Cloudflare zone** (nameservers on Clou
 ### 3.1 Target DNS shape (hosting)
 
 1. **Registrar:** Porkbun (unchanged).
-2. **Authoritative DNS for the website:** Cloudflare zone for `chstainandrestoration.com` when Workers get the custom domain (cutover). Until then Netlify stays on apex/`www`.
+2. **Authoritative DNS:** Cloudflare zone for `chstainandrestoration.com` (required for Email Routing / Email Service on the domain). Apex/`www` can stay on Netlify until website cutover, but the **zone** must be on Cloudflare for Email Routing.
 3. **`img`:** existing R2 / Transform custom domain (unchanged).
 
 ### 3.2 Recommended lead path (one approach — keep it lean)
 
-**Goal:** contact + ballpark submissions land in the company inbox. No marketing blasts, queues, or multi-provider pipelines.
+**Goal:** contact + ballpark submissions land in the company inbox. No marketing providers, queues, or blasts.
 
-**Chosen path:** Worker → **Resend free tier** → `LEAD_TO_EMAIL` = an address that **Porkbun already forwards** (or will forward) into the company mailbox.
+**Chosen path:** Worker `send_email` binding → **Verified Destination Address** (Cloudflare Email Service).  
+Sends to verified destinations are **free** on Workers Free (including when only Email Routing is configured). Arbitrary-recipient sending is paid and **not** used.
 
 | Piece | Who owns it | Notes |
 |-------|-------------|--------|
-| Company inbox | Ryan (Porkbun / mailbox) | Create/keep the inbox; Porkbun forwarding as today. |
-| MX / forwarding | **Stay on Porkbun for now** | Do **not** flip MX to Cloudflare Email Routing unless you intentionally consolidate inbound later. Routing is **inbound-only** — it cannot send mail from the Worker and is **not** required for this path. |
-| Outbound from Worker | Resend | Free tier is enough for lead volume. Verify a `LEAD_FROM_EMAIL` sender in Resend (e.g. `noreply@chstainandrestoration.com`). |
-| Runtime config | Worker secrets/vars | `RESEND_API_KEY`, `LEAD_TO_EMAIL` (real inbox/forward address), `LEAD_FROM_EMAIL`. |
+| Company inbox | Ryan | Add that address as a **Verified Destination** in CF Email Routing (verify via the email CF sends). |
+| Worker outbound | `send_email` binding (`LEAD_EMAIL`) | `env.LEAD_EMAIL.send({ to, from, subject, text })` — `to` must be that verified destination. |
+| From address | Onboarded Email Service / Routing domain | e.g. `noreply@chstainandrestoration.com` (must belong to the CF-onboarded domain). |
+| Runtime vars | Worker | `LEAD_TO_EMAIL` = verified destination; `LEAD_FROM_EMAIL` = domain address above. |
 
-**Why not Email Routing alone?** It only receives mail for the domain; the Worker still needs an outbound API. Using Routing + Porkbun MX at the same time conflicts. Lean setup = leave Porkbun MX alone, send via Resend to a forwarded address.
+**MX / Porkbun (honest):** Enabling Email Routing on the domain **requires Cloudflare MX** (exclusive). Existing Porkbun (or other) MX records must be **removed** for Routing to enable — Porkbun forwarding for `@chstainandrestoration.com` stops. Replace it with CF Routing rules (e.g. `leads@…` → same verified destination inbox). Porkbun stays the **registrar** only. Do not run Porkbun MX and Cloudflare MX together.
 
-**Preview:** `LEAD_TO_EMAIL` uses a non-sending placeholder (`.invalid`); handler **logs + skips** until a real address + Resend key are set. No anonymous Wrangler sandboxes.
+**Optional inbound:** After MX is on CF, create Routing rules so humans can still email `leads@` / `contact@` into the verified destination. Worker form posts do **not** need those rules — they use `send_email` directly to the verified destination.
 
-**Do not** depend on Netlify Forms after cutover. Implementation: `src/server/lead-email.ts`.
+**Preview:** Placeholder `LEAD_TO_EMAIL` (`.invalid`) and/or missing binding → **log + skip**. No anonymous Wrangler sandboxes. After Ryan verifies a destination, set Preview `LEAD_TO_EMAIL` to that address (and optionally lock `send_email.destination_address` in wrangler).
+
+**Do not** use Resend or other third-party SMTP for this path. Implementation: `src/server/lead-email.ts`.
 
 **Contact form after cutover:** Same Turnstile + Worker pattern (`POST /api/v1/contact`) as the ballpark tool, replacing `public/contact-form.html` / Netlify Forms.
 
@@ -105,7 +108,7 @@ Workers custom domains expect an **active Cloudflare zone** (nameservers on Clou
 
 - [x] Plan (this doc).
 - [x] Scaffold: Turnstile helper, estimate handler stub, Pages Function-shaped `cloudflare/functions/api/v1/estimate.ts` (shared core), wrangler draft, `/ballpark-estimate` placeholder UI, `.env.example`, redirect inventory notes.
-- [ ] Ryan: Turnstile keys; Resend free + `LEAD_TO_EMAIL` (Porkbun-forwarded address); leave Porkbun MX as-is.
+- [ ] Ryan: Turnstile keys; Email Routing + Verified Destination; move MX to Cloudflare (replace Porkbun MX); set `LEAD_TO_EMAIL` / `LEAD_FROM_EMAIL`.
 - [ ] Ryan: pricing questionnaire + rates (**do not invent**).
 
 ### Phase B — Wire Workers build
@@ -207,9 +210,9 @@ Shared implementation: `src/server/estimate.ts`. Edge entry: `cloudflare/functio
 |------|--------|---------|
 | `VITE_TURNSTILE_SITE_KEY` | Build / public | Widget |
 | `TURNSTILE_SECRET_KEY` | Worker secret | `siteverify` |
-| `LEAD_TO_EMAIL` | Worker var/secret | Porkbun-forwarded company address (Resend destination) |
-| `LEAD_FROM_EMAIL` | Worker var | Verified sender for provider |
-| `RESEND_API_KEY` (or alt) | Worker secret | Outbound mail |
+| `LEAD_TO_EMAIL` | Worker var | Cloudflare **Verified Destination Address** (company inbox) |
+| `LEAD_FROM_EMAIL` | Worker var | Address on the Email Routing–onboarded domain |
+| `LEAD_EMAIL` | Wrangler `send_email` binding | Free send to verified destinations |
 | `VITE_IMAGE_CDN_BASE` | Build | Existing R2 CDN |
 | `VITE_IMAGE_CDN_FORCE` | Optional | Local CDN testing |
 

@@ -82,9 +82,15 @@ When creating the Turnstile widget:
    `castle-hills-preview.<subdomain>.workers.dev` (and any `*.workers.dev` / preview URLs CF assigns).
 3. Put site key in build env `VITE_TURNSTILE_SITE_KEY`; secret via `wrangler secret put TURNSTILE_SECRET_KEY`.
 
-## Email
+## Email (lean path)
 
-Leave stubbed. When ready: set `LEAD_TO_EMAIL` + `RESEND_API_KEY` (or chosen free provider). Destination may be Porkbun-forwarded or CF Email Routing inbox.
+**One approach:** Resend free → `LEAD_TO_EMAIL` = Porkbun-forwarded company address. Keep **Porkbun MX** as-is; Cloudflare Email Routing is inbound-only and not used for Worker send.
+
+Preview `previews.vars` use `preview-leads-disabled@example.invalid` — `sendLeadEmail` **logs + skips** (dry-run). To enable real delivery on preview later:
+
+1. Confirm Porkbun forwards e.g. `leads@chstainandrestoration.com` (or your chosen address) to the company inbox.
+2. Create a free Resend account; verify `LEAD_FROM_EMAIL` (e.g. `noreply@chstainandrestoration.com`).
+3. Set Worker secret `RESEND_API_KEY` and Preview var `LEAD_TO_EMAIL` to that real forwarded address (dashboard or `wrangler secret put` on Ryan’s account).
 
 ## Relation to PR #43
 

@@ -1,7 +1,8 @@
 /**
- * Outbound lead notification stub.
- * Prefer a free provider (e.g. Resend) that can deliver to a Porkbun-forwarded
- * or Cloudflare Email Routing inbox. Email Routing itself is inbound-only.
+ * Lean lead notification: Worker → Resend (free) → company inbox.
+ * Destination should be an address Porkbun already forwards (or will forward)
+ * to the company mailbox. Cloudflare Email Routing is inbound-only and is
+ * not used for Worker outbound.
  */
 
 export type LeadPayload = {
@@ -14,7 +15,9 @@ export type LeadPayload = {
   answers?: Record<string, unknown>;
 };
 
-export type LeadEmailResult = { ok: true } | { ok: false; reason: string };
+export type LeadEmailResult =
+  | { ok: true }
+  | { ok: false; reason: string; dryRun?: boolean };
 
 export type LeadEmailEnv = {
   LEAD_TO_EMAIL?: string;
@@ -22,9 +25,19 @@ export type LeadEmailEnv = {
   RESEND_API_KEY?: string;
 };
 
+/** Preview / unset destinations — never attempt a real send. */
+function isDryRunDestination(to: string | undefined): boolean {
+  if (!to?.trim()) return true;
+  const normalized = to.trim().toLowerCase();
+  if (normalized.endsWith(".invalid")) return true;
+  if (normalized.startsWith("preview-leads-disabled@")) return true;
+  if (normalized === "replace_me" || normalized.includes("<replace")) return true;
+  return false;
+}
+
 /**
- * Send a lead notification. Returns a soft failure when mail is not configured
- * so API stubs can still exercise Turnstile + validation locally.
+ * Send a lead notification to the company inbox via Resend.
+ * Preview / unset config → log + skip (dry-run), soft-ok for callers.
  */
 export async function sendLeadEmail(
   lead: LeadPayload,
@@ -32,18 +45,28 @@ export async function sendLeadEmail(
   fetchImpl: typeof fetch = fetch,
 ): Promise<LeadEmailResult> {
   const to = env.LEAD_TO_EMAIL?.trim();
-  if (!to) {
-    return { ok: false, reason: "LEAD_TO_EMAIL not configured" };
+
+  if (isDryRunDestination(to)) {
+    console.info("[lead-email] dry-run skip", {
+      source: lead.source,
+      name: lead.name,
+      email: lead.email,
+      reason: to ? "preview_placeholder_to" : "LEAD_TO_EMAIL unset",
+    });
+    return { ok: false, reason: "dry_run_skip", dryRun: true };
   }
 
   const apiKey = env.RESEND_API_KEY?.trim();
   if (!apiKey) {
-    // Scaffold: no provider wired — callers treat as non-fatal until cutover.
-    return { ok: false, reason: "mail_provider_not_configured" };
+    console.info("[lead-email] skip — RESEND_API_KEY not configured", {
+      source: lead.source,
+      to,
+    });
+    return { ok: false, reason: "mail_provider_not_configured", dryRun: true };
   }
 
   const from = env.LEAD_FROM_EMAIL?.trim() || "noreply@chstainandrestoration.com";
-  const subject = `[${lead.source}] Ballpark / contact lead — ${lead.name}`;
+  const subject = `[${lead.source}] Lead — ${lead.name}`;
   const text = [
     `Source: ${lead.source}`,
     `Name: ${lead.name}`,
@@ -61,7 +84,7 @@ export async function sendLeadEmail(
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ from, to: [to], subject, text }),
+    body: JSON.stringify({ from, to: [to!], subject, text }),
   });
 
   if (!res.ok) {

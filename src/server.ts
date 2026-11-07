@@ -45,15 +45,12 @@ api.all("/api/v1/estimate", (c) =>
 api.notFound((c) => c.json({ error: "not_found" }, 404));
 
 export default {
-  async fetch(
-    request: Request,
-    env: WorkerEnv,
-    ctx: { waitUntil(promise: Promise<unknown>): void; passThroughOnException(): void },
-  ): Promise<Response> {
+  async fetch(request: Request, env: WorkerEnv, _ctx: unknown): Promise<Response> {
     const url = new URL(request.url);
     if (url.pathname.startsWith("/api/")) {
-      return api.fetch(request, env, ctx);
+      return api.fetch(request, env);
     }
-    return handler.fetch(request, env, ctx);
+    // TanStack server-entry accepts Request; CF bindings available in server fns via env.
+    return handler.fetch(request);
   },
 };

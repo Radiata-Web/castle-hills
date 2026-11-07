@@ -18,8 +18,8 @@ Do **not** merge `cf-preview` into `develop` or `main` until Ryan authorizes the
 
 - `@cloudflare/vite-plugin` + TanStack Start SSR
 - Custom entry `src/server.ts` (Hono `/api/v1/estimate` → TanStack fallback)
-- `wrangler.jsonc`, `pnpm run deploy`, `public/_redirects`
-- Turnstile + lead email remain **stubs** until secrets exist
+- `wrangler.jsonc` (top-level `vars` + required `previews.vars` for Workers Builds), `pnpm run deploy`, `public/_redirects`
+- Turnstile + lead email remain **stubs** until secrets exist (`previews.vars` use non-sending placeholders)
 
 ## Redeploy from this machine / CI
 

@@ -1,0 +1,24 @@
+/**
+ * Draft Cloudflare Workers config for TanStack Start cutover.
+ * Not wired into vite.config yet — Netlify remains the live host until Phase B.
+ *
+ * @see docs/cloudflare-pages-migration-plan.md
+ * @see https://developers.cloudflare.com/workers/framework-guides/web-apps/tanstack-start/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "castle-hills",
+  "compatibility_date": "2026-11-07",
+  // Phase B: point main at a custom entry that mounts Hono /api/v1/* then
+  // falls through to @tanstack/react-start/server-entry.
+  "main": "@tanstack/react-start/server-entry",
+  "observability": {
+    "enabled": true,
+  },
+  // Secrets (wrangler secret put): TURNSTILE_SECRET_KEY, RESEND_API_KEY
+  // Vars: LEAD_TO_EMAIL, LEAD_FROM_EMAIL
+  "vars": {
+    "LEAD_TO_EMAIL": "",
+    "LEAD_FROM_EMAIL": "noreply@chstainandrestoration.com",
+  },
+}

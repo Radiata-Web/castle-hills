@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsRouteImport } from './routes/about-us'
+import { Route as BallparkEstimateRouteImport } from './routes/ballpark-estimate'
 import { Route as ContactUsRouteImport } from './routes/contact-us'
 import { Route as OurExpertiseRouteImport } from './routes/our-expertise'
 import { Route as PaintingRouteImport } from './routes/painting'
@@ -32,6 +33,11 @@ const IndexRoute = IndexRouteImport.update({
 const AboutUsRoute = AboutUsRouteImport.update({
   id: '/about-us',
   path: '/about-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BallparkEstimateRoute = BallparkEstimateRouteImport.update({
+  id: '/ballpark-estimate',
+  path: '/ballpark-estimate',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactUsRoute = ContactUsRouteImport.update({
@@ -100,6 +106,7 @@ const WoodStainingPatioPergolaRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/ballpark-estimate': typeof BallparkEstimateRoute
   '/contact-us': typeof ContactUsRoute
   '/our-expertise': typeof OurExpertiseRoute
   '/painting': typeof PaintingRouteWithChildren
@@ -116,6 +123,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/ballpark-estimate': typeof BallparkEstimateRoute
   '/contact-us': typeof ContactUsRoute
   '/our-expertise': typeof OurExpertiseRoute
   '/privacy': typeof PrivacyRoute
@@ -131,6 +139,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
+  '/ballpark-estimate': typeof BallparkEstimateRoute
   '/contact-us': typeof ContactUsRoute
   '/our-expertise': typeof OurExpertiseRoute
   '/painting': typeof PaintingRouteWithChildren
@@ -149,6 +158,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about-us'
+    | '/ballpark-estimate'
     | '/contact-us'
     | '/our-expertise'
     | '/painting'
@@ -165,6 +175,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about-us'
+    | '/ballpark-estimate'
     | '/contact-us'
     | '/our-expertise'
     | '/privacy'
@@ -179,6 +190,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about-us'
+    | '/ballpark-estimate'
     | '/contact-us'
     | '/our-expertise'
     | '/painting'
@@ -196,6 +208,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutUsRoute: typeof AboutUsRoute
+  BallparkEstimateRoute: typeof BallparkEstimateRoute
   ContactUsRoute: typeof ContactUsRoute
   OurExpertiseRoute: typeof OurExpertiseRoute
   PaintingRoute: typeof PaintingRouteWithChildren
@@ -217,6 +230,13 @@ declare module '@tanstack/react-router' {
       path: '/about-us'
       fullPath: '/about-us'
       preLoaderRoute: typeof AboutUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ballpark-estimate': {
+      id: '/ballpark-estimate'
+      path: '/ballpark-estimate'
+      fullPath: '/ballpark-estimate'
+      preLoaderRoute: typeof BallparkEstimateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact-us': {
@@ -343,6 +363,7 @@ const WoodStainingRouteWithChildren = WoodStainingRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutUsRoute: AboutUsRoute,
+  BallparkEstimateRoute: BallparkEstimateRoute,
   ContactUsRoute: ContactUsRoute,
   OurExpertiseRoute: OurExpertiseRoute,
   PaintingRoute: PaintingRouteWithChildren,

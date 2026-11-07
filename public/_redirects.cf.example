@@ -1,0 +1,20 @@
+# Cloudflare Pages / Workers Static Assets redirect checklist.
+# Port from netlify.toml when cutting over (Phase B/C).
+# Syntax: https://developers.cloudflare.com/workers/static-assets/redirects/
+
+/contact /contact-us 301
+/luxury-finishes-coatings /painting 301
+/fence-services /wood-staining/fence 301
+/custom-wood-structures-outdoor-design /wood-staining/patio-pergola 301
+/interior-exterior-restoration-renovation /painting 301
+/wood-fences /wood-staining/fence 301
+/fence-and-garage-door-stain /wood-staining/fence 301
+/fence-staining /wood-staining/fence 301
+/metal-fences /wood-staining 301
+/automatic-gates /wood-staining 301
+/pergolas-and-patio-covers /wood-staining/patio-pergola 301
+/patio-covers /wood-staining/patio-pergola 301
+/home-restoration-remodeling /painting 301
+/interior-painting /painting/interior 301
+/exterior-painting /painting/exterior 301
+/interior-exterior-painting /painting 301

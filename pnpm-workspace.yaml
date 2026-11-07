@@ -1,6 +1,7 @@
 allowBuilds:
   esbuild: true
   sharp: true
+  workerd: true
 # Transitive security patches. Selectors pin the current major so we don't
 # float nanoid 3 → 6 or js-yaml 4 → 5.
 overrides:

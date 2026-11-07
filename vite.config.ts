@@ -1,10 +1,15 @@
 import path from "node:path";
-import netlify from "@netlify/vite-plugin-tanstack-start";
+import { cloudflare } from "@cloudflare/vite-plugin";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import tailwindcss from "@tailwindcss/vite";
 import viteReact from "@vitejs/plugin-react";
 import { defineConfig, lazyPlugins } from "vite-plus";
 
+/**
+ * Cloudflare Workers preview branch (`cf-preview`).
+ * Netlify plugin intentionally removed — production stays on Netlify via
+ * `develop`/`main` until Ryan authorizes cutover.
+ */
 export default defineConfig({
   fmt: {
     // TanStack regenerates this on build/dev; keep oxfmt off it.
@@ -29,18 +34,9 @@ export default defineConfig({
     format: "es",
   },
   plugins: lazyPlugins(() => [
+    cloudflare({ viteEnvironment: { name: "ssr" } }),
     tanstackStart(),
     viteReact(),
     tailwindcss(),
-    // Keep Netlify redirects/forms/SSR; this site does not use Edge
-    // Functions. The local Deno edge emulator crashes under Deno 2.9+
-    // (`deno eval --allow-scripts`) and is unused here.
-    netlify({
-      dev: {
-        edgeFunctions: {
-          enabled: false,
-        },
-      },
-    }),
   ]),
 });

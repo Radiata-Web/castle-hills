@@ -3,8 +3,9 @@
 **Repo:** Radiata-Web/castle-hills  
 **Source of truth:** `develop`  
 **Brief:** `/cursor/stores/self/internal/cf-pages-estimator-brief.md`  
-**Scaffolding branch:** `adw/cf-pages-estimator-0187` (PR → develop)  
-**Status:** Architecture + stubs only. **No pricing fields or math** until Ryan supplies them.
+**Scaffolding branch:** `adw/cf-pages-estimator-0187` (PR #43 → develop — plan/stubs only)  
+**CF preview branch (do not merge to develop/main):** `cf-preview` — Workers-wired, deployable; see `docs/cloudflare-preview-setup.md`  
+**Status:** Architecture + stubs + preview host wiring. **No pricing fields or math** until Ryan supplies them.
 
 This plan covers hosting cutover (Netlify → Cloudflare), Turnstile, lead email, and the ballpark estimator API/UI shape. It does **not** invent final pricing inputs.
 
@@ -105,13 +106,18 @@ Workers custom domains expect an **active Cloudflare zone** (nameservers on Clou
 - [ ] Ryan: Turnstile keys, lead inbox address, confirm CF zone / Email Routing vs Porkbun MX.
 - [ ] Ryan: pricing questionnaire + rates (**do not invent**).
 
-### Phase B — Wire Workers build (feature PR on develop)
+### Phase B — Wire Workers build
 
-1. Add `@cloudflare/vite-plugin` + `wrangler`; remove `@netlify/vite-plugin-tanstack-start` when switching.
-2. Custom entry `src/server.ts`: Hono for `/api/v1/*`, else TanStack `handler.fetch`.
-3. Port `netlify.toml` redirects → `public/_redirects` (Pages/Workers assets) **and/or** Wrangler/Bulk Redirects. Keep `force`-equivalent behavior for umbrellas.
-4. Preview deploy on `*.workers.dev` or CF preview URLs; run `probe:redirects` + `probe:images` against preview host where possible.
-5. Move contact form off Netlify Forms onto `/api/v1/contact` (Turnstile + lead email).
+**Done on `cf-preview` (preview-only, not merged):** Cloudflare Vite plugin, `src/server.ts` (Hono `/api/v1/*` + TanStack), `wrangler.jsonc` (`castle-hills-preview`), `public/_redirects`, `pnpm run deploy`, GitHub workflow `.github/workflows/cf-preview.yml` (needs secrets).  
+**Redeploy:** `git checkout cf-preview && pnpm run deploy` (needs CF API token) **or** Workers Builds / Actions watching `cf-preview` — details in `docs/cloudflare-preview-setup.md`.  
+**Smoke:** temporary workers.dev deploy succeeded from the agent; durable preview still needs Ryan’s CF account (token or Git link).
+
+Still open before cutover:
+
+1. Ryan: connect Git or provide API token (Cursor/GitHub secrets — not chat); first `workers.dev` URL.
+2. Allowlist preview hostname in Turnstile when keys exist.
+3. Port remaining contact form off Netlify Forms onto `/api/v1/contact`.
+4. When ready for develop: cherry-pick / PR CF host wiring from `cf-preview` → `develop` (separate authorization).
 
 ### Phase C — Cutover
 

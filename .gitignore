@@ -20,6 +20,11 @@ yarn.lock
 /dist/
 .netlify/
 
+# cloudflare / wrangler
+.wrangler/
+.dev.vars
+.dev.vars*
+
 # production
 /build
 

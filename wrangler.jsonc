@@ -1,24 +1,26 @@
 /**
- * Draft Cloudflare Workers config for TanStack Start cutover.
- * Not wired into vite.config yet — Netlify remains the live host until Phase B.
+ * Cloudflare Workers Static Assets — long-lived preview branch `cf-preview`.
+ * Do NOT attach a production custom domain here; Netlify remains live on main.
+ *
+ * Redeploy: `pnpm run deploy` (needs CLOUDFLARE_API_TOKEN + account)
+ * Or: Workers Builds Git integration watching branch `cf-preview` (see plan).
  *
  * @see docs/cloudflare-pages-migration-plan.md
- * @see https://developers.cloudflare.com/workers/framework-guides/web-apps/tanstack-start/
+ * @see docs/cloudflare-preview-setup.md
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "castle-hills",
+  "name": "castle-hills-preview",
   "compatibility_date": "2026-11-07",
-  // Phase B: point main at a custom entry that mounts Hono /api/v1/* then
-  // falls through to @tanstack/react-start/server-entry.
-  "main": "@tanstack/react-start/server-entry",
+  "main": "./src/server.ts",
   "observability": {
     "enabled": true,
   },
-  // Secrets (wrangler secret put): TURNSTILE_SECRET_KEY, RESEND_API_KEY
-  // Vars: LEAD_TO_EMAIL, LEAD_FROM_EMAIL
+  // Preview-only vars. Secrets via `wrangler secret put` or CF dashboard —
+  // never commit real values. Turnstile/email stay stubbed until keys exist.
   "vars": {
     "LEAD_TO_EMAIL": "",
     "LEAD_FROM_EMAIL": "noreply@chstainandrestoration.com",
   },
+  // workers.dev preview URL is fine; leave routes/custom domains empty.
 }

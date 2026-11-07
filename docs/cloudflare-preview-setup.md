@@ -8,8 +8,9 @@ Do **not** merge `cf-preview` into `develop` or `main` until Ryan authorizes the
 | Branch | `cf-preview` |
 | Worker name | `castle-hills-preview` |
 | Expected durable URL | `https://castle-hills-preview.<your-account-subdomain>.workers.dev` after Ryan connects account auth |
-| Agent smoke deploy | `https://castle-hills-preview.prairie-pullover.workers.dev` via `wrangler deploy --temporary` (ephemeral sandbox — not Ryan’s account; may show CF interstitial / expire) |
 | Custom domain | **None** (keep production on Netlify) |
+
+**Forbidden:** Never use `wrangler deploy --temporary` (or any anonymous/public sandbox account). Preview deploys must use Ryan’s Cloudflare account only.
 
 ## What’s wired in-repo
 

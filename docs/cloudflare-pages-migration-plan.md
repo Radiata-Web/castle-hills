@@ -110,7 +110,7 @@ Workers custom domains expect an **active Cloudflare zone** (nameservers on Clou
 
 **Done on `cf-preview` (preview-only, not merged):** Cloudflare Vite plugin, `src/server.ts` (Hono `/api/v1/*` + TanStack), `wrangler.jsonc` (`castle-hills-preview`), `public/_redirects`, `pnpm run deploy`, GitHub workflow `.github/workflows/cf-preview.yml` (needs secrets).  
 **Redeploy:** `git checkout cf-preview && pnpm run deploy` (needs CF API token) **or** Workers Builds / Actions watching `cf-preview` — details in `docs/cloudflare-preview-setup.md`.  
-**Smoke:** temporary workers.dev deploy succeeded from the agent; durable preview still needs Ryan’s CF account (token or Git link).
+**Auth:** durable preview needs Ryan’s CF account (token or Git link). **Do not** use `wrangler deploy --temporary` / anonymous sandboxes.
 
 Still open before cutover:
 

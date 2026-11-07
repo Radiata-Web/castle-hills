@@ -1,8 +1,9 @@
 /**
- * Lean lead notification: Worker → Resend (free) → company inbox.
- * Destination should be an address Porkbun already forwards (or will forward)
- * to the company mailbox. Cloudflare Email Routing is inbound-only and is
- * not used for Worker outbound.
+ * Lean lead notification via Cloudflare Email Service:
+ * Worker `send_email` binding → Verified Destination Address (free on Workers Free).
+ *
+ * No Resend / third-party SMTP. Preview without a binding or with a placeholder
+ * `LEAD_TO_EMAIL` → log + skip (dry-run).
  */
 
 export type LeadPayload = {
@@ -16,13 +17,27 @@ export type LeadPayload = {
 };
 
 export type LeadEmailResult =
-  | { ok: true }
+  | { ok: true; messageId?: string }
   | { ok: false; reason: string; dryRun?: boolean };
 
+/** Minimal shape of the Cloudflare `send_email` binding (structured send API). */
+export type SendEmailBinding = {
+  send(message: {
+    to: string;
+    from: string;
+    subject: string;
+    text?: string;
+    replyTo?: string;
+  }): Promise<{ messageId: string }>;
+};
+
 export type LeadEmailEnv = {
+  /** Wrangler `send_email` binding name LEAD_EMAIL */
+  LEAD_EMAIL?: SendEmailBinding;
+  /** Must be a Verified Destination Address in the CF account when sending. */
   LEAD_TO_EMAIL?: string;
+  /** From address on the Email Routing / Email Service onboarded domain. */
   LEAD_FROM_EMAIL?: string;
-  RESEND_API_KEY?: string;
 };
 
 /** Preview / unset destinations — never attempt a real send. */
@@ -36,15 +51,23 @@ function isDryRunDestination(to: string | undefined): boolean {
 }
 
 /**
- * Send a lead notification to the company inbox via Resend.
- * Preview / unset config → log + skip (dry-run), soft-ok for callers.
+ * Deliver a lead to the company inbox via CF `send_email` → verified destination.
  */
 export async function sendLeadEmail(
   lead: LeadPayload,
   env: LeadEmailEnv,
-  fetchImpl: typeof fetch = fetch,
 ): Promise<LeadEmailResult> {
   const to = env.LEAD_TO_EMAIL?.trim();
+  const binding = env.LEAD_EMAIL;
+
+  if (!binding?.send) {
+    console.info("[lead-email] dry-run skip — LEAD_EMAIL binding missing", {
+      source: lead.source,
+      name: lead.name,
+      email: lead.email,
+    });
+    return { ok: false, reason: "send_email_binding_missing", dryRun: true };
+  }
 
   if (isDryRunDestination(to)) {
     console.info("[lead-email] dry-run skip", {
@@ -54,15 +77,6 @@ export async function sendLeadEmail(
       reason: to ? "preview_placeholder_to" : "LEAD_TO_EMAIL unset",
     });
     return { ok: false, reason: "dry_run_skip", dryRun: true };
-  }
-
-  const apiKey = env.RESEND_API_KEY?.trim();
-  if (!apiKey) {
-    console.info("[lead-email] skip — RESEND_API_KEY not configured", {
-      source: lead.source,
-      to,
-    });
-    return { ok: false, reason: "mail_provider_not_configured", dryRun: true };
   }
 
   const from = env.LEAD_FROM_EMAIL?.trim() || "noreply@chstainandrestoration.com";
@@ -78,17 +92,18 @@ export async function sendLeadEmail(
     .filter(Boolean)
     .join("\n");
 
-  const res = await fetchImpl("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ from, to: [to!], subject, text }),
-  });
-
-  if (!res.ok) {
-    return { ok: false, reason: `resend-http-${res.status}` };
+  try {
+    const result = await binding.send({
+      to: to!,
+      from,
+      subject,
+      text,
+      replyTo: lead.email,
+    });
+    return { ok: true, messageId: result.messageId };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "send_failed";
+    console.error("[lead-email] send_email failed", message);
+    return { ok: false, reason: message };
   }
-  return { ok: true };
 }

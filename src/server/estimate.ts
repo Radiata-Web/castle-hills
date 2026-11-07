@@ -66,7 +66,7 @@ export async function handleEstimateRequest(
     };
   }
 
-  // Notify the inbox when mail is configured; ignore soft failures in stub mode.
+  // Notify the inbox when send_email + verified destination are configured; dry-run otherwise.
   await sendLeadEmail(
     {
       source: "ballpark-estimate",
@@ -77,7 +77,6 @@ export async function handleEstimateRequest(
       answers: raw.answers,
     },
     env,
-    fetchImpl,
   );
 
   return {

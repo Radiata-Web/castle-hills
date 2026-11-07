@@ -52,7 +52,7 @@ No `CLOUDFLARE_API_TOKEN` / account credentials are available in Cursor secrets 
    - **Root directory:** `/`
 4. **Do not** add a custom domain (`chstainandrestoration.com` / `www`).
 5. Save → push to `cf-preview` triggers a preview deploy → copy the `*.workers.dev` URL.
-6. Optional: under **Settings → Variables**, add later: `TURNSTILE_SECRET_KEY`, `RESEND_API_KEY`, `LEAD_TO_EMAIL` (secrets).
+6. Optional: under **Settings → Variables**, add later: `TURNSTILE_SECRET_KEY`, `LEAD_TO_EMAIL` (verified destination), `LEAD_FROM_EMAIL`.
 
 ### Option B — API token + `wrangler deploy` / GitHub Action
 
@@ -82,15 +82,17 @@ When creating the Turnstile widget:
    `castle-hills-preview.<subdomain>.workers.dev` (and any `*.workers.dev` / preview URLs CF assigns).
 3. Put site key in build env `VITE_TURNSTILE_SITE_KEY`; secret via `wrangler secret put TURNSTILE_SECRET_KEY`.
 
-## Email (lean path)
+## Email (lean path — Cloudflare only)
 
-**One approach:** Resend free → `LEAD_TO_EMAIL` = Porkbun-forwarded company address. Keep **Porkbun MX** as-is; Cloudflare Email Routing is inbound-only and not used for Worker send.
+**One approach:** Worker `send_email` (`LEAD_EMAIL`) → **Verified Destination Address** (free). No Resend.
 
-Preview `previews.vars` use `preview-leads-disabled@example.invalid` — `sendLeadEmail` **logs + skips** (dry-run). To enable real delivery on preview later:
+1. Cloudflare zone for `chstainandrestoration.com` (DNS on CF).
+2. **Email Routing → Destination Addresses** → add company inbox → verify email.
+3. Enable Email Routing / onboard domain → **MX moves to Cloudflare** (remove Porkbun MX for this domain; recreate inbound forwards as CF routing rules if needed).
+4. Set Preview/production var `LEAD_TO_EMAIL` to that verified address; `LEAD_FROM_EMAIL` = e.g. `noreply@chstainandrestoration.com` on the onboarded domain.
+5. Optional: set `send_email.destination_address` in `wrangler.jsonc` to lock the binding to that inbox.
 
-1. Confirm Porkbun forwards e.g. `leads@chstainandrestoration.com` (or your chosen address) to the company inbox.
-2. Create a free Resend account; verify `LEAD_FROM_EMAIL` (e.g. `noreply@chstainandrestoration.com`).
-3. Set Worker secret `RESEND_API_KEY` and Preview var `LEAD_TO_EMAIL` to that real forwarded address (dashboard or `wrangler secret put` on Ryan’s account).
+Preview defaults use `preview-leads-disabled@example.invalid` → **log + skip** until a verified destination is configured. Never `wrangler --temporary`.
 
 ## Relation to PR #43
 

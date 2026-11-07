@@ -127,7 +127,7 @@ Still open before cutover:
 ### Phase C — Cutover
 
 1. Attach custom domain on the Worker; lower DNS TTLs ahead of time.
-2. Set Worker secrets / vars (Turnstile, mail provider, `LEAD_TO_EMAIL`, image CDN already public).
+2. Set Worker secrets / vars (Turnstile, `LEAD_TO_EMAIL` verified destination, `LEAD_FROM_EMAIL`; image CDN already public).
 3. Flip DNS apex/`www` to Cloudflare Worker.
 4. Verify: homepage SSR, redirects 16/16, CDN images, Turnstile challenge, ballpark POST (stub until pricing), contact lead email.
 5. Disable Netlify production deploys (keep project as rollback artifact for a short window).

@@ -78,7 +78,7 @@ pnpm run deploy
 ## Turnstile on preview (existing widget)
 
 - **Sitekey (public):** `0x4AAAAAAF5ChtHZn6ut0JFm` (`VITE_TURNSTILE_SITE_KEY` / wrangler vars).
-- **Secret:** Worker secret `TURNSTILE_SECRET` only (never in git). Spin write waits on Ryan confirm.
+- **Secret:** Worker secret `TURNSTILE_SECRET` only (never in git). Written by Ryan (2026-11-08).
 - **Actions:** `contact` (contact form), `ballpark-estimate` (estimator).
 - **Hostname allowlist (`TURNSTILE_HOSTNAMES`):**  
   `chstainandrestoration.com`, `www.chstainandrestoration.com`, `localhost`, `127.0.0.1`, `castle-hills-preview.workers.dev`  

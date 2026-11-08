@@ -3,7 +3,7 @@
  * Do NOT attach a production custom domain here; Netlify remains live on main.
  *
  * Turnstile: existing widget sitekey is public (VITE_ / vars).
- * Secret: Worker secret `TURNSTILE_SECRET` (never commit). Spin write waits on Ryan.
+ * Secret: Worker secret `TURNSTILE_SECRET` (never commit). Ryan wrote it 2026-11-08.
  *
  * Never `wrangler deploy --temporary`.
  */

@@ -282,10 +282,9 @@ export function ContactForm(props: ContactFormProps) {
               if (token) setTurnstileHint(null);
             }}
             onWidgetError={setTurnstileHint}
-            className="pt-4"
           />
           {turnstileHint ? (
-            <p className="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-3 py-2">
+            <p className="mt-4 text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-3 py-2">
               {turnstileHint}
             </p>
           ) : null}

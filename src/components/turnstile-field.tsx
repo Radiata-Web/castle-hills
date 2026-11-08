@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TURNSTILE_SITE_KEY } from "@/lib/turnstile-sitekey";
 
 type TurnstileApi = {
@@ -7,9 +7,12 @@ type TurnstileApi = {
     options: {
       sitekey: string;
       action?: string;
+      appearance?: "always" | "execute" | "interaction-only";
       callback?: (token: string) => void;
       "error-callback"?: (errorCode?: string | number) => void;
       "expired-callback"?: () => void;
+      "before-interactive-callback"?: () => void;
+      "after-interactive-callback"?: () => void;
     },
   ) => string;
   reset: (widgetId?: string) => void;
@@ -73,6 +76,8 @@ function explainTurnstileError(code: string | number | undefined): string {
 
 /**
  * Explicit Turnstile widget (Spin contract): retain widget id; reset after submit.
+ * Collapses layout when Invisible / non-interactive so forms don’t keep a blank gap.
+ * Expands only if Cloudflare requires an interactive challenge.
  */
 export function TurnstileField({
   action,
@@ -86,6 +91,7 @@ export function TurnstileField({
   const lastResetRef = useRef(resetSignal);
   const onTokenRef = useRef(onToken);
   const onWidgetErrorRef = useRef(onWidgetError);
+  const [interactive, setInteractive] = useState(false);
   onTokenRef.current = onToken;
   onWidgetErrorRef.current = onWidgetError;
 
@@ -93,6 +99,7 @@ export function TurnstileField({
   useEffect(() => {
     let cancelled = false;
     onTokenRef.current(null);
+    setInteractive(false);
 
     loadTurnstileScript()
       .then(() => {
@@ -104,17 +111,29 @@ export function TurnstileField({
         widgetIdRef.current = window.turnstile.render(containerRef.current, {
           sitekey: TURNSTILE_SITE_KEY,
           action,
-          callback: (token) => onTokenRef.current(token),
+          // Hide chrome unless a challenge needs a click/checkbox.
+          appearance: "interaction-only",
+          callback: (token) => {
+            setInteractive(false);
+            onTokenRef.current(token);
+          },
+          "before-interactive-callback": () => setInteractive(true),
+          "after-interactive-callback": () => setInteractive(false),
           "error-callback": (errorCode) => {
+            setInteractive(false);
             onTokenRef.current(null);
             onWidgetErrorRef.current?.(explainTurnstileError(errorCode));
           },
-          "expired-callback": () => onTokenRef.current(null),
+          "expired-callback": () => {
+            setInteractive(false);
+            onTokenRef.current(null);
+          },
         });
         lastResetRef.current = resetSignal;
       })
       .catch(() => {
         if (!cancelled) {
+          setInteractive(false);
           onTokenRef.current(null);
           onWidgetErrorRef.current?.(explainTurnstileError(undefined));
         }
@@ -133,11 +152,22 @@ export function TurnstileField({
   useEffect(() => {
     if (resetSignal === lastResetRef.current) return;
     lastResetRef.current = resetSignal;
+    setInteractive(false);
     onTokenRef.current(null);
     if (widgetIdRef.current && window.turnstile) {
       window.turnstile.reset(widgetIdRef.current);
     }
   }, [resetSignal]);
 
-  return <div className={className} ref={containerRef} />;
+  // Clip the host when invisible / non-interactive so the form has no empty gap.
+  // Do not use size:"invisible" — Turnstile rejects that render param.
+  const hostClass = interactive
+    ? ["min-h-[65px] w-full max-w-[300px]", className].filter(Boolean).join(" ")
+    : "m-0 h-0 w-0 max-h-0 overflow-hidden p-0 opacity-0 pointer-events-none [&>iframe]:!m-0";
+
+  return (
+    <div className={hostClass} aria-hidden={!interactive}>
+      <div ref={containerRef} />
+    </div>
+  );
 }

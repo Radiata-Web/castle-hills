@@ -80,9 +80,14 @@ pnpm run deploy
 - **Sitekey (public):** `0x4AAAAAAF5ChtHZn6ut0JFm` (`VITE_TURNSTILE_SITE_KEY` / wrangler vars).
 - **Secret:** Worker secret `TURNSTILE_SECRET` only (never in git). Written by Ryan (2026-11-08).
 - **Actions:** `contact` (contact form), `ballpark-estimate` (estimator).
-- **Hostname allowlist (`TURNSTILE_HOSTNAMES`):**  
-  `chstainandrestoration.com`, `www.chstainandrestoration.com`, `localhost`, `127.0.0.1`, `castle-hills-preview.workers.dev`  
-  Add the exact Workers Builds preview hostname (e.g. `….workers.dev`) to the **widget domains** in the Turnstile dashboard if siteverify returns a hostname mismatch.
+- **Hostname allowlist (`TURNSTILE_HOSTNAMES`):** server-side only after a token exists.  
+  Current vars: `chstainandrestoration.com`, `www.chstainandrestoration.com`, `localhost`, `127.0.0.1`, `castle-hills-preview.workers.dev`
+- **Widget Domains (dashboard — required for the checkbox to load):**  
+  Cloudflare Dashboard → **Turnstile** → widget for sitekey `0x4AAAAAAF5ChtHZn6ut0JFm` → **Domains**.  
+  Add the **exact** hostname from the address bar (no `https://`). Preview is usually  
+  `castle-hills-preview.<account>.workers.dev` — **not** bare `castle-hills-preview.workers.dev`.  
+  Symptom if missing: widget shows **“Unable to connect to website”** / console `110200`.  
+  Then also add that same host to `TURNSTILE_HOSTNAMES` (wrangler vars) so siteverify accepts it.
 - Local `vp dev`: set `TURNSTILE_ALLOW_LOCAL_BYPASS=true` in `.dev.vars` only when secret is unset. Never on Workers.
 
 ## Email (lean path — Cloudflare only)

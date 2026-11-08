@@ -21,6 +21,7 @@ export default function BallparkEstimatePage() {
   const [message, setMessage] = useState("");
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [turnstileReset, setTurnstileReset] = useState(0);
+  const [turnstileHint, setTurnstileHint] = useState<string | null>(null);
   const [status, setStatus] = useState<"idle" | "pending" | "ok" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
   const [apiMessage, setApiMessage] = useState<string | null>(null);
@@ -146,8 +147,17 @@ export default function BallparkEstimatePage() {
             <TurnstileField
               action={TURNSTILE_ACTIONS.ballparkEstimate}
               resetSignal={turnstileReset}
-              onToken={setTurnstileToken}
+              onToken={(token) => {
+                setTurnstileToken(token);
+                if (token) setTurnstileHint(null);
+              }}
+              onWidgetError={setTurnstileHint}
             />
+            {turnstileHint ? (
+              <p className="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-3 py-2">
+                {turnstileHint}
+              </p>
+            ) : null}
 
             <Button
               type="submit"

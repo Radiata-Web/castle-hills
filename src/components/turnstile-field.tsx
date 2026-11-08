@@ -8,7 +8,7 @@ type TurnstileApi = {
       sitekey: string;
       action?: string;
       callback?: (token: string) => void;
-      "error-callback"?: () => void;
+      "error-callback"?: (errorCode?: string | number) => void;
       "expired-callback"?: () => void;
     },
   ) => string;
@@ -54,18 +54,40 @@ type TurnstileFieldProps = {
   /** Bump to force remove+re-render (after submit for a fresh token). */
   resetSignal?: number;
   onToken: (token: string | null) => void;
+  onWidgetError?: (message: string) => void;
   className?: string;
 };
+
+function explainTurnstileError(code: string | number | undefined): string {
+  const c = String(code ?? "");
+  if (c === "110200") {
+    return `Turnstile domain not authorized for “${typeof window !== "undefined" ? window.location.hostname : "this host"}”. Add that exact hostname under Cloudflare → Turnstile → this widget → Domains.`;
+  }
+  if (c === "110100" || c === "400020") {
+    return "Turnstile sitekey is invalid or unknown for this widget.";
+  }
+  return c
+    ? `Turnstile widget error ${c}. Check the browser console and widget domains.`
+    : "Turnstile widget failed to load.";
+}
 
 /**
  * Explicit Turnstile widget. After each submit attempt, bump `resetSignal`
  * so the next try gets a fresh single-use token.
  */
-export function TurnstileField({ action, resetSignal = 0, onToken, className }: TurnstileFieldProps) {
+export function TurnstileField({
+  action,
+  resetSignal = 0,
+  onToken,
+  onWidgetError,
+  className,
+}: TurnstileFieldProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
   const onTokenRef = useRef(onToken);
+  const onWidgetErrorRef = useRef(onWidgetError);
   onTokenRef.current = onToken;
+  onWidgetErrorRef.current = onWidgetError;
 
   useEffect(() => {
     let cancelled = false;
@@ -82,12 +104,18 @@ export function TurnstileField({ action, resetSignal = 0, onToken, className }: 
           sitekey: TURNSTILE_SITE_KEY,
           action,
           callback: (token) => onTokenRef.current(token),
-          "error-callback": () => onTokenRef.current(null),
+          "error-callback": (errorCode) => {
+            onTokenRef.current(null);
+            onWidgetErrorRef.current?.(explainTurnstileError(errorCode));
+          },
           "expired-callback": () => onTokenRef.current(null),
         });
       })
       .catch(() => {
-        if (!cancelled) onTokenRef.current(null);
+        if (!cancelled) {
+          onTokenRef.current(null);
+          onWidgetErrorRef.current?.(explainTurnstileError(undefined));
+        }
       });
 
     return () => {

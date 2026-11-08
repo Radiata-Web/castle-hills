@@ -80,6 +80,7 @@ export function ContactForm(props: ContactFormProps) {
   const [error, setError] = useState<string | null>(null);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [turnstileReset, setTurnstileReset] = useState(0);
+  const [turnstileHint, setTurnstileHint] = useState<string | null>(null);
 
   // Resolvers v6: Input vs Output (phone transform) need the 3-type useForm form.
   const form = useForm<z.input<typeof formSchema>, unknown, z.output<typeof formSchema>>({
@@ -276,9 +277,18 @@ export function ContactForm(props: ContactFormProps) {
           <TurnstileField
             action={TURNSTILE_ACTIONS.contact}
             resetSignal={turnstileReset}
-            onToken={setTurnstileToken}
+            onToken={(token) => {
+              setTurnstileToken(token);
+              if (token) setTurnstileHint(null);
+            }}
+            onWidgetError={setTurnstileHint}
             className="pt-4"
           />
+          {turnstileHint ? (
+            <p className="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-3 py-2">
+              {turnstileHint}
+            </p>
+          ) : null}
 
           <section className="flex flex-col gap-4 pt-8 sm:flex-row sm:items-center sm:gap-6">
             <Button

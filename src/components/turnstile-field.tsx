@@ -51,7 +51,7 @@ function loadTurnstileScript(): Promise<void> {
 
 type TurnstileFieldProps = {
   action: string;
-  /** Bump to force remove+re-render (after submit for a fresh token). */
+  /** Bump after each submit attempt → turnstile.reset(widgetId) for a fresh token. */
   resetSignal?: number;
   onToken: (token: string | null) => void;
   onWidgetError?: (message: string) => void;
@@ -72,8 +72,7 @@ function explainTurnstileError(code: string | number | undefined): string {
 }
 
 /**
- * Explicit Turnstile widget. After each submit attempt, bump `resetSignal`
- * so the next try gets a fresh single-use token.
+ * Explicit Turnstile widget (Spin contract): retain widget id; reset after submit.
  */
 export function TurnstileField({
   action,
@@ -84,11 +83,13 @@ export function TurnstileField({
 }: TurnstileFieldProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
+  const lastResetRef = useRef(resetSignal);
   const onTokenRef = useRef(onToken);
   const onWidgetErrorRef = useRef(onWidgetError);
   onTokenRef.current = onToken;
   onWidgetErrorRef.current = onWidgetError;
 
+  // Mount once per action; remove only on unmount / action change.
   useEffect(() => {
     let cancelled = false;
     onTokenRef.current(null);
@@ -110,6 +111,7 @@ export function TurnstileField({
           },
           "expired-callback": () => onTokenRef.current(null),
         });
+        lastResetRef.current = resetSignal;
       })
       .catch(() => {
         if (!cancelled) {
@@ -125,7 +127,17 @@ export function TurnstileField({
         widgetIdRef.current = null;
       }
     };
-  }, [action, resetSignal]);
+  }, [action]);
+
+  // Spin: after submit, reset the retained widget id (tokens are single-use).
+  useEffect(() => {
+    if (resetSignal === lastResetRef.current) return;
+    lastResetRef.current = resetSignal;
+    onTokenRef.current(null);
+    if (widgetIdRef.current && window.turnstile) {
+      window.turnstile.reset(widgetIdRef.current);
+    }
+  }, [resetSignal]);
 
   return <div className={className} ref={containerRef} />;
 }

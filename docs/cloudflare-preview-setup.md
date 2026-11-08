@@ -21,9 +21,10 @@ Do **not** merge `cf-preview` into `develop` or `main` until Ryan authorizes the
 ## What’s wired in-repo
 
 - `@cloudflare/vite-plugin` + TanStack Start SSR
-- Custom entry `src/server.ts` (Hono `/api/v1/estimate` → TanStack fallback)
+- Custom entry `src/server.ts` (Hono `/api/v1/contact` + `/api/v1/estimate` → TanStack fallback)
 - `wrangler.jsonc` (top-level `vars` + required `previews.vars` for Workers Builds), `pnpm run deploy`, `public/_redirects`
-- Turnstile + lead email remain **stubs** until secrets exist (`previews.vars` use non-sending placeholders)
+- Turnstile existing-widget: sitekey embedded, `TURNSTILE_SECRET` written, canonical siteverify (success + action + hostname)
+- Privacy policy references Cloudflare Turnstile Privacy Addendum
 
 ## Redeploy from this machine / CI
 

@@ -10,7 +10,7 @@ export default function PrivacyPage() {
     <>
       <Hero
         title="Privacy Policy"
-        subtitle="Last updated: April 7, 2026"
+        subtitle="Last updated: November 8, 2026"
         backgroundImageUrl={PHOTOS.stain1}
       />
 
@@ -118,6 +118,36 @@ export default function PrivacyPage() {
               your browser to refuse all cookies or to indicate when a cookie is being sent.
               However, if you do not accept cookies, you may not be able to use some portions of our
               Site.
+            </p>
+          </section>
+
+          <section aria-labelledby="cloudflare-turnstile" className="space-y-4">
+            <h2
+              id="cloudflare-turnstile"
+              className="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl mb-3"
+            >
+              Cloudflare Turnstile
+            </h2>
+            <p>
+              We use Cloudflare Turnstile on certain forms (including our contact form and ballpark
+              estimate tool) to help distinguish humans from bots and reduce automated spam. When
+              you interact with a protected form, Cloudflare may process limited technical signals
+              from your browser (such as IP address, TLS fingerprint, and user-agent information)
+              solely for bot detection and security. We do not use Turnstile to build marketing
+              profiles.
+            </p>
+            <p>
+              Cloudflare&apos;s processing of those signals is described in Cloudflare&apos;s{" "}
+              <a
+                href="https://www.cloudflare.com/en-gb/turnstile-privacy-policy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={linkClass}
+              >
+                Turnstile Privacy Addendum
+              </a>
+              , which supplements Cloudflare&apos;s main privacy policy. Please review that addendum
+              for details on what Cloudflare collects and how it is used.
             </p>
           </section>
 

@@ -76,6 +76,12 @@ pnpm exec wrangler login
 pnpm run deploy
 ```
 
+## Spin warning: “Siteverify isn't being called for chstainandrestoration.com”
+
+**Not a missing call on `cf-preview`.** Both `POST /api/v1/contact` and `POST /api/v1/estimate` run canonical siteverify (`gateTurnstile` → `https://challenges.cloudflare.com/turnstile/v0/siteverify`).
+
+Spin warns **per hostname on the widget**. Production `chstainandrestoration.com` is still **Netlify** (no Worker Turnstile gate). Preview siteverify only counts for the **preview hostname**. To clear the warning for `chstainandrestoration.com` specifically: that domain must serve the gated forms **and** a real submit must siteverify a token minted there (after hosting cutover / custom domain on this Worker). Fixing Domains + submitting on `*.workers.dev` clears preview activity, not necessarily the production-hostname warning.
+
 ## Turnstile on preview (existing widget)
 
 - **Sitekey (public):** `0x4AAAAAAF5ChtHZn6ut0JFm` (`VITE_TURNSTILE_SITE_KEY` / wrangler vars).

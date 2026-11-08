@@ -97,8 +97,8 @@ Sends to verified destinations are **free** on Workers Free (including when only
 1. Create a Turnstile widget (managed challenge) for `chstainandrestoration.com` + preview hostnames.
 2. **Frontend:** load Turnstile on contact + ballpark forms (and optionally a lightweight site-wide check later).
 3. **Backend:** every mutating API verifies the token **first** via `siteverify`; **drop** failures with `403` and no pricing / no email.
-4. Secrets: `TURNSTILE_SECRET_KEY` (Worker secret). Public: `VITE_TURNSTILE_SITE_KEY`.
-5. Helper stub: `src/lib/turnstile.ts` → `verifyTurnstileToken(token, ip?)`.
+4. Secrets: `TURNSTILE_SECRET` (Worker secret, Spin name). Public: `VITE_TURNSTILE_SITE_KEY`. Host allowlist: `TURNSTILE_HOSTNAMES`.
+5. Helper: `src/lib/turnstile.ts` + `src/server/turnstile-gate.ts` (success + action + hostname).
 
 ---
 
@@ -209,7 +209,8 @@ Shared implementation: `src/server/estimate.ts`. Edge entry: `cloudflare/functio
 | Name | Where | Purpose |
 |------|--------|---------|
 | `VITE_TURNSTILE_SITE_KEY` | Build / public | Widget |
-| `TURNSTILE_SECRET_KEY` | Worker secret | `siteverify` |
+| `TURNSTILE_SECRET` | Worker secret | Canonical siteverify secret |
+| `TURNSTILE_HOSTNAMES` | Worker var | Comma-separated frontend hostnames for siteverify |
 | `LEAD_TO_EMAIL` | Worker var | Cloudflare **Verified Destination Address** (company inbox) |
 | `LEAD_FROM_EMAIL` | Worker var | Address on the Email Routing–onboarded domain |
 | `LEAD_EMAIL` | Wrangler `send_email` binding | Free send to verified destinations |

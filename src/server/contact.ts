@@ -1,5 +1,6 @@
+import { TURNSTILE_ACTIONS } from "@/lib/turnstile-sitekey";
 import { sendLeadEmail, type LeadEmailEnv } from "@/server/lead-email";
-import { gateTurnstile } from "@/server/turnstile-gate";
+import { gateTurnstile, type TurnstileGateEnv } from "@/server/turnstile-gate";
 
 export type ContactRequestBody = {
   turnstileToken?: string;
@@ -12,9 +13,7 @@ export type ContactRequestBody = {
   };
 };
 
-export type ContactHandlerEnv = LeadEmailEnv & {
-  TURNSTILE_SECRET_KEY?: string;
-};
+export type ContactHandlerEnv = LeadEmailEnv & TurnstileGateEnv;
 
 export type ContactHandlerResult = {
   status: number;
@@ -34,7 +33,10 @@ export async function handleContactRequest(
   env: ContactHandlerEnv,
   options: { remoteip?: string; fetchImpl?: typeof fetch } = {},
 ): Promise<ContactHandlerResult> {
-  const gate = await gateTurnstile(raw.turnstileToken, env.TURNSTILE_SECRET_KEY, options);
+  const gate = await gateTurnstile(raw.turnstileToken, env, {
+    ...options,
+    expectedAction: TURNSTILE_ACTIONS.contact,
+  });
   if (!gate.ok) return gate;
 
   const name = raw.contact?.name?.trim();

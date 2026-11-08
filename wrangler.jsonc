@@ -2,13 +2,10 @@
  * Cloudflare Workers Static Assets — long-lived preview branch `cf-preview`.
  * Do NOT attach a production custom domain here; Netlify remains live on main.
  *
- * Lead mail: `send_email` binding → Verified Destination Address (free).
- * Preview LEAD_TO_EMAIL: Ryan’s verified Gmail for testing.
+ * Turnstile: existing widget sitekey is public (VITE_ / vars).
+ * Secret: Worker secret `TURNSTILE_SECRET` (never commit). Spin write waits on Ryan.
  *
  * Never `wrangler deploy --temporary`.
- *
- * @see docs/cloudflare-pages-migration-plan.md
- * @see docs/cloudflare-preview-setup.md
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
@@ -33,6 +30,10 @@
   "vars": {
     "LEAD_TO_EMAIL": "ryandeyp@gmail.com",
     "LEAD_FROM_EMAIL": "noreply@chstainandrestoration.com",
+    "VITE_TURNSTILE_SITE_KEY": "0x4AAAAAAF5ChtHZn6ut0JFm",
+    // Frontend hostnames siteverify may accept for this Worker (no secret).
+    // Include workers.dev preview hosts Ryan’s Builds assign; keep production hosts for widget domain overlap.
+    "TURNSTILE_HOSTNAMES": "chstainandrestoration.com,www.chstainandrestoration.com,localhost,127.0.0.1,castle-hills-preview.workers.dev",
   },
   "send_email": [
     {
@@ -43,6 +44,8 @@
     "vars": {
       "LEAD_TO_EMAIL": "ryandeyp@gmail.com",
       "LEAD_FROM_EMAIL": "noreply-preview@chstainandrestoration.com",
+      "VITE_TURNSTILE_SITE_KEY": "0x4AAAAAAF5ChtHZn6ut0JFm",
+      "TURNSTILE_HOSTNAMES": "chstainandrestoration.com,www.chstainandrestoration.com,localhost,127.0.0.1,castle-hills-preview.workers.dev",
     },
     "send_email": [
       {

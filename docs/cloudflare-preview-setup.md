@@ -56,7 +56,7 @@ No `CLOUDFLARE_API_TOKEN` / account credentials are available in Cursor secrets 
    - **Root directory:** `/`
 4. **Do not** add a custom domain (`chstainandrestoration.com` / `www`).
 5. Save → push to `cf-preview` triggers a preview deploy → copy the `*.workers.dev` URL.
-6. Optional: under **Settings → Variables**, add later: `TURNSTILE_SECRET_KEY`, `LEAD_TO_EMAIL` (verified destination), `LEAD_FROM_EMAIL`.
+6. Optional: under **Settings → Variables / Secrets**, set `TURNSTILE_SECRET` (secret), `LEAD_TO_EMAIL`, `LEAD_FROM_EMAIL`, and extend `TURNSTILE_HOSTNAMES` with the exact preview hostname.
 
 ### Option B — API token + `wrangler deploy` / GitHub Action
 
@@ -75,16 +75,15 @@ pnpm exec wrangler login
 pnpm run deploy
 ```
 
-## Turnstile on preview
+## Turnstile on preview (existing widget)
 
-Until keys exist, `POST /api/v1/estimate` fails closed (challenge / pricing stubs).
-
-When creating the Turnstile widget:
-
-1. Cloudflare Dashboard → **Turnstile** → Add widget.
-2. Hostnames: production domain **and** the preview hostname  
-   `castle-hills-preview.<subdomain>.workers.dev` (and any `*.workers.dev` / preview URLs CF assigns).
-3. Put site key in build env `VITE_TURNSTILE_SITE_KEY`; secret via `wrangler secret put TURNSTILE_SECRET_KEY`.
+- **Sitekey (public):** `0x4AAAAAAF5ChtHZn6ut0JFm` (`VITE_TURNSTILE_SITE_KEY` / wrangler vars).
+- **Secret:** Worker secret `TURNSTILE_SECRET` only (never in git). Spin write waits on Ryan confirm.
+- **Actions:** `contact` (contact form), `ballpark-estimate` (estimator).
+- **Hostname allowlist (`TURNSTILE_HOSTNAMES`):**  
+  `chstainandrestoration.com`, `www.chstainandrestoration.com`, `localhost`, `127.0.0.1`, `castle-hills-preview.workers.dev`  
+  Add the exact Workers Builds preview hostname (e.g. `….workers.dev`) to the **widget domains** in the Turnstile dashboard if siteverify returns a hostname mismatch.
+- Local `vp dev`: set `TURNSTILE_ALLOW_LOCAL_BYPASS=true` in `.dev.vars` only when secret is unset. Never on Workers.
 
 ## Email (lean path — Cloudflare only)
 

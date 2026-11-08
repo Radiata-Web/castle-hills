@@ -26,6 +26,8 @@ import {
 } from "@/components/ui/select";
 import { useState } from "react";
 import { CheckCircle, Hourglass, SendHorizonal, XCircle } from "lucide-react";
+import { TurnstileField } from "@/components/turnstile-field";
+import { TURNSTILE_ACTIONS } from "@/lib/turnstile-sitekey";
 
 /** Project type options shown on the contact form. */
 const PROJECT_TYPES = [
@@ -76,6 +78,8 @@ interface ContactFormProps {
 export function ContactForm(props: ContactFormProps) {
   const [status, setStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileReset, setTurnstileReset] = useState(0);
 
   // Resolvers v6: Input vs Output (phone transform) need the 3-type useForm form.
   const form = useForm<z.input<typeof formSchema>, unknown, z.output<typeof formSchema>>({
@@ -95,10 +99,17 @@ export function ContactForm(props: ContactFormProps) {
       setStatus("pending");
       setError(null);
 
+      if (!turnstileToken) {
+        setStatus("error");
+        setError("Please complete the human verification challenge.");
+        return;
+      }
+
       const res = await fetch("/api/v1/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          turnstileToken,
           contact: {
             name: values.name,
             email: values.email,
@@ -115,6 +126,10 @@ export function ContactForm(props: ContactFormProps) {
         message?: string;
       };
 
+      // Tokens are single-use — always refresh the widget after an attempt.
+      setTurnstileToken(null);
+      setTurnstileReset((n) => n + 1);
+
       if (res.ok) {
         setStatus("ok");
         form.reset();
@@ -126,6 +141,8 @@ export function ContactForm(props: ContactFormProps) {
         payload.reason || payload.message || payload.error || `${res.status} ${res.statusText}`,
       );
     } catch (e) {
+      setTurnstileToken(null);
+      setTurnstileReset((n) => n + 1);
       setStatus("error");
       setError(`${e}`);
     }
@@ -256,10 +273,17 @@ export function ContactForm(props: ContactFormProps) {
             )}
           />
 
+          <TurnstileField
+            action={TURNSTILE_ACTIONS.contact}
+            resetSignal={turnstileReset}
+            onToken={setTurnstileToken}
+            className="pt-4"
+          />
+
           <section className="flex flex-col gap-4 pt-8 sm:flex-row sm:items-center sm:gap-6">
             <Button
               type="submit"
-              disabled={status === "pending" || status === "ok"}
+              disabled={status === "pending" || status === "ok" || !turnstileToken}
               size="lg"
               className={`min-w-full sm:min-w-[12rem] ${ctaPrimaryClassName}`}
             >

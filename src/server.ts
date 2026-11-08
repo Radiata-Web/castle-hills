@@ -9,7 +9,9 @@ import { handleEstimateRequest, type EstimateRequestBody } from "@/server/estima
 import type { SendEmailBinding } from "@/server/lead-email";
 
 type WorkerEnv = {
-  TURNSTILE_SECRET_KEY?: string;
+  TURNSTILE_SECRET?: string;
+  TURNSTILE_HOSTNAMES?: string;
+  TURNSTILE_ALLOW_LOCAL_BYPASS?: string;
   LEAD_TO_EMAIL?: string;
   LEAD_FROM_EMAIL?: string;
   LEAD_EMAIL?: SendEmailBinding;

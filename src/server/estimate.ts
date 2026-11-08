@@ -1,6 +1,7 @@
 import { BALLPARK_DISCLAIMER } from "@/lib/ballpark";
+import { TURNSTILE_ACTIONS } from "@/lib/turnstile-sitekey";
 import { sendLeadEmail, type LeadEmailEnv } from "@/server/lead-email";
-import { gateTurnstile } from "@/server/turnstile-gate";
+import { gateTurnstile, type TurnstileGateEnv } from "@/server/turnstile-gate";
 
 export { BALLPARK_DISCLAIMER };
 
@@ -19,9 +20,7 @@ export type EstimateRequestBody = {
   answers?: Record<string, unknown>;
 };
 
-export type EstimateHandlerEnv = LeadEmailEnv & {
-  TURNSTILE_SECRET_KEY?: string;
-};
+export type EstimateHandlerEnv = LeadEmailEnv & TurnstileGateEnv;
 
 export type EstimateHandlerResult = {
   status: number;
@@ -41,7 +40,10 @@ export async function handleEstimateRequest(
   env: EstimateHandlerEnv,
   options: { remoteip?: string; fetchImpl?: typeof fetch } = {},
 ): Promise<EstimateHandlerResult> {
-  const gate = await gateTurnstile(raw.turnstileToken, env.TURNSTILE_SECRET_KEY, options);
+  const gate = await gateTurnstile(raw.turnstileToken, env, {
+    ...options,
+    expectedAction: TURNSTILE_ACTIONS.ballparkEstimate,
+  });
   if (!gate.ok) return gate;
 
   const name = raw.contact?.name?.trim();

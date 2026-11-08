@@ -3,7 +3,7 @@
  * Do NOT attach a production custom domain here; Netlify remains live on main.
  *
  * Lead mail: `send_email` binding → Verified Destination Address (free).
- * Preview vars stay non-sending placeholders until Ryan verifies a destination.
+ * Preview LEAD_TO_EMAIL: Ryan’s verified Gmail for testing.
  *
  * Never `wrangler deploy --temporary`.
  *
@@ -19,11 +19,10 @@
     "enabled": true,
   },
   "vars": {
-    "LEAD_TO_EMAIL": "",
+    "LEAD_TO_EMAIL": "ryandeyp@gmail.com",
     "LEAD_FROM_EMAIL": "noreply@chstainandrestoration.com",
   },
   // Free path: send only to Verified Destination Addresses in the CF account.
-  // Optionally lock with "destination_address": "<verified inbox>" after setup.
   "send_email": [
     {
       "name": "LEAD_EMAIL",
@@ -31,7 +30,7 @@
   ],
   "previews": {
     "vars": {
-      "LEAD_TO_EMAIL": "preview-leads-disabled@example.invalid",
+      "LEAD_TO_EMAIL": "ryandeyp@gmail.com",
       "LEAD_FROM_EMAIL": "noreply-preview@chstainandrestoration.com",
     },
     "send_email": [

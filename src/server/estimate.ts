@@ -1,6 +1,6 @@
 import { BALLPARK_DISCLAIMER } from "@/lib/ballpark";
-import { verifyTurnstileToken } from "@/lib/turnstile";
 import { sendLeadEmail, type LeadEmailEnv } from "@/server/lead-email";
+import { gateTurnstile } from "@/server/turnstile-gate";
 
 export { BALLPARK_DISCLAIMER };
 
@@ -41,21 +41,8 @@ export async function handleEstimateRequest(
   env: EstimateHandlerEnv,
   options: { remoteip?: string; fetchImpl?: typeof fetch } = {},
 ): Promise<EstimateHandlerResult> {
-  const fetchImpl = options.fetchImpl ?? fetch;
-  const secret = env.TURNSTILE_SECRET_KEY ?? "";
-
-  const challenge = await verifyTurnstileToken(raw.turnstileToken, {
-    secret,
-    remoteip: options.remoteip,
-    fetchImpl,
-  });
-
-  if (!challenge.ok) {
-    return {
-      status: 403,
-      body: { error: "challenge_failed", codes: challenge.errorCodes },
-    };
-  }
+  const gate = await gateTurnstile(raw.turnstileToken, env.TURNSTILE_SECRET_KEY, options);
+  if (!gate.ok) return gate;
 
   const name = raw.contact?.name?.trim();
   const email = raw.contact?.email?.trim();

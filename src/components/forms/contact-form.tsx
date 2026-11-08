@@ -27,7 +27,7 @@ import {
 import { useState } from "react";
 import { CheckCircle, Hourglass, SendHorizonal, XCircle } from "lucide-react";
 
-/** Must match `public/contact-form.html` option values for Netlify Forms. */
+/** Project type options shown on the contact form. */
 const PROJECT_TYPES = [
   "Fence Staining & Wood Restoration",
   "Interior & Exterior Painting",
@@ -36,9 +36,7 @@ const PROJECT_TYPES = [
   "Other",
 ] as const;
 
-// RHF + zodResolver validates a plain object (not FormData), so z.object is enough.
 const formSchema = z.object({
-  "form-name": z.string(),
   name: z
     .string({
       error: (issue) => (issue.input === undefined ? "Name is required." : undefined),
@@ -91,35 +89,47 @@ export function ContactForm(props: ContactFormProps) {
     },
   });
 
-  // Submission handler
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    console.log(e.target);
-
+  // CF Worker API (Netlify Forms path retired on cf-preview).
+  const onSubmit = form.handleSubmit(async (values) => {
     try {
       setStatus("pending");
       setError(null);
 
-      const myForm = e.target as HTMLFormElement;
-      const formData = new FormData(myForm);
-      const res = await fetch("/contact-form.html", {
+      const res = await fetch("/api/v1/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as any).toString(),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contact: {
+            name: values.name,
+            email: values.email,
+            phone: values.phone,
+            serviceType: values.serviceType,
+            message: values.message,
+          },
+        }),
       });
-      if (res.status === 200) {
+
+      const payload = (await res.json().catch(() => ({}))) as {
+        error?: string;
+        reason?: string;
+        message?: string;
+      };
+
+      if (res.ok) {
         setStatus("ok");
         form.reset();
-      } else {
-        setStatus("error");
-        setError(`${res.status} ${res.statusText}`);
+        return;
       }
+
+      setStatus("error");
+      setError(
+        payload.reason || payload.message || payload.error || `${res.status} ${res.statusText}`,
+      );
     } catch (e) {
       setStatus("error");
       setError(`${e}`);
     }
-  };
+  });
 
   return (
     <>
@@ -131,13 +141,7 @@ export function ContactForm(props: ContactFormProps) {
           </div>
         ) : null}
 
-        <form
-          onSubmit={onSubmit}
-          className="space-y-2 sm:space-y-4"
-          name="contact-form"
-          data-netlify="true"
-        >
-          <input type="hidden" name="form-name" value="contact-form" />
+        <form onSubmit={onSubmit} className="space-y-2 sm:space-y-4" name="contact-form">
           <section className="grid gap-2 sm:grid-cols-2 sm:gap-5">
             <FormField
               control={form.control}
@@ -278,7 +282,7 @@ export function ContactForm(props: ContactFormProps) {
               {status === "error" && (
                 <p className="flex flex-row gap-2 items-center text-red-500">
                   <XCircle size={16} />
-                  Submission failed, please try again.
+                  {error ? `Submission failed: ${error}` : "Submission failed, please try again."}
                 </p>
               )}
             </span>

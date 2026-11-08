@@ -17,12 +17,23 @@
   "main": "./src/server.ts",
   "observability": {
     "enabled": true,
+    "head_sampling_rate": 1,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+    },
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+    },
+    "issues": {
+      "enabled": true,
+    },
   },
   "vars": {
     "LEAD_TO_EMAIL": "ryandeyp@gmail.com",
     "LEAD_FROM_EMAIL": "noreply@chstainandrestoration.com",
   },
-  // Free path: send only to Verified Destination Addresses in the CF account.
   "send_email": [
     {
       "name": "LEAD_EMAIL",
@@ -38,5 +49,20 @@
         "name": "LEAD_EMAIL",
       },
     ],
+    "observability": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "logs": {
+        "enabled": true,
+        "head_sampling_rate": 1,
+      },
+      "traces": {
+        "enabled": true,
+        "head_sampling_rate": 1,
+      },
+      "issues": {
+        "enabled": true,
+      },
+    },
   },
 }

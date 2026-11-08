@@ -14,6 +14,10 @@ Do **not** merge `cf-preview` into `develop` or `main` until Ryan authorizes the
 
 **Trigger:** Push to `origin/cf-preview` is the signal for Ryan’s Workers Builds / dashboard deploy (his account). Agents do not deploy this Worker without his CF auth.
 
+**Contact form:** posts JSON to `POST /api/v1/contact` (Worker `send_email` → verified destination). Not Netlify Forms.
+
+**Workers Logs:** After redeploy, open Worker `castle-hills-preview` → **Observability / Logs**. On a failed submit look for `[contact]`, `[lead-email]`, or `[turnstile]` lines (`mail_send_failed`, `dry-run`, `challenge_failed`).
+
 ## What’s wired in-repo
 
 - `@cloudflare/vite-plugin` + TanStack Start SSR

@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 mb-8 gap-4 md:gap-48">
           <div className="flex flex-col space-y-4 md:w-1/4">
             <span className="flex flex-col items-start gap-4">
-              <Logo size="md" priority={false} className="mb-2" />
+              <Logo priority={false} className="mb-2" />
 
               <span className="min-w-full">
                 <p className="text-sm">

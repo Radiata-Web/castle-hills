@@ -3,7 +3,7 @@ import Image from "@/components/ui/optimized-image";
 import { cn } from "@/lib/utils";
 
 /** Shared mark height — used in navbar, footer, and choose-us. */
-export const LOGO_MARK_HEIGHT_PX = 44;
+export const LOGO_MARK_HEIGHT_PX = 40;
 const MARK_WIDTH_PX = Math.round(LOGO_MARK_HEIGHT_PX * (708 / 572));
 
 export default function Logo({

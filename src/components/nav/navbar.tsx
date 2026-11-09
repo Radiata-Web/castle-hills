@@ -59,7 +59,7 @@ export default function Navbar() {
 
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Logo className="hidden lg:flex" />
+          <Logo />
 
           <div className="hidden lg:flex ml-6 items-center gap-1">
             {PAGES.map((page) => (
@@ -115,7 +115,7 @@ export default function Navbar() {
             </Button>
           </div>
 
-          <div className="ml-auto lg:hidden">
+          <div className="lg:hidden">
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetDescription className="sr-only">Navigation Menu</SheetDescription>
 
@@ -126,12 +126,6 @@ export default function Navbar() {
 
               <SheetContent side="right" className="w-[min(100vw-2rem,400px)] gap-0 sm:w-[400px]">
                 <SheetTitle className="sr-only">Navigation Links</SheetTitle>
-
-                <div className="pr-12">
-                  <Logo />
-                </div>
-
-                <hr className="my-8 border-zinc-200" />
 
                 <nav className="flex flex-col gap-2">
                   <MobileNavLink to="/" onNavigate={closeMenu}>

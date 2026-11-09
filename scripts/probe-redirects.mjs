@@ -1,14 +1,8 @@
 #!/usr/bin/env node
-/**
- * Probe production (or SITE_URL) redirects after Phase 2+ cutover deploy.
- *
- * Usage: pnpm run probe:redirects
- * Optional: SITE_URL=https://chstainandrestoration.com pnpm run probe:redirects
- */
+/** Production redirect probe. Usage: pnpm run probe:redirects */
 
 const SITE = (process.env.SITE_URL || "https://chstainandrestoration.com").replace(/\/$/, "");
 
-/** Legacy paths that must 301 to the new IA (final Location path). */
 const REDIRECTS = [
   ["/contact", "/contact-us"],
   ["/luxury-finishes-coatings", "/painting"],
@@ -28,10 +22,8 @@ const REDIRECTS = [
   ["/patio-covers", "/wood-staining/patio-pergola"],
 ];
 
-/** Junk URLs that must 410 (not soft-redirect to home). */
 const GONE = ["/$", "/&", "/%24", "/%26"];
 
-/** Launch URLs that must be live 200 (not 404). */
 const LIVE = [
   "/",
   "/contact-us",

@@ -2,9 +2,7 @@
 command = "pnpm run build"
 publish = "dist/client"
 
-# --- Junk / bot-mangled paths (GSC) ---
-# Prefer 410 over soft 307→home. force=true so edge wins before SSR.
-# Literal "$" was returning a soft 307 to / on production; encoded %24 already 404'd.
+# Junk / mangled paths → 410 (force so edge wins before SSR)
 
 [[redirects]]
 from = "/$"
@@ -30,8 +28,7 @@ to = "/gone.html"
 status = 410
 force = true
 
-# --- Umbrella retirements (Phase 2 cutover) ---
-# Absolute destinations: single clean hop, absolute Location for crawlers.
+# Retired umbrellas + legacy aliases → current IA
 
 [[redirects]]
 from = "/luxury-finishes-coatings"
@@ -56,8 +53,6 @@ from = "/interior-exterior-restoration-renovation"
 to = "https://chstainandrestoration.com/painting"
 status = 301
 force = true
-
-# --- Legacy path retargets (§2.2) ---
 
 [[redirects]]
 from = "/wood-fences"

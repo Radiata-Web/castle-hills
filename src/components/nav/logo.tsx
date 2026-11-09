@@ -2,8 +2,8 @@ import { Link } from "@tanstack/react-router";
 import Image from "@/components/ui/optimized-image";
 import { cn } from "@/lib/utils";
 
-/** Matches navbar “Get a Free Estimate” (`Button size="lg"` → `h-12`). */
-export const LOGO_MARK_HEIGHT_PX = 48;
+/** Shared mark height — used in navbar, footer, and choose-us. */
+export const LOGO_MARK_HEIGHT_PX = 44;
 const MARK_WIDTH_PX = Math.round(LOGO_MARK_HEIGHT_PX * (708 / 572));
 
 export default function Logo({
@@ -33,10 +33,10 @@ export default function Logo({
         height={LOGO_MARK_HEIGHT_PX}
         alt=""
         priority={priority}
-        className="h-12 w-auto shrink-0 object-contain"
+        className="h-[44px] w-auto shrink-0 object-contain"
         aria-hidden
       />
-      <span className="min-w-0 font-sans text-lg font-bold leading-[1.05] tracking-tight sm:text-xl sm:leading-[1.05]">
+      <span className="min-w-0 font-sans text-base font-bold leading-[0.95] tracking-tight sm:text-lg sm:leading-[0.95]">
         <span className="block whitespace-nowrap">Castle Hills</span>
         <span className="block whitespace-nowrap">Stain & Restoration</span>
       </span>

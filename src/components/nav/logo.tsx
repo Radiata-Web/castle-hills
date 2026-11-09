@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import Image from "@/components/ui/optimized-image";
 import { cn } from "@/lib/utils";
 
-/** Shared mark height — used in navbar, footer, and choose-us. */
 export const LOGO_MARK_HEIGHT_PX = 40;
 const MARK_WIDTH_PX = Math.round(LOGO_MARK_HEIGHT_PX * (708 / 572));
 
@@ -23,7 +22,6 @@ export default function Logo({
   priority = true,
 }: {
   className?: string;
-  /** Eager-load the mark (navbar / above-fold). Footer should pass false. */
   priority?: boolean;
 }) {
   return (
@@ -34,11 +32,6 @@ export default function Logo({
         className,
       )}
     >
-      {/*
-        Mark is decorative beside the HTML wordmarks.
-        Empty alt + aria-hidden so SR announces the brand text once each.
-        Height is CSS-locked — ch-logo.svg ships with width/height="100%".
-      */}
       <Image
         src="/logos/ch-logo.svg"
         width={MARK_WIDTH_PX}

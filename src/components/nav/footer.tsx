@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import Socials from "@/components/ui/socials";
 import { SERVICE_NAV_GROUPS } from "@/lib/service-ia";
-import Image from "@/components/ui/optimized-image";
+import Logo from "@/components/nav/logo";
 import { ExternalLink } from "lucide-react";
 
 export default function Footer() {
@@ -11,14 +11,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0 mb-8 gap-4 md:gap-48">
           <div className="flex flex-col space-y-4 md:w-1/4">
             <span className="flex flex-col items-start gap-4">
-              <Image
-                src="/logos/logo-wordmark.svg"
-                width={300}
-                height={84}
-                alt="Castle Hills Stain & Restoration Logo"
-                loading="lazy"
-                className="mb-2"
-              />
+              <Logo priority={false} className="mb-2" />
 
               <span className="min-w-full">
                 <p className="text-sm">

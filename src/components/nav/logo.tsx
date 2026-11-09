@@ -36,7 +36,7 @@ export default function Logo({
         className="h-[44px] w-auto shrink-0 object-contain"
         aria-hidden
       />
-      <span className="min-w-0 font-sans text-base font-bold leading-[0.95] tracking-tight sm:text-lg sm:leading-[0.95]">
+      <span className="min-w-0 font-sans text-[15px] font-bold leading-[0.95] tracking-tight sm:text-[17px] sm:leading-[0.95]">
         <span className="block whitespace-nowrap">Castle Hills</span>
         <span className="block whitespace-nowrap">Stain & Restoration</span>
       </span>

@@ -28,6 +28,9 @@ const REDIRECTS = [
   ["/patio-covers", "/wood-staining/patio-pergola"],
 ];
 
+/** Junk URLs that must 410 (not soft-redirect to home). */
+const GONE = ["/$", "/&", "/%24", "/%26"];
+
 /** Launch URLs that must be live 200 (not 404). */
 const LIVE = [
   "/",
@@ -82,6 +85,19 @@ async function main() {
   }
 
   console.log("");
+  console.log("## Junk URLs (expect 410)");
+  console.log("| path | status | ok |");
+  console.log("|---|---|---|");
+
+  let goneOk = 0;
+  for (const path of GONE) {
+    const { status } = await head(path);
+    const ok = status === 410;
+    if (ok) goneOk += 1;
+    console.log(`| \`${path}\` | ${status} | ${ok ? "yes" : "NO"} |`);
+  }
+
+  console.log("");
   console.log("## Live launch URLs (expect 200)");
   console.log("| path | status | ok |");
   console.log("|---|---|---|");
@@ -96,9 +112,13 @@ async function main() {
 
   console.log("");
   console.log(
-    `Redirects ${redirectOk}/${REDIRECTS.length} · Live ${liveOk}/${LIVE.length}`,
+    `Redirects ${redirectOk}/${REDIRECTS.length} · Gone ${goneOk}/${GONE.length} · Live ${liveOk}/${LIVE.length}`,
   );
-  if (redirectOk !== REDIRECTS.length || liveOk !== LIVE.length) {
+  if (
+    redirectOk !== REDIRECTS.length ||
+    goneOk !== GONE.length ||
+    liveOk !== LIVE.length
+  ) {
     process.exitCode = 1;
   }
 }

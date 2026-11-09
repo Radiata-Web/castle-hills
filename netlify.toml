@@ -2,35 +2,58 @@
 command = "pnpm run build"
 publish = "dist/client"
 
+# --- Junk / bot-mangled paths (GSC) ---
+# Prefer 410 over soft 307→home. force=true so edge wins before SSR.
+# Literal "$" was returning a soft 307 to / on production; encoded %24 already 404'd.
+
 [[redirects]]
-from = "/contact"
-to = "/contact-us"
-status = 301
+from = "/$"
+to = "/gone.html"
+status = 410
+force = true
+
+[[redirects]]
+from = "/&"
+to = "/gone.html"
+status = 410
+force = true
+
+[[redirects]]
+from = "/%24"
+to = "/gone.html"
+status = 410
+force = true
+
+[[redirects]]
+from = "/%26"
+to = "/gone.html"
+status = 410
 force = true
 
 # --- Umbrella retirements (Phase 2 cutover) ---
+# Absolute destinations: single clean hop, absolute Location for crawlers.
 
 [[redirects]]
 from = "/luxury-finishes-coatings"
-to = "/painting"
+to = "https://chstainandrestoration.com/painting"
 status = 301
 force = true
 
 [[redirects]]
 from = "/fence-services"
-to = "/wood-staining/fence"
+to = "https://chstainandrestoration.com/wood-staining/fence"
 status = 301
 force = true
 
 [[redirects]]
 from = "/custom-wood-structures-outdoor-design"
-to = "/wood-staining/patio-pergola"
+to = "https://chstainandrestoration.com/wood-staining/patio-pergola"
 status = 301
 force = true
 
 [[redirects]]
 from = "/interior-exterior-restoration-renovation"
-to = "/painting"
+to = "https://chstainandrestoration.com/painting"
 status = 301
 force = true
 
@@ -38,66 +61,72 @@ force = true
 
 [[redirects]]
 from = "/wood-fences"
-to = "/wood-staining/fence"
+to = "https://chstainandrestoration.com/wood-staining/fence"
 status = 301
 force = true
 
 [[redirects]]
 from = "/fence-and-garage-door-stain"
-to = "/wood-staining/fence"
+to = "https://chstainandrestoration.com/wood-staining/fence"
 status = 301
 force = true
 
 [[redirects]]
 from = "/fence-staining"
-to = "/wood-staining/fence"
+to = "https://chstainandrestoration.com/wood-staining/fence"
 status = 301
 force = true
 
 [[redirects]]
 from = "/metal-fences"
-to = "/wood-staining"
+to = "https://chstainandrestoration.com/wood-staining"
 status = 301
 force = true
 
 [[redirects]]
 from = "/automatic-gates"
-to = "/wood-staining"
+to = "https://chstainandrestoration.com/wood-staining"
 status = 301
 force = true
 
 [[redirects]]
 from = "/pergolas-and-patio-covers"
-to = "/wood-staining/patio-pergola"
+to = "https://chstainandrestoration.com/wood-staining/patio-pergola"
 status = 301
 force = true
 
 [[redirects]]
 from = "/patio-covers"
-to = "/wood-staining/patio-pergola"
+to = "https://chstainandrestoration.com/wood-staining/patio-pergola"
 status = 301
 force = true
 
 [[redirects]]
 from = "/home-restoration-remodeling"
-to = "/painting"
+to = "https://chstainandrestoration.com/painting"
 status = 301
 force = true
 
 [[redirects]]
 from = "/interior-painting"
-to = "/painting/interior"
+to = "https://chstainandrestoration.com/painting/interior"
 status = 301
 force = true
 
 [[redirects]]
 from = "/exterior-painting"
-to = "/painting/exterior"
+to = "https://chstainandrestoration.com/painting/exterior"
 status = 301
 force = true
 
 [[redirects]]
 from = "/interior-exterior-painting"
-to = "/painting"
+to = "https://chstainandrestoration.com/painting"
+status = 301
+force = true
+
+[[redirects]]
+from = "/contact"
+to = "https://chstainandrestoration.com/contact-us"
 status = 301
 force = true

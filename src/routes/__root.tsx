@@ -16,16 +16,16 @@ import { RouteError } from "@/components/misc/route-error";
 import { Button } from "@/components/ui/button";
 import { ctaPrimaryClassName } from "@/lib/cta";
 import { GA_ID } from "@/lib/site";
-import { pageHead, rootMeta } from "@/lib/seo";
+import { rootDocumentHead } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 
 export const Route = createRootRoute({
   head: () => {
-    const head = pageHead(rootMeta);
+    const head = rootDocumentHead();
     return {
       ...head,
-      links: [...(head.links ?? []), { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
+      links: [{ rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
     };
   },
   component: RootComponent,

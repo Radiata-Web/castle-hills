@@ -15,12 +15,44 @@ export type PageMeta = {
 
 const DEFAULT_OG_IMAGE = PHOTOS.stain2;
 
+export const rootMeta: PageMeta = {
+  title: "Castle Hills Stain & Restoration | DFW",
+  pathname: "/",
+  applicationName: "Home · Castle Hills Stain & Restoration",
+  description:
+    "Interior and exterior painting, wood staining, and exterior wood care in the Dallas–Fort Worth area. Get your free estimate today!",
+  keywords: [
+    "Interior painting DFW",
+    "Exterior painting Dallas",
+    "Fence staining",
+    "Deck and wood staining",
+    "Pergola patio cover staining",
+    "Castle Hills painters",
+    "Wood stain Carrollton",
+  ],
+  referrer: "origin-when-cross-origin",
+};
+
 function absoluteUrl(pathname: string): string {
   if (pathname === "/" || pathname === "") {
     return SITE_URL;
   }
   const path = pathname.startsWith("/") ? pathname : `/${pathname}`;
   return `${SITE_URL}${path}`;
+}
+
+/** Root defaults only — no canonical/og:url (child routes own those). */
+export function rootDocumentHead() {
+  return {
+    meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: rootMeta.title },
+      { name: "description", content: rootMeta.description },
+      { property: "og:type", content: "website" },
+      { name: "referrer", content: rootMeta.referrer ?? "origin-when-cross-origin" },
+    ],
+  };
 }
 
 export function pageHead(meta: PageMeta) {
@@ -73,21 +105,3 @@ export function jsonLdScript(data: Record<string, unknown> | Record<string, unkn
     children: JSON.stringify(data),
   };
 }
-
-export const rootMeta: PageMeta = {
-  title: "Castle Hills Stain & Restoration | DFW",
-  pathname: "/",
-  applicationName: "Home · Castle Hills Stain & Restoration",
-  description:
-    "Interior and exterior painting, wood staining, and exterior wood care in the Dallas–Fort Worth area. Get your free estimate today!",
-  keywords: [
-    "Interior painting DFW",
-    "Exterior painting Dallas",
-    "Fence staining",
-    "Deck and wood staining",
-    "Pergola patio cover staining",
-    "Castle Hills painters",
-    "Wood stain Carrollton",
-  ],
-  referrer: "origin-when-cross-origin",
-};

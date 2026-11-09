@@ -2,8 +2,8 @@ import { Link } from "@tanstack/react-router";
 import Image from "@/components/ui/optimized-image";
 import { cn } from "@/lib/utils";
 
-/** Navbar row is `h-16` (64px) — mark fills that height sitewide. */
-export const LOGO_MARK_HEIGHT_PX = 64;
+/** Matches navbar “Get a Free Estimate” (`Button size="lg"` → `h-12`). */
+export const LOGO_MARK_HEIGHT_PX = 48;
 const MARK_WIDTH_PX = Math.round(LOGO_MARK_HEIGHT_PX * (708 / 572));
 
 export default function Logo({
@@ -18,7 +18,7 @@ export default function Logo({
     <Link
       to="/"
       className={cn(
-        "flex h-16 max-w-full shrink-0 items-center gap-2.5 text-foreground",
+        "flex max-w-full shrink-0 items-center gap-2.5 text-foreground",
         className,
       )}
     >
@@ -33,7 +33,7 @@ export default function Logo({
         height={LOGO_MARK_HEIGHT_PX}
         alt=""
         priority={priority}
-        className="h-16 w-auto shrink-0 object-contain"
+        className="h-12 w-auto shrink-0 object-contain"
         aria-hidden
       />
       <span className="min-w-0 font-sans text-lg font-bold leading-[1.05] tracking-tight sm:text-xl sm:leading-[1.05]">

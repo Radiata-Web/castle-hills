@@ -33,8 +33,13 @@ export default defineConfig({
   worker: {
     format: "es",
   },
+  test: {
+    environment: "node",
+    include: ["src/**/*.test.ts"],
+  },
   plugins: lazyPlugins(() => [
-    cloudflare({ viteEnvironment: { name: "ssr" } }),
+    // Cloudflare's workerd runner breaks Node unit tests (`module is not defined`).
+    ...(process.env.VITEST ? [] : [cloudflare({ viteEnvironment: { name: "ssr" } })]),
     tanstackStart(),
     viteReact(),
     tailwindcss(),

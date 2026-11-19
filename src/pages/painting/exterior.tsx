@@ -18,6 +18,7 @@ export default function ExteriorPaintingPage() {
           imageAlt="Exterior of a home with professional paint finish"
           header="Curb appeal that lasts"
           content="Exterior paint is your first defense against heat, wind, and moisture. We prep siding and trim properly, use quality coatings suited to the substrate, and pay attention to details like caulk lines and cut-ins so your curb appeal looks crisp and stays protected. High-performance options include Sherwin-Williams Emerald® and Duration®, plus Romabio Classico Limewash® where it fits your design."
+          estimateHref="/contact-us"
         />
       </section>
 

@@ -1,17 +1,27 @@
 /**
- * Cloudflare Workers Static Assets — long-lived preview branch `cf-preview`.
- * Do NOT attach a production custom domain here; Netlify remains live on main.
+ * Cloudflare Workers Static Assets — preview hosting on Worker `castle-hills`.
+ * Netlify remains the public production site on main. Do not attach apex/www here.
  *
- * Turnstile: existing widget sitekey is public (VITE_ / vars).
- * Secret: Worker secret `TURNSTILE_SECRET` (never commit). Ryan wrote it 2026-11-08.
+ * Preview custom domain: preview.chstainandrestoration.com (Access-gated).
+ * Turnstile: reuse production public sitekey. Secret: TURNSTILE_SECRET.
  *
  * Never `wrangler deploy --temporary`.
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "castle-hills-preview",
+  // Existing account Worker (preview environment; Netlify remains production site).
+  "name": "castle-hills",
   "compatibility_date": "2026-11-07",
   "main": "./src/server.ts",
+  // Keep version/preview URLs available; workers.dev production route stays disabled.
+  "preview_urls": true,
+  // Access-gated preview host under the production zone (Turnstile widget already covers this zone's subdomains).
+  "routes": [
+    {
+      "pattern": "preview.chstainandrestoration.com",
+      "custom_domain": true,
+    },
+  ],
   "observability": {
     "enabled": true,
     "head_sampling_rate": 1,
@@ -31,13 +41,20 @@
     "LEAD_TO_EMAIL": "ryandeyp@gmail.com",
     "LEAD_FROM_EMAIL": "noreply@chstainandrestoration.com",
     "VITE_TURNSTILE_SITE_KEY": "0x4AAAAAAF5ChtHZn6ut0JFm",
-    // Frontend hostnames siteverify may accept for this Worker (no secret).
-    // Include workers.dev preview hosts Ryan’s Builds assign; keep production hosts for widget domain overlap.
-    "TURNSTILE_HOSTNAMES": "chstainandrestoration.com,www.chstainandrestoration.com,localhost,127.0.0.1,castle-hills-preview.workers.dev",
+    // Exact hostnames only (server allowlist is not subdomain-aware).
+    "TURNSTILE_HOSTNAMES": "chstainandrestoration.com,www.chstainandrestoration.com,preview.chstainandrestoration.com,localhost,127.0.0.1,castle-hills.ryandey.workers.dev,ballpark-castle-hills.ryandey.workers.dev,cf-preview-castle-hills.ryandey.workers.dev,preview-castle-hills.ryandey.workers.dev",
   },
   "send_email": [
     {
       "name": "LEAD_EMAIL",
+    },
+  ],
+  // BALLPARK_PRICING_JSON is a Worker secret (wrangler secret put) — never commit rates.
+  "ratelimits": [
+    {
+      "name": "ESTIMATE_LIMITER",
+      "namespace_id": "1101",
+      "simple": { "limit": 5, "period": 60 },
     },
   ],
   "previews": {
@@ -45,11 +62,18 @@
       "LEAD_TO_EMAIL": "ryandeyp@gmail.com",
       "LEAD_FROM_EMAIL": "noreply-preview@chstainandrestoration.com",
       "VITE_TURNSTILE_SITE_KEY": "0x4AAAAAAF5ChtHZn6ut0JFm",
-      "TURNSTILE_HOSTNAMES": "chstainandrestoration.com,www.chstainandrestoration.com,localhost,127.0.0.1,castle-hills-preview.workers.dev",
+      "TURNSTILE_HOSTNAMES": "chstainandrestoration.com,www.chstainandrestoration.com,preview.chstainandrestoration.com,localhost,127.0.0.1,castle-hills.ryandey.workers.dev,ballpark-castle-hills.ryandey.workers.dev,cf-preview-castle-hills.ryandey.workers.dev,preview-castle-hills.ryandey.workers.dev",
     },
     "send_email": [
       {
         "name": "LEAD_EMAIL",
+      },
+    ],
+    "ratelimits": [
+      {
+        "name": "ESTIMATE_LIMITER",
+        "namespace_id": "1101",
+        "simple": { "limit": 5, "period": 60 },
       },
     ],
     "observability": {

@@ -14,6 +14,7 @@ export const PAGES: { title: string; href: string }[] = [
   { title: "Home", href: "/" },
   { title: "About", href: "/about-us" },
   { title: "Expertise", href: "/our-expertise" },
+  { title: "Contact", href: "/contact-us" },
 ];
 
 /**

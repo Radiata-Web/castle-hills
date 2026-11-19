@@ -52,6 +52,11 @@ export default function PrivacyPage() {
               identifiable information may include, but is not limited to your name (&quot;Personal
               Information&quot;).
             </p>
+            <p>
+              Our ballpark estimate tool collects your name, email, phone number, ZIP code, and
+              project details so we can prepare a non-binding price range and follow up about your
+              project.
+            </p>
           </section>
 
           <section aria-labelledby="log-data" className="space-y-4">

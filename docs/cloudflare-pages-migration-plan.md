@@ -13,8 +13,8 @@ This plan covers hosting cutover (Netlify → Cloudflare), Turnstile, lead email
 
 ## 0. Vocabulary (legal / UI)
 
-| Do say | Do not say (UI, emails, legal, meta) |
-|--------|--------------------------------------|
+| Do say                | Do not say (UI, emails, legal, meta)        |
+| --------------------- | ------------------------------------------- |
 | **Ballpark estimate** | Estimate, quote, bid, proposal, fixed price |
 
 Always frame the tool as a **non-binding ballpark estimate** that helps homeowners plan—not a contractual price. Final numbers come from an on-site or scheduled consultation. Copy in the scaffolded `/ballpark-estimate` page and API responses follows this wording.
@@ -49,12 +49,12 @@ Workers custom domains expect an **active Cloudflare zone** (nameservers on Clou
 
 ## 2. What stays unchanged
 
-| Asset | Action |
-|-------|--------|
-| **R2 bucket + `img.chstainandrestoration.com`** | Keep. App continues to use `VITE_IMAGE_CDN_BASE` / `photoSrc()`; WAF Referer rules unchanged. |
+| Asset                                                   | Action                                                                                                   |
+| ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| **R2 bucket + `img.chstainandrestoration.com`**         | Keep. App continues to use `VITE_IMAGE_CDN_BASE` / `photoSrc()`; WAF Referer rules unchanged.            |
 | **Service IA URLs** (`/painting/*`, `/wood-staining/*`) | Keep. Move 301s from `netlify.toml` → Cloudflare `_redirects` or Bulk Redirects / Worker redirects (§5). |
-| **GA, phone, content** | Keep unless copy tasks say otherwise. |
-| **Local photo fallbacks** | Keep for `vp dev` without CDN. |
+| **GA, phone, content**                                  | Keep unless copy tasks say otherwise.                                                                    |
+| **Local photo fallbacks**                               | Keep for `vp dev` without CDN.                                                                           |
 
 ---
 
@@ -73,12 +73,12 @@ Workers custom domains expect an **active Cloudflare zone** (nameservers on Clou
 **Chosen path:** Worker `send_email` binding → **Verified Destination Address** (Cloudflare Email Service).  
 Sends to verified destinations are **free** on Workers Free (including when only Email Routing is configured). Arbitrary-recipient sending is paid and **not** used.
 
-| Piece | Who owns it | Notes |
-|-------|-------------|--------|
-| Company inbox | Ryan | Add that address as a **Verified Destination** in CF Email Routing (verify via the email CF sends). |
-| Worker outbound | `send_email` binding (`LEAD_EMAIL`) | `env.LEAD_EMAIL.send({ to, from, subject, text })` — `to` must be that verified destination. |
-| From address | Onboarded Email Service / Routing domain | e.g. `noreply@chstainandrestoration.com` (must belong to the CF-onboarded domain). |
-| Runtime vars | Worker | `LEAD_TO_EMAIL` = verified destination; `LEAD_FROM_EMAIL` = domain address above. |
+| Piece           | Who owns it                              | Notes                                                                                               |
+| --------------- | ---------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Company inbox   | Ryan                                     | Add that address as a **Verified Destination** in CF Email Routing (verify via the email CF sends). |
+| Worker outbound | `send_email` binding (`LEAD_EMAIL`)      | `env.LEAD_EMAIL.send({ to, from, subject, text })` — `to` must be that verified destination.        |
+| From address    | Onboarded Email Service / Routing domain | e.g. `noreply@chstainandrestoration.com` (must belong to the CF-onboarded domain).                  |
+| Runtime vars    | Worker                                   | `LEAD_TO_EMAIL` = verified destination; `LEAD_FROM_EMAIL` = domain address above.                   |
 
 **MX / Porkbun (honest):** Enabling Email Routing on the domain **requires Cloudflare MX** (exclusive). Existing Porkbun (or other) MX records must be **removed** for Routing to enable — Porkbun forwarding for `@chstainandrestoration.com` stops. Replace it with CF Routing rules (e.g. `leads@…` → same verified destination inbox). Porkbun stays the **registrar** only. Do not run Porkbun MX and Cloudflare MX together.
 
@@ -184,12 +184,12 @@ type EstimateResponse =
 
 ### Errors
 
-| Status | When |
-|--------|------|
-| 403 | Turnstile failed |
-| 400 | Invalid / validation |
-| 501 | Pricing not configured (current stub) |
-| 502 | Mail provider failure after successful ballpark (if email is required) |
+| Status | When                                                                   |
+| ------ | ---------------------------------------------------------------------- |
+| 403    | Turnstile failed                                                       |
+| 400    | Invalid / validation                                                   |
+| 501    | Pricing not configured (current stub)                                  |
+| 502    | Mail provider failure after successful ballpark (if email is required) |
 
 Shared implementation: `src/server/estimate.ts`. Edge entry: `cloudflare/functions/api/v1/estimate.ts` (Pages-shaped) → will move behind Hono in the Workers entry during Phase B.
 
@@ -206,16 +206,16 @@ Shared implementation: `src/server/estimate.ts`. Edge entry: `cloudflare/functio
 
 ## 8. Env / secrets checklist
 
-| Name | Where | Purpose |
-|------|--------|---------|
-| `VITE_TURNSTILE_SITE_KEY` | Build / public | Widget |
-| `TURNSTILE_SECRET` | Worker secret | Canonical siteverify secret |
-| `TURNSTILE_HOSTNAMES` | Worker var | Comma-separated frontend hostnames for siteverify |
-| `LEAD_TO_EMAIL` | Worker var | Cloudflare **Verified Destination Address** (company inbox) |
-| `LEAD_FROM_EMAIL` | Worker var | Address on the Email Routing–onboarded domain |
-| `LEAD_EMAIL` | Wrangler `send_email` binding | Free send to verified destinations |
-| `VITE_IMAGE_CDN_BASE` | Build | Existing R2 CDN |
-| `VITE_IMAGE_CDN_FORCE` | Optional | Local CDN testing |
+| Name                      | Where                         | Purpose                                                     |
+| ------------------------- | ----------------------------- | ----------------------------------------------------------- |
+| `VITE_TURNSTILE_SITE_KEY` | Build / public                | Widget                                                      |
+| `TURNSTILE_SECRET`        | Worker secret                 | Canonical siteverify secret                                 |
+| `TURNSTILE_HOSTNAMES`     | Worker var                    | Comma-separated frontend hostnames for siteverify           |
+| `LEAD_TO_EMAIL`           | Worker var                    | Cloudflare **Verified Destination Address** (company inbox) |
+| `LEAD_FROM_EMAIL`         | Worker var                    | Address on the Email Routing–onboarded domain               |
+| `LEAD_EMAIL`              | Wrangler `send_email` binding | Free send to verified destinations                          |
+| `VITE_IMAGE_CDN_BASE`     | Build                         | Existing R2 CDN                                             |
+| `VITE_IMAGE_CDN_FORCE`    | Optional                      | Local CDN testing                                           |
 
 Netlify-specific form env goes away after contact migration.
 
@@ -223,18 +223,18 @@ Netlify-specific form env goes away after contact migration.
 
 ## 9. Scaffolding map (this branch)
 
-| Path | Role |
-|------|------|
-| `docs/cloudflare-pages-migration-plan.md` | Repo copy of this plan |
-| `wrangler.jsonc` | Draft Workers config (not live cutover) |
-| `src/lib/turnstile.ts` | Turnstile verify helper |
-| `src/server/estimate.ts` | Shared estimate handler (no pricing) |
-| `src/server/lead-email.ts` | Pluggable lead email stub |
+| Path                                      | Role                                                                       |
+| ----------------------------------------- | -------------------------------------------------------------------------- |
+| `docs/cloudflare-pages-migration-plan.md` | Repo copy of this plan                                                     |
+| `wrangler.jsonc`                          | Draft Workers config (not live cutover)                                    |
+| `src/lib/turnstile.ts`                    | Turnstile verify helper                                                    |
+| `src/server/estimate.ts`                  | Shared estimate handler (no pricing)                                       |
+| `src/server/lead-email.ts`                | Pluggable lead email stub                                                  |
 | `cloudflare/functions/api/v1/estimate.ts` | Pages Functions–shaped stub (not root `functions/` — avoids Netlify clash) |
-| `src/routes/ballpark-estimate.tsx` | Route + SEO |
-| `src/pages/ballpark-estimate.tsx` | Placeholder UI |
-| `.env.example` | Documented keys |
-| `public/_redirects.cf.example` | Redirect port checklist from `netlify.toml` |
+| `src/routes/ballpark-estimate.tsx`        | Route + SEO                                                                |
+| `src/pages/ballpark-estimate.tsx`         | Placeholder UI                                                             |
+| `.env.example`                            | Documented keys                                                            |
+| `public/_redirects.cf.example`            | Redirect port checklist from `netlify.toml`                                |
 
 **Still on Netlify for develop/main** until Phase B lands. Scaffold must not break `pnpm build` on Netlify.
 

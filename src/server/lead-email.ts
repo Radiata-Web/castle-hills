@@ -12,7 +12,15 @@ export type LeadPayload = {
   email: string;
   phone?: string;
   message?: string;
-  /** Opaque answers — pricing keys TBD; do not invent required fields. */
+  zip?: string;
+  leadId?: string;
+  /** Internal detail lines for ballpark leads (never returned to the client). */
+  details?: string[];
+  /** Appended after the name in the subject, e.g. the customer range. */
+  subjectSuffix?: string;
+  /**
+   * @deprecated Prefer `details` for ballpark. Kept for contact and legacy stubs.
+   */
   answers?: Record<string, unknown>;
 };
 
@@ -65,6 +73,7 @@ export async function sendLeadEmail(
       source: lead.source,
       name: lead.name,
       email: lead.email,
+      leadId: lead.leadId,
     });
     return { ok: false, reason: "send_email_binding_missing", dryRun: true };
   }
@@ -74,19 +83,26 @@ export async function sendLeadEmail(
       source: lead.source,
       name: lead.name,
       email: lead.email,
+      leadId: lead.leadId,
       reason: to ? "preview_placeholder_to" : "LEAD_TO_EMAIL unset",
     });
     return { ok: false, reason: "dry_run_skip", dryRun: true };
   }
 
   const from = env.LEAD_FROM_EMAIL?.trim() || "noreply@chstainandrestoration.com";
-  const subject = `[${lead.source}] Lead — ${lead.name}`;
+  const subjectParts = [`[${lead.source}] Lead — ${lead.name}`];
+  if (lead.subjectSuffix) subjectParts.push(` — ${lead.subjectSuffix}`);
+  const subject = subjectParts.join("");
+
   const text = [
     `Source: ${lead.source}`,
+    lead.leadId ? `Lead ID: ${lead.leadId}` : null,
     `Name: ${lead.name}`,
     `Email: ${lead.email}`,
     lead.phone ? `Phone: ${lead.phone}` : null,
+    lead.zip ? `ZIP: ${lead.zip}` : null,
     lead.message ? `Message: ${lead.message}` : null,
+    lead.details && lead.details.length > 0 ? lead.details.join("\n") : null,
     lead.answers ? `Answers JSON: ${JSON.stringify(lead.answers)}` : null,
   ]
     .filter(Boolean)

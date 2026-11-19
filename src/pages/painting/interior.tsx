@@ -19,6 +19,7 @@ export default function InteriorPaintingPage() {
           imageAlt="Offwhite painted ceiling with grid of gray painted extruded ceiling accent pieces"
           header="Rooms, trim, and ceilings done right"
           content="Fresh interior paint changes how every room feels. We protect floors and furniture, repair minor wall imperfections, and apply consistent coats so corners, trim, and ceilings read sharp. You get a livable schedule, clear communication, and a finish that holds up to daily use."
+          estimateHref="/contact-us"
         />
       </section>
 

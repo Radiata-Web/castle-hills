@@ -62,10 +62,10 @@ export default function ChooseUs() {
         variant="outline"
         size="lg"
         className={cn(ctaPrimaryClassName, ctaAfterCopyClassName)}
-        render={<Link to="/contact-us" />}
+        render={<Link to="/ballpark-estimate" />}
         nativeButton={false}
       >
-        Request a free estimate
+        Get a Ballpark Estimate
       </Button>
     </article>
   );

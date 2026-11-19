@@ -95,9 +95,7 @@ async function main() {
   }
 
   console.log("");
-  console.log(
-    `Redirects ${redirectOk}/${REDIRECTS.length} · Live ${liveOk}/${LIVE.length}`,
-  );
+  console.log(`Redirects ${redirectOk}/${REDIRECTS.length} · Live ${liveOk}/${LIVE.length}`);
   if (redirectOk !== REDIRECTS.length || liveOk !== LIVE.length) {
     process.exitCode = 1;
   }

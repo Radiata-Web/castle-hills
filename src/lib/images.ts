@@ -221,7 +221,8 @@ const LEGACY_TO_CANONICAL: Record<string, string> = {
   "garages/garage-1": PHOTOS.paintExt7,
 };
 
-const CDN_BASE = (import.meta.env.VITE_IMAGE_CDN_BASE as string | undefined)?.replace(/\/$/, "") ?? "";
+const CDN_BASE =
+  (import.meta.env.VITE_IMAGE_CDN_BASE as string | undefined)?.replace(/\/$/, "") ?? "";
 const FORCE_CDN = import.meta.env.VITE_IMAGE_CDN_FORCE === "true";
 
 export function useImageCdn(): boolean {

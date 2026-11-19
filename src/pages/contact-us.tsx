@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { ContactForm } from "@/components/forms/contact-form";
 import ChooseUs from "@/components/misc/choose-us";
 import Footer from "@/components/nav/footer";
@@ -14,6 +15,16 @@ export default function Page() {
           </h1>
           <p className="text-zinc-600">
             Tell us about your project — our team will reach out within 24 hours.
+          </p>
+          <p className="text-zinc-600">
+            Want a rough number first?{" "}
+            <Link
+              to="/ballpark-estimate"
+              className="font-medium text-primary underline underline-offset-4"
+            >
+              Get a ballpark estimate
+            </Link>
+            .
           </p>
         </header>
 

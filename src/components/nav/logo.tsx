@@ -27,10 +27,7 @@ export default function Logo({
   return (
     <Link
       to="/"
-      className={cn(
-        "flex max-w-full shrink-0 items-center gap-2.5 text-foreground",
-        className,
-      )}
+      className={cn("flex max-w-full shrink-0 items-center gap-2.5 text-foreground", className)}
     >
       <Image
         src="/logos/ch-logo.svg"
@@ -42,10 +39,7 @@ export default function Logo({
         aria-hidden
       />
       <Wordmark lines={["Castle Hills", "Stain & Restoration"]} />
-      <span
-        className="mx-0.5 h-8 w-px shrink-0 bg-foreground/20"
-        aria-hidden
-      />
+      <span className="mx-0.5 h-8 w-px shrink-0 bg-foreground/20" aria-hidden />
       <Wordmark lines={["Castle Hills", "Painting"]} />
     </Link>
   );

@@ -12,17 +12,18 @@ Pricing source: Ryan's staining pricing rules, shared privately. **Never commit 
 
 ### Decided
 
-| # | Topic | Decision | Where it lands in the plan |
-| --- | --- | --- | --- |
-| 1 | Range width | **Approved:** a low and high factor around the total, rounded to a fixed step (the values live in the secret config) | Section 6 config |
-| 2 | Fence | **Use the rules' fence rate per sq ft as-is for one face. Don't offer "both sides" yet.** Ask for fence length plus a height choice of **6 ft or 8 ft**. Area = length × height | Table 4.5 items 2–3, sections 5 and 6 |
-| 3 | Below the project minimum | **Approved:** raise both ends of the range to at least the minimum, and open the upsell prompt on top of the result | Sections 4.5 and 6 |
-| 4 | House trim | **Price it online from the home's square footage, using a placeholder rate** until Ryan confirms the real one. Trim is part of the customer's range | Table 4.5 item 12, section 6 (`houseTrimPerHomeSqft`, `houseTrimRateIsPlaceholder`) |
-| 5 | Bundling | **Approved:** the range is never discounted. **Every result shows the bundling notice**, even with one service selected. The copy changes depending on how many services were picked | Section 6 notice copy |
-| 6 | Doors and shutters | **Approved:** same price whether stained or painted, so labels don't name a method. A double front door counts as 2 doors | Table 4.5 items 8–9 |
-| 7 | Nav and CTAs | **The ballpark estimator is the default CTA site-wide.** The contact page stays, reached from a "Contact" nav link and secondary links | Section 3 |
+| #   | Topic                     | Decision                                                                                                                                                                             | Where it lands in the plan                                                          |
+| --- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| 1   | Range width               | **Approved:** a low and high factor around the total, rounded to a fixed step (the values live in the secret config)                                                                 | Section 6 config                                                                    |
+| 2   | Fence                     | **Use the rules' fence rate per sq ft as-is for one face. Don't offer "both sides" yet.** Ask for fence length plus a height choice of **6 ft or 8 ft**. Area = length × height      | Table 4.5 items 2–3, sections 5 and 6                                               |
+| 3   | Below the project minimum | **Approved:** raise both ends of the range to at least the minimum, and open the upsell prompt on top of the result                                                                  | Sections 4.5 and 6                                                                  |
+| 4   | House trim                | **Not priced online.** Still offered; requires a free in-person consultation. Call-to-schedule copy on the services step and estimator aside.                                      | Services step note + `EstimatorAside` |
+| 5   | Bundling                  | **Approved:** the range is never discounted. **Every result shows the bundling notice**, even with one service selected. The copy changes depending on how many services were picked | Section 6 notice copy                                                               |
+| 6   | Doors and shutters        | **Approved:** same price whether stained or painted, so labels don't name a method. A double front door counts as 2 doors                                                            | Table 4.5 items 8–9                                                                 |
+| 7   | Nav and CTAs              | **The ballpark estimator is the default CTA site-wide.** The contact page stays, reached from a "Contact" nav link and secondary links                                               | Section 3                                                                           |
 
 Unchanged defaults Ryan didn't object to:
+
 - If the lead email fails, the customer still sees the range and the lead is logged.
 - The minimum and bundle-percentage copy comes from the server.
 - ZIP is collected but doesn't block anyone.
@@ -39,19 +40,19 @@ Unchanged defaults Ryan didn't object to:
 
 ### On `cf-preview` today
 
-| File | State | Action |
-| --- | --- | --- |
-| `src/routes/ballpark-estimate.tsx` | Route plus `pageHead` SEO | **Reuse**; update the description copy only |
-| `src/pages/ballpark-estimate.tsx` | One-page name/email/notes form; treats the 501 response as success | **Replace** entirely |
-| `src/server/estimate.ts` | Turnstile check (`gateTurnstile`, action `ballpark-estimate`), name and email check, `sendLeadEmail`, then always **501** `pricing_not_configured` | **Rewrite** (keep the gate-first order) |
-| `src/server.ts` | Hono routes `POST /api/v1/estimate` and 405 | **Reuse**; add body limit, rate limit and `no-store` |
-| `src/server/turnstile-gate.ts`, `src/lib/turnstile.ts` | Server-side siteverify with action and hostname allowlist | **Reuse unchanged** |
-| `src/components/turnstile-field.tsx` | Explicit widget, `interaction-only`, reset by `resetSignal` | **Reuse unchanged** |
-| `src/lib/turnstile-sitekey.ts` | `TURNSTILE_ACTIONS.ballparkEstimate = "ballpark-estimate"` | **Reuse** |
-| `src/server/lead-email.ts` | CF `send_email` to a verified destination; dry-run on preview | **Extend** (details lines, subject) |
-| `src/lib/ballpark.ts` | `BALLPARK_DISCLAIMER` | **Extend** with client-safe service IDs, limits and schemas |
-| `cloudflare/functions/api/v1/estimate.ts` | Old Pages Functions stub, not wired up on Workers | **Delete** |
-| `src/components/forms/contact-form.tsx` | React Hook Form, zod, libphonenumber and Turnstile pattern | **Copy the pattern** for the contact step; leave the contact page alone |
+| File                                                   | State                                                                                                                                              | Action                                                                  |
+| ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `src/routes/ballpark-estimate.tsx`                     | Route plus `pageHead` SEO                                                                                                                          | **Reuse**; update the description copy only                             |
+| `src/pages/ballpark-estimate.tsx`                      | One-page name/email/notes form; treats the 501 response as success                                                                                 | **Replace** entirely                                                    |
+| `src/server/estimate.ts`                               | Turnstile check (`gateTurnstile`, action `ballpark-estimate`), name and email check, `sendLeadEmail`, then always **501** `pricing_not_configured` | **Rewrite** (keep the gate-first order)                                 |
+| `src/server.ts`                                        | Hono routes `POST /api/v1/estimate` and 405                                                                                                        | **Reuse**; add body limit, rate limit and `no-store`                    |
+| `src/server/turnstile-gate.ts`, `src/lib/turnstile.ts` | Server-side siteverify with action and hostname allowlist                                                                                          | **Reuse unchanged**                                                     |
+| `src/components/turnstile-field.tsx`                   | Explicit widget, `interaction-only`, reset by `resetSignal`                                                                                        | **Reuse unchanged**                                                     |
+| `src/lib/turnstile-sitekey.ts`                         | `TURNSTILE_ACTIONS.ballparkEstimate = "ballpark-estimate"`                                                                                         | **Reuse**                                                               |
+| `src/server/lead-email.ts`                             | CF `send_email` to a verified destination; dry-run on preview                                                                                      | **Extend** (details lines, subject)                                     |
+| `src/lib/ballpark.ts`                                  | `BALLPARK_DISCLAIMER`                                                                                                                              | **Extend** with client-safe service IDs, limits and schemas             |
+| `cloudflare/functions/api/v1/estimate.ts`              | Old Pages Functions stub, not wired up on Workers                                                                                                  | **Delete**                                                              |
+| `src/components/forms/contact-form.tsx`                | React Hook Form, zod, libphonenumber and Turnstile pattern                                                                                         | **Copy the pattern** for the contact step; leave the contact page alone |
 
 ### PR #43 (`adw/cf-pages-estimator-0187`, base `develop`, open)
 
@@ -95,7 +96,7 @@ pnpm dlx shadcn@latest add questionnaire dialog alert spinner
 ## 3. Page, navigation and calls to action
 
 - **Route:** keep `/ballpark-estimate`. Keep `/contact-us` exactly as it is apart from one added line (below).
-The **ballpark estimator is the default CTA** everywhere a "free estimate" button exists today (Ryan, decision 7). The contact page stays live and reachable.
+  The **ballpark estimator is the default CTA** everywhere a "free estimate" button exists today (Ryan, decision 7). The contact page stays live and reachable.
 
 - **Desktop navbar** (`src/components/nav/navbar.tsx`):
   - Change the primary button to **"Get a Ballpark Estimate"** linking to `/ballpark-estimate`. Keep its classes, `MoveRight` icon and `size="lg"`.
@@ -144,26 +145,27 @@ This section was designed with the ui-skills.com skills **frontend-design** (ant
   4. A small note: "Ballpark ranges are for planning only. Final pricing follows a free in-person visit."
 
   Typography: `text-sm text-zinc-600`, headings `text-base font-semibold text-zinc-900`.
+
 - **Aside, mobile:** it moves below the card and is not sticky.
 
 ### 4.2 Design tokens (use only what `globals.css` defines)
 
-| Use | Classes |
-| --- | --- |
-| Font | `font-sans` (Instrument Sans). No new fonts. |
-| H1 | `text-3xl sm:text-4xl xl:text-5xl/none font-bold tracking-tight text-balance` (same as the contact page) |
-| Intro | `text-base sm:text-lg text-zinc-600 text-pretty` |
-| Question title (`QuestionnaireTitle`) | `text-xl sm:text-2xl font-semibold tracking-tight text-zinc-900 text-balance` |
-| Question description | `mt-2 text-sm sm:text-base text-zinc-600 text-pretty` |
-| Choice label | `text-base font-medium text-zinc-900`; hint line `text-sm text-zinc-500` |
-| Input value | `text-lg tabular-nums` |
-| Progress count | `text-sm text-zinc-500 tabular-nums` |
-| Range figure | `text-4xl sm:text-5xl font-bold tracking-tight tabular-nums text-zinc-900` |
-| Primary colour | `bg-primary` (#0071bd), `text-primary-foreground` |
-| Selected choice | `border-primary bg-accent-light/60`, with the check icon in `text-primary` |
-| Error | `text-sm text-destructive`, with `aria-invalid` borders from the UI kit |
-| Radii | card `rounded-2xl`, choices and inputs `rounded-lg`, buttons use the kit default |
-| Spacing rhythm | question title to choices `gap-6`; between choices `gap-3`; above the action bar `mt-8` |
+| Use                                   | Classes                                                                                                  |
+| ------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Font                                  | `font-sans` (Instrument Sans). No new fonts.                                                             |
+| H1                                    | `text-3xl sm:text-4xl xl:text-5xl/none font-bold tracking-tight text-balance` (same as the contact page) |
+| Intro                                 | `text-base sm:text-lg text-zinc-600 text-pretty`                                                         |
+| Question title (`QuestionnaireTitle`) | `text-xl sm:text-2xl font-semibold tracking-tight text-zinc-900 text-balance`                            |
+| Question description                  | `mt-2 text-sm sm:text-base text-zinc-600 text-pretty`                                                    |
+| Choice label                          | `text-base font-medium text-zinc-900`; hint line `text-sm text-zinc-500`                                 |
+| Input value                           | `text-lg tabular-nums`                                                                                   |
+| Progress count                        | `text-sm text-zinc-500 tabular-nums`                                                                     |
+| Range figure                          | `text-4xl sm:text-5xl font-bold tracking-tight tabular-nums text-zinc-900`                               |
+| Primary colour                        | `bg-primary` (#0071bd), `text-primary-foreground`                                                        |
+| Selected choice                       | `border-primary bg-accent-light/60`, with the check icon in `text-primary`                               |
+| Error                                 | `text-sm text-destructive`, with `aria-invalid` borders from the UI kit                                  |
+| Radii                                 | card `rounded-2xl`, choices and inputs `rounded-lg`, buttons use the kit default                         |
+| Spacing rhythm                        | question title to choices `gap-6`; between choices `gap-3`; above the action bar `mt-8`                  |
 
 ### 4.3 Progress and action bar (inside the card)
 
@@ -172,11 +174,11 @@ This section was designed with the ui-skills.com skills **frontend-design** (ant
   - Next to it, right-aligned, a `text-sm text-zinc-500 tabular-nums` count: "2 of 7". **Not uppercase and not a kicker.**
   - `total` includes the contact step: show `current` of `questionnaireTotal + 1`.
 - **Bottom of card (action bar):** `flex items-center justify-between gap-3 mt-8 pt-6 border-t border-zinc-100`.
-  - Left: `QuestionnairePrevious` rendered as `<Button variant="ghost" size="lg">` with `ChevronLeft`, labelled "Back".
-  - Right: `QuestionnaireNext` or `QuestionnaireSubmit` rendered as `<Button size="lg" className={ctaPrimaryClassName}>`, labelled "Continue" with `ChevronRight`. On the last project question the label is "Continue to your details".
-  - All buttons are at least 44px tall (`size="lg"` is 40px in base-vega, so add `min-h-11`).
+  - Left: `QuestionnairePrevious` rendered as `<Button variant="ghost">` with `ChevronLeft`, labelled "Back".
+  - Right: `QuestionnaireNext` or `QuestionnaireSubmit` rendered as `<Button className={ctaPrimaryClassName}>`, labelled "Continue" with `ChevronRight`. On the last project question the label is "Continue to your details".
+  - All buttons are at least 44px tall (`min-h-11` on the default size — kit `lg` at 48px felt oversized in the card).
   - Press feedback: `enabled:active:scale-[0.96] transition-[scale] duration-150 ease-out`. Don't add it to disabled buttons.
-- **Mobile (< 640px):** the action bar becomes `sticky bottom-0 -mx-5 px-5 py-4 bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80 pb-[max(1rem,env(safe-area-inset-bottom))]` so Continue stays reachable above the keyboard. Back becomes icon plus text at `size="lg"`.
+- **Mobile (< 640px):** the action bar becomes `sticky bottom-0 -mx-5 px-5 py-4 bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80 pb-[max(1rem,env(safe-area-inset-bottom))]` so Continue stays reachable above the keyboard. Back becomes icon plus text with `min-h-11`.
 - **No Skip button.** Every enabled question is required, and conditional questions use `disabled`.
 
 ### 4.4 Motion (all gated)
@@ -188,6 +190,7 @@ This section was designed with the ui-skills.com skills **frontend-design** (ant
   ```
 
   That's 12px of rise (better-ui). Under reduced motion it's an opacity fade only. Inactive items hide instantly, as the Questionnaire handles it, so there's no exit animation.
+
 - **Choice hover:** `transition-[background-color,border-color] duration-150`. Tailwind 4's `hover:` already compiles behind `(hover: hover)`.
 - **Phase change** (questions → details → result): the incoming panel uses the same enter classes. Focus moves to the panel heading (`tabIndex={-1}`, `ref.focus()`).
 - **Result reveal:** three parts fade in 100ms apart (range block, notices, actions), using `animate-in fade-in-0 slide-in-from-bottom-3 duration-300 ease-out` with `style={{animationDelay: '0ms' | '100ms' | '200ms'}}` and `fill-mode-both`.
@@ -210,34 +213,35 @@ result: EstimateSuccess | null
 
 **Phase A, "project"**, uses one `<Questionnaire>`. `item` and `onItemChange` are controlled, and so is every `Choice` (`checked`/`onChange`) and `Input` (`value`/`onChange`). Item order and the conditions that enable each item:
 
-| # | Item `name` | Enabled when | Type | Title (exact) | Description (exact) | Answers / validation | Maps to request |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | `services` | always | multiple (checkbox) | What would you like a ballpark estimate for? | Pick everything you're considering. You can change this later. | At least one of the 7 choices below | `project.services[]` |
-| 2 | `fence_length` | fence | number input, suffix "ft" | About how many feet of fence? | Measure along the fence line. Your property survey or a quick pace count works—round numbers are fine. | Integer 10–5000 | `fence.linearFeet` |
-| 3 | `fence_height` | fence | single | How tall is the fence? | Pick the closest height. | `6` "6 ft", `8` "8 ft" | `fence.height` |
-| 4 | `deck_sqft` | deck | number input, suffix "sq ft", plus a length × width helper | About how many square feet is the deck? | Length × width is close enough. Railings and stairs are included. | Integer 20–5000 | `deck.sqft` |
-| 5 | `pergola_sqft` | pergola | number input, suffix "sq ft", plus the helper | How big is the area under the patio cover or pergola? | Measure the ground beneath it, length × width. | Integer 20–3000 | `pergola.sqft` |
-| 6 | `garage_single` | garage | single | How many single-car garage doors? | | `0` "None", `1`, `2`, `3` | `garage.single` |
-| 7 | `garage_double` | garage | single | How many double-car garage doors? | | `0` "None", `1`, `2`. Cross-check: single + double ≥ 1, error "Choose at least one garage door." | `garage.double` |
-| 8 | `door_count` | front_door | single | How many entry doors? | | `1` "One door", `2` "Two doors, or a double door" | `frontDoor.count` |
-| 9 | `door_sides` | front_door | single | Which sides should we refinish? | | `one` "Outside only", `both` "Inside and outside" | `frontDoor.sides` |
-| 10 | `shutters_first` | shutters | number input, suffix "pairs" | How many pairs of shutters on the first floor? | One pair covers one window. Enter 0 if none. | Integer 0–50 | `shutters.firstFloorPairs` |
-| 11 | `shutters_second` | shutters | number input, suffix "pairs" | And on the second floor? | Enter 0 if your home is single-story. | Integer 0–50. Cross-check: first + second ≥ 1, error "Add at least one pair of shutters." | `shutters.secondFloorPairs` |
-| 12 | `trim_home_sqft` | house_trim | number input, suffix "sq ft" | About how many square feet is your home? | Your appraisal district listing has it. Living area is fine. | Integer 500–15000 | `houseTrim.homeSqft` |
+| #   | Item `name`       | Enabled when | Type                                                       | Title (exact)                                         | Description (exact)                                                                                    | Answers / validation                                                                             | Maps to request             |
+| --- | ----------------- | ------------ | ---------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | --------------------------- |
+| 1   | `services`        | always       | multiple (checkbox)                                        | What would you like a ballpark estimate for?          | Pick everything you're considering. You can change this later.                                         | At least one of the 7 choices below                                                              | `project.services[]`        |
+| 2   | `fence_length`    | fence        | number input, suffix "ft"                                  | About how many feet of fence?                         | Measure along the fence line. Your property survey or a quick pace count works—round numbers are fine. | Integer 10–5000                                                                                  | `fence.linearFeet`          |
+| 3   | `fence_height`    | fence        | single                                                     | How tall is the fence?                                | Pick the closest height.                                                                               | `6` "6 ft", `8` "8 ft"                                                                           | `fence.height`              |
+| 4   | `deck_sqft`       | deck         | number input, suffix "sq ft", plus a length × width helper | About how many square feet is the deck?               | Length × width is close enough. Railings and stairs are included.                                      | Integer 20–5000                                                                                  | `deck.sqft`                 |
+| 5   | `pergola_sqft`    | pergola      | number input, suffix "sq ft", plus the helper              | How big is the area under the patio cover or pergola? | Measure the ground beneath it, length × width.                                                         | Integer 20–3000                                                                                  | `pergola.sqft`              |
+| 6   | `garage_single`   | garage       | single                                                     | How many single-car garage doors?                     |                                                                                                        | `0` "None", `1`, `2`, `3`                                                                        | `garage.single`             |
+| 7   | `garage_double`   | garage       | single                                                     | How many double-car garage doors?                     |                                                                                                        | `0` "None", `1`, `2`. Cross-check: single + double ≥ 1, error "Choose at least one garage door." | `garage.double`             |
+| 8   | `door_count`      | front_door   | single                                                     | How many entry doors?                                 |                                                                                                        | `1` "One door", `2` "Two doors, or a double door"                                                | `frontDoor.count`           |
+| 9   | `door_sides`      | front_door   | single                                                     | Which sides should we refinish?                       |                                                                                                        | `one` "Outside only", `both` "Inside and outside"                                                | `frontDoor.sides`           |
+| 10  | `shutters_first`  | shutters     | number input, suffix "pairs"                               | How many pairs of shutters on the first floor?        | One pair covers one window. Enter 0 if none.                                                           | Integer 0–50                                                                                     | `shutters.firstFloorPairs`  |
+| 11  | `shutters_second` | shutters     | number input, suffix "pairs"                               | And on the second floor?                              | Enter 0 if your home is single-story.                                                                  | Integer 0–50. Cross-check: first + second ≥ 1, error "Add at least one pair of shutters."        | `shutters.secondFloorPairs` |
+| 12  | `trim_home_sqft`  | house_trim   | number input, suffix "sq ft"                               | About how many square feet is your home?              | Your appraisal district listing has it. Living area is fine.                                           | Integer 500–15000                                                                                | `houseTrim.homeSqft`        |
 
 **Service choices** (item 1). Each is a full-width card choice with a lucide icon at 20px, a label, and a hint:
 
-| value | Label | Hint | Icon |
-| --- | --- | --- | --- |
-| `fence` | Fence staining | Wood privacy or picket fence | `Fence` |
-| `deck` | Deck staining | Decking, railings and stairs | `Layers` |
-| `pergola` | Patio cover or pergola | Stained wood overhead structures | `Tent` |
-| `garage` | Garage doors | Single or double doors | `Warehouse` |
-| `front_door` | Front door | Entry doors, one or both sides | `DoorOpen` |
-| `shutters` | Shutters | Counted by window pair | `PanelsLeftRight` |
-| `house_trim` | House trim | Based on your home's size | `Home` |
+| value        | Label                  | Hint                             | Icon              |
+| ------------ | ---------------------- | -------------------------------- | ----------------- |
+| `fence`      | Fence staining         | Wood privacy or picket fence     | `Fence`           |
+| `deck`       | Deck staining          | Decking, railings and stairs     | `Layers`          |
+| `pergola`    | Patio cover or pergola | Stained wood overhead structures | `Tent`            |
+| `garage`     | Garage doors           | Single or double doors           | `Warehouse`       |
+| `front_door` | Front door             | Entry doors, one or both sides   | `DoorOpen`        |
+| `shutters`   | Shutters               | Counted by window pair           | `PanelsLeftRight` |
+| `house_trim` | House trim             | Based on your home's size        | `Home`            |
 
 **Choice styling** (styled `QuestionnaireChoice`, overriding its className):
+
 - Base: `min-h-14 w-full rounded-lg border border-zinc-200 bg-white px-4 py-3 flex items-center gap-3 text-left cursor-pointer transition-[background-color,border-color] duration-150 hover:bg-zinc-50`
 - Checked: `data-checked:border-primary data-checked:bg-accent-light/60`
 - Invalid: `data-invalid:border-destructive`
@@ -246,6 +250,7 @@ result: EstimateSuccess | null
 - Don't render `ChoiceShortcut` (no keyboard-shortcut badges; they look like developer UI to homeowners).
 
 **Number answers** (`numeric-answer.tsx`):
+
 - Use `QuestionnaireInput` with `render` set to the kit `Input`, `type="text"`, `inputMode="numeric"`, `pattern="[0-9]*"`, `autoComplete="off"`, `enterKeyHint="next"`. Classes `h-14 text-lg tabular-nums pr-16`.
 - The unit suffix is absolutely positioned on the right, `text-zinc-500`, and `aria-hidden`. The input's `aria-label` repeats the unit, for example "Fence length in feet".
 - Strip non-digits on change and cap at 5 digits.
@@ -253,6 +258,7 @@ result: EstimateSuccess | null
 - Below it: `Questionnaire.Error` showing the zod message.
 
 **Validation** (`src/lib/ballpark.ts` exports `projectStepSchemas`, one zod schema per item):
+
 - Wire `onItemChange(next)` like this. If `next` is later than the current item, run the current item's schema. On failure, set `errors[item]`, pass `invalid` to the item, and **don't** call `setItem`. On success, clear the error and set `item = next`.
 - When `services` changes, set `disabled` on the dependent items. Answers for deselected services stay in state (so re-selecting restores them) but are left out of the request.
 - Error copy:
@@ -269,13 +275,13 @@ result: EstimateSuccess | null
 - Sub: "Your ballpark range appears on the next screen. A Castle Hills team member may follow up to answer questions—no obligation."
 - Fields, in a `grid gap-4 sm:grid-cols-2`. Labels come from the kit `FormLabel`, and every field has a visible label:
 
-| Field | Label | Input | Validation (client and server, same zod) |
-| --- | --- | --- | --- |
-| `name` | Full name | text, `autoComplete="name"` | trim, 2–80 chars: "Enter your name." |
-| `email` | Email | email, `autoComplete="email"`, `inputMode="email"` | `z.email()`, ≤ 254: "Enter a valid email." |
-| `phone` | Phone | tel, `autoComplete="tel"`, `inputMode="tel"`, placeholder "(214) 555-0123" | libphonenumber `isValidPhoneNumber(v,"US")`, sent as E.164: "Enter a valid US phone number." |
-| `zip` | ZIP code | text, `autoComplete="postal-code"`, `inputMode="numeric"`, maxLength 5 | `/^\d{5}$/`: "Enter a 5-digit ZIP code." |
-| `notes` (spans both columns) | Anything else we should know? (optional) | Textarea, 3 rows | ≤ 1000 chars |
+| Field                        | Label                                    | Input                                                                      | Validation (client and server, same zod)                                                     |
+| ---------------------------- | ---------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `name`                       | Full name                                | text, `autoComplete="name"`                                                | trim, 2–80 chars: "Enter your name."                                                         |
+| `email`                      | Email                                    | email, `autoComplete="email"`, `inputMode="email"`                         | `z.email()`, ≤ 254: "Enter a valid email."                                                   |
+| `phone`                      | Phone                                    | tel, `autoComplete="tel"`, `inputMode="tel"`, placeholder "(214) 555-0123" | libphonenumber `isValidPhoneNumber(v,"US")`, sent as E.164: "Enter a valid US phone number." |
+| `zip`                        | ZIP code                                 | text, `autoComplete="postal-code"`, `inputMode="numeric"`, maxLength 5     | `/^\d{5}$/`: "Enter a 5-digit ZIP code."                                                     |
+| `notes` (spans both columns) | Anything else we should know? (optional) | Textarea, 3 rows                                                           | ≤ 1000 chars                                                                                 |
 
 - A hidden honeypot: `<input name="website" tabIndex={-1} autoComplete="off" className="sr-only" aria-hidden>`.
 - `TurnstileField action={TURNSTILE_ACTIONS.ballparkEstimate}`. It's mounted **at estimator level** (outside the phase switch) so a fresh token exists for re-submits. Show the hint under it exactly like `contact-form.tsx` does.
@@ -308,14 +314,15 @@ result: EstimateSuccess | null
 - A range is always returned: every service, including house trim, is priced (decision 4), so there's no "no range" variant.
 
 **Phase "error"** (non-200 response, network failure, or 503 `pricing_unavailable`):
+
 - Inline `Alert variant="destructive"` above the action bar. The form stays filled.
 
-| Response | Message |
-| --- | --- |
-| 403 | "We couldn't verify this request. Please try again." (the Turnstile widget is reset) |
-| 429 | "Too many tries in a short time. Please wait a minute and try again." |
-| 400 | Map `fieldErrors` back onto the fields and return to the relevant step |
-| 503 / 500 / network | "Something went wrong on our end. Call {PHONE_DISPLAY} and we'll help right away." |
+| Response            | Message                                                                              |
+| ------------------- | ------------------------------------------------------------------------------------ |
+| 403                 | "We couldn't verify this request. Please try again." (the Turnstile widget is reset) |
+| 429                 | "Too many tries in a short time. Please wait a minute and try again."                |
+| 400                 | Map `fieldErrors` back onto the fields and return to the relevant step               |
+| 503 / 500 / network | "Something went wrong on our end. Call {PHONE_DISPLAY} and we'll help right away."   |
 
 ### 4.6 Draft persistence
 
@@ -350,25 +357,25 @@ The schema is shared in `src/lib/ballpark.ts` (client-safe: service IDs, limits 
 type ServiceId = "fence" | "deck" | "pergola" | "garage" | "front_door" | "shutters" | "house_trim";
 
 type EstimateRequest = {
-  turnstileToken: string;                 // 1–2048 chars
-  leadId: string;                         // uuid v4, client-generated; same id on re-submit
-  website?: "";                           // honeypot: must be empty/absent
+  turnstileToken: string; // 1–2048 chars
+  leadId: string; // uuid v4, client-generated; same id on re-submit
+  website?: ""; // honeypot: must be empty/absent
   contact: {
-    name: string;                         // 2–80
-    email: string;                        // RFC email, ≤254
-    phone: string;                        // valid US; server normalises to E.164
-    zip: string;                          // /^\d{5}$/
-    notes?: string;                       // ≤1000
+    name: string; // 2–80
+    email: string; // RFC email, ≤254
+    phone: string; // valid US; server normalises to E.164
+    zip: string; // /^\d{5}$/
+    notes?: string; // ≤1000
   };
   project: {
-    services: ServiceId[];                // 1–7, unique
-    fence?:     { linearFeet: number; height: "6" | "8" };   // linearFeet int 10–5000
-    deck?:      { sqft: number };         // int 20–5000
-    pergola?:   { sqft: number };         // int 20–3000
-    garage?:    { single: 0|1|2|3; double: 0|1|2 };         // sum ≥ 1
-    frontDoor?: { count: 1|2; sides: "one" | "both" };
-    shutters?:  { firstFloorPairs: number; secondFloorPairs: number }; // ints 0–50, sum ≥ 1
-    houseTrim?: { homeSqft: number };     // int 500–15000
+    services: ServiceId[]; // 1–7, unique
+    fence?: { linearFeet: number; height: "6" | "8" }; // linearFeet int 10–5000
+    deck?: { sqft: number }; // int 20–5000
+    pergola?: { sqft: number }; // int 20–3000
+    garage?: { single: 0 | 1 | 2 | 3; double: 0 | 1 | 2 }; // sum ≥ 1
+    frontDoor?: { count: 1 | 2; sides: "one" | "both" };
+    shutters?: { firstFloorPairs: number; secondFloorPairs: number }; // ints 0–50, sum ≥ 1
+    houseTrim?: { homeSqft: number }; // int 500–15000
   };
 };
 ```
@@ -380,14 +387,14 @@ The schema uses `z.strictObject` everywhere (unknown keys are rejected). A `supe
 ```ts
 type EstimateSuccess = {
   status: "ok";
-  estimateId: string;                     // echoes leadId
-  range: { low: number; high: number; currency: "USD" };       // always present
+  estimateId: string; // echoes leadId
+  range: { low: number; high: number; currency: "USD" }; // always present
   notices: Array<{
-    code: "bundle_discount" | "project_minimum" | "trim_in_person";  // bundle_discount always included
-    message: string;                      // server-built customer copy
-    suggestedService?: ServiceId;         // project_minimum only
+    code: "bundle_discount" | "project_minimum" | "trim_in_person"; // bundle_discount always included
+    message: string; // server-built customer copy
+    suggestedService?: ServiceId; // project_minimum only
   }>;
-  disclaimer: string;                     // BALLPARK_DISCLAIMER
+  disclaimer: string; // BALLPARK_DISCLAIMER
 };
 ```
 
@@ -397,17 +404,17 @@ type EstimateSuccess = {
 
 All errors carry `Cache-Control: no-store` and `Content-Type: application/json`.
 
-| Status | Body | When |
-| --- | --- | --- |
-| 400 | `{ error: "invalid_json" }` | Body doesn't parse |
-| 400 | `{ error: "invalid_request", fieldErrors: Record<string,string> }` | zod failure (dot-paths, e.g. `"project.fence.linearFeet"`) |
-| 400 | `{ error: "invalid_request" }` | Honeypot filled (no detail; logged as `bot_honeypot`) |
-| 403 | `{ error: "forbidden", codes?: string[] }` | Existing `gateTurnstile` result |
-| 405 | `{ error: "method_not_allowed" }` | Non-POST (existing) |
-| 413 | `{ error: "payload_too_large" }` | > 8 KB (`hono/body-limit`) |
-| 429 | `{ error: "rate_limited" }` with `Retry-After: 60` | Rate limiter |
-| 503 | `{ error: "pricing_unavailable" }` | `BALLPARK_PRICING_JSON` missing or invalid |
-| 500 | `{ error: "internal_error" }` | Uncaught (logged) |
+| Status | Body                                                               | When                                                       |
+| ------ | ------------------------------------------------------------------ | ---------------------------------------------------------- |
+| 400    | `{ error: "invalid_json" }`                                        | Body doesn't parse                                         |
+| 400    | `{ error: "invalid_request", fieldErrors: Record<string,string> }` | zod failure (dot-paths, e.g. `"project.fence.linearFeet"`) |
+| 400    | `{ error: "invalid_request" }`                                     | Honeypot filled (no detail; logged as `bot_honeypot`)      |
+| 403    | `{ error: "forbidden", codes?: string[] }`                         | Existing `gateTurnstile` result                            |
+| 405    | `{ error: "method_not_allowed" }`                                  | Non-POST (existing)                                        |
+| 413    | `{ error: "payload_too_large" }`                                   | > 8 KB (`hono/body-limit`)                                 |
+| 429    | `{ error: "rate_limited" }` with `Retry-After: 60`                 | Rate limiter                                               |
+| 503    | `{ error: "pricing_unavailable" }`                                 | `BALLPARK_PRICING_JSON` missing or invalid                 |
+| 500    | `{ error: "internal_error" }`                                      | Uncaught (logged)                                          |
 
 ### Handler order (in `handleEstimateRequest`)
 
@@ -430,7 +437,8 @@ All errors carry `Cache-Control: no-store` and `Content-Type: application/json`.
   "ratelimits": [{ "name": "ESTIMATE_LIMITER", "namespace_id": "1101", "simple": { "limit": 5, "period": 60 } }]
   ```
 
-  Call it with `await env.ESTIMATE_LIMITER.limit({ key: \`estimate:${ip}\` })`. If the binding is absent (unit tests, plain `vp dev` without the binding), skip the check with a `console.warn`.
+  Call it with `await env.ESTIMATE_LIMITER.limit({ key: \`estimate:${ip}\` })`. If the binding is absent (unit tests, plain `vp dev`without the binding), skip the check with a`console.warn`.
+
 - Turnstile is single-use and checked against the action and hostname (existing).
 - 8 KB body cap. Strict schema and integer caps stop "price oracle" payloads with huge numbers.
 - Honeypot.
@@ -448,7 +456,7 @@ This shape is validated by `pricingConfigSchema` in `src/server/ballpark/pricing
 ```jsonc
 {
   "version": 1,
-  "fencePerSqft": 0,              // from rules; one face, no "both sides" in v1
+  "fencePerSqft": 0, // from rules; one face, no "both sides" in v1
   "deckPerSqft": 0,
   "pergolaPerSqft": 0,
   "garageSingleEach": 0,
@@ -457,21 +465,16 @@ This shape is validated by `pricingConfigSchema` in `src/server/ballpark/pricing
   "frontDoorBothSidesEach": 0,
   "shutterFirstFloorPair": 0,
   "shutterSecondFloorPair": 0,
-  "houseTrimPerHomeSqft": 0,      // PLACEHOLDER until Ryan confirms (decision 4)
-  "houseTrimRateIsPlaceholder": true,
   "projectMinimum": 0,
-  "bundleDiscountPercent": 0,     // used in notice copy only, never applied to the range
-  "rangeLowFactor": 0,            // decision 1
-  "rangeHighFactor": 0,
-  "roundTo": 0
+  "bundleDiscountPercent": 0, // used in notice copy only, never applied to the range
+  "rangeLowFactor": 0.9, // multipliers around the subtotal; must bracket 1.0 (not 0.1 / 0.15)
+  "rangeHighFactor": 1.15,
+  "roundTo": 0,
 }
 ```
 
 - For local dev, `.dev.vars` (gitignored by `.dev.vars*`) holds `BALLPARK_PRICING_JSON='{"version":1,...}'`. `.env.example` documents the key name only.
-- **House trim placeholder:** whoever sets the preview secret picks a clearly temporary `houseTrimPerHomeSqft` and sets `houseTrimRateIsPlaceholder: true`. Ryan replaces it with `wrangler secret put` once he confirms the rate, and sets the flag to `false`. No code change is needed. While the flag is `true`:
-  - the lead email marks the trim line "PLACEHOLDER RATE"
-  - the server logs a `console.warn` once per isolate
-  - the customer sees nothing different
+- **House trim** is not part of `BALLPARK_PRICING_JSON`. Preview/production secrets must omit `houseTrimPerHomeSqft` / `houseTrimRateIsPlaceholder` (strict schema).
 
 ### `computeBallpark(project, cfg)`
 
@@ -499,8 +502,9 @@ Then:
 
 `src/server/ballpark/notices.server.ts`, using `Intl.NumberFormat` for the dollar amount. `PHONE_DISPLAY` is imported from `src/lib/site.ts`; that import is fine on the server.
 
-- **bundle_discount**, when one service is selected: "Save {pct}% when you bundle more than one service. Call {PHONE_DISPLAY} to schedule and ask about our bundling discount."
-- **bundle_discount**, when two or more services are selected: "You picked more than one service—call {PHONE_DISPLAY} to schedule and ask about our {pct}% bundling discount."
+- **bundle_discount**, when one service is selected: "Did you know we offer bundle discounts? Save {pct}% when you bundle more than one service—call and mention it to qualify."
+- **bundle_discount**, when two or more services are selected: "Did you know we offer bundle discounts? Call and mention our {pct}% bundling discount to qualify."
+- `{pct}` comes from `bundleDiscountPercent`; values in `(0, 1)` are treated as fractions (e.g. `0.1` → `10`) so the UI never shows `0.1%`.
 - **project_minimum:** "We have a {min} project minimum—have you thought about having your {phrase}?" The phrase depends on `suggestedService`:
   - fence: "fence restained"
   - deck: "deck restained"
@@ -508,11 +512,13 @@ Then:
   - pergola: "pergola restained"
 
   With no suggestion: "We have a {min} project minimum. Call us and we'll help you round out the project."
+
 - **trim_in_person:** "Your house trim number is a starting point—we'll confirm it at a free in-person visit. Call {PHONE_DISPLAY} to schedule."
 
 ### Lead email
 
 Extend `LeadPayload` with `details?: string[]` and `subjectSuffix?: string`. The body includes:
+
 - Contact, ZIP and notes
 - `leadId`
 - Each service's inputs and its **internal** line subtotal
@@ -539,6 +545,7 @@ Subject: `[ballpark-estimate] Lead — {name} — {range or "in-person"}`. Drop 
 ## 7. File-by-file changes
 
 **New**
+
 - `src/components/ui/questionnaire.tsx`, `dialog.tsx`, `alert.tsx`, `spinner.tsx`: generated by the shadcn CLI (base-vega). Don't hand-edit beyond formatting.
 - `src/components/ballpark/ballpark-estimator.tsx`: state machine, Turnstile mount, `submit()`, error mapping, live region.
 - `src/components/ballpark/project-questionnaire.tsx`: Phase A (items from `questions.ts`, controlled navigation, per-item zod).
@@ -560,6 +567,7 @@ Subject: `[ballpark-estimate] Lead — {name} — {range or "in-person"}`. Drop 
 - Tests: `src/lib/ballpark.test.ts`, `src/server/ballpark/compute.server.test.ts`, `src/server/estimate.test.ts`.
 
 **Modified**
+
 - `src/lib/ballpark.ts`: add `SERVICE_IDS`, `SERVICE_LABELS`, `LIMITS`, `contactSchema`, `projectSchema`, `estimateRequestSchema`, `projectStepSchemas`, and the response types. Keep `BALLPARK_DISCLAIMER`.
 - `src/server/estimate.ts`: rewrite per section 5. Env type = `LeadEmailEnv & TurnstileGateEnv & { BALLPARK_PRICING_JSON?: string; ESTIMATE_LIMITER?: RateLimit }`.
 - `src/server.ts`:
@@ -580,6 +588,7 @@ Subject: `[ballpark-estimate] Lead — {name} — {range or "in-person"}`. Drop 
 - `CHANGELOG.md`: an entry.
 
 **Deleted**
+
 - `cloudflare/functions/api/v1/estimate.ts`, the dead Pages Functions stub. Remove the now-empty `cloudflare/` directory if nothing else is in it.
 
 **Never committed:** the pricing rules file and any real rate values.
@@ -619,10 +628,12 @@ Subject: `[ballpark-estimate] Lead — {name} — {range or "in-person"}`. Drop 
   - a mail failure still returns 200
 
 **Build checks**
+
 - `pnpm types`, `pnpm vp lint`, `pnpm vp fmt --check`, `pnpm build`, `pnpm run check:pricing-leak`.
 - Manually: `grep -r "fencePerSqft\|computeBallpark" dist/client` returns nothing.
 
 **Manual and preview tests** (on the `cf-preview` Worker with the secret set)
+
 1. Fence only, 150 ft, 6 ft, inside only. The range shows after the contact step, and the lead email arrives with the breakdown.
 2. A small shutters-only job → the minimum dialog → "Add fence staining" → jumps to the fence questions with contact kept → re-submit (new Turnstile token) → updated range, and a second email with the same `leadId`.
 3. Fence and deck → the multi-service bundle notice with the phone number. Fence alone → the single-service bundle notice.
@@ -642,6 +653,7 @@ Subject: `[ballpark-estimate] Lead — {name} — {range or "in-person"}`. Drop 
 ## 9. Phased tasks
 
 **Phase 1: server foundation** (no UI change; can merge on its own)
+
 1. Shared schemas and types in `src/lib/ballpark.ts`.
 2. `pricing-config.server.ts`, `compute.server.ts`, `notices.server.ts`, `public-result.ts` and `lead-summary.server.ts`, with unit tests.
 3. Rewrite `handleEstimateRequest`. Changes to `server.ts`: body limit, rate limiter, `no-store`, try/catch.
@@ -650,6 +662,7 @@ Subject: `[ballpark-estimate] Lead — {name} — {range or "in-person"}`. Drop 
 6. Ask Ryan or the coordinator to run `wrangler secret put BALLPARK_PRICING_JSON` for the preview Worker, using values from the rules file, the approved range factors and rounding step, and a placeholder house-trim rate with `houseTrimRateIsPlaceholder: true`.
 
 **Phase 2: estimator UI**
+
 1. `shadcn add questionnaire dialog alert spinner`, then format and run type checks.
 2. `questions.ts`, `service-choice.tsx`, `numeric-answer.tsx`, `progress-bar.tsx`, `project-questionnaire.tsx`.
 3. `contact-step.tsx`, then `ballpark-estimator.tsx` (state machine, Turnstile, submit, errors, draft persistence).
@@ -657,6 +670,7 @@ Subject: `[ballpark-estimate] Lead — {name} — {range or "in-person"}`. Drop 
 5. Replace `src/pages/ballpark-estimate.tsx` and update the route meta.
 
 **Phase 3: entry points and polish**
+
 1. Make the estimator the default CTA: the navbar primary button (desktop and drawer), the `PAGES` Contact link, `serviceDesc` default, choose-us, expertise, wood-staining pages, the footer, and the contact-page line. The painting pages keep contact.
 2. Privacy copy.
 3. better-ui "Before you finish" checklist pass: no `transition-all`, press scale 0.96 excluded on disabled buttons, reduced-motion gates, touch targets, `text-balance`/`text-pretty`, `tabular-nums`.

@@ -86,9 +86,9 @@ export default function Navbar() {
                   <div key={group.id}>
                     {index > 0 ? <DropdownMenuSeparator className="my-2" /> : null}
                     <DropdownMenuGroup>
-                    <DropdownMenuLabel className="px-2 py-1.5 text-sm font-semibold text-zinc-900">
-                      {group.title}
-                    </DropdownMenuLabel>
+                      <DropdownMenuLabel className="px-2 py-1.5 text-sm font-semibold text-zinc-900">
+                        {group.title}
+                      </DropdownMenuLabel>
                       <DropdownMenuItem render={<Link to={group.href} />}>
                         All {group.title}
                       </DropdownMenuItem>
@@ -108,10 +108,10 @@ export default function Navbar() {
             <Button
               size="lg"
               className={ctaPrimaryClassName}
-              render={<Link to="/contact-us" />}
+              render={<Link to="/ballpark-estimate" />}
               nativeButton={false}
             >
-              Get a Free Estimate <MoveRight className="ml-2" strokeWidth={1.5} />
+              Get a Ballpark Estimate <MoveRight className="ml-2" strokeWidth={1.5} />
             </Button>
           </div>
 
@@ -137,6 +137,9 @@ export default function Navbar() {
                   <MobileNavLink to="/our-expertise" onNavigate={closeMenu}>
                     Our Expertise
                   </MobileNavLink>
+                  <MobileNavLink to="/contact-us" onNavigate={closeMenu}>
+                    Contact
+                  </MobileNavLink>
 
                   <div className="pt-1">
                     <ServiceNavPrototype onNavigate={closeMenu} />
@@ -148,14 +151,14 @@ export default function Navbar() {
                   size="lg"
                   render={
                     <Link
-                      to="/contact-us"
+                      to="/ballpark-estimate"
                       className="flex w-full items-center justify-center gap-2"
                       onClick={closeMenu}
                     />
                   }
                   nativeButton={false}
                 >
-                  Get a Free Estimate
+                  Get a Ballpark Estimate
                   <MoveRight className="size-5" strokeWidth={1.5} />
                 </Button>
 

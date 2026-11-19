@@ -14,7 +14,7 @@ interface ServiceDescProps {
 }
 
 export default function ServiceDesc(props: ServiceDescProps) {
-  const estimateHref = props.estimateHref ?? "/contact-us";
+  const estimateHref = props.estimateHref ?? "/ballpark-estimate";
 
   return (
     <article
@@ -46,7 +46,7 @@ export default function ServiceDesc(props: ServiceDescProps) {
           render={<Link to={estimateHref} />}
           nativeButton={false}
         >
-          Request a Free Estimate
+          {estimateHref === "/contact-us" ? "Request a Free Estimate" : "Get a Ballpark Estimate"}
         </Button>
       </section>
     </article>

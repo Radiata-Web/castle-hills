@@ -46,6 +46,14 @@ export default function Footer() {
                   </li>
                   <li>
                     <Link
+                      to="/ballpark-estimate"
+                      className="text-sm text-muted-foreground hover:text-primary hover:underline"
+                    >
+                      Ballpark estimate
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
                       to="/contact-us"
                       className="text-sm text-muted-foreground hover:text-primary hover:underline"
                     >
@@ -112,9 +120,8 @@ export default function Footer() {
 
         <div className="text-center">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Castle Hills Stain and Restoration LLC
-            D.B.A. Castle Hills Painting.{" "}
-            <br className="sm:hidden" /> Website by{" "}
+            &copy; {new Date().getFullYear()} Castle Hills Stain and Restoration LLC D.B.A. Castle
+            Hills Painting. <br className="sm:hidden" /> Website by{" "}
             <a
               href="https://radiataweb.com"
               target="_blank"

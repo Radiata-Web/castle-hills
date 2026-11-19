@@ -3,12 +3,12 @@
 Long-lived **preview-only** branch. Netlify remains production (`main` / `develop`).  
 Do **not** merge `cf-preview` into `develop` or `main` until Ryan authorizes the hosting cutover.
 
-| Item | Value |
-|------|--------|
-| Branch | `cf-preview` |
-| Worker name | `castle-hills-preview` |
+| Item                 | Value                                                                                                |
+| -------------------- | ---------------------------------------------------------------------------------------------------- |
+| Branch               | `cf-preview`                                                                                         |
+| Worker name          | `castle-hills-preview`                                                                               |
 | Expected durable URL | `https://castle-hills-preview.<your-account-subdomain>.workers.dev` after Ryan connects account auth |
-| Custom domain | **None** (keep production on Netlify) |
+| Custom domain        | **None** (keep production on Netlify)                                                                |
 
 **Forbidden:** Never use `wrangler deploy --temporary` (or any anonymous/public sandbox account). Preview deploys must use Ryan’s Cloudflare account only.
 

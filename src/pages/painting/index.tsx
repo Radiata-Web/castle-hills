@@ -28,6 +28,7 @@ export default function PaintingHubPage() {
           imageAlt="Offwhite painted ceiling with grid of gray painted extruded ceiling accent pieces"
           header="Interior Painting"
           content="Fresh interior paint changes how every room feels. We protect floors and furniture, repair minor wall imperfections, and apply consistent coats so corners, trim, and ceilings read sharp."
+          estimateHref="/contact-us"
         />
         <ServiceDesc
           imagePosition="right"
@@ -35,6 +36,7 @@ export default function PaintingHubPage() {
           imageAlt="Exterior of a home with professional paint finish"
           header="Exterior Painting"
           content="Exterior paint is your first defense against heat, wind, and moisture. We prep siding and trim properly, use quality coatings suited to the substrate, and pay attention to caulk lines and cut-ins."
+          estimateHref="/contact-us"
         />
       </section>
 

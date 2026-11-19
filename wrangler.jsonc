@@ -40,6 +40,14 @@
       "name": "LEAD_EMAIL",
     },
   ],
+  // BALLPARK_PRICING_JSON is a Worker secret (wrangler secret put) — never commit rates.
+  "ratelimits": [
+    {
+      "name": "ESTIMATE_LIMITER",
+      "namespace_id": "1101",
+      "simple": { "limit": 5, "period": 60 },
+    },
+  ],
   "previews": {
     "vars": {
       "LEAD_TO_EMAIL": "ryandeyp@gmail.com",
@@ -50,6 +58,13 @@
     "send_email": [
       {
         "name": "LEAD_EMAIL",
+      },
+    ],
+    "ratelimits": [
+      {
+        "name": "ESTIMATE_LIMITER",
+        "namespace_id": "1101",
+        "simple": { "limit": 5, "period": 60 },
       },
     ],
     "observability": {

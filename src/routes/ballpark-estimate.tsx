@@ -8,7 +8,7 @@ export const Route = createFileRoute("/ballpark-estimate")({
       pathname: "/ballpark-estimate",
       title: "Ballpark Estimate | Castle Hills Stain & Restoration",
       description:
-        "Request a non-binding ballpark estimate for painting and wood staining in the Dallas–Fort Worth area. Not a quote—final pricing requires a consultation.",
+        "Get a free ballpark estimate for fence, deck, pergola, door and shutter staining in Dallas–Fort Worth in about two minutes. Not a quote—final pricing follows a free in-person visit.",
     }),
   component: BallparkEstimatePage,
 });

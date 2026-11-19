@@ -68,10 +68,10 @@ export default function Expertise() {
               variant="outline"
               size="lg"
               className={ctaPrimaryClassName}
-              render={<Link to="/contact-us" />}
+              render={<Link to="/ballpark-estimate" />}
               nativeButton={false}
             >
-              Get a Free Estimate
+              Get a Ballpark Estimate
               <MoveRight className="ml-2 size-5" strokeWidth={1.5} />
             </Button>
           </div>

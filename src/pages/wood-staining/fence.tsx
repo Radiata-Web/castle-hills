@@ -49,10 +49,10 @@ export default function FenceStainingPage() {
         <Button
           size="lg"
           className={cn(ctaPrimaryClassName, "mt-5 sm:mt-6")}
-          render={<Link to="/contact-us" />}
+          render={<Link to="/ballpark-estimate" />}
           nativeButton={false}
         >
-          Request a Free Estimate
+          Get a Ballpark Estimate
         </Button>
       </section>
 

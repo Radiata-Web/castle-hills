@@ -8,7 +8,7 @@
     "build": "vp build",
     "preview": "vp preview",
     "deploy": "pnpm run build && wrangler deploy",
-    "deploy:preview": "pnpm run build && wrangler versions upload --preview-alias ballpark --keep-vars --message preview-upload",
+    "deploy:preview": "pnpm run build && wrangler versions upload --preview-alias ballpark --keep-vars --message preview-upload && wrangler versions deploy --yes",
     "cf-typegen": "wrangler types",
     "types": "tsc --noEmit",
     "test": "vp test",

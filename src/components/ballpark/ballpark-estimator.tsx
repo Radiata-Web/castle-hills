@@ -47,6 +47,11 @@ export function BallparkEstimator() {
   const [turnstileReset, setTurnstileReset] = useState(0);
   const [turnstileHint, setTurnstileHint] = useState<string | null>(null);
   const [minimumOpen, setMinimumOpen] = useState(false);
+  /** Keep contact + Turnstile mounted after first visit so tokens survive phase changes. */
+  const [contactMounted, setContactMounted] = useState(false);
+  if ((phase === "contact" || phase === "submitting") && !contactMounted) {
+    setContactMounted(true);
+  }
 
   const cardRef = useRef<HTMLElement>(null);
   const contactHeadingSynced = useRef(false);
@@ -216,24 +221,6 @@ export function BallparkEstimator() {
           aria-label="Ballpark estimate questions"
           className="rounded-2xl bg-card border border-transparent shadow-[0_1px_2px_oklch(0_0_0/0.06),0_8px_24px_-8px_oklch(0_0_0/0.12)] p-5 sm:p-8"
         >
-          {/* Turnstile stays mounted so tokens survive phase changes / re-submits */}
-          <div className={phase === "contact" || phase === "submitting" ? "mb-4" : "hidden"}>
-            <TurnstileField
-              action={TURNSTILE_ACTIONS.ballparkEstimate}
-              resetSignal={turnstileReset}
-              onToken={(token) => {
-                setTurnstileToken(token);
-                if (token) setTurnstileHint(null);
-              }}
-              onWidgetError={setTurnstileHint}
-            />
-            {turnstileHint ? (
-              <p className="mt-3 text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-3 py-2">
-                {turnstileHint}
-              </p>
-            ) : null}
-          </div>
-
           {phase === "project" ? (
             <ProjectQuestionnaire
               draft={draft}
@@ -246,8 +233,13 @@ export function BallparkEstimator() {
             />
           ) : null}
 
-          {phase === "contact" || phase === "submitting" ? (
-            <div className="space-y-4">
+          {/* Contact + Turnstile stay mounted after first visit so tokens survive re-visits */}
+          {contactMounted ? (
+            <div
+              className={
+                phase === "contact" || phase === "submitting" ? "space-y-4" : "hidden"
+              }
+            >
               <ProgressBar current={contactProgressCurrent} total={contactProgressTotal} />
               {errorMessage ? (
                 <Alert variant="destructive">
@@ -265,6 +257,24 @@ export function BallparkEstimator() {
                 onHoneypotChange={setHoneypot}
                 submitting={phase === "submitting"}
                 canSubmit={Boolean(turnstileToken)}
+                verificationSlot={
+                  <>
+                    <TurnstileField
+                      action={TURNSTILE_ACTIONS.ballparkEstimate}
+                      resetSignal={turnstileReset}
+                      onToken={(token) => {
+                        setTurnstileToken(token);
+                        if (token) setTurnstileHint(null);
+                      }}
+                      onWidgetError={setTurnstileHint}
+                    />
+                    {turnstileHint ? (
+                      <p className="mt-3 text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-md px-3 py-2">
+                        {turnstileHint}
+                      </p>
+                    ) : null}
+                  </>
+                }
                 onBack={() => {
                   const enabled = enabledQuestions(draft.services);
                   setItem(enabled[enabled.length - 1]?.name ?? "services");

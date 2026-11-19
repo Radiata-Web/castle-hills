@@ -3,6 +3,7 @@
 import { Link } from "@tanstack/react-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronLeft } from "lucide-react";
+import type { ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,8 @@ type ContactStepProps = {
   submitting: boolean;
   canSubmit: boolean;
   error?: string | null;
+  /** Rendered above the submit bar (e.g. Turnstile when interactive). */
+  verificationSlot?: ReactNode;
   onBack: () => void;
   onSubmit: (values: ContactFormOutput) => void;
 };
@@ -44,6 +47,7 @@ export function ContactStep({
   submitting,
   canSubmit,
   error,
+  verificationSlot,
   onBack,
   onSubmit,
 }: ContactStepProps) {
@@ -186,6 +190,8 @@ export function ContactStep({
             </Link>
             .
           </p>
+
+          {verificationSlot ? <div className="pt-2">{verificationSlot}</div> : null}
 
           <div className="flex items-center justify-between gap-3 mt-8 pt-6 border-t border-zinc-100 max-sm:sticky max-sm:bottom-0 max-sm:-mx-5 max-sm:px-5 max-sm:py-4 max-sm:bg-card/95 max-sm:backdrop-blur max-sm:supports-[backdrop-filter]:bg-card/80 max-sm:pb-[max(1rem,env(safe-area-inset-bottom))]">
             <Button

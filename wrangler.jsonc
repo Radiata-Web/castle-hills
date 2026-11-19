@@ -33,7 +33,7 @@
     "VITE_TURNSTILE_SITE_KEY": "0x4AAAAAAF5ChtHZn6ut0JFm",
     // Frontend hostnames siteverify may accept for this Worker (no secret).
     // Include workers.dev preview hosts Ryan’s Builds assign; keep production hosts for widget domain overlap.
-    "TURNSTILE_HOSTNAMES": "chstainandrestoration.com,www.chstainandrestoration.com,localhost,127.0.0.1,castle-hills-preview.workers.dev",
+    "TURNSTILE_HOSTNAMES": "chstainandrestoration.com,www.chstainandrestoration.com,localhost,127.0.0.1,castle-hills-preview.workers.dev,cf-preview-castle-hills.ryandey.workers.dev,preview-castle-hills.ryandey.workers.dev",
   },
   "send_email": [
     {
@@ -53,7 +53,7 @@
       "LEAD_TO_EMAIL": "ryandeyp@gmail.com",
       "LEAD_FROM_EMAIL": "noreply-preview@chstainandrestoration.com",
       "VITE_TURNSTILE_SITE_KEY": "0x4AAAAAAF5ChtHZn6ut0JFm",
-      "TURNSTILE_HOSTNAMES": "chstainandrestoration.com,www.chstainandrestoration.com,localhost,127.0.0.1,castle-hills-preview.workers.dev",
+      "TURNSTILE_HOSTNAMES": "chstainandrestoration.com,www.chstainandrestoration.com,localhost,127.0.0.1,castle-hills-preview.workers.dev,cf-preview-castle-hills.ryandey.workers.dev,preview-castle-hills.ryandey.workers.dev",
     },
     "send_email": [
       {
